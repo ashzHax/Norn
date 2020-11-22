@@ -53,7 +53,7 @@ Process.on('exit', code =>
 // Initialize Bot
 //////////////////////////////////////////////////
 
-Norn.login('Njk5Njc5Nzk2Mjk2Mjg2MjQ3.XpX5lg.WKksd817Ej_cqP0bu0e_oArPGck');
+Norn.login('Njk5Njc5Nzk2Mjk2Mjg2MjQ3.XpX5lg.jQnu0QPeTOMpMilBWgC6JO_SH3k');
 
 //////////////////////////////////////////////////
 // Configuration Read
@@ -179,7 +179,7 @@ Norn.on('ready', () =>
                 "TB_PLAYLIST": {}
             }
     
-            const writeData = JSON.stringify(CONFIGURATION_GUILD_DATA);
+            const writeData = JSON.stringify(CONFIGURATION_GUILD_DATA,null,4);
     
             FileSystem.writeFile(CONFIGURATION_GUILD_DATA_FILE_PATH,writeData,errorData =>
             {
