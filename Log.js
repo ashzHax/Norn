@@ -4,7 +4,7 @@
 const Discord = require('discord.js');
 
 // custom module
-const AXC =     require('./AXC.js');
+const AXC =     require('./Function.js');
 
 function log_console(message=null)
 {

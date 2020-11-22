@@ -4,8 +4,8 @@
 const YTDLC  = require('ytdl-core');
 
 // custom module
-const AXC    = require('./AXC.js');
-const log_TB = require('./AXC_LOG.js').log_TB;
+const AXC    = require('./Function.js');
+const log_TB = require('./Log.js').log_TB;
 
 async function TB_PLAY(guildData)
 {

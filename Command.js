@@ -7,9 +7,9 @@ const YTDLC       = require("ytdl-core");
 const FileSystem = require('fs');
 
 // custom module
-const AXC         = require('./AXC.js');
-const TB          = require('./AXC_TB.js');
-const log_command = require('./AXC_LOG.js').log_command;
+const AXC         = require('./Function.js');
+const TB          = require('./TrackBot.js');
+const log_command = require('./Log.js').log_command;
 
 async function command_delete(message,commandArray,guildData)
 {

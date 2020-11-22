@@ -13,12 +13,12 @@ const FileSystem = require('fs');
 const Process =    require('process');
 
 // custom module
-const AXC =        require('./AXC.js');
-const AXC_CMD =    require('./AXC_CMD.js');
-const LOG =        require('./AXC_LOG.js');
+const AXC =        require('./Function.js');
+const AXC_CMD =    require('./Command.js');
+const LOG =        require('./Log.js');
 
 // custom function
-const log_event =  require('./AXC_LOG.js').log_event;
+const log_event =  require('./Log.js').log_event;
 
 // global constant
 const Norn = new Discord.Client();
