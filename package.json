@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "discord bot",
   "main": "Norn.js",
+  "private": true,
   "scripts": {
     "install": "sudo apt-get install ffmpeg"
   },
