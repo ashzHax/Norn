@@ -53,7 +53,7 @@ Process.on('exit', code =>
 // Initialize Bot
 //////////////////////////////////////////////////
 
-Norn.login('Njk5Njc5Nzk2Mjk2Mjg2MjQ3.XpX5lg.jQnu0QPeTOMpMilBWgC6JO_SH3k');
+Norn.login('  ');
 
 //////////////////////////////////////////////////
 // Configuration Read
@@ -72,25 +72,6 @@ FileSystem.readFile(CONFIGURATION_GUILD_DATA_FILE_PATH, (errorData,fileData) =>
 
     Object.keys(CONFIGURATION_GUILD_DATA).forEach(guildID =>
     {
-        /*
-        let guildData =
-        {
-            Norn:              Norn,
-            systemChannel:     null,
-            name:              null,
-            guildID:           guildID,
-            administratorList: CONFIGURATION_GUILD_DATA[guildID].ADMINISTRATOR_LIST,
-            TB_textChannel:    null,
-            TB_voiceChannel:   null,
-            TB_connection:     null,
-            TB_queue:     [],
-            TB_volume:         CONFIGURATION_GUILD_DATA[guildID].TRACK_BOT_DEFAULT_VOLUME,
-            TB_playing:        false,
-            TB_index:     0,
-            TB_loopQueue:      true,
-            TB_loopSingle:     false
-        };
-        */
         let TB_data = {
             textChannel:     null,
             voiceChannel:    null,
@@ -131,24 +112,6 @@ Norn.on('ready', () =>
             guildData.name          = guildInstance.name;
         }
         else {
-            /*
-            guildData =
-            {
-                Norn:              Norn,
-                systemChannel:     guildInstance.systemChannel,
-                guildID:           guildInstance.id,
-                administratorList: null,
-                TB_textChannel:    null,
-                TB_voiceChannel:   null,
-                TB_connection:     null,
-                TB_queue:     [],
-                TB_volume:         TRACK_BOT_DEFAULT_VOLUME,
-                TB_playing:        false,
-                TB_index:     0,
-                TB_loopQueue:      true,
-                TB_loopSingle:     false
-            };
-            */
            let TB_data = {
                 textChannel:     null,
                 voiceChannel:    null,
@@ -161,6 +124,7 @@ Norn.on('ready', () =>
                 loopSingle:      false,
                 playlist:        {}
            };
+
             guildData =
             {
                 Norn:              Norn,
