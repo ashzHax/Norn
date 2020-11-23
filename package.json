@@ -5,7 +5,7 @@
   "main": "Norn.js",
   "private": true,
   "scripts": {
-    "install": "sudo apt-get install ffmpeg; npm i"
+    "install": "sudo apt-get install ffmpeg"
   },
   "repository": {
     "type": "git",
