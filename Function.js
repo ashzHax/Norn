@@ -3,8 +3,9 @@
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 
 // fixed error values
-module.exports.NO_CONFIG_FILE_FOUND = 1900;
-module.exports.CONFIG_WRITE_FAIL    = 1901;
+module.exports.CONFIG_NORN_FILE_NOT_FOUND = 1900;
+module.exports.NO_CONFIG_FILE_FOUND       = 1901;
+module.exports.CONFIG_WRITE_FAIL          = 1902;
 
 // color values
 module.exports.html_red =          '#FF0000';

@@ -1,9 +1,13 @@
 "use strict";
 
-// code setting
+// setting
+const CONFIGURATION_NORN_PATH = './setting.json';
 const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
 const TRACK_BOT_DEFAULT_VOLUME = 5;
 const NORN_MAIN_GUILD_ID = '687188236971671560';
+
+// setting variable
+var CONFIGURATION_NORN_VAR;
 
 // external module
 const Discord =    require('discord.js');
@@ -32,7 +36,7 @@ var CONFIGURATION_GUILD_DATA;
 // Process Handling Function
 //////////////////////////////////////////////////
 
-// system process event check code
+// ashz : system process event check code
 Process.on('exit', code =>
 {
     switch(code)
@@ -50,16 +54,22 @@ Process.on('exit', code =>
 });
 
 //////////////////////////////////////////////////
-// Initialize Bot
+// Reading Configuration Files
 //////////////////////////////////////////////////
 
-Norn.login('  ');
+FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
+{
+    if(errorData) {
+        console.log(errorData);
+        Process.exit(AXC.CONFIG_NORN_FILE_NOT_FOUND);
+        return;
+    }
 
-//////////////////////////////////////////////////
-// Configuration Read
-//////////////////////////////////////////////////
+    CONFIGURATION_NORN_VAR = JSON.parse(fileData);
+    Norn.login(CONFIGURATION_NORN_VAR.token_p1 + CONFIGURATION_NORN_VAR.token_p2 + CONFIGURATION_NORN_VAR.token_p3);
+});
 
-// read system configuration file
+// ashz : read system configuration file
 FileSystem.readFile(CONFIGURATION_GUILD_DATA_FILE_PATH, (errorData,fileData) =>
 {    
     if(errorData) {
@@ -96,6 +106,7 @@ FileSystem.readFile(CONFIGURATION_GUILD_DATA_FILE_PATH, (errorData,fileData) =>
         };
         guildDataMap.set(guildID,guildData);
     });
+
 });
 
 //////////////////////////////////////////////////
