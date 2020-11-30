@@ -8,13 +8,15 @@ const NORN_MAIN_GUILD_ID = '687188236971671560';
 
 // setting variable
 var CONFIGURATION_NORN_VAR;
+var CONFIGURATION_GUILD_DIR;
 
 // external module
 const Discord =    require('discord.js');
 
 // internal module
 const FileSystem = require('fs');
-const Process =    require('process');
+const Process    = require('process');
+const Path       = require('path');
 
 // custom module
 const AXC =        require('./Function.js');
@@ -65,48 +67,60 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
         return;
     }
 
-    CONFIGURATION_NORN_VAR = JSON.parse(fileData);
-    Norn.login(CONFIGURATION_NORN_VAR.token_p1 + CONFIGURATION_NORN_VAR.token_p2 + CONFIGURATION_NORN_VAR.token_p3);
-});
+    CONFIGURATION_NORN_VAR   = JSON.parse(fileData);
+	CONFIGURATION_GUILD_DIR  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
 
-// ashz : read system configuration file
-FileSystem.readFile(CONFIGURATION_GUILD_DATA_FILE_PATH, (errorData,fileData) =>
-{    
-    if(errorData) {
-        console.log(errorData);
-        Process.exit(AXC.NO_CONFIG_FILE_FOUND);
-        return;
-    }
-    
-    CONFIGURATION_GUILD_DATA = JSON.parse(fileData);
+	Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
 
-    Object.keys(CONFIGURATION_GUILD_DATA).forEach(guildID =>
-    {
-        let TB_data = {
-            textChannel:     null,
-            voiceChannel:    null,
-            voiceConnection: null,
-            queue:           [],
-            volume:          CONFIGURATION_GUILD_DATA[guildID].TRACK_BOT_DEFAULT_VOLUME,
-            index:           0,
-            playing:         false,
-            loopSingle:      false,
-            loopQueue:       true,
-            playlist:        CONFIGURATION_GUILD_DATA[guildID].TRACK_BOT_PLAYLIST,
-        };
+	// get saved per/guild data
+	FileSystem.readdir(CONFIGURATION_GUILD_DIR,(errorData,lsData) => 
+	{
+		if(errorData) {
+			console.log(errorData);
+			Process.exit(AXC.CONFIG_GUILD_DIR_NOT_FOUND);
+			return;
+		}
 
-        let guildData =
-        {
-            Norn:              Norn,
-            systemChannel:     null,
-            name:              null,
-            guildID:           null,
-            administratorList: CONFIGURATION_GUILD_DATA[guildID].ADMINISTRATOR_LIST,
-            TB:                TB_data,
-        };
-        guildDataMap.set(guildID,guildData);
-    });
+		lsData.forEach((fileName) => 
+		{
+			if(fileName.endsWith('.json')) {
+				FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR,fileName), (errorData,fileData) => 
+				{
+					if(errorData) {
+						console.log(errorData);
+						// TODO ashz : change to log error, instead of ending entire program
+						Process.exit(AXC.CONFIG_GUILD_FILE_NOT_FOUND);
+						return;
+					}
+					
+					let TB_data = {
+						textChannel:     null,
+						voiceChannel:    null,
+						voiceConnection: null,
+						queue:           [],
+						volume:          jsonMap[guildID].TB_VOLUME,
+						index:           0,
+						playing:         false,
+						loopSingle:      false,
+						loopQueue:       true,
+						playlist:        jsonMap[guildID].TRACK_BOT_PLAYLIST,
+					};
 
+					let guildData =
+					{
+						Norn:                    Norn,
+						systemChannel:           null,
+						name:                    jsonMap[guildID].GUILD_NAME,
+						guildID:                 jsonMap[guildID].GUILD_ID,
+						administratorList:       jsonMap[guildID].ADMINISTRATOR_LIST,
+						TB:                      TB_data,
+					};
+
+					guildDataMap.set(guildID,guildData);
+				});	
+			}
+		});
+	});
 });
 
 //////////////////////////////////////////////////
@@ -120,32 +134,33 @@ Norn.on('ready', () =>
         let guildData = guildDataMap.get(guildInstance.id);
         if(guildData != null) {
             guildData.systemChannel = guildInstance.systemChannel;
-            guildData.name          = guildInstance.name;
-        }
-        else {
-           let TB_data = {
-                textChannel:     null,
-                voiceChannel:    null,
-                voiceConnection: null,
-                queue:           [],
-                volume:          TRACK_BOT_DEFAULT_VOLUME,
-                index:           0,
-                playing:         false,
-                loopQueue:       true,
-                loopSingle:      false,
-                playlist:        {}
-           };
+            guildData.Norn          = Norn;
+        } else {
+			let TB_data = 
+			{
+				textChannel:     null,
+				voiceChannel:    null,
+				voiceConnection: null,
+				queue:           [],
+				volume:          CONFIGURATION_NORN_VAR.default_volume,
+				index:           0,
+				playing:         false,
+				loopQueue:       CONFIGURATION_NORN_VAR.default_loop_queue,
+				loopSingle:      CONFIGURATION_NORN_VAR.default_loop_single,
+				playlist:        {}
+			};
 
-            guildData =
+            let new_guildData =
             {
                 Norn:              Norn,
                 systemChannel:     guildInstance.systemChannel,
                 guildID:           guildInstance.id,
+				guildName:         guildInstance.name,
                 administratorList: null,
                 TB:                TB_data,
             };
             
-            guildDataMap.set(guildInstance.id,guildData);
+            guildDataMap.set(guildInstance.id,new_guildData);
 
             CONFIGURATION_GUILD_DATA[guildInstance.id] =
             {
@@ -156,11 +171,11 @@ Norn.on('ready', () =>
     
             const writeData = JSON.stringify(CONFIGURATION_GUILD_DATA,null,4);
     
-            FileSystem.writeFile(CONFIGURATION_GUILD_DATA_FILE_PATH,writeData,errorData =>
+            FileSystem.writeFile(Path.join(CONFIGURATION_GUILD_DIR,(guildInstance.id+'.json')), (errorData) =>
             {
                 if(errorData) {
                     console.log(error);
-                    Process.exit(AXC.CONFIG_WRITE_FAIL);
+                    Process.exit(AXC.CONFIG_GUILD_WRITE_ERROR);
                     return;
                 }
             });

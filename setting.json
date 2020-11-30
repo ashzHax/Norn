@@ -1,5 +1,9 @@
 {
-    "token_p1" : "Njk5Njc5Nzk2Mjk2Mjg2MjQ3",
-    "token_p2" : ".XpX5lg",
-    "token_p3" : ".00DcIC9VlJWTyzi25nVAN8t7FPM"
+    "token_part1"         : "Njk5Njc5Nzk2Mjk2Mjg2MjQ3",
+    "token_part2"         : ".XpX5lg",
+    "token_part3"         : ".00DcIC9VlJWTyzi25nVAN8t7FPM",
+	"guild_data_path"     : "./config/",
+	"default_volume"      : "3",
+	"default_loop_queue"  : "true",
+	"default_loop_single" : "false"
 }
