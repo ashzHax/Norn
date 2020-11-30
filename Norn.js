@@ -2,8 +2,6 @@
 
 // setting
 const CONFIGURATION_NORN_PATH = './setting.json';
-const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
-const TRACK_BOT_DEFAULT_VOLUME = 5;
 const NORN_MAIN_GUILD_ID = '687188236971671560';
 
 // setting variable
@@ -59,6 +57,7 @@ Process.on('exit', code =>
 // Reading Configuration Files
 //////////////////////////////////////////////////
 
+// norn configuration
 FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 {
     if(errorData) {
@@ -68,60 +67,101 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     }
 
     CONFIGURATION_NORN_VAR   = JSON.parse(fileData);
-	CONFIGURATION_GUILD_DIR  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
+    CONFIGURATION_GUILD_DIR  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
 
-	Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
+    // login to Discord server
+    Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
+    
+    // get saved per/guild data
+    FileSystem.readdir(CONFIGURATION_GUILD_DIR,(errorData,lsData) =>
+    {
+        if(errorData) {
+            console.log(errorData);
+            Process.exit(AXC.CONFIG_GUILD_DIR_NOT_FOUND);
+            return;
+        }
 
-	// get saved per/guild data
-	FileSystem.readdir(CONFIGURATION_GUILD_DIR,(errorData,lsData) => 
-	{
-		if(errorData) {
-			console.log(errorData);
-			Process.exit(AXC.CONFIG_GUILD_DIR_NOT_FOUND);
-			return;
-		}
+        lsData.forEach((fileName) =>
+        {
+            if(fileName.endsWith('.json')) {
+                let configurationPath = Path.join(CONFIGURATION_GUILD_DIR,fileName);
+                FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR,fileName), (errorData,fileData) =>
+                {
+                    if(errorData) {
+                        console.log(errorData);
+                        // TODO ashz : change to log error, instead of ending entire program
+                        Process.exit(AXC.CONFIG_GUILD_FILE_NOT_FOUND);
+                        return;
+                    }
 
-		lsData.forEach((fileName) => 
-		{
-			if(fileName.endsWith('.json')) {
-				FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR,fileName), (errorData,fileData) => 
-				{
-					if(errorData) {
-						console.log(errorData);
-						// TODO ashz : change to log error, instead of ending entire program
-						Process.exit(AXC.CONFIG_GUILD_FILE_NOT_FOUND);
-						return;
-					}
-					
-					let TB_data = {
-						textChannel:     null,
-						voiceChannel:    null,
-						voiceConnection: null,
-						queue:           [],
-						volume:          jsonMap[guildID].TB_VOLUME,
-						index:           0,
-						playing:         false,
-						loopSingle:      false,
-						loopQueue:       true,
-						playlist:        jsonMap[guildID].TRACK_BOT_PLAYLIST,
-					};
+                    let jsonMap = JSON.parse(fileData);                 
+                    let guildData =
+                    {
+                        STATIC:
+                        {
+                            guildName:           jsonMap.GUILD_NAME,
+                            guildID:             jsonMap.GUILD_ID,
+                            administratorList:   jsonMap.ADMINISTRATOR_LIST,
+                        },
+                        DYNAMIC:
+                        {
+                            Norn:                null,
+                            systemChannel:       null,
+                            configurationPath:   configurationPath,
+                        },
+                        TB:
+                        {
+                            STATIC: 
+                            {
+                                volume:          jsonMap.TB.VOLUME,
+                                loopSingle:      jsonMap.TB.LOOP_SINGLE,
+                                loopQueue:       jsonMap.TB.LOOP_QUEUE,
+                            },
+                            DYNAMIC: 
+                            {
+                                textChannel:     null,
+                                voiceChannel:    null,
+                                voiceConnection: null,
+                                queue:           [],
+                                index:           0,
+                                playing:         false,
+                            },
+                            PLAYLIST: jsonMap.TB.PLAYLIST,
+                        },
+                    };
 
-					let guildData =
-					{
-						Norn:                    Norn,
-						systemChannel:           null,
-						name:                    jsonMap[guildID].GUILD_NAME,
-						guildID:                 jsonMap[guildID].GUILD_ID,
-						administratorList:       jsonMap[guildID].ADMINISTRATOR_LIST,
-						TB:                      TB_data,
-					};
-
-					guildDataMap.set(guildID,guildData);
-				});	
-			}
-		});
-	});
+                    guildDataMap.set(jsonMap.GUILD_ID,guildData);
+                });	
+            }
+        });
+    });
 });
+
+function saveGuildData(guildData)
+{
+    let finalizedData = {
+        GUILD_ID             : guildData.guildID,
+        GUILD_NAME           : guildData.guildName,
+        ADMINISTRATOR_LIST   : guildData.administratorList,
+        TB: {
+            VOLUME           : guildData.TB.STATIC.volume,
+            LOOP_SINGLE      : guildData.TB.STATIC.loopSingle,
+            LOOP_QUEUE       : guildData.TB.STATIC.loopQueue,
+            PLAYLIST         : guildData.TB.PLAYLIST,
+        }
+    };
+
+    const writeData = JSON.stringify(finalizedData,null,4);
+    FileSystem.writeFile(guildData.DYNAMIC.configurationPath, writeData, (errorData) =>
+    {
+        if(errorData) {
+            console.log(error);
+            // TODO: change to log write error only, not finish
+            Process.exit(AXC.CONFIG_GUILD_WRITE_ERROR);
+            return;
+        }
+    });
+}
 
 //////////////////////////////////////////////////
 // Bot Ready Event
@@ -132,54 +172,50 @@ Norn.on('ready', () =>
     Norn.guilds.cache.forEach(guildInstance =>
     {
         let guildData = guildDataMap.get(guildInstance.id);
-        if(guildData != null) {
-            guildData.systemChannel = guildInstance.systemChannel;
-            guildData.Norn          = Norn;
-        } else {
-			let TB_data = 
-			{
-				textChannel:     null,
-				voiceChannel:    null,
-				voiceConnection: null,
-				queue:           [],
-				volume:          CONFIGURATION_NORN_VAR.default_volume,
-				index:           0,
-				playing:         false,
-				loopQueue:       CONFIGURATION_NORN_VAR.default_loop_queue,
-				loopSingle:      CONFIGURATION_NORN_VAR.default_loop_single,
-				playlist:        {}
-			};
 
+        if(guildData == null) {
             let new_guildData =
             {
-                Norn:              Norn,
-                systemChannel:     guildInstance.systemChannel,
-                guildID:           guildInstance.id,
-				guildName:         guildInstance.name,
-                administratorList: null,
-                TB:                TB_data,
+                STATIC:
+                {
+                    guildName:           guildInstance.name,
+                    guildID:             guildInstance.id,
+                    administratorList:   [],
+                },
+                DYNAMIC:
+                {
+                    Norn:                Norn,
+                    systemChannel:       guildInstance.systemChannel,
+                    configurationPath:   Path.join(CONFIGURATION_GUILD_DIR, (guildInstance.id+'.json')),
+                },
+                TB:
+                {
+                    STATIC: 
+                    {
+                        volume:          CONFIGURATION_NORN_VAR.default_volume,
+                        loopSingle:      CONFIGURATION_NORN_VAR.default_loop_single,
+                        loopQueue:       CONFIGURATION_NORN_VAR.default_loop_queue,
+                    },
+                    DYNAMIC: 
+                    {
+                        textChannel:     null,
+                        voiceChannel:    null,
+                        voiceConnection: null,
+                        queue:           [],
+                        index:           0,
+                        playing:         false,
+                    },
+                    PLAYLIST: null,
+                },
             };
-            
             guildDataMap.set(guildInstance.id,new_guildData);
-
-            CONFIGURATION_GUILD_DATA[guildInstance.id] =
-            {
-                "TRACK_BOT_DEFAULT_VOLUME": TRACK_BOT_DEFAULT_VOLUME,
-                "ADMINISTRATOR_LIST": ["ashz#3656"],
-                "TB_PLAYLIST": {}
-            }
-    
-            const writeData = JSON.stringify(CONFIGURATION_GUILD_DATA,null,4);
-    
-            FileSystem.writeFile(Path.join(CONFIGURATION_GUILD_DIR,(guildInstance.id+'.json')), (errorData) =>
-            {
-                if(errorData) {
-                    console.log(error);
-                    Process.exit(AXC.CONFIG_GUILD_WRITE_ERROR);
-                    return;
-                }
-            });
         }
+        else {
+            guildData.DYNAMIC.Norn          = Norn;
+            guildData.DYNAMIC.systemChannel = guildInstance.systemChannel;
+        }
+
+        saveGuildData(new_guildData);
     });
     log_event('BOT_READY', null, guildDataMap.get(NORN_MAIN_GUILD_ID));
 });

@@ -8,12 +8,14 @@
         "Dabig#3853",
         "conner#2879"
     ],
-    "TB_VOLUME"          : 7,
-	"TB_LOOP_SINGLE"     : false,
-	"TB_LOOP_QUEUE"      : true,
-    "TRACK_BOT_PLAYLIST" : {
-		"example"  : "./playlist/example.json",
-		"example1" : "./playlist/example1.json",
-		"example2" : "./playlist/example2.json"
-	}
+    "TB" : {
+        "VOLUME" : 7,
+        "LOOP_SINGLE" : false,
+        "LOOP_QUEUE": true,
+        "PLAYLIST": {
+            "example"  : "example",
+            "example1" : "example1",
+            "example2" : "example2"
+        }
+    }
 }
