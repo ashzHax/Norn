@@ -9,10 +9,12 @@ const log_TB = require('./Log.js').log_TB;
 
 async function TB_PLAY(guildData)
 {
-    const trackData = guildData.TB.queue[guildData.TB.index];
+    const trackData = guildData.TB.DYNAMIC.queue[guildData.TB.DYNAMIC.index];
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
-    guildData.TB.connection
+    console.log('reached');
+    console.log(trackData);
+    guildData.TB.DYNAMIC.voiceConnection
         .play( YTDLC(trackData.video_url), {filter:'audioonly',quality:'highestaudio',highWaterMark:(1<<25)} )
         .on('finish', () => 
         {
@@ -26,28 +28,30 @@ async function TB_PLAY(guildData)
             TB_PLAY(guildData);
         });
     
-    guildData.TB.connection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
-    guildData.TB.playing=true;
-
+        console.log('reached 2');
+    guildData.TB.DYNAMIC.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
+    guildData.TB.DYNAMIC.playing=true;
+    console.log('reached 3');
     log_TB('PLAY_SUCCESS',guildData);
+    console.log('reached 4');
 }
 
 // stop command
 async function TB_STOP(guildData)
 {
-    if(!guildData.TB.playing) {
-        if(guildData.TB.queue == null) {
+    if(!guildData.TB.DYNAMIC.playing) {
+        if(guildData.TB.DYNAMIC.queue == null) {
             log_TB('STOP_NOTHING_TO_STOP',guildData);
         }
         else {
             log_TB('STOP_CLEARING_QUEUE',guildData);
-            guildData.index = 0;
-            guildData.queue = [];
+            guildData.TB.DYNAMIC.index = 0;
+            guildData.TB.DYNAMIC.queue = [];
         }
     } 
     else {
         try {
-            await guildData.TB.connection.dispatcher.destroy();
+            await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
         }
         catch(errorData) {
             log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData);
@@ -55,9 +59,9 @@ async function TB_STOP(guildData)
             return;
         }
 
-        guildData.index = 0;
-        guildData.queue = [];
-        guildData.TB.playing = false;
+        guildData.TB.DYNAMIC.index = 0;
+        guildData.TB.DYNAMIC.queue = [];
+        guildData.TB.DYNAMIC.playing = false;
 
         log_TB('STOP_SUCCESS',guildData);
     }
@@ -66,20 +70,20 @@ async function TB_STOP(guildData)
 // end of queue
 async function TB_END(guildData)
 {
-    if(!guildData.TB.playing) {
+    if(!guildData.TB.DYNAMIC.playing) {
         log_TB('STOP_INVALID_STATUS',guildData);
     }
     else {
-        if(guildData.TB.index == guildData.TB.queue.length-1) {
+        if(guildData.TB.DYNAMIC.index == guildData.TB.DYNAMIC.queue.length-1) {
             try {
-                await guildData.TB.connection.dispatcher.destroy();
+                await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
             }
             catch(errorData) {
                 log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData);
                 return;
             }
 
-            guildData.TB.playing = false;
+            guildData.TB.DYNAMIC.playing = false;
 
             log_TB('STOP_SUCCESS_QUEUE_END',guildData); 
         }    
@@ -92,19 +96,19 @@ async function TB_END(guildData)
 // queue clear & stop TB
 async function TB_CLEAR(guildData)
 {
-    if(!guildData.TB.playing) {
-        if(guildData.TB.queue == null) {
+    if(!guildData.TB.DYNAMIC.playing) {
+        if(guildData.TB.DYNAMIC.queue == null) {
             log_TB('CLEAR_NOTHING_TO_STOP',guildData);
         }
         else {
             log_TB('CLEAR_CLEARING_QUEUE',guildData);
-            guildData.TB.index = 0;
-            guildData.TB.queue = [];
+            guildData.TB.DYNAMIC.index = 0;
+            guildData.TB.DYNAMIC.queue = [];
         }
     } 
     else {
         try {
-            await guildData.TB.connection.dispatcher.destroy();
+            await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
         }
         catch(errorData) {
             log_TB('CLEAR_FAILED_TO_DESTROY_DISPATCH',guildData);
@@ -112,9 +116,9 @@ async function TB_CLEAR(guildData)
             return;
         }
 
-        guildData.TB.index = 0;
-        guildData.TB.queue = [];
-        guildData.TB.playing = false;
+        guildData.TB.DYNAMIC.index = 0;
+        guildData.TB.DYNAMIC.queue = [];
+        guildData.TB.DYNAMIC.playing = false;
 
         log_TB('CLEAR_SUCCESS',guildData);
     }
@@ -123,10 +127,10 @@ async function TB_CLEAR(guildData)
 // next queue
 function TB_NEXT(guildData)
 {
-    const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue; 
+    const loopSingle = guildData.TB.STATIC.loopSingle;
+    const loopQueue = guildData.TB.STATIC.loopQueue; 
 
-    switch(guildData.TB.queue.length)
+    switch(guildData.TB.DYNAMIC.queue.length)
     {
         case 0:
         {
@@ -150,17 +154,17 @@ function TB_NEXT(guildData)
                 TB_PLAY(guildData);
             }
             else {
-                if (guildData.TB.queue.length-1 >= guildData.TB.index+1) {
-                    guildData.TB.index++;
+                if (guildData.TB.DYNAMIC.queue.length-1 >= guildData.TB.DYNAMIC.index+1) {
+                    guildData.TB.DYNAMIC.index++;
                     TB_PLAY(guildData);
                 }
                 else {
                     if (loopQueue) {
-                        guildData.TB.index=0;
+                        guildData.TB.DYNAMIC.index=0;
                         TB_PLAY(guildData);
                     }
                     else {
-                        guildData.TB.index++;
+                        guildData.TB.DYNAMIC.index++;
                         TB_END(guildData);
                     }
                 }
@@ -173,10 +177,9 @@ function TB_NEXT(guildData)
 // TODO: pre-connection check
 function TB_SKIP(guildData)
 {
-    const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue; 
+    const loopSingle = guildData.TB.STATIC.loopSingle;
  
-    switch(guildData.TB.queue.length)
+    switch(guildData.TB.DYNAMIC.queue.length)
     {
         case 0:
         {
@@ -190,13 +193,13 @@ function TB_SKIP(guildData)
         }
         default:
         {
-            if (guildData.TB.queue.length-1 >= guildData.TB.index+1) {
-                guildData.TB.index++;
+            if (guildData.TB.DYNAMIC.queue.length-1 >= guildData.TB.DYNAMIC.index+1) {
+                guildData.TB.DYNAMIC.index++;
                 TB_PLAY(guildData);
             }
             else {
-                if (guildData.TB.loopQueue) {
-                    guildData.TB.index=0;
+                if (loopSingle) {
+                    guildData.TB.DYNAMIC.index=0;
                     TB_PLAY(guildData);
                 }
                 else {
@@ -209,39 +212,39 @@ function TB_SKIP(guildData)
 
 async function TB_PAUSE(guildData)
 {
-    if (!guildData.TB.playing) {
+    if (!guildData.TB.DYNAMIC.playing) {
         log_TB('PAUSE_NOT_PLAYING',guildData);
         return;
     }
     
     try {
-        await guildData.TB.connection.dispatcher.pause(false);
+        await guildData.TB.DYNAMIC.voiceConnection.dispatcher.pause(false);
     }
     catch(errorData) {
         log_TB('PAUSE_PROCESS_ERROR',guildData);
         return;
     }
     
-    guildData.TB.playing = false;
+    guildData.TB.DYNAMIC.playing = false;
     log_TB('PAUSE_SUCCESS',guildData);
 }
 
 async function TB_RESUME(guildData)
 {
-    if (guildData.playing) {
+    if (guildData.TB.DYNAMIC.playing) {
         log_TB('RESUME_ALREADY_PLAYING',guildData);
         return;
     }
 
     try {
-        await guildData.connection.dispatcher.resume();
+        await guildData.TB.DYNAMIC.voiceConnection.dispatcher.resume();
     }
     catch(errorData) {
         log_TB('RESUME_PROCESS_ERROR',guildData);
         return;
     }
 
-    guildData.playing=true;
+    guildData.TB.DYNAMIC.playing=true;
     log_TB('RESUME_SUCCESS',guildData);    
 }
 

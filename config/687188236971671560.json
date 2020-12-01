@@ -1,21 +1,21 @@
 {
-	"GUILD_ID"           : "687188236971671560",
-	"GUILD_NAME"         : "AXC",
-    "ADMINISTRATOR_LIST" : [
+    "GUILD_ID": "687188236971671560",
+    "GUILD_NAME": "AXC",
+    "ADMINISTRATOR_LIST": [
         "ashz#3656",
         "OpenElement#8795",
         "김예림#1260",
         "Dabig#3853",
         "conner#2879"
     ],
-    "TB" : {
-        "VOLUME" : 7,
-        "LOOP_SINGLE" : false,
+    "TB": {
+        "VOLUME": 7,
+        "LOOP_SINGLE": false,
         "LOOP_QUEUE": true,
         "PLAYLIST": {
-            "example"  : "example",
-            "example1" : "example1",
-            "example2" : "example2"
+            "example": "example",
+            "example1": "example1",
+            "example2": "example2"
         }
     }
 }

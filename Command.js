@@ -95,7 +95,7 @@ async function command_join(message,commandArray,guildData)
     {
         try 
         {
-            guildData.TB.connection = await userVoiceChannel.join();
+            guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
         }
         catch (errorData)
         {
@@ -104,7 +104,7 @@ async function command_join(message,commandArray,guildData)
         }
         
         // ashz: faster connection speed
-        guildData.TB.connection.voice.setSelfDeaf(true);
+        guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true);
 
         log_command('JOIN_SUCCESS', message, guildData);
         return true;
@@ -115,8 +115,8 @@ async function command_join(message,commandArray,guildData)
         case 1:
         {
             if(await createConnection()) {
-                guildData.TB.textChannel = userTextChannel;
-                guildData.TB.voiceChannel = userVoiceChannel;
+                guildData.TB.DYNAMIC.textChannel  = userTextChannel;
+                guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
             }
             break;
         }
@@ -124,8 +124,8 @@ async function command_join(message,commandArray,guildData)
         case 3:
         {
             if(await createConnection()) {
-                guildData.TB.textChannel = userTextChannel;
-                guildData.TB.voiceChannel = userVoiceChannel;
+                guildData.TB.DYNAMIC.textChannel = userTextChannel;
+                guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
                 command_play(message,commandArray,guildData);
             }
             break;
@@ -140,13 +140,13 @@ module.exports.command_join = command_join;
 
 async function command_leave(message,guildData)
 {
-    if(!guildData.TB.connection) {
+    if(!guildData.TB.DYNAMIC.voiceConnection) {
         log_command('LEAVE_NO_CONNECTION_FOUND',message,guildData);
         return;
     }
 
-    guildData.TB.connection.disconnect();
-    guildData.TB.connection = null;
+    guildData.TB.DYNAMIC.voiceConnection.disconnect();
+    guildData.TB.DYNAMIC.voiceConnection = null;
 
     log_command('LEAVE_SUCCESS',message,guildData);
 }
@@ -154,7 +154,7 @@ module.exports.command_leave = command_leave;
 
 async function command_play(message,commandArray,guildData)
 {
-    var volumeData = guildData.TB.volume;
+    var volumeData = guildData.TB.STATIC.volume;
 
     switch(commandArray.length) {
         case 1: 
@@ -165,7 +165,7 @@ async function command_play(message,commandArray,guildData)
         case 3: volumeData=commandArray[2];
         case 2:
         {
-            if(guildData.TB.connection == null) {
+            if(guildData.TB.DYNAMIC.voiceConnection == null) {
                 command_join(message,commandArray,guildData);
                 return;
             }
@@ -192,7 +192,7 @@ async function command_play(message,commandArray,guildData)
                 volume:    volumeData
             };
     
-            guildData.TB.queue.push(videoData);
+            guildData.TB.DYNAMIC.queue.push(videoData);
             break;
         }
         default:

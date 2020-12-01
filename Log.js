@@ -25,7 +25,7 @@ function log_event(logType,eventData,guildData=null)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.guildID}][event][${logType}]`;
+        consoleLogText = `[${guildData.STATIC.guildID}][event][${logType}]`;
     }
     else {
         consoleLogText = `[guild_null][event][${logType}]`;
@@ -41,7 +41,7 @@ function log_event(logType,eventData,guildData=null)
                 .setTitle(logType)
                 .setDescription('[+.+] I live to serve you my liege')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${guildData.Norn.user.tag}] I live to serve you, my liege`);
+            consoleLogText = consoleLogText.concat(`[${guildData.DYNAMIC.Norn.user.tag}] I live to serve you, my liege`);
             break;
         }
 //////////////////////////////////////////////////
@@ -163,7 +163,7 @@ function log_event(logType,eventData,guildData=null)
         case 'MESSAGE':
         {
             // if event occuring channel is the bot channel, does not log
-            if(eventData.author.id == guildData.Norn.user.id) return;
+            if(eventData.author.id == guildData.DYNAMIC.Norn.user.id) return;
             
             // sometimes, contents could be empty
             if(eventData.content == '') return;
@@ -190,7 +190,7 @@ function log_event(logType,eventData,guildData=null)
             if(eventData.content.startsWith('/')) return;
             
             // all delete by Norn will be ignored
-            if(eventData.author.tag == guildData.Norn.user.tag) return;
+            if(eventData.author.tag == guildData.DYNAMIC.Norn.user.tag) return;
             
             devLog
                 .setColor(AXC.html_blue)
@@ -221,7 +221,7 @@ function log_event(logType,eventData,guildData=null)
         case 'MESSAGE_UPDATE':
         {
             // all update caused by Norn will be ignored
-            if(eventData[1].author.tag == guildData.Norn.user.tag) return;
+            if(eventData[1].author.tag == guildData.DYNAMIC.Norn.user.tag) return;
             if(eventData[0].content == eventData[1].content) return;
 
             devLog
@@ -359,7 +359,7 @@ function log_event(logType,eventData,guildData=null)
     }
 
     if( (guildData!=null) && (devLog!=null) ) {
-        guildData.systemChannel.send(devLog);
+        guildData.DYNAMIC.systemChannel.send(devLog);
     }
     log_console(consoleLogText);
 }
@@ -374,7 +374,7 @@ function log_command(logType,message,guildData)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.guildID}][command][${logType}][${message.author.tag}]`;
+        consoleLogText = `[${guildData.STATIC.guildID}][command][${logType}][${message.author.tag}]`;
     }
     else {
         consoleLogText = `[guild_null][command][${logType}][${message.author.tag}]`;
@@ -749,8 +749,8 @@ function log_command(logType,message,guildData)
         }
         case 'PLAY_ADDED_REQUEST_TO_QUEUE':
         {
-            let idx = guildData.TB.queue.length-1;
-            const trackData = guildData.TB.queue[idx];
+            let idx = guildData.TB.DYNAMIC.queue.length-1;
+            const trackData = guildData.TB.DYNAMIC.queue[idx];
 
             devLog
                 .setColor(AXC.html_green)
@@ -777,8 +777,8 @@ function log_command(logType,message,guildData)
         }   
         case 'PLAY_TB_PLAY_ERROR':
         {
-            let idx = guildData.TB.queue.length-1;
-            const trackData = guildData.TB.queue[idx];
+            let idx = guildData.TB.DYNAMIC.queue.length-1;
+            const trackData = guildData.TB.DYNAMIC.queue[idx];
 
             devLog
                 .setColor(AXC.html_red)
@@ -803,7 +803,7 @@ function log_command(logType,message,guildData)
     }
 
     if( (guildData!=null) && (devLog!=null) ) {
-        guildData.systemChannel.send(devLog);
+        guildData.DYNAMIC.systemChannel.send(devLog);
     }
     if( (guildData!=null) && (usrLog!=null) ) {
         message.channel.send(usrLog);
@@ -820,7 +820,7 @@ function log_TB(logType,guildData)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.guildID}][TB][${logType}]`;
+        consoleLogText = `[${guildData.STATIC.guildID}][TB][${logType}]`;
     }
     else {
         consoleLogText = `[guild_null][TB][${logType}]`;
@@ -844,8 +844,8 @@ function log_TB(logType,guildData)
         }
         case 'PLAY_SUCCESS':
         {
-            const idx = guildData.TB.index;
-            const trackData = guildData.TB.queue[idx];
+            const idx = guildData.TB.DYNAMIC.index;
+            const trackData = guildData.TB.DYNAMIC.queue[idx];
 
             devLog
                 .setColor(AXC.html_green)
@@ -877,10 +877,10 @@ function log_TB(logType,guildData)
     log_console(consoleLogText);
 
     if( (guildData!=null) && (devLog!=null) ) {
-        guildData.systemChannel.send(devLog);
+        guildData.DYNAMIC.systemChannel.send(devLog);
     }
     if( (guildData!=null) && (usrLog!=null) ) {
-        guildData.TB.textChannel.send(usrLog);
+        guildData.TB.DYNAMIC.textChannel.send(usrLog);
     }
 }
 module.exports.log_TB = log_TB;

@@ -209,13 +209,13 @@ Norn.on('ready', () =>
                 },
             };
             guildDataMap.set(guildInstance.id,new_guildData);
+            saveGuildData(new_guildData);
         }
         else {
             guildData.DYNAMIC.Norn          = Norn;
             guildData.DYNAMIC.systemChannel = guildInstance.systemChannel;
+            saveGuildData(guildData);
         }
-
-        saveGuildData(new_guildData);
     });
     log_event('BOT_READY', null, guildDataMap.get(NORN_MAIN_GUILD_ID));
 });
@@ -382,7 +382,7 @@ Norn.on('message', async function(eventMessage)
 
     let guildData = guildDataMap.get(eventMessage.guild.id);
 
-    if(!guildData.administratorList.includes(eventMessage.author.tag)) {
+    if(!guildData.STATIC.administratorList.includes(eventMessage.author.tag)) {
         log_event('COMMAND_NO_PERMISSION', eventMessage, guildData);
         return;
     }
