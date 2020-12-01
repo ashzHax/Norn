@@ -140,9 +140,9 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 function saveGuildData(guildData)
 {
     let finalizedData = {
-        GUILD_ID             : guildData.guildID,
-        GUILD_NAME           : guildData.guildName,
-        ADMINISTRATOR_LIST   : guildData.administratorList,
+        GUILD_ID             : guildData.STATIC.guildID,
+        GUILD_NAME           : guildData.STATIC.guildName,
+        ADMINISTRATOR_LIST   : guildData.STATIC.administratorList,
         TB: {
             VOLUME           : guildData.TB.STATIC.volume,
             LOOP_SINGLE      : guildData.TB.STATIC.loopSingle,
@@ -394,55 +394,57 @@ Norn.on('message', async function(eventMessage)
     {
         case 'delete':
         {
-            AXC_CMD.command_delete(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
-            break;
-        }
-        case 'join':
-        {
-            AXC_CMD.command_join(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
-            break;
-        }
-        case 'leave':
-        {
-            AXC_CMD.command_leave(eventMessage,guildDataMap.get(eventMessage.guild.id));
-            break;
-        }
-        case 'pl':
-        case 'play':
-        {
-            AXC_CMD.command_play(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
-            break;
-        }
-        case 'stop':
-        {
-            AXC_CMD.command_stop(guildDataMap.get(eventMessage.guild.id));
-            break;
-        }   
-        case 'pause':
-        {
-            AXC_CMD.command_pause(guildDataMap.get(eventMessage.guild.id));
-            break;
-        }   
-        case 'resume':
-        {
-            AXC_CMD.command_resume(guildDataMap.get(eventMessage.guild.id));
-            break;
-        }   
-        case 'skip':
-        case 'next':
-        {
-            AXC_CMD.command_skip(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
+        	// TODO implement into syscall command
+			AXC_CMD.command_delete(eventMessage, commandArray, guildData);
             break;
         }
         case 'syscall':
         {
             //TODO
-            //AXC_CMD.command_syscall(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
+            //AXC_CMD.command_syscall(eventMessage, commandArray, guildData);
             break;   
+        }
+        case 'join':
+        {
+            AXC_CMD.command_join(eventMessage, commandArray, guildData);
+            break;
+        }
+        case 'leave':
+        {
+            AXC_CMD.command_leave(eventMessage, guildData);
+            break;
+        }
+        case 'pl':
+        case 'play':
+        {
+            AXC_CMD.command_play(eventMessage, commandArray, guildData);
+            break;
+        }
+        case 'stop':
+        {
+            AXC_CMD.command_stop(guildData);
+            break;
+        }   
+        case 'pause':
+        {
+            AXC_CMD.command_pause(guildData);
+            break;
+        }   
+        case 'resume':
+        {
+            AXC_CMD.command_resume(guildData);
+            break;
+        }   
+        case 'skip':
+        case 'next':
+		case 'jump':
+        {
+            AXC_CMD.command_skip(eventMessage, commandArray, guildData);
+            break;
         }
         case 'playlist':
         {
-            AXC_CMD.command_playlist(eventMessage,commandArray,guildDataMap.get(eventMessage.guild.id));
+            AXC_CMD.command_playlist(eventMessage, commandArray, guildData);
             break;
         }
         default:
