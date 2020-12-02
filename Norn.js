@@ -2,35 +2,30 @@
 
 // setting
 const CONFIGURATION_NORN_PATH = './setting.json';
-const NORN_MAIN_GUILD_ID = '687188236971671560';
+
+// external module
+const Discord     = require('discord.js');
+
+// internal module
+const FileSystem  = require('fs');
+const Process     = require('process');
+const Path        = require('path');
+
+// custom module
+const AXC         = require('./Function.js');
+const AXC_CMD     = require('./Command.js');
+
+// custom function
+const log_console = require('./Log.js').log_console;
+const log_event   = require('./Log.js').log_event;
+
+// global constant
+const Norn         = new Discord.Client();
+const guildDataMap = new Map();
 
 // setting variable
 var CONFIGURATION_NORN_VAR;
-var CONFIGURATION_GUILD_DIR;
-
-// external module
-const Discord =    require('discord.js');
-
-// internal module
-const FileSystem = require('fs');
-const Process    = require('process');
-const Path       = require('path');
-
-// custom module
-const AXC =        require('./Function.js');
-const AXC_CMD =    require('./Command.js');
-const LOG =        require('./Log.js');
-
-// custom function
-const log_event =  require('./Log.js').log_event;
-
-// global constant
-const Norn = new Discord.Client();
-const sessionQueue = new Map();
-const guildDataMap = new Map();
-
-// extracted file list
-var CONFIGURATION_GUILD_DATA;
+var CONFIGURATION_GUILD_DIR_PATH;
 
 //////////////////////////////////////////////////
 // Process Handling Function
@@ -41,14 +36,14 @@ Process.on('exit', code =>
 {
     switch(code)
     {
-        case AXC.NO_CONFIG_FILE_FOUND:
+        case AXC.CONFIG_FILE_NOT_FOUND:
         {
-            LOG.log_console("Ending program with code 1900 (NO_CONFIG_FILE_FOUND)");
+            log_console("Ending program with code 1900 (NO_CONFIG_FILE_FOUND)");
             break;
         }
         default:
         {
-            LOG.log_console(`Ending program with unknown code ${code}`);
+            log_console(`Ending program with unknown code ${code}`);
         }
     }
 });
@@ -67,13 +62,13 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     }
 
     CONFIGURATION_NORN_VAR   = JSON.parse(fileData);
-    CONFIGURATION_GUILD_DIR  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
+    CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
 
     // login to Discord server
     Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
     
     // get saved per/guild data
-    FileSystem.readdir(CONFIGURATION_GUILD_DIR,(errorData,lsData) =>
+    FileSystem.readdir(CONFIGURATION_GUILD_DIR_PATH,(errorData,lsData) =>
     {
         if(errorData) {
             console.log(errorData);
@@ -84,8 +79,8 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
         lsData.forEach((fileName) =>
         {
             if(fileName.endsWith('.json')) {
-                let configurationPath = Path.join(CONFIGURATION_GUILD_DIR,fileName);
-                FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR,fileName), (errorData,fileData) =>
+                let configurationPath = Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName);
+                FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName), (errorData,fileData) =>
                 {
                     if(errorData) {
                         console.log(errorData);
@@ -186,7 +181,7 @@ Norn.on('ready', () =>
                 {
                     Norn:                Norn,
                     systemChannel:       guildInstance.systemChannel,
-                    configurationPath:   Path.join(CONFIGURATION_GUILD_DIR, (guildInstance.id+'.json')),
+                    configurationPath:   Path.join(CONFIGURATION_GUILD_DIR_PATH, (guildInstance.id+'.json')),
                 },
                 TB:
                 {
@@ -217,7 +212,7 @@ Norn.on('ready', () =>
             saveGuildData(guildData);
         }
     });
-    log_event('BOT_READY', null, guildDataMap.get(NORN_MAIN_GUILD_ID));
+    log_event('BOT_READY', null, null);
 });
 
 //////////////////////////////////////////////////
@@ -263,7 +258,7 @@ Norn.on('messageReactionRemoveAll', eventMessage =>
     log_event('MESSAGE_REACTION_REMOVE_ALL', eventMessage, guildDataMap.get(eventMessage.guild.id)));
 
 /*
-// this function is too bugy to use
+// this function is too buggy to use
 Norn.on('typingStart', (eventChannel,eventUser) =>
     log_event('TYPING_START', [eventChannel,eventUser], guildDataMap.get(eventChannel.lastMessage.guild.id)));
 */
@@ -318,6 +313,7 @@ Norn.on('guildMembersChunk', (eventGuildMembers,eventGuild,eventData) =>
     log_event('GUILD_MEMBERS_CHUNK', [eventGuildMembers,eventGuild,eventData], guildDataMap.get(eventGuild.id)));
 
 /*
+// too many logs
 Norn.on('guildMemberSpeaking', (eventGuildMember,eventReadOnlySpeaking) =>
     log_event('GUILD_MEMBER_SPEAKING', [eventGuildMember,eventReadOnlySpeaking], guildDataMap.get(eventGuildMember.guild.id)));
 */
@@ -349,6 +345,7 @@ Norn.on('presenceUpdate', (previousPresence,newPresence) =>
     log_event('PRESENCE_UPDATE', [previousPresence,newPresence], null));
     
 /*
+// TODO : use to check if Norn was moved around 
 Norn.on('voiceStateUpdate', (previousVoiceState,newVoiceState) =>
     log_event('VOICE_STATE_UPDATE', [previousVoiceState,newVoiceState], guildDataMap.get(newVoiceState.guild.id)));
 */
@@ -364,6 +361,7 @@ Norn.on('warn', eventString =>
     log_event('WARN', eventString, null));
 
 /*
+// too many logs
 Norn.on('debug', eventString =>
     log_event('DEBUG', eventString, null));
 */
@@ -394,13 +392,13 @@ Norn.on('message', async function(eventMessage)
     {
         case 'delete':
         {
-        	// TODO implement into syscall command
+        	// TODO : ashz : implement into syscall command
 			AXC_CMD.command_delete(eventMessage, commandArray, guildData);
             break;
         }
         case 'syscall':
         {
-            //TODO
+            //TODO : ashz
             //AXC_CMD.command_syscall(eventMessage, commandArray, guildData);
             break;   
         }

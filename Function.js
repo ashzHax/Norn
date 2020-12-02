@@ -7,7 +7,7 @@ module.exports.CONFIG_NORN_FILE_NOT_FOUND  = 1900;
 module.exports.CONFIG_GUILD_DIR_NOT_FOUND  = 1901;
 module.exports.CONFIG_GUILD_FILE_NOT_FOUND = 1902;
 module.exports.CONFIG_GUILD_WRITE_ERROR    = 1903;
-module.exports.NO_CONFIG_FILE_FOUND        = 1904;
+module.exports.CONFIG_FILE_NOT_FOUND       = 1904;
 
 // color values
 module.exports.html_red =          '#FF0000';
