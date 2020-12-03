@@ -41,7 +41,7 @@ function log_event(logType,eventData,guildData=null)
                 .setTitle(logType)
                 .setDescription('[+.+] I live to serve you my liege')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${guildData.DYNAMIC.Norn.user.tag}] I live to serve you, my liege`);
+            consoleLogText = consoleLogText.concat(` I live to serve you, my liege`);
             break;
         }
 //////////////////////////////////////////////////
