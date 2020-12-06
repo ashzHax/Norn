@@ -1,6 +1,7 @@
 "use strict";
 
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
+const { pid } = require("process");
 
 // fixed error values
 module.exports.CONFIG_NORN_FILE_NOT_FOUND  = 1900;
@@ -31,15 +32,23 @@ module.exports.TYPE_DEBUG =   'DBG';
 // get personal date format
 function get_date_string_format(DateInstance)
 {
-    return DateInstance.getFullYear().toString().padStart(2, "0")+'/'
-          +(DateInstance.getMonth()+1).toString().padStart(2, "0")+'/'
-          +DateInstance.getDate().toString().padStart(2, "0")+' '
-          +DateInstance.getHours().toString().padStart(2, "0")+':'
-          +DateInstance.getMinutes().toString().padStart(2, "0")+':'
-          +DateInstance.getSeconds().toString().padStart(2, "0")+'.'
-          +DateInstance.getMilliseconds().toString().padStart(3, "0");
+    return DateInstance.getFullYear().toString().padStart(2, '0')+'/'
+          +(DateInstance.getMonth()+1).toString().padStart(2, '0')+'/'
+          +DateInstance.getDate().toString().padStart(2, '0')+' '
+          +DateInstance.getHours().toString().padStart(2, '0')+':'
+          +DateInstance.getMinutes().toString().padStart(2, '0')+':'
+          +DateInstance.getSeconds().toString().padStart(2, '0')+'.'
+          +DateInstance.getMilliseconds().toString().padStart(3, '0');
 }
 module.exports.getStringDate = get_date_string_format;
+
+function get_current_day_simple_string_format(DateInstance)
+{
+    return DateInstance.getFullYear().toString()
+        +(DateInstance.getMonth()+1).toString().padStart(2, '0')
+        +DateInstance.getDate().toString().padStart(2, '0');
+}
+module.exports.getDay = get_current_day_simple_string_format;
 
 // replace all character instance of parameter 0 with parameter 1
 function string_replace_all(target_string,target_character,replacement_character)

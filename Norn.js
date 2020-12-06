@@ -26,6 +26,7 @@ const guildDataMap = new Map();
 // setting variable
 var CONFIGURATION_NORN_VAR;
 var CONFIGURATION_GUILD_DIR_PATH;
+var CONFIGURATION_LOG_DIR_PATH;
 
 //////////////////////////////////////////////////
 // Process Handling Function
@@ -38,12 +39,12 @@ Process.on('exit', code =>
     {
         case AXC.CONFIG_FILE_NOT_FOUND:
         {
-            log_console("Ending program with code 1900 (NO_CONFIG_FILE_FOUND)");
+            log_console('Ending program with code 1900 (NO_CONFIG_FILE_FOUND)',null);
             break;
         }
         default:
         {
-            log_console(`Ending program with unknown code ${code}`);
+            log_console(`Ending program with unknown code ${code}`,null);
         }
     }
 });
@@ -63,6 +64,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 
     CONFIGURATION_NORN_VAR   = JSON.parse(fileData);
     CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
+    CONFIGURATION_LOG_DIR_PATH = Path.join(__dirname,CONFIGURATION_NORN_VAR.log_data_path);
 
     // login to Discord server
     Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
@@ -103,6 +105,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                             Norn:                null,
                             systemChannel:       null,
                             configurationPath:   configurationPath,
+                            logPath:             CONFIGURATION_LOG_DIR_PATH,
                         },
                         TB:
                         {
@@ -182,6 +185,7 @@ Norn.on('ready', () =>
                     Norn:                Norn,
                     systemChannel:       guildInstance.systemChannel,
                     configurationPath:   Path.join(CONFIGURATION_GUILD_DIR_PATH, (guildInstance.id+'.json')),
+                    logPath:             CONFIGURATION_LOG_DIR_PATH,
                 },
                 TB:
                 {
