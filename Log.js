@@ -28,8 +28,6 @@ module.exports.log_console = log_console;
 // event data sent only to logging channel and console
 function log_event(logType,eventData,guildData=null)
 {
-    var devLog = new Discord.MessageEmbed();
-    var usrLog = new Discord.MessageEmbed();
     var embdLog = new Discord.MessageEmbed();
     var consoleLogText;
 
@@ -176,66 +174,32 @@ function log_event(logType,eventData,guildData=null)
         }
         case 'MESSAGE_REACTION_ADD':
         {
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData[1].tag}`)
-                .setTitle(logType)
-                .setDescription(`Reacted to a message with \"${eventData[0].emoji}\"`)
-                .addFields(
-                    { name: 'Message ID',   value: eventData[0].message.id,           inline: true },
-                    { name: 'Channel Name', value: eventData[0].message.channel.name, inline: true },
-                    { name: 'Message',      value: eventData[0].message.content,      inline: false },
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"`);
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
         case 'MESSAGE_REACTION_DELETE':
         {
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData[1].tag}`)
-                .setTitle(logType)
-                .setDescription(`Deleted a reaction \"${eventData[0].emoji}\"`)
-                .addFields(
-                    { name: 'Message ID',   value: eventData[0].message.id,           inline: true },
-                    { name: 'Channel Name', value: eventData[0].message.channel.name, inline: true },
-                    { name: 'Message',      value: eventData[0].message.content,      inline: false },
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"`);
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
         case 'MESSAGE_REACTION_REMOVE_ALL':
         {
             let emojiCache = '';
-            eventData[0].reactions.cache.forEach(element => {
+            eventData.reactions.cache.forEach(element =>
+            {
                 emojiCache.append(element.emoji);
             });
 
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData.author.tag}`)
-                .setTitle(logType)
-                .setDescription(`Deleted reactions \"${emojiCache}\"`)
-                .addFields(
-                    { name: 'Message ID',   value: eventData.id,           inline: true  },
-                    { name: 'Channel Name', value: eventData.channel.name, inline: true  },
-                    { name: 'Message',      value: eventData.content,      inline: false },
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] reaction:\"${emojiCache}\",message_id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\",message:\"${eventData.content}\"`);
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {reaction:\"${emojiCache}\",message_id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\",message:\"${eventData.content}\"}`);
             break;
         }
         case 'TYPING_START':
         {
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData[1].tag}`)
-                .setTitle(logType)
-                .setDescription(`Typing event detected`)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected`);
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected! (Honestly don't know why I left this event...)`);
             break;
         }
 //////////////////////////////////////////////////
@@ -243,45 +207,21 @@ function log_event(logType,eventData,guildData=null)
 //////////////////////////////////////////////////
         case 'COMMAND_NO_PERMISSION':
         {
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData.author.tag}`)
-                .setTitle(logType)
-                .setDescription('[-.-] User does not have permission to run this command')
-                .addFields(
-                    { name: 'Channel',          value: Function.getChannelName(eventData.channel), inline: true },
-                    { name: 'Message ID',       value: eventData.id,                          inline: true },
-                    { name: 'Received Command', value: eventData.content,                     inline: true },
-                    { name: 'Cause',            value: 'no permission to use this command',   inline: true },
-                )  
-                .setTimestamp();
-            usrLog
+            embdLog
                 .setColor(Function.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('No Permission')
                 .setDescription('[o.O] You have no permissions to issue commands')
                 .addField('Received Message',`\"${eventData.content}\"`,false)
                 .setTimestamp();
-            
-            eventData.channel.send(usrLog);
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] command:\"${eventData.content}\",reason:\"no permission to use this command\"`);  
+
+            eventData.channel.send(embdLog);
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\",reason:\"no permission to use this command\"}`);  
             break;
         }
         case 'COMMAND_UNKNOWN':
         {
-            devLog
-                .setColor(Function.html_blue)
-                .setAuthor(`user: ${eventData.author.tag}`)
-                .setTitle(logType)
-                .setDescription('Unknown command was received')
-                .addFields(
-                    { name: 'Channel',          value: Function.getChannelName(eventData.channel), inline: true },
-                    { name: 'Message ID',       value: eventData.id,                          inline: true },
-                    { name: 'Received Command', value: eventData.content,                     inline: true },
-                    { name: 'Cause',            value: 'unknown command',                     inline: true },
-                )  
-                .setTimestamp();
-            usrLog
+            embdLog
                 .setColor(Function.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('Unknown command (Try /help)')
@@ -289,24 +229,25 @@ function log_event(logType,eventData,guildData=null)
                 .addField('Received Message',`\"${eventData.content}\"`,false)
                 .setTimestamp();
             
-            eventData.channel.send(usrLog);
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] command:\"${eventData.content}\",reason:\"unknown command\"`);  
+            eventData.channel.send(embdLog);
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\",reason:\"unknown command\"}`);  
             break;
         }
         default:
         {
-            emdbLog = null;
-            consoleLogText = consoleLogText.concat(' {error:\"undefined log type\"}');
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(' error:\"undefined log type\"');
         }
     }
 
-    if(guildData != null ) {
-        if(embdLog != null) {
-            guildData.DYNAMIC.systemChannel.send(embdLog);
-        }
-        log_console(consoleLogText,guildData);
-    } else {
+
+    if(embdLog != null) {
+        guildData.DYNAMIC.systemChannel.send(embdLog);
+    }
+    if(consoleLogText == null) {
         console.log(Function.traceDebug('log event error, guildData is null'));
+    } else {
+        log_console(consoleLogText,guildData);
     }
 }
 module.exports.log_event = log_event;
