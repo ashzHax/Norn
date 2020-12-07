@@ -46,6 +46,7 @@ function log_event(logType,eventData,guildData=null)
             consoleLogText = consoleLogText.concat(' (*high animie sqeak*) I am here to serve!');
             break;
         }
+
 //////////////////////////////////////////////////
 // Event Handler: Channel
 //////////////////////////////////////////////////
@@ -124,6 +125,7 @@ function log_event(logType,eventData,guildData=null)
             embdLog = null;
             break;
         }
+
 //////////////////////////////////////////////////
 // Event Handler: Message
 //////////////////////////////////////////////////
@@ -202,6 +204,7 @@ function log_event(logType,eventData,guildData=null)
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected! (Honestly don't know why I left this event...)`);
             break;
         }
+
 //////////////////////////////////////////////////
 // Event Handler: Command
 //////////////////////////////////////////////////
@@ -211,12 +214,13 @@ function log_event(logType,eventData,guildData=null)
                 .setColor(Function.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('No Permission')
-                .setDescription('[o.O] You have no permissions to issue commands')
-                .addField('Received Message',`\"${eventData.content}\"`,false)
+                .setDescription('[!.!] You have no permission to issue commands')
+                .addField('Received Command',`\"${eventData.content}\"`,false)
                 .setTimestamp();
 
             eventData.channel.send(embdLog);
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\",reason:\"no permission to use this command\"}`);  
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
             break;
         }
         case 'COMMAND_UNKNOWN':
@@ -224,24 +228,39 @@ function log_event(logType,eventData,guildData=null)
             embdLog
                 .setColor(Function.html_red)
                 .setAuthor(eventData.author.tag)
-                .setTitle('Unknown command (Try /help)')
-                .setDescription('[?.?] Unknown command, try typing /help for a list of commands')
-                .addField('Received Message',`\"${eventData.content}\"`,false)
+                .setTitle('Unknown Command')
+                .setDescription('[?.?] Unknown command, try \"/help\" for a list of commands')
+                .addField('Received Command',`\"${eventData.content}\"`,false)
                 .setTimestamp();
             
             eventData.channel.send(embdLog);
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\",reason:\"unknown command\"}`);  
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
             break;
+        }
+        case 'COMMAND_DATA_NULL':
+        {
+            embdLog
+                .setColor(Function.html_red)
+                .setAuthor(eventData.author.tag)
+                .setTitle('Null Data Detected')
+                .setDescription('[X.X] Critical error, something broke inside...')
+                .addField('Received Command',`\"${eventData.content}\"`,false)
+                .setTimestamp();
+            
+            eventData.channel.send(embdLog);
+            embdLog = null;
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
+            break;  
         }
         default:
         {
             embdLog = null;
-            consoleLogText = consoleLogText.concat(' error:\"undefined log type\"');
+            consoleLogText = consoleLogText.concat(' {error:\"undefined log type\"}');
         }
     }
 
-
-    if(embdLog != null) {
+    if(embdLog != null && guildData != null) {
         guildData.DYNAMIC.systemChannel.send(embdLog);
     }
     if(consoleLogText == null) {
@@ -258,6 +277,7 @@ function log_command(logType,message,guildData)
 
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();
+    var embdLog = new Discord.MessageEmbed();
     var consoleLogText;
 
     if(guildData != null) {
@@ -555,7 +575,7 @@ function log_command(logType,message,guildData)
             usrLog
                 .setColor(Function.html_green)
                 .setAuthor(commandUser)
-                .setTitle('Disconnected from voice channel')
+                .setTitle('Left Voice Channel')
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
             break;
@@ -695,7 +715,16 @@ function log_command(logType,message,guildData)
     if( (guildData!=null) && (usrLog!=null) ) {
         message.channel.send(usrLog);
     }
-    log_console(consoleLogText,guildData);
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    if(embdLog != nul && guildData != null) {
+        guildData.DYNAMIC.systemChannel.send(embdLog);
+    }
+    if(consoleLogText == null) {
+        console.log(Function.traceDebug('log event error, guildData is null'));
+    } else {
+        log_console(consoleLogText,guildData);
+    }
 }
 module.exports.log_command = log_command;
 

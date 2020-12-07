@@ -7,10 +7,10 @@ const YTDLC       = require("ytdl-core");
 const FileSystem = require('fs');
 
 // custom module
-const AXC         = require('./Function.js');
 const TB          = require('./TrackBot.js');
 const log_command = require('./Log.js').log_command;
 
+// TODO: move it over to syscall
 async function command_delete(message,commandArray,guildData)
 {
     switch(commandArray.length) 
@@ -67,38 +67,41 @@ async function command_join(message,commandArray,guildData)
     const userTextChannel  = message.channel;
     const userVoiceChannel = message.member.voice.channel;
 
-    if (!userTextChannel)
-    {
+    if(!guildData) {
+        log_command('GUILD_DATA_NULL', message, guildData);
+        return;
+    }
+
+    if(!message) {
+        log_command('MESSAGE_DATA_NULL', message, guildData);
+    }
+
+    if(!userTextChannel) {
         log_command('JOIN_NO_TEXT_CHANNEL', message, guildData);
         return;
     }
 
-    if (!userVoiceChannel) 
-    {
+    if(!userVoiceChannel) {
         log_command('JOIN_NO_VOICE_CHANNEL', message, guildData);
         return;
     }
 
-    if (!userVoiceChannel.permissionsFor(message.client.user).has("CONNECT")) 
-    {
+    if(!userVoiceChannel.permissionsFor(message.client.user).has("CONNECT")) {
         log_command('JOIN_NO_CONNECT_PERMISSION', message, guildData);
         return;
     }
     
-    if (!userVoiceChannel.permissionsFor(message.client.user).has("SPEAK")) 
-    {
+    if(!userVoiceChannel.permissionsFor(message.client.user).has("SPEAK")) {
         log_command('JOIN_NO_SPEAK_PERMISSION', message, guildData);
         return;
     }
 
     async function createConnection()
     {
-        try 
-        {
+        try {
             guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
         }
-        catch (errorData)
-        {
+        catch (errorData) {
             log_command('JOIN_CONNECTION_FAILED', message, guildData);
             return false;
         }
@@ -140,6 +143,15 @@ module.exports.command_join = command_join;
 
 async function command_leave(message,guildData)
 {
+    if(!guildData) {
+        log_command('GUILD_DATA_NULL', message, guildData);
+        return;
+    }
+
+    if(!message) {
+        log_command('MESSAGE_DATA_NULL', message, guildData);
+    }
+
     if(!guildData.TB.DYNAMIC.voiceConnection) {
         log_command('LEAVE_NO_CONNECTION_FOUND',message,guildData);
         return;

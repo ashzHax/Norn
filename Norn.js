@@ -392,6 +392,12 @@ Norn.on('message', async function(eventMessage)
     var commandArray = eventMessage.content.split(' ');
     commandArray[0] = commandArray[0].substring(1);
 
+    if(eventMessage == null || guildData == null || commandArray == null) {
+        log_event('COMMAND_DATA_NULL', eventMessage, guildData);
+        if(!eventMessage.deleted) eventMessage.delete();
+        return;
+    }
+
     switch(commandArray[0].toLowerCase()) 
     {
         case 'delete':
