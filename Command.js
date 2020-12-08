@@ -141,10 +141,13 @@ async function command_leave(message,guildData)
 
     guildData.TB.DYNAMIC.voiceConnection.disconnect();
     guildData.TB.DYNAMIC.voiceConnection = null;
+    guildData.TB.DYNAMIC.userVoiceChannel = null;
 
     log_command('LEAVE_SUCCESS',message,guildData);
 }
 module.exports.command_leave = command_leave;
+
+/////////// TODO
 
 async function command_play(message,commandArray,guildData)
 {
