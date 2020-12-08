@@ -67,15 +67,6 @@ async function command_join(message,commandArray,guildData)
     const userTextChannel  = message.channel;
     const userVoiceChannel = message.member.voice.channel;
 
-    if(!guildData) {
-        log_command('GUILD_DATA_NULL', message, guildData);
-        return;
-    }
-
-    if(!message) {
-        log_command('MESSAGE_DATA_NULL', message, guildData);
-    }
-
     if(!userTextChannel) {
         log_command('JOIN_NO_TEXT_CHANNEL', message, guildData);
         return;
@@ -143,15 +134,6 @@ module.exports.command_join = command_join;
 
 async function command_leave(message,guildData)
 {
-    if(!guildData) {
-        log_command('GUILD_DATA_NULL', message, guildData);
-        return;
-    }
-
-    if(!message) {
-        log_command('MESSAGE_DATA_NULL', message, guildData);
-    }
-
     if(!guildData.TB.DYNAMIC.voiceConnection) {
         log_command('LEAVE_NO_CONNECTION_FOUND',message,guildData);
         return;
