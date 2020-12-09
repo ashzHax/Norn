@@ -152,21 +152,31 @@ module.exports.command_leave = command_leave;
 async function command_play(message,commandArray,guildData)
 {
     var volumeData = guildData.TB.STATIC.volume;
-
     switch(commandArray.length) {
         case 1: 
         {
             log_command('PLAY_NOT_ENOUGH_ARGUMENT',message,guildData);
             return;
         }
-        case 3: volumeData=commandArray[2];
+        case 3: 
+        {
+            volumeData = parseInt(commandArray[2]);
+            if (isNaN(volumeData)) {
+                log_command('PLAY_INVALID_ARGUMENT_TYPE', message, guildData);
+                return;
+            }
+        }
         case 2:
         {
             if(guildData.TB.DYNAMIC.voiceConnection == null) {
-                command_join(message,commandArray,guildData);
+                command_join(message,commandArray,guildData); // runs command_play() after
                 return;
             }
 
+            if(!(await TB.TB_QUEUE_ADD(guildData,commandArray[1],volumeData))) {
+                return;
+            }
+            /*
             let requestData;
             try {
                 requestData = await YTDLC.getInfo(commandArray[1]);
@@ -190,6 +200,7 @@ async function command_play(message,commandArray,guildData)
             };
     
             guildData.TB.DYNAMIC.queue.push(videoData);
+            */
             break;
         }
         default:
@@ -238,6 +249,20 @@ async function command_skip(message,commandArray,guildData)
     TB.TB_SKIP(guildData);
 }
 module.exports.command_skip = command_skip;
+
+// TODO: create this thing
+async function command_status(message,commandArray,guildData) 
+{
+    return;
+}
+module.exports.command_skip = command_status;
+
+// TODO: create this thing, already made, just need to imply to system
+async function command_clear(message,commandArray,guildData) 
+{
+    return;
+}
+module.exports.command_skip = command_clear;
 
 const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
 function writePlaylistData(playlistName,guildData)

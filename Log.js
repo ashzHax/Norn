@@ -717,7 +717,7 @@ function log_command(logType,message,guildData)
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
-    if(embdLog != nul && guildData != null) {
+    if(embdLog != null && guildData != null) {
         guildData.DYNAMIC.systemChannel.send(embdLog);
     }
     if(consoleLogText == null) {
@@ -729,7 +729,7 @@ function log_command(logType,message,guildData)
 module.exports.log_command = log_command;
 
 
-function log_TB(logType,guildData)
+function log_TB(logType,guildData,extraData)
 {
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();
@@ -780,6 +780,16 @@ function log_TB(logType,guildData)
                 )  
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` playing:{${JSON.stringify(trackData)}}`);
+            break;
+        }
+        case 'QUEUE_ADD_GET_INFO_FAILED':
+        {
+            console.log('failed getting queue data ('+extraData+')');
+            break;
+        }
+        case 'QUEUE_ADD_DATA_NULL':
+        {
+            console.log('queue data search result returned null ('+extraData+')');
             break;
         }
         default:

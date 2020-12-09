@@ -12,8 +12,6 @@ async function TB_PLAY(guildData)
     const trackData = guildData.TB.DYNAMIC.queue[guildData.TB.DYNAMIC.index];
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
-    console.log('reached');
-    console.log(trackData);
     guildData.TB.DYNAMIC.voiceConnection
         .play( YTDLC(trackData.video_url), {filter:'audioonly',quality:'highestaudio',highWaterMark:(1<<25)} )
         .on('finish', () => 
@@ -27,16 +25,13 @@ async function TB_PLAY(guildData)
 
             TB_PLAY(guildData);
         });
-    
-        console.log('reached 2');
     guildData.TB.DYNAMIC.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
     guildData.TB.DYNAMIC.playing=true;
-    console.log('reached 3');
-    log_TB('PLAY_SUCCESS',guildData);
-    console.log('reached 4');
-}
 
-// stop command
+    log_TB('PLAY_SUCCESS',guildData);
+}
+module.exports.TB_PLAY = TB_PLAY;
+
 async function TB_STOP(guildData)
 {
     if(!guildData.TB.DYNAMIC.playing) {
@@ -66,6 +61,7 @@ async function TB_STOP(guildData)
         log_TB('STOP_SUCCESS',guildData);
     }
 }
+module.exports.TB_STOP   = TB_STOP;
 
 // end of queue
 async function TB_END(guildData)
@@ -172,6 +168,7 @@ function TB_NEXT(guildData)
         }
     }
 }
+module.exports.TB_NEXT   = TB_NEXT;
 
 // command next queue
 // TODO: pre-connection check
@@ -209,6 +206,7 @@ function TB_SKIP(guildData)
         }
     }
 }
+module.exports.TB_SKIP   = TB_SKIP;
 
 async function TB_PAUSE(guildData)
 {
@@ -228,6 +226,7 @@ async function TB_PAUSE(guildData)
     guildData.TB.DYNAMIC.playing = false;
     log_TB('PAUSE_SUCCESS',guildData);
 }
+module.exports.TB_PAUSE  = TB_PAUSE;
 
 async function TB_RESUME(guildData)
 {
@@ -247,10 +246,40 @@ async function TB_RESUME(guildData)
     guildData.TB.DYNAMIC.playing=true;
     log_TB('RESUME_SUCCESS',guildData);    
 }
-
-module.exports.TB_PLAY   = TB_PLAY;
-module.exports.TB_STOP   = TB_STOP;
-module.exports.TB_NEXT   = TB_NEXT;
-module.exports.TB_SKIP   = TB_SKIP;
-module.exports.TB_PAUSE  = TB_PAUSE;
 module.exports.TB_RESUME = TB_RESUME;
+
+async function TB_QUEUE_ADD(guildData,targetURL,rvolume)
+{
+    let requestData;
+    try {
+        requestData = await YTDLC.getInfo(targetURL);
+    }
+    catch(receivedError) {
+        log_TB('QUEUE_ADD_GET_INFO_FAILED',guildData,targetURL);
+        console.log(receivedError);
+        return false;
+    }
+
+    if(requestData==null) {
+        log_TB('QUEUE_ADD_DATA_NULL',guildData,targetURL);
+        return false;
+    }
+
+    const videoData = {
+        title:     requestData.videoDetails.title,
+        video_url: requestData.videoDetails.video_url,
+        length:    requestData.videoDetails.lengthSeconds,
+        volume:    rvolume
+    };
+
+    guildData.TB.DYNAMIC.queue.push(videoData);
+    return true;
+}
+module.exports.TB_QUEUE_ADD = TB_QUEUE_ADD;
+
+
+
+
+
+
+
