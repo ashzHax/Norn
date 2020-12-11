@@ -147,8 +147,6 @@ async function command_leave(message,guildData)
 }
 module.exports.command_leave = command_leave;
 
-/////////// TODO
-
 async function command_play(message,commandArray,guildData)
 {
     var volumeData = guildData.TB.STATIC.volume;
@@ -172,36 +170,10 @@ async function command_play(message,commandArray,guildData)
                 command_join(message,commandArray,guildData); // runs command_play() after
                 return;
             }
-
-            if(!(await TB.TB_QUEUE_ADD(guildData,commandArray[1],volumeData))) {
+			if(!(await TB.TB_QUEUE_ADD(guildData,commandArray[1],volumeData))) {
                 return;
             }
-            /*
-            let requestData;
-            try {
-                requestData = await YTDLC.getInfo(commandArray[1]);
-            }
-            catch(receivedError) {
-                log_command('PLAY_GET_INFO_FAILED',message,guildData);
-                console.log(receivedError);
-                return;
-            }
-
-            if(requestData==null) {
-                log_command('PLAY_RECEIVED_DATA_NULL',message,guildData);
-                return;
-            }
-
-            const videoData = {
-                title:     requestData.videoDetails.title,
-                video_url: requestData.videoDetails.video_url,
-                length:    requestData.videoDetails.lengthSeconds,
-                volume:    volumeData
-            };
-    
-            guildData.TB.DYNAMIC.queue.push(videoData);
-            */
-            break;
+			break;
         }
         default:
         {
@@ -210,6 +182,7 @@ async function command_play(message,commandArray,guildData)
         }
     }
 
+	// TODO: remove when command_queue() is finished
     if(guildData.TB.playing) {
         log_command('PLAY_ADDED_REQUEST_TO_QUEUE',message,guildData);
         return;
@@ -225,6 +198,8 @@ async function command_play(message,commandArray,guildData)
     }
 }
 module.exports.command_play = command_play;
+
+/////////// TODO
 
 async function command_stop(guildData)
 {
