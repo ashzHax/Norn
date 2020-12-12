@@ -403,7 +403,7 @@ Norn.on('message', async function(eventMessage)
         case 'delete':
         {
         	// TODO : ashz : implement into syscall command
-			AXC_CMD.command_delete(eventMessage, commandArray, guildData);
+			// AXC_CMD.command_delete(eventMessage, commandArray, guildData);
             break;
         }
         case 'syscall':
@@ -430,17 +430,17 @@ Norn.on('message', async function(eventMessage)
         }
         case 'stop':
         {
-            AXC_CMD.command_stop(guildData);
+            AXC_CMD.command_stop(commandArray, guildData);
             break;
         }   
         case 'pause':
         {
-            AXC_CMD.command_pause(guildData);
+            AXC_CMD.command_pause(commandArray, guildData);
             break;
         }   
         case 'resume':
         {
-            AXC_CMD.command_resume(guildData);
+            AXC_CMD.command_resume(commandArray, guildData);
             break;
         }   
         case 'skip':

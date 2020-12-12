@@ -11,13 +11,14 @@ const TB          = require('./TrackBot.js');
 const log_command = require('./Log.js').log_command;
 
 // TODO: move it over to syscall
+/*
 async function command_delete(message,commandArray,guildData)
 {
     switch(commandArray.length) 
     {
         case 1:
         {
-            log_command('DELETE_NOT_ENOUGH_ARGUMENTS', message, guildData);
+            log_command('DELETE_NOT_ENOdUGH_ARGUMENTS', message, guildData);
             break;
         }
         case 2:
@@ -61,6 +62,7 @@ async function command_delete(message,commandArray,guildData)
     }
 }
 module.exports.command_delete = command_delete;
+*/
 
 async function command_join(message,commandArray,guildData)
 {
@@ -97,7 +99,7 @@ async function command_join(message,commandArray,guildData)
             return false;
         }
         
-        // ashz: faster connection speed
+        // ashz> faster connection speed
         guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true);
 
         log_command('JOIN_SUCCESS', message, guildData);
@@ -183,7 +185,7 @@ async function command_play(message,commandArray,guildData)
     }
 
 	// TODO: remove when command_queue() is finished
-    if(guildData.TB.playing) {
+    if(guildData.TB.DYNAMIC.playing) {
         log_command('PLAY_ADDED_REQUEST_TO_QUEUE',message,guildData);
         return;
     }
@@ -199,45 +201,70 @@ async function command_play(message,commandArray,guildData)
 }
 module.exports.command_play = command_play;
 
-/////////// TODO
-
-async function command_stop(guildData)
+async function command_stop(commandArray,guildData)
 {
+    if(commandArray.length > 1) {
+        log_command('STOP_TOO_MANY_ARGUMENT',commandArray,guildData);
+        return;
+    }
     TB.TB_STOP(guildData,false);
 }
 module.exports.command_stop = command_stop;
 
-async function command_pause(guildData)
+async function command_pause(commandArray,guildData)
 {
+    if(commandArray.length > 1) {
+        log_command('PAUSE_TOO_MANY_ARGUMENT',commandArray,guildData);
+        return;
+    }
     TB.TB_PAUSE(guildData);
 }
 module.exports.command_pause = command_pause;
 
-async function command_resume(guildData)
+async function command_resume(commandArray,guildData)
 {
+    if(commandArray.length > 1) {
+        log_command('RESUME_TOO_MANY_ARGUMENT',commandArray,guildData);
+        return;
+    }
     TB.TB_RESUME(guildData);
 }
 module.exports.command_resume = command_resume;
 
-async function command_skip(message,commandArray,guildData) 
+async function command_skip(commandArray,guildData) 
 {
-    TB.TB_SKIP(guildData);
+    TB.TB_SKIP(skipValue, guildData);
 }
 module.exports.command_skip = command_skip;
+
+async function command_next()
+{
+    
+}
+
+async function command_previous()
+{
+
+}
+
+async function command_restart()
+{
+
+}
 
 // TODO: create this thing
 async function command_status(message,commandArray,guildData) 
 {
     return;
 }
-module.exports.command_skip = command_status;
+module.exports.command_status = command_status;
 
 // TODO: create this thing, already made, just need to imply to system
 async function command_clear(message,commandArray,guildData) 
 {
     return;
 }
-module.exports.command_skip = command_clear;
+module.exports.command_clear = command_clear;
 
 const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
 function writePlaylistData(playlistName,guildData)
