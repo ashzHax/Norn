@@ -1,0 +1,17 @@
+const dispatcher = connection.play('/home/discord/audio.mp3');
+play local file
+
+dispatcher.pause();
+dispatcher.resume();
+
+dispatcher.setVolume(0.5); // half the volume
+
+dispatcher.on('finish', () => {
+  console.log('Finished playing!');
+});
+
+dispatcher.destroy(); // end the stream\
+
+
+
+https://github.com/discordjs/discord.js/blob/master/docs/topics/voice.md

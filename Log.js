@@ -273,11 +273,13 @@ module.exports.log_event = log_event;
 
 function log_command(logType,message,guildData) 
 {
-    const commandUser = message.author.tag;
+    const commandIssuer = message.author.tag;
 
+    // TODO: clean up
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();
     var embdLog = new Discord.MessageEmbed();
+    const emLog = new Discord.MessageEmbed();
     var consoleLogText;
 
     if(guildData != null) {
@@ -289,18 +291,57 @@ function log_command(logType,message,guildData)
     
     switch(logType) 
     {
+        case 'JOIN_TEXT_CHL_NULL':
+        {
+            let criticalReason = 'Text channel is Null inside message object.';
+            emLog
+                .setColor(Function.html_red)
+                .setAuthor(commandIssuer)
+                .setTitle('Critical')
+                .setDescription(criticalReason)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` {\"error\":\"true\",\"critical\":\"true\",\"received_command\":\"${message.content}\",\"reason\":\"${criticalReason}\"}`);
+            break;
+        }
+        case 'JOIN_VOICE_CHL_NULL':
+        {
+            let criticalReason = 'Voice channel is Null inside message object.';
+            emLog
+                .setColor(Function.html_red)
+                .setAuthor(commandIssuer)
+                .setTitle('Critical')
+                .setDescription(criticalReason)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` {\"error\":\"true\",\"critical\":\"true\",\"received_command\":\"${message.content}\",\"reason\":\"${criticalReason}\"}`);
+            break;
+        }
+        case 'JOIN_OVER_MAX_ARG_CNT':
+        {
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/join',         false)
+                .addField('Received', message.content, false)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` {\"error\":\"false\",\"received_command\":\"${message.content}\"}`);
+            break;
+        }
+
+
+        // TODO
         case 'DELETE_NOT_ENOUGH_ARGUMENTS':
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Not enough arguments')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Not enough arguments')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/delete [2~100]',false)
@@ -312,14 +353,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Too many arguments')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Too many arguments')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/delete [2~100]',false)
@@ -331,14 +372,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Invalid argument type')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Invalid argument type (Expected INT)')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/delete [2~100]',false)
@@ -350,14 +391,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Argument value is over-limit')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Argument value is over-limit (Expected 2~100)')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/delete [2~100]',false)
@@ -369,14 +410,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Argument value is under-limit')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Argument value is under-limit (Expected 2~100)')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/delete [2~100]',false)
@@ -388,14 +429,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Bulk delete process failed (high level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('[X.X] Bulk delete process failed')
                 .setDescription('Are all the target messages under 14 days old?')
                 .setTimestamp();
@@ -406,14 +447,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Bulk delete process failed (high level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_green)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('[@.@] Bulk delete success')
                 .setDescription('Congratulation, you erased all the evidence. Hopefully.')
                 .setTimestamp();
@@ -424,14 +465,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('No text channel found (High level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('No text channel found')
                 .setDescription('High level error, please report to the developer')
                 .setTimestamp();
@@ -442,14 +483,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('No voice channel found')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Voice channel not found')
                 .setDescription('[@.@] You are not in a voice channel')
                 .setTimestamp();
@@ -460,14 +501,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('No connect permission (Low level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Cannot connect to voice channel')
                 .setDescription('[>.>] I have no permission to connect to a voice channel')
                 .setTimestamp();
@@ -478,14 +519,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('No speak permission (Low level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Cannot speak in voice channel')
                 .setDescription('[>.>] I have no permission to speak in a voice channel')
                 .setTimestamp();
@@ -496,14 +537,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Connection failed (High level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Connection failed')
                 .setDescription('[X.X] Failed to connect to voice channel')
                 .setTimestamp();
@@ -514,14 +555,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Too many arguments')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Too many arguments')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/join [URL] [1~9]',false)
@@ -533,14 +574,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Connection established to voice channel')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_green)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Connection established to voice channel')
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
@@ -550,14 +591,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('no connection instance found')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('[-.-] I am not inside a voice channel')
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
@@ -567,14 +608,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Disconnected from voice channel')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_green)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Left Voice Channel')
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
@@ -584,14 +625,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Not enough arguments')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Not enough arguments')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/play [URL] [VOLUME]',false)
@@ -603,14 +644,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Failed to get video info using API (High level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Failed to retrieve video data')
                 .addField('Received Command',message.content,false)
                 .setTimestamp();
@@ -621,14 +662,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Data retrieve using API returned null (High level error)')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Retrieved data is null')
                 .addField('Received Command',message.content,false)
                 .setTimestamp();
@@ -639,14 +680,14 @@ function log_command(logType,message,guildData)
         {
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Too many arguments')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_green)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Too many arguments')
                 .addField('Received Command',message.content,false)
                 .addField('Example','/play [URL] [VOLUME]',false)
@@ -661,7 +702,7 @@ function log_command(logType,message,guildData)
 
             devLog
                 .setColor(Function.html_green)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('Added track to queue')
                 .addField('Received Command',message.content,true)
@@ -669,7 +710,7 @@ function log_command(logType,message,guildData)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_green)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle(`[No.${idx}] Added track to queue`)
                 .addFields(
                     { name: 'Title',  value: trackData.title,                       inline: false },
@@ -689,14 +730,14 @@ function log_command(logType,message,guildData)
 
             devLog
                 .setColor(Function.html_red)
-                .setAuthor(`user: ${commandUser}`)
+                .setAuthor(`user: ${commandIssuer}`)
                 .setTitle(logType)
                 .setDescription('TB_Play returned error')
                 .addField('Received Command',message.content,true)
                 .setTimestamp();
             usrLog
                 .setColor(Function.html_red)
-                .setAuthor(commandUser)
+                .setAuthor(commandIssuer)
                 .setTitle('Error trying to play track')
                 .addField('Received Command',message.content,false)  
                 .setTimestamp();
@@ -705,6 +746,9 @@ function log_command(logType,message,guildData)
         }
         default:
         {
+            devLog=null;
+            usrLog=null;
+            embdLog=null;
             consoleLogText = consoleLogText.concat(' undefined log type');
         }
     }
@@ -716,6 +760,10 @@ function log_command(logType,message,guildData)
         message.channel.send(usrLog);
     }
 
+    if( (guildData!=null) && (emLog!=null) ) {
+        message.channel.send(emLog);
+    }
+    
     //////////////////////////////////////////////////////////////////////////////////////
     if(embdLog != null && guildData != null) {
         guildData.DYNAMIC.systemChannel.send(embdLog);
@@ -729,7 +777,7 @@ function log_command(logType,message,guildData)
 module.exports.log_command = log_command;
 
 
-function log_TB(logType,guildData,extraData)
+function log_TB(logType,guildData,extraData=null)
 {
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();
@@ -771,7 +819,7 @@ function log_TB(logType,guildData,extraData)
             usrLog
                 .setColor(Function.html_spring_green)
                 .setTitle(`\"${Function.stringCut(trackData.title,43)}\"`)
-                .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
+                // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
                 .addFields(
                     { name: 'Index',  value: idx,                                   inline: true },
                     { name: 'Length', value: Function.getSecondFormat(trackData.length), inline: true },
@@ -779,7 +827,7 @@ function log_TB(logType,guildData,extraData)
                     { name: 'URL',    value: trackData.video_url,                   inline: false },
                 )  
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` playing:{${JSON.stringify(trackData)}}`);
+            consoleLogText = consoleLogText.concat(` playing:{\"idx\":${idx},${JSON.stringify(trackData)}}`);
             break;
         }
         case 'QUEUE_ADD_GET_INFO_FAILED':
@@ -790,6 +838,16 @@ function log_TB(logType,guildData,extraData)
         case 'QUEUE_ADD_DATA_NULL':
         {
             console.log('queue data search result returned null ('+extraData+')');
+            break;
+        }
+        case 'SKIP_QUEUE_EMPTY':
+        {
+            usrLog
+                .setColor(Function.html_red)
+                .setTitle('Queue Empty')
+                .setDescription('Nothing to skip.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` track queue is empty, nothing to skip`);
             break;
         }
         default:

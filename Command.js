@@ -10,59 +10,23 @@ const FileSystem = require('fs');
 const TB          = require('./TrackBot.js');
 const log_command = require('./Log.js').log_command;
 
-// TODO: move it over to syscall
-/*
-async function command_delete(message,commandArray,guildData)
+async function command_help(message,commandArray,guildData,helpEmbed)
 {
     switch(commandArray.length) 
     {
         case 1:
-        {
-            log_command('DELETE_NOT_ENOdUGH_ARGUMENTS', message, guildData);
+        {            
+            message.channel.send(helpEmbed);
+            log_command('HELP_SUCCESS',message,guildData);
             break;
         }
-        case 2:
+        default:
         {
-            var count = parseInt(commandArray[1]);
-            if (isNaN(count)) 
-            {
-                log_command('DELETE_INVALID_ARGUMENT_TYPE', message, guildData);
-                break;
-            }
-
-            if (count > 100)
-            {
-                log_command('DELETE_ARGUMENT_OVER_LIMIT', message, guildData);
-                break;
-            } 
-            else if(count < 2)
-            {
-                log_command('DELETE_ARGUMENT_UNDER_LIMIT', message, guildData);
-                break;
-            } 
-
-            try
-            {
-                const bulkMessage = await message.channel.messages.fetch({limit: count});
-                message.channel.bulkDelete(bulkMessage);
-            }
-            catch(errorData)
-            {
-                log_command('DELETE_PROCESS_ERROR', message, guildData);
-                break;
-            }
-            
-            log_command('DELETE_PROCESS_SUCCESS', message, guildData);
-            break;
-        }
-        default: 
-        {
-            log_command('DELETE_TOO_MANY_ARGUMENTS', message, guildData);
+            log_command('HELP_TOO_MANY_ARGUMENTS',nessage,guildData);
         }
     }
 }
-module.exports.command_delete = command_delete;
-*/
+module.exports.command_help = command_help;
 
 async function command_join(message,commandArray,guildData)
 {
@@ -70,65 +34,47 @@ async function command_join(message,commandArray,guildData)
     const userVoiceChannel = message.member.voice.channel;
 
     if(!userTextChannel) {
-        log_command('JOIN_NO_TEXT_CHANNEL', message, guildData);
+        log_command('JOIN_TEXT_CHL_NULL', message, guildData);
         return;
     }
 
     if(!userVoiceChannel) {
-        log_command('JOIN_NO_VOICE_CHANNEL', message, guildData);
+        log_command('JOIN_VOICE_CHL_NULL', message, guildData);
         return;
     }
 
     if(!userVoiceChannel.permissionsFor(message.client.user).has("CONNECT")) {
-        log_command('JOIN_NO_CONNECT_PERMISSION', message, guildData);
+        log_command('JOIN_NO_PERM_CONNECT', message, guildData);
         return;
     }
     
     if(!userVoiceChannel.permissionsFor(message.client.user).has("SPEAK")) {
-        log_command('JOIN_NO_SPEAK_PERMISSION', message, guildData);
+        log_command('JOIN_NO_PERM_SPEAK', message, guildData);
         return;
-    }
-
-    async function createConnection()
-    {
-        try {
-            guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
-        }
-        catch (errorData) {
-            log_command('JOIN_CONNECTION_FAILED', message, guildData);
-            return false;
-        }
-        
-        // ashz> faster connection speed
-        guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true);
-
-        log_command('JOIN_SUCCESS', message, guildData);
-        return true;
     }
     
     switch(commandArray.length) 
     {
         case 1:
         {
-            if(await createConnection()) {
-                guildData.TB.DYNAMIC.textChannel  = userTextChannel;
-                guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
+            try {
+                guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
+            } catch (errorData) {
+                log_command('JOIN_CONNECTION_FAILED', message, guildData);
+                return false;
             }
-            break;
-        }
-        case 2:
-        case 3:
-        {
-            if(await createConnection()) {
-                guildData.TB.DYNAMIC.textChannel = userTextChannel;
-                guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
-                command_play(message,commandArray,guildData);
-            }
+            
+            // ashz> faster connection speed
+            guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true);
+    
+            guildData.TB.DYNAMIC.textChannel  = userTextChannel;
+            guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
+            log_command('JOIN_SUCCESS', message, guildData);
             break;
         }
         default:
         {
-            log_command('JOIN_TOO_MANY_ARGUMENT', message, guildData);   
+            log_command('JOIN_OVER_MAX_ARG_CNT', message, guildData);   
         }
     }   
 }
@@ -169,7 +115,7 @@ async function command_play(message,commandArray,guildData)
         case 2:
         {
             if(guildData.TB.DYNAMIC.voiceConnection == null) {
-                command_join(message,commandArray,guildData); // runs command_play() after
+                command_join(message,commandArray,guildData); // ashz> runs command_play() after
                 return;
             }
 			if(!(await TB.TB_QUEUE_ADD(guildData,commandArray[1],volumeData))) {
@@ -184,7 +130,7 @@ async function command_play(message,commandArray,guildData)
         }
     }
 
-	// TODO: remove when command_queue() is finished
+	// TODO: ashz> remove when command_queue() is finished
     if(guildData.TB.DYNAMIC.playing) {
         log_command('PLAY_ADDED_REQUEST_TO_QUEUE',message,guildData);
         return;
@@ -201,10 +147,10 @@ async function command_play(message,commandArray,guildData)
 }
 module.exports.command_play = command_play;
 
-async function command_stop(commandArray,guildData)
+async function command_stop(message,commandArray,guildData)
 {
     if(commandArray.length > 1) {
-        log_command('STOP_TOO_MANY_ARGUMENT',commandArray,guildData);
+        log_command('STOP_TOO_MANY_ARGUMENT',message,guildData);
         return;
     }
     TB.TB_STOP(guildData,false);
@@ -231,9 +177,34 @@ async function command_resume(commandArray,guildData)
 }
 module.exports.command_resume = command_resume;
 
-async function command_skip(commandArray,guildData) 
+async function command_skip(message,commandArray,guildData) 
 {
-    TB.TB_SKIP(skipValue, guildData);
+    var skipCount = -1;
+    switch(commandArray.length) {
+        case 1:{
+            skipCount = 0;
+            break;
+        }
+        case 2:{
+            skipCount = parseInt(commandArray[1]);
+            if(isNaN(skipCount)) {
+                log_command('SKIP_INVALID_ARGUMENT_TYPE', message, guildData);
+                return;
+            }
+            if(skipCount <= 0) {
+                log_command('SKIP_INVALID_INTEGER', message, guildData);
+                return;
+            }
+            break;
+        }
+        default:{
+            log_command('SKIP_TOO_MANY_ARGUMENT', message, guildData);
+            return;
+        }
+    }
+
+    guildData.TB.DYNAMIC.textChannel = message.channel;
+    TB.TB_SKIP(skipCount,guildData);
 }
 module.exports.command_skip = command_skip;
 
@@ -262,7 +233,20 @@ module.exports.command_status = command_status;
 // TODO: create this thing, already made, just need to imply to system
 async function command_clear(message,commandArray,guildData) 
 {
-    return;
+    switch(commandArray.length) 
+    {
+        case 1:
+        {
+            guildData.TB.DYNAMIC.index = 0;
+            guildData.TB.DYNAMIC.queue = [];
+            log_command('CLEAR_SUCCESS',message,guildData);
+            break;
+        }
+        default:
+        {
+            log_command('CLEAR_TOO_MANY_ARGUMENTS',message,guildData);
+        }
+    }
 }
 module.exports.command_clear = command_clear;
 
@@ -332,3 +316,58 @@ async function command_playlist(message,commandArray,guildData)
     }
 }
 module.exports.command_playlist = command_playlist;
+
+
+// TODO: move it over to syscall
+/*
+async function command_delete(message,commandArray,guildData)
+{
+    switch(commandArray.length) 
+    {
+        case 1:
+        {
+            log_command('DELETE_NOT_ENOdUGH_ARGUMENTS', message, guildData);
+            break;
+        }
+        case 2:
+        {
+            var count = parseInt(commandArray[1]);
+            if (isNaN(count)) 
+            {
+                log_command('DELETE_INVALID_ARGUMENT_TYPE', message, guildData);
+                break;
+            }
+
+            if (count > 100)
+            {
+                log_command('DELETE_ARGUMENT_OVER_LIMIT', message, guildData);
+                break;
+            } 
+            else if(count < 2)
+            {
+                log_command('DELETE_ARGUMENT_UNDER_LIMIT', message, guildData);
+                break;
+            } 
+
+            try
+            {
+                const bulkMessage = await message.channel.messages.fetch({limit: count});
+                message.channel.bulkDelete(bulkMessage);
+            }
+            catch(errorData)
+            {
+                log_command('DELETE_PROCESS_ERROR', message, guildData);
+                break;
+            }
+            
+            log_command('DELETE_PROCESS_SUCCESS', message, guildData);
+            break;
+        }
+        default: 
+        {
+            log_command('DELETE_TOO_MANY_ARGUMENTS', message, guildData);
+        }
+    }
+}
+module.exports.command_delete = command_delete;
+*/

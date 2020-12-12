@@ -12,8 +12,8 @@ const Process     = require('process');
 const Path        = require('path');
 
 // custom module
-const AXC         = require('./Function.js');
-const AXC_CMD     = require('./Command.js');
+const Function    = require('./Function.js');
+const Command     = require('./Command.js');
 
 // custom function
 const log_console = require('./Log.js').log_console;
@@ -37,7 +37,7 @@ Process.on('exit', code =>
 {
     switch(code)
     {
-        case AXC.CONFIG_FILE_NOT_FOUND:
+        case Function.CONFIG_FILE_NOT_FOUND:
         {
             log_console('Ending program with code 1900 (NO_CONFIG_FILE_FOUND)',null);
             break;
@@ -58,7 +58,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 {
     if(errorData) {
         console.log(errorData);
-        Process.exit(AXC.CONFIG_NORN_FILE_NOT_FOUND);
+        Process.exit(Function.CONFIG_NORN_FILE_NOT_FOUND);
         return;
     }
 
@@ -74,7 +74,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     {
         if(errorData) {
             console.log(errorData);
-            Process.exit(AXC.CONFIG_GUILD_DIR_NOT_FOUND);
+            Process.exit(Function.CONFIG_GUILD_DIR_NOT_FOUND);
             return;
         }
 
@@ -87,7 +87,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                     if(errorData) {
                         console.log(errorData);
                         // TODO ashz : change to log error, instead of ending entire program
-                        Process.exit(AXC.CONFIG_GUILD_FILE_NOT_FOUND);
+                        Process.exit(Function.CONFIG_GUILD_FILE_NOT_FOUND);
                         return;
                     }
 
@@ -155,11 +155,46 @@ function saveGuildData(guildData)
         if(errorData) {
             console.log(error);
             // TODO: change to log write error only, not finish
-            Process.exit(AXC.CONFIG_GUILD_WRITE_ERROR);
+            Process.exit(Function.CONFIG_GUILD_WRITE_ERROR);
             return;
         }
     });
 }
+
+//////////////////////////////////////////////////
+// Initial Variable Set
+//////////////////////////////////////////////////
+
+// command list help page
+const helpEmbed = new Discord.MessageEmbed();
+const commandList = [
+    {command : "help",          data : {arg:"",                                                                                      info:"Show this list of commands."}},
+    {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                 info:"Specialized commands, mostly for administrators."}},
+    {command : "join",          data : {arg:"",                                                                                      info:"Bot joins your current voice channel."}},
+    {command : "leave",         data : {arg:"",                                                                                      info:"Bot leaves whatever channel it's currently connected to."}},
+    {command : "play",          data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Immediately plays the track from the video of the URL."}},
+    {command : "start",         data : {arg:"",                                                                                      info:"Starts the current track."}},
+    {command : "stop",          data : {arg:"",                                                                                      info:"Stops the current track."}},
+    {command : "pause",         data : {arg:"",                                                                                      info:"Pauses the current track."}},
+    {command : "resume",        data : {arg:"",                                                                                      info:"Resumes the paused track."}},
+    {command : "next",          data : {arg:"[ Count ]",                                                                             info:"Plays the next queued track. (Default: 1)"}},
+    {command : "prev(WIP)",     data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
+    {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
+    {command : "remove",        data : {arg:"[ URL / Index ]",                                                                       info:"Removes the URL/Index data from the queue."}},
+    {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
+    {command : "loop(WIP)",     data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
+    {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
+    {command : "playlist(WIP)", data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
+];
+helpEmbed
+    .setColor(Function.html_sky)
+    .setTitle('Command List')
+    .setDescription('Semi-helpful list of commands used by Norn\nWIP = Work In Progress (It means DON\'T USE IT)')
+    .setTimestamp();
+
+commandList.forEach((element) => {
+    helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
+});
 
 //////////////////////////////////////////////////
 // Bot Ready Event
@@ -403,58 +438,69 @@ Norn.on('message', async function(eventMessage)
         case 'delete':
         {
         	// TODO : ashz : implement into syscall command
-			// AXC_CMD.command_delete(eventMessage, commandArray, guildData);
+			// Command.command_delete(eventMessage, commandArray, guildData);
             break;
         }
         case 'syscall':
         {
             //TODO : ashz
-            //AXC_CMD.command_syscall(eventMessage, commandArray, guildData);
+            //Command.command_syscall(eventMessage, commandArray, guildData);
             break;   
+        }
+        case 'help':
+        {
+            Command.command_help(eventMessage, commandArray, guildData, helpEmbed);
+            break; 
         }
         case 'join':
         {
-            AXC_CMD.command_join(eventMessage, commandArray, guildData);
+            Command.command_join(eventMessage, commandArray, guildData);
             break;
         }
         case 'leave':
         {
-            AXC_CMD.command_leave(eventMessage, guildData);
+            Command.command_leave(eventMessage, guildData);
             break;
         }
         case 'pl':
         case 'play':
         {
-            AXC_CMD.command_play(eventMessage, commandArray, guildData);
+            Command.command_play(eventMessage, commandArray, guildData);
             break;
         }
         case 'stop':
         {
-            AXC_CMD.command_stop(commandArray, guildData);
+            Command.command_stop(eventMessage, commandArray, guildData);
             break;
         }   
         case 'pause':
         {
-            AXC_CMD.command_pause(commandArray, guildData);
+            Command.command_pause(commandArray, guildData);
             break;
         }   
         case 'resume':
         {
-            AXC_CMD.command_resume(commandArray, guildData);
+            Command.command_resume(commandArray, guildData);
             break;
-        }   
+        }
+        case 'clear':
+        {
+            Command.command_clear(eventMessage, guildData);
+            break;   
+        }
         case 'skip':
         case 'next':
 		case 'jump':
         {
-            AXC_CMD.command_skip(eventMessage, commandArray, guildData);
+            Command.command_skip(eventMessage, commandArray, guildData);
             break;
         }
         case 'playlist':
         {
-            AXC_CMD.command_playlist(eventMessage, commandArray, guildData);
+            Command.command_playlist(eventMessage, commandArray, guildData);
             break;
         }
+        // TODO : restart command : restarts current track
         default:
         {
             log_event('COMMAND_UNKNOWN', eventMessage, guildData);
