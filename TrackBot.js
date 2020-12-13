@@ -7,6 +7,37 @@ const YTDLC  = require('ytdl-core');
 const AXC    = require('./Function.js');
 const log_TB = require('./Log.js').log_TB;
 
+async function TB_JOIN(guildData,userVoiceChannel)
+{
+    try {
+        guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
+    } catch (errorData) {
+        log_TB('join_fail',guildData);
+        console.log(errorData);
+        return false;
+    }
+    
+    guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true); // ashz> faster connection speed
+    guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
+    return true;
+}
+module.exports.TB_JOIN = TB_JOIN;
+
+async function TB_LEAVE(guildData)
+{
+    try { guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
+    try { await guildData.TB.DYNAMIC.voiceConnection.disconnect(); } catch(errorData) {}
+    guildData.TB.DYNAMIC.voiceConnection  = null;
+    guildData.TB.DYNAMIC.userVoiceChannel = null;
+    guildData.TB.DYNAMIC.userTextChannel  = null;
+    guildData.TB.DYNAMIC.queue            = [];
+    guildData.TB.DYNAMIC.index            = 0;
+    guildData.TB.DYNAMIC.playing          = false;
+    guildData.TB.DYNAMIC.paused          = false;
+    return true;
+}
+module.exports.TB_LEAVE = TB_LEAVE;
+
 async function TB_PLAY(guildData)
 {
     const trackData = guildData.TB.DYNAMIC.queue[guildData.TB.DYNAMIC.index];
@@ -21,7 +52,7 @@ async function TB_PLAY(guildData)
         .on('finish', () => 
         {
             guildData.TB.DYNAMIC.playing = false;
-            TB_NEXT(guildData);
+            TB_QUEUE_NEXT(guildData);
         })
         .on('error', (errorData) =>
         {
@@ -35,31 +66,28 @@ async function TB_PLAY(guildData)
             }
             TB_PLAY(guildData);
         });
+
     guildData.TB.DYNAMIC.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
     guildData.TB.DYNAMIC.playing=true;
+    guildData.TB.DYNAMIC.paused=false;
 
     log_TB('PLAY_SUCCESS',guildData);
+    return true;
 }
 module.exports.TB_PLAY = TB_PLAY;
 
 async function TB_STOP(guildData)
 {
-    if(!guildData.TB.DYNAMIC.playing) {
-        log_TB('STOP_NOT_PLAYING',guildData);
+    try{
+        await  guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
+    } catch(errorData) {
+        log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData,errorData);
+        return;
     }
-    else {
-        try {
-            await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
-        }
-        catch(errorData) {
-            log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData);
-            console.error(errorData);
-            return;
-        }
-        guildData.TB.DYNAMIC.playing = false;
 
-        log_TB('STOP_SUCCESS',guildData);
-    }
+    guildData.TB.DYNAMIC.playing          = false;
+    guildData.TB.DYNAMIC.paused = false;
+    log_TB('STOP_SUCCESS',guildData);
 }
 module.exports.TB_STOP = TB_STOP;
 
@@ -95,7 +123,7 @@ async function TB_CLEAR(guildData)
 }
 
 // next queue
-function TB_NEXT(guildData)
+function TB_QUEUE_NEXT(guildData)
 {
     const loopSingle = guildData.TB.STATIC.loopSingle;
     const loopQueue = guildData.TB.STATIC.loopQueue;
@@ -136,7 +164,7 @@ function TB_NEXT(guildData)
 // command next queue
 // skipCount = 0 : skips 1
 // skipCount > 0 : skips skipCount times 
-function TB_SKIP(skipCount,guildData)
+function TB_NEXT(guildData,skipCount)
 {
     const loopSingle = guildData.TB.STATIC.loopSingle;
     const loopQueue = guildData.TB.STATIC.loopQueue;
@@ -174,15 +202,49 @@ function TB_SKIP(skipCount,guildData)
         }
     }
 }
-module.exports.TB_SKIP = TB_SKIP;
+module.exports.TB_NEXT = TB_NEXT;
+
+// command next queue
+// skipCount = 0 : skips 1
+// skipCount > 0 : skips skipCount times 
+function TB_PREV(guildData,skipCount)
+{
+    const loopSingle = guildData.TB.STATIC.loopSingle;
+    const loopQueue = guildData.TB.STATIC.loopQueue;
+ 
+    switch(guildData.TB.DYNAMIC.queue.length)
+    {
+        case 0:
+        {
+            log_TB('SKIP_QUEUE_EMPTY',guildData);
+            break;
+        }
+        case 1:
+        {
+            if(loopSingle || loopQueue) {
+                TB_PLAY(guildData);
+            } else {
+                log_TB('SKIP_NOTHING_NEXT',guildData);
+            }
+            break; 
+        }
+        default:
+        {
+            // INVALID ALGORITHM, INSTEAD OF GOING BACKWARDS, COUNT GO FORWARDS TODO : ashz
+            let Uz_check = guildData.TB.DYNAMIC.index - skipCount;
+            if(Uz_check < 0) {
+                Uz_check = Uz_check * -1;
+            }
+            guildData.TB.DYNAMIC.index = Uz_check % guildData.TB.DYNAMIC.queue.length;
+            TB_PLAY(guildData);
+        }
+    }
+}
+module.exports.TB_PREV = TB_PREV;
 
 async function TB_PAUSE(guildData)
 {
-    if (!guildData.TB.DYNAMIC.playing) {
-        log_TB('PAUSE_NOT_PLAYING',guildData);
-        return;
-    }
-    
+   
     try {
         await guildData.TB.DYNAMIC.voiceConnection.dispatcher.pause(false);
     }
@@ -191,6 +253,7 @@ async function TB_PAUSE(guildData)
         return;
     }
     
+    guildData.TB.DYNAMIC.paused = true;
     guildData.TB.DYNAMIC.playing = false;
     log_TB('PAUSE_SUCCESS',guildData);
 }
@@ -211,7 +274,8 @@ async function TB_RESUME(guildData)
         return;
     }
 
-    guildData.TB.DYNAMIC.playing=true;
+    guildData.TB.DYNAMIC.paused  = false;
+    guildData.TB.DYNAMIC.playing = true;
     log_TB('RESUME_SUCCESS',guildData);    
 }
 module.exports.TB_RESUME = TB_RESUME;

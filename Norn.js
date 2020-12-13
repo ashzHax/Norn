@@ -123,6 +123,7 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                                 queue:           [],
                                 index:           0,
                                 playing:         false,
+                                paused:          false,
                             },
                             PLAYLIST: jsonMap.TB.PLAYLIST,
                         },
@@ -176,12 +177,13 @@ const commandList = [
     {command : "start",         data : {arg:"",                                                                                      info:"Starts the current track."}},
     {command : "stop",          data : {arg:"",                                                                                      info:"Stops the current track."}},
     {command : "pause",         data : {arg:"",                                                                                      info:"Pauses the current track."}},
-    {command : "resume",        data : {arg:"",                                                                                      info:"Resumes the paused track."}},
+    {command : "resume",        data : {arg:"",                                                                                      info:"Resumes paused track."}},
     {command : "next",          data : {arg:"[ Count ]",                                                                             info:"Plays the next queued track. (Default: 1)"}},
-    {command : "prev(WIP)",     data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
+    {command : "previous",      data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
+    {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
     {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
-    {command : "remove",        data : {arg:"[ URL / Index ]",                                                                       info:"Removes the URL/Index data from the queue."}},
-    {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
+    {command : "remove(WIP)",   data : {arg:"[ URL / Index ]",                                                                       info:"Removes the URL/Index data from the queue."}},
+    {command : "clear(WIP)",    data : {arg:"",                                                                                      info:"Clears the entire queue."}},
     {command : "loop(WIP)",     data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
     {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
     {command : "playlist(WIP)", data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
@@ -238,6 +240,7 @@ Norn.on('ready', () =>
                         queue:           [],
                         index:           0,
                         playing:         false,
+                        paused:          false,
                     },
                     PLAYLIST: null,
                 },
@@ -435,18 +438,6 @@ Norn.on('message', async function(eventMessage)
 
     switch(commandArray[0].toLowerCase()) 
     {
-        case 'delete':
-        {
-        	// TODO : ashz : implement into syscall command
-			// Command.command_delete(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'syscall':
-        {
-            //TODO : ashz
-            //Command.command_syscall(eventMessage, commandArray, guildData);
-            break;   
-        }
         case 'help':
         {
             Command.command_help(eventMessage, commandArray, guildData, helpEmbed);
@@ -459,48 +450,77 @@ Norn.on('message', async function(eventMessage)
         }
         case 'leave':
         {
-            Command.command_leave(eventMessage, guildData);
+            Command.command_leave(eventMessage, commandArray, guildData);
             break;
         }
-        case 'pl':
         case 'play':
         {
-            Command.command_play(eventMessage, commandArray, guildData);
+            Command.command_play(eventMessage, commandArray, guildData, false);
+            break;
+        }
+        case 'start':
+        {
+            Command.command_start(eventMessage, commandArray, guildData);
             break;
         }
         case 'stop':
         {
             Command.command_stop(eventMessage, commandArray, guildData);
             break;
-        }   
-        case 'pause':
+        }
+        case 'add':
         {
-            Command.command_pause(commandArray, guildData);
+            Command.command_add(eventMessage, commandArray, guildData);
             break;
-        }   
+        }
         case 'resume':
         {
-            Command.command_resume(commandArray, guildData);
+            Command.command_resume(eventMessage, commandArray, guildData);
             break;
         }
-        case 'clear':
+        case 'pause':
         {
-            Command.command_clear(eventMessage, guildData);
-            break;   
+            Command.command_pause(eventMessage, commandArray, guildData);
+            break;
         }
         case 'skip':
-        case 'next':
 		case 'jump':
+        case 'next':
         {
-            Command.command_skip(eventMessage, commandArray, guildData);
+            Command.command_next(eventMessage, commandArray, guildData);
             break;
+        }
+        case 'prev':
+        case 'previous':
+        {
+            Command.command_previous(eventMessage, commandArray, guildData);
+            break;
+        }
+        case 'list':
+        {
+            Command.command_list(eventMessage, commandArray, guildData);
+            break;
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////  
+        case 'clear':
+        {
+            Command.command_clear(eventMessage, commandArray, guildData);
+            break;   
         }
         case 'playlist':
         {
             Command.command_playlist(eventMessage, commandArray, guildData);
             break;
         }
-        // TODO : restart command : restarts current track
+
+        case 'syscall':
+        {
+            //TODO : ashz
+            //Command.command_syscall(eventMessage, commandArray, guildData);
+            break;   
+        }
         default:
         {
             log_event('COMMAND_UNKNOWN', eventMessage, guildData);

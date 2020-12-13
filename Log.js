@@ -271,502 +271,1117 @@ function log_event(logType,eventData,guildData=null)
 }
 module.exports.log_event = log_event;
 
-function log_command(logType,message,guildData) 
+function log_command(logType,message,guildData,extraData=null) 
 {
     const commandIssuer = message.author.tag;
-
-    // TODO: clean up
-    var devLog = new Discord.MessageEmbed();
-    var usrLog = new Discord.MessageEmbed();
-    var embdLog = new Discord.MessageEmbed();
-    const emLog = new Discord.MessageEmbed();
+    var emLog = new Discord.MessageEmbed();
     var consoleLogText;
 
     if(guildData != null) {
         consoleLogText = `[${guildData.STATIC.guildID}][command][${logType}][${message.author.tag}]`;
-    }
-    else {
+    } else {
         consoleLogText = `[guild_null][command][${logType}][${message.author.tag}]`;
     }
     
     switch(logType) 
     {
-        case 'JOIN_TEXT_CHL_NULL':
+        //////////////////////////////////////////////////
+        // Event Handler: help
+        //////////////////////////////////////////////////
+        case 'HELP_SUCCESS':
         {
-            let criticalReason = 'Text channel is Null inside message object.';
-            emLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(criticalReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` {\"error\":\"true\",\"critical\":\"true\",\"received_command\":\"${message.content}\",\"reason\":\"${criticalReason}\"}`);
+            let logReason = 'Shown user the help list.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'JOIN_VOICE_CHL_NULL':
+        case 'HELP_OVER_MAX_ARG_CNT':
         {
-            let criticalReason = 'Voice channel is Null inside message object.';
-            emLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(criticalReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` {\"error\":\"true\",\"critical\":\"true\",\"received_command\":\"${message.content}\",\"reason\":\"${criticalReason}\"}`);
-            break;
-        }
-        case 'JOIN_OVER_MAX_ARG_CNT':
-        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
             emLog
                 .setColor(Function.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
-                .addField('Usage',    '/join',         false)
-                .addField('Received', message.content, false)
+                .addField('Usage',    '/help',         true)
+                .addField('Received', message.content, true)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` {\"error\":\"false\",\"received_command\":\"${message.content}\"}`);
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
 
+        //////////////////////////////////////////////////
+        // Event Handler: join
+        //////////////////////////////////////////////////
+        case 'JOIN_TEXT_CHL_NULL':
+        {
+            let logReason = 'Text channel is Null inside message object.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "true",
+                received_command : message.content,
+                reason           : logReason,
+            };
 
-        // TODO
-        case 'DELETE_NOT_ENOUGH_ARGUMENTS':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Not enough arguments')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
+            emLog
                 .setColor(Function.html_red)
                 .setAuthor(commandIssuer)
-                .setTitle('Not enough arguments')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/delete [2~100]',false)
+                .setTitle('Critical')
+                .setDescription(logReason)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'DELETE_TOO_MANY_ARGUMENTS':
+        case 'JOIN_VC_NULL':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Too many arguments')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
+            let logReason = 'Voice channel is Null inside message object.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
                 .setAuthor(commandIssuer)
-                .setTitle('Too many arguments')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/delete [2~100]',false)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'DELETE_INVALID_ARGUMENT_TYPE':
+        case 'JOIN_NO_PERM_CONNECT':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Invalid argument type')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
+            let logReason = 'Bot has no permission to join the channel.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "true",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
                 .setColor(Function.html_red)
                 .setAuthor(commandIssuer)
-                .setTitle('Invalid argument type (Expected INT)')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/delete [2~100]',false)
+                .setTitle('Critical')
+                .setDescription(logReason)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`)
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'DELETE_ARGUMENT_OVER_LIMIT':
+        case 'JOIN_NO_PERM_SPEAK':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Argument value is over-limit')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
+            let logReason = 'Bot has no permission to speak inside voice channel.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "true",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
                 .setColor(Function.html_red)
                 .setAuthor(commandIssuer)
-                .setTitle('Argument value is over-limit (Expected 2~100)')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/delete [2~100]',false)
+                .setTitle('Critical')
+                .setDescription(logReason)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`)
-            break; 
-        }
-        case 'DELETE_ARGUMENT_UNDER_LIMIT':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Argument value is under-limit')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Argument value is under-limit (Expected 2~100)')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/delete [2~100]',false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`)
-            break; 
-        }
-        case 'DELETE_PROCESS_ERROR':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Bulk delete process failed (high level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('[X.X] Bulk delete process failed')
-                .setDescription('Are all the target messages under 14 days old?')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` process_failed:\"high chance target messages are over 14 days old\",received_command:\"${message.content}\"`);
-            break; 
-        }
-        case 'DELETE_PROCESS_SUCCESS':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Bulk delete process failed (high level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_green)
-                .setAuthor(commandIssuer)
-                .setTitle('[@.@] Bulk delete success')
-                .setDescription('Congratulation, you erased all the evidence. Hopefully.')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break; 
-        }
-        case 'JOIN_NO_TEXT_CHANNEL':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('No text channel found (High level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('No text channel found')
-                .setDescription('High level error, please report to the developer')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` process_failed:\"cannot retrieve text channel\",received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'JOIN_NO_VOICE_CHANNEL':
+        case 'JOIN_ALREADY_CONNECTED':
         {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('No voice channel found')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
+            let logReason = 'Already connected to a voice channel.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
                 .setAuthor(commandIssuer)
-                .setTitle('Voice channel not found')
-                .setDescription('[@.@] You are not in a voice channel')
+                .setTitle('Already Connected')
+                .setDescription(logReason)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'JOIN_NO_CONNECT_PERMISSION':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('No connect permission (Low level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Cannot connect to voice channel')
-                .setDescription('[>.>] I have no permission to connect to a voice channel')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'JOIN_NO_SPEAK_PERMISSION':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('No speak permission (Low level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Cannot speak in voice channel')
-                .setDescription('[>.>] I have no permission to speak in a voice channel')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
         case 'JOIN_CONNECTION_FAILED':
         {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Connection failed (High level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
+            let logReason = 'Error occured while trying to connect to voice channel.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "true",
+                received_command : message.content,
+                reason           : logReason,
+                data             : extraData,
+            };
+
+            emLog
                 .setColor(Function.html_red)
                 .setAuthor(commandIssuer)
-                .setTitle('Connection failed')
-                .setDescription('[X.X] Failed to connect to voice channel')
+                .setTitle('Critical')
+                .setDescription(logReason)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` process_failed:\"connection failed\",received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'JOIN_TOO_MANY_ARGUMENT':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Too many arguments')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Too many arguments')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/join [URL] [1~9]',false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;   
-        }   
         case 'JOIN_SUCCESS':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Connection established to voice channel')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
+            let logReason = 'Connected to voice channel.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
                 .setColor(Function.html_green)
                 .setAuthor(commandIssuer)
-                .setTitle('Connection established to voice channel')
+                .setTitle('Joined Voice Channel')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'LEAVE_NO_CONNECTION_FOUND':
+        case 'JOIN_OVER_MAX_ARG_CNT':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('no connection instance found')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
                 .setAuthor(commandIssuer)
-                .setTitle('[-.-] I am not inside a voice channel')
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/join',         true)
+                .addField('Received', message.content, true)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
-        }   
+        }
+
+        //////////////////////////////////////////////////
+        // Event Handler: join
+        //////////////////////////////////////////////////
+        case 'LEAVE_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/leave',        true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LEAVE_NO_CONNECTION':
+        {
+            let logReason = 'No connection instance found.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Inside Voice Channel')
+                .setDescription('You need to be inside a voice channel first.')
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
         case 'LEAVE_SUCCESS':
         {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Disconnected from voice channel')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_green)
+            let logReason = 'Left voice channel.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog
+                .setColor(Function.html_orange)
                 .setAuthor(commandIssuer)
                 .setTitle('Left Voice Channel')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'PLAY_NOT_ENOUGH_ARGUMENT':
-        {
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Not enough arguments')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Not enough arguments')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/play [URL] [VOLUME]',false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'PLAY_GET_INFO_FAILED':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Failed to get video info using API (High level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Failed to retrieve video data')
-                .addField('Received Command',message.content,false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'PLAY_RECEIVED_DATA_NULL':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Data retrieve using API returned null (High level error)')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Retrieved data is null')
-                .addField('Received Command',message.content,false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'PLAY_TOO_MANY_ARGUMENT':
-        {
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Too many arguments')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_green)
-                .setAuthor(commandIssuer)
-                .setTitle('Too many arguments')
-                .addField('Received Command',message.content,false)
-                .addField('Example','/play [URL] [VOLUME]',false)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }
-        case 'PLAY_ADDED_REQUEST_TO_QUEUE':
-        {
-            let idx = guildData.TB.DYNAMIC.queue.length-1;
-            const trackData = guildData.TB.DYNAMIC.queue[idx];
 
-            devLog
-                .setColor(Function.html_green)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('Added track to queue')
-                .addField('Received Command',message.content,true)
-                .addField(JSON.stringify(trackData))
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_green)
-                .setAuthor(commandIssuer)
-                .setTitle(`[No.${idx}] Added track to queue`)
-                .addFields(
-                    { name: 'Title',  value: trackData.title,                       inline: false },
-                    { name: 'URL',    value: trackData.video_url,                   inline: false },
-                    { name: 'Length', value: Function.getSecondFormat(trackData.length), inline: true },
-                    { name: 'Volume', value: trackData.volume,                      inline: true },
-                    
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
-            break;
-        }   
-        case 'PLAY_TB_PLAY_ERROR':
-        {
-            let idx = guildData.TB.DYNAMIC.queue.length-1;
-            const trackData = guildData.TB.DYNAMIC.queue[idx];
-
-            devLog
-                .setColor(Function.html_red)
-                .setAuthor(`user: ${commandIssuer}`)
-                .setTitle(logType)
-                .setDescription('TB_Play returned error')
-                .addField('Received Command',message.content,true)
-                .setTimestamp();
-            usrLog
-                .setColor(Function.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Error trying to play track')
-                .addField('Received Command',message.content,false)  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` received_command:\"${message.content}\"`);
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
+
+        //////////////////////////////////////////////////
+        // Event Handler: play
+        //////////////////////////////////////////////////
+        case 'PLAY_UNDER_REQ_ARG_CNT':
+        {
+            let logReason = 'Received not enough arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Require More Arguments')
+                .addField('Usage',    '/play [URL] [Volume]', true)
+                .addField('Received', message.content,        true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PLAY_INVALID_ARG_TYPE':
+        {
+            let logReason = 'Received argument type is invalid.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .addField('Usage',    '/play [URL] [Volume]', true)
+                .addField('Received', message.content,        true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PLAY_SUCCESS':
+        {
+            let logReason = 'Playing track with received information.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PLAY_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/play [URL] [Volume]', true)
+                .addField('Received', message.content,        true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////
+        // Event Handler: start
+        //////////////////////////////////////////////////
+        case 'START_NOT_CONNECTED_TO_VC':
+        {
+            let logReason = 'Found no voice channel.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Connected')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'START_ALREADY_PLAYING':
+        {
+            let logReason = 'Bot is already playing a track.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Already Playing')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'START_SUCCESS':
+        {
+            let logReason = 'Starting a stopped track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'START_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/start',        true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////
+        // Event Handler: stop
+        //////////////////////////////////////////////////
+        case 'STOP_NOT_PLAYING_TRACK':
+        {
+            let logReason = 'Nothing to stop.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Running Anything')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'STOP_NO_VC':
+        {
+            let logReason = 'No voice channel found.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "true",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Critical')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'STOP_SUCCESS':
+        {
+            let logReason = 'Stopped running track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'STOP_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/stop',         true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: resume
+        //////////////////////////////////////////////////
+        case 'RESUME_ALREADY_RUNNING':
+        {
+            let logReason = 'Already running, cannot resume.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Already Running')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'RESUME_NOT_PAUSED':
+        {
+            let logReason = 'Not paused, cannot resume.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Paused')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'RESUME_NO_VC':
+        {
+            let logReason = 'No voice channel found.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Connected To A Voice Channel')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'RESUME_SUCCESS':
+        {
+            let logReason = 'Resumed track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'RESUME_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/resume',       true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: pause
+        //////////////////////////////////////////////////
+        case 'PAUSE_NOT_RUNNING':
+        {
+            let logReason = 'Already stopped, cannot pause.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Already Stopped')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PAUSE_ALREADY_PAUSED':
+        {
+            let logReason = 'Already paused.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Already Paused')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PAUSE_NO_VC':
+        {
+            let logReason = 'No voice channel found.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "maybe",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Not Connected To A Voice Channel')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PAUSE_SUCCESS':
+        {
+            let logReason = 'Paused track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PAUSE_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/pause',        true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: next
+        //////////////////////////////////////////////////
+        case 'NEXT_QUEUE_EMPTY':
+        {
+            let logReason = 'Queue is empty, nothing to play next.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Queue Empty')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'NEXT_INVALID_ARG_TYPE':
+        {
+            let logReason = 'Invalid argument type received, expecting a integer.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'NEXT_INVALID_ARG_VAL':
+        {
+            let logReason = 'Invalid argument value received, expecting a number greater than 1';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'NEXT_SUCCESS':
+        {
+            let logReason = 'Playing next track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'NEXT_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/next [Skip Count]', true)
+                .addField('Received', message.content,      true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: previous
+        //////////////////////////////////////////////////
+        case 'PREV_QUEUE_EMPTY':
+        {
+            let logReason = 'Queue is empty, nothing to play previous.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Queue Empty')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PREV_INVALID_ARG_TYPE':
+        {
+            let logReason = 'Invalid argument type received, expecting a integer.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PREV_INVALID_ARG_VAL':
+        {
+            let logReason = 'Invalid argument value received, expecting a number greater than 1';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PREV_SUCCESS':
+        {
+            let logReason = 'Playing previous track.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'PREV_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/previous [Skip Count]', true)
+                .addField('Received', message.content,      true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: list
+        //////////////////////////////////////////////////
+        case 'LIST_QUEUE_EMPTY':
+        {
+            let logReason = 'Queue is empty.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Queue Empty')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LIST_SUCCESS':
+        {
+            let logReason = 'Showing queue list.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+    
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LIST_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/list',         true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: add
+        //////////////////////////////////////////////////
+        case 'ADD_UNDER_REQ_ARG_CNT':
+        {
+            let logReason = 'Received not enough arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Require More Arguments')
+                .addField('Usage',    '/add [URL] [Volume]', true)
+                .addField('Received', message.content,       true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'ADD_INVALID_ARG_TYPE':
+        {
+            let logReason = 'Received argument type is invalid.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .addField('Usage',    '/add [URL] [Volume]', true)
+                .addField('Received', message.content,        true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'ADD_SUCCESS':
+        {
+            let logReason = 'Added track to queue.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'ADD_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/add [URL] [Volume]', true)
+                .addField('Received', message.content,       true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
         default:
         {
-            devLog=null;
-            usrLog=null;
-            embdLog=null;
+            emLog=null;
             consoleLogText = consoleLogText.concat(' undefined log type');
         }
     }
 
-    if( (guildData!=null) && (devLog!=null) ) {
-        guildData.DYNAMIC.systemChannel.send(devLog);
-    }
-    if( (guildData!=null) && (usrLog!=null) ) {
-        message.channel.send(usrLog);
-    }
-
-    if( (guildData!=null) && (emLog!=null) ) {
+    if(guildData!=null && emLog!=null) {
         message.channel.send(emLog);
-    }
-    
-    //////////////////////////////////////////////////////////////////////////////////////
-    if(embdLog != null && guildData != null) {
-        guildData.DYNAMIC.systemChannel.send(embdLog);
     }
     if(consoleLogText == null) {
         console.log(Function.traceDebug('log event error, guildData is null'));
@@ -811,11 +1426,11 @@ function log_TB(logType,guildData,extraData=null)
             const idx = guildData.TB.DYNAMIC.index;
             const trackData = guildData.TB.DYNAMIC.queue[idx];
 
-            devLog
-                .setColor(Function.html_green)
-                .setTitle(logType)
-                .setDescription(`playing:{${JSON.stringify(trackData)}`)
-                .setTimestamp();
+            devLog=null;
+            //     .setColor(Function.html_green)
+            //     .setTitle(logType)
+            //     .setDescription(`playing:{${JSON.stringify(trackData)}`)
+            //     .setTimestamp();
             usrLog
                 .setColor(Function.html_spring_green)
                 .setTitle(`\"${Function.stringCut(trackData.title,43)}\"`)

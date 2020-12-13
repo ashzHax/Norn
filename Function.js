@@ -11,14 +11,15 @@ module.exports.CONFIG_GUILD_WRITE_ERROR    = 1903;
 module.exports.CONFIG_FILE_NOT_FOUND       = 1904;
 
 // color values
-module.exports.html_red =          '#FF0000';
-module.exports.html_white =        '#000000';
+module.exports.html_red          = '#FF0000';
+module.exports.html_white        = '#000000';
 module.exports.html_spring_green = '#00FF9E';
-module.exports.html_blue =         '#0032FF';
-module.exports.html_green =        '#00FF08';
-module.exports.html_sky =          '#00D1FF';
-module.exports.html_warm =         '#F1C40F';
-module.exports.html_yellow =       '#F3FF00';
+module.exports.html_blue         = '#0032FF';
+module.exports.html_green        = '#00FF08';
+module.exports.html_sky          = '#00D1FF';
+module.exports.html_warm         = '#F1C40F';
+module.exports.html_yellow       = '#F3FF00';
+module.exports.html_orange       = '#FFAE00'; 
 
 // log values
 module.exports.TYPE_LOG =     'LOG';
