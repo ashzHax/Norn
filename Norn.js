@@ -198,6 +198,8 @@ commandList.forEach((element) => {
     helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
 });
 
+log_console('Finished Data Handling, waiting on Discord API...',null);
+
 //////////////////////////////////////////////////
 // Bot Ready Event
 //////////////////////////////////////////////////
