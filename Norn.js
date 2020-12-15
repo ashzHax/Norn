@@ -182,7 +182,7 @@ const commandList = [
     {command : "previous",      data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
     {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
     {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
-    {command : "remove(WIP)",   data : {arg:"[ URL / Index ]",                                                                       info:"Removes the URL/Index data from the queue."}},
+    {command : "remove(WIP)",   data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
     {command : "clear(WIP)",    data : {arg:"",                                                                                      info:"Clears the entire queue."}},
     {command : "loop(WIP)",     data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
     {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
@@ -470,11 +470,6 @@ Norn.on('message', async function(eventMessage)
             Command.command_stop(eventMessage, commandArray, guildData);
             break;
         }
-        case 'add':
-        {
-            Command.command_add(eventMessage, commandArray, guildData);
-            break;
-        }
         case 'resume':
         {
             Command.command_resume(eventMessage, commandArray, guildData);
@@ -501,6 +496,17 @@ Norn.on('message', async function(eventMessage)
         case 'list':
         {
             Command.command_list(eventMessage, commandArray, guildData);
+            break;
+        }
+        case 'add':
+        {
+            Command.command_add(eventMessage, commandArray, guildData);
+            break;
+        }
+        case 'rm':
+        case 'remove':
+        {
+            Command.command_remove(eventMessage, commandArray, guildData);
             break;
         }
 

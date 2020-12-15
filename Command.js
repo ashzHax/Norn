@@ -208,38 +208,6 @@ async function command_stop(message,commandArray,guildData)
     }
 }
 
-async function command_add(message,commandArray,guildData) 
-{
-    var volumeData = guildData.TB.STATIC.volume;
-
-    switch(commandArray.length) 
-    {
-        case 1:
-        {
-            log_command('ADD_UNDER_REQ_ARG_CNT', message, guildData);
-            break;
-        }
-        case 3:
-        {
-            volumeData = parseInt(commandArray[2]);
-            if(isNaN(volumeData)) {
-                log_command('ADD_INVALID_ARG_TYPE', message, guildData);
-                break;
-            }
-        }
-        case 2:
-        {
-            log_command('ADD_SUCCESS', message, guildData);
-            TB.TB_QUEUE_ADD(guildData, commandArray[1], volumeData);
-            break;
-        }
-        default:
-        {
-            log_command('ADD_OVER_MAX_ARG_CNT', message, guildData);
-        }
-    }
-}
-
 async function command_resume(message,commandArray,guildData)
 {
     switch(commandArray.length)
@@ -399,10 +367,10 @@ async function command_list(message,commandArray,guildData)
                 .setColor(Function.html_sky)
                 .setTitle('Queue List')
                 .setTimestamp();
-
+            
             for(loopIdx=0 ; loopIdx<guildQueue.length ; loopIdx++) {
                 queueList.addField(
-                    `${guildData.TB.DYNAMIC.index==loopIdx?'-> ':' '}[${loopIdx}] [${Function.getSecondFormat(guildQueue[loopIdx].length)}] ${guildQueue[loopIdx].title}`,
+                    Function.stringCut(`${guildData.TB.DYNAMIC.index==loopIdx?'-> ':' '}[${loopIdx}] [${Function.getSecondFormat(guildQueue[loopIdx].length)}] ${guildQueue[loopIdx].title}`,89),
                     `${guildQueue[loopIdx].video_url}`,
                     false
                 );
@@ -419,18 +387,74 @@ async function command_list(message,commandArray,guildData)
     }
 }
 
+async function command_add(message,commandArray,guildData) 
+{
+    var volumeData = guildData.TB.STATIC.volume;
+
+    switch(commandArray.length) 
+    {
+        case 1:
+        {
+            log_command('ADD_UNDER_REQ_ARG_CNT', message, guildData);
+            break;
+        }
+        case 3:
+        {
+            volumeData = parseInt(commandArray[2]);
+            if(isNaN(volumeData)) {
+                log_command('ADD_INVALID_ARG_TYPE', message, guildData);
+                break;
+            }
+        }
+        case 2:
+        {
+            log_command('ADD_SUCCESS', message, guildData);
+            TB.TB_QUEUE_ADD(guildData, commandArray[1], volumeData);
+            break;
+        }
+        default:
+        {
+            log_command('ADD_OVER_MAX_ARG_CNT', message, guildData);
+        }
+    }
+}
+
+async function command_remove(message,commandArray,guildData)
+{
+    switch(commandArray.length) 
+    {
+        case 1:
+        {
+            log_command('REMOVE_UNDER_REQ_ARG_CNT', message, guildData);
+            break;
+        }
+        case 2:
+        {
+            // log_command('REMOVE_SUCCESS', message, guildData);
+            // TB.TB_QUEUE_ADD(guildData, commandArray[1], volumeData);
+            break;
+        }
+        default:
+        {
+            log_command('REMOVE_OVER_MAX_ARG_CNT', message, guildData);
+        }
+    }
+    return;
+}
+
 module.exports.command_help     = command_help;
 module.exports.command_join     = command_join;
 module.exports.command_leave    = command_leave;
 module.exports.command_play     = command_play;
 module.exports.command_start    = command_start;
 module.exports.command_stop     = command_stop;
-module.exports.command_add      = command_add;
 module.exports.command_resume   = command_resume;
 module.exports.command_pause    = command_pause;
 module.exports.command_next     = command_next;
 module.exports.command_previous = command_previous;
 module.exports.command_list     = command_list;
+module.exports.command_add      = command_add;
+module.exports.command_remove   = command_remove;
 
 //////////////////////////////////////////////////////////////
 // TODO
