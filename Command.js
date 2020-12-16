@@ -430,8 +430,19 @@ async function command_remove(message,commandArray,guildData)
         }
         case 2:
         {
-            // log_command('REMOVE_SUCCESS', message, guildData);
-            // TB.TB_QUEUE_ADD(guildData, commandArray[1], volumeData);
+            var targetIdx = parseInt(commandArray[1]);
+            if(isNaN(targetIdx)) {
+                log_command('REMOVE_INVALID_ARG_TYPE', message, guildData);
+                break;
+            }
+
+			if(targetIdx<0 || targetIdx>=guildData.TB.DYNAMIC.queue.length) {
+                log_command('REMOVE_INVALID_ARG_VALUE', message, guildData);
+				break;
+			}
+
+            log_command('REMOVE_SUCCESS', message, guildData);
+            TB.TB_QUEUE_REMOVE(guildData, targetIdx);
             break;
         }
         default:

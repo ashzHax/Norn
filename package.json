@@ -5,7 +5,7 @@
   "main": "Norn.js",
   "private": true,
   "scripts": {
-    "install": "sudo apt-get install ffmpeg"
+    "test": "echo \"Please Check Your Internet Connection!\""
   },
   "repository": {
     "type": "git",

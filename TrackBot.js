@@ -309,9 +309,8 @@ async function TB_QUEUE_ADD(guildData,targetURL,rvolume)
 }
 module.exports.TB_QUEUE_ADD = TB_QUEUE_ADD;
 
-
-
-
-
-
-
+async function TB_QUEUE_REMOVE(guildData,targetIdx)
+{
+    guildData.TB.DYNAMIC.queue = guildData.TB.DYNAMIC.queue.splice(targetIdx,1);
+}
+module.exports.TB_QUEUE_REMOVE = TB_QUEUE_REMOVE
