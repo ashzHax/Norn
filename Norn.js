@@ -7,12 +7,12 @@ const CONFIGURATION_NORN_PATH = './setting.json';
 const Discord     = require('discord.js');
 
 // internal module
-const FileSystem  = require('fs');
+const fs          = require('fs');
 const Process     = require('process');
 const Path        = require('path');
 
 // custom module
-const Function    = require('./Function.js');
+const ExF         = require('./Function.js');
 const Command     = require('./Command.js');
 
 // custom function
@@ -37,7 +37,7 @@ Process.on('exit', code =>
 {
     switch(code)
     {
-        case Function.CONFIG_FILE_NOT_FOUND:
+        case ExF.CONFIG_FILE_NOT_FOUND:
         {
             log_console('Ending program with code 1900 (NO_CONFIG_FILE_FOUND)',null);
             break;
@@ -54,11 +54,11 @@ Process.on('exit', code =>
 //////////////////////////////////////////////////
 
 // norn configuration
-FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
+fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 {
     if(errorData) {
         console.log(errorData);
-        Process.exit(Function.CONFIG_NORN_FILE_NOT_FOUND);
+        Process.exit(ExF.CONFIG_NORN_FILE_NOT_FOUND);
         return;
     }
 
@@ -70,11 +70,11 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
     
     // get saved per/guild data
-    FileSystem.readdir(CONFIGURATION_GUILD_DIR_PATH,(errorData,lsData) =>
+    fs.readdir(CONFIGURATION_GUILD_DIR_PATH,(errorData,lsData) =>
     {
         if(errorData) {
             console.log(errorData);
-            Process.exit(Function.CONFIG_GUILD_DIR_NOT_FOUND);
+            Process.exit(ExF.CONFIG_GUILD_DIR_NOT_FOUND);
             return;
         }
 
@@ -82,12 +82,12 @@ FileSystem.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
         {
             if(fileName.endsWith('.json')) {
                 let configurationPath = Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName);
-                FileSystem.readFile(Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName), (errorData,fileData) =>
+                fs.readFile(Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName), (errorData,fileData) =>
                 {
                     if(errorData) {
                         console.log(errorData);
                         // TODO ashz : change to log error, instead of ending entire program
-                        Process.exit(Function.CONFIG_GUILD_FILE_NOT_FOUND);
+                        Process.exit(ExF.CONFIG_GUILD_FILE_NOT_FOUND);
                         return;
                     }
 
@@ -151,12 +151,12 @@ function saveGuildData(guildData)
     };
 
     const writeData = JSON.stringify(finalizedData,null,4);
-    FileSystem.writeFile(guildData.DYNAMIC.configurationPath, writeData, (errorData) =>
+    fs.writeFile(guildData.DYNAMIC.configurationPath, writeData, (errorData) =>
     {
         if(errorData) {
             console.log(error);
             // TODO: change to log write error only, not finish
-            Process.exit(Function.CONFIG_GUILD_WRITE_ERROR);
+            Process.exit(ExF.CONFIG_GUILD_WRITE_ERROR);
             return;
         }
     });
@@ -182,14 +182,14 @@ const commandList = [
     {command : "previous",      data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
     {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
     {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
-    {command : "remove(WIP)",   data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
+    {command : "remove",        data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
     {command : "clear(WIP)",    data : {arg:"",                                                                                      info:"Clears the entire queue."}},
     {command : "loop(WIP)",     data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
     {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
     {command : "playlist(WIP)", data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
 ];
 helpEmbed
-    .setColor(Function.html_sky)
+    .setColor(ExF.html_sky)
     .setTitle('Command List')
     .setDescription('Semi-helpful list of commands used by Norn\nWIP = Work In Progress (It means DON\'T USE IT)')
     .setTimestamp();
@@ -509,14 +509,14 @@ Norn.on('message', async function(eventMessage)
             Command.command_remove(eventMessage, commandArray, guildData);
             break;
         }
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////  
         case 'clear':
         {
             Command.command_clear(eventMessage, commandArray, guildData);
             break;   
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////  
+        
         case 'playlist':
         {
             Command.command_playlist(eventMessage, commandArray, guildData);

@@ -1373,6 +1373,217 @@ function log_command(logType,message,guildData,extraData=null)
             break;
         }
 
+        //////////////////////////////////////////////////  
+        // Event Handler: remove
+        //////////////////////////////////////////////////
+        case 'REMOVE_UNDER_REQ_ARG_CNT':
+        {
+            let logReason = 'Received not enough arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Require More Arguments')
+                .addField('Usage',    '/remove [Index]', true)
+                .addField('Received', message.content,   true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'REMOVE_INVALID_ARG_TYPE':
+        {
+            let logReason = 'Received argument type is invalid.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .addField('Usage',    '/remove [Index]', true)
+                .addField('Received', message.content,   true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'REMOVE_INVALID_ARG_VAL':
+        {
+            let maxLength = guildData.TB.DYNAMIC.queue.length-1;
+            let logReason = `Invalid argument value received (${maxLength==0?'0':`0~${maxLength}`})`;
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Type')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'REMOVE_PLAYING_TARGET_IDX':
+        {
+            let logReason = 'Cannot remove current track from queue.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Cannot Remove Current Track')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'REMOVE_SUCCESS':
+        {
+            let logReason = 'Removed track from queue.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'REMOVE_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/remove [Index]', true)
+                .addField('Received', message.content,   true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
+        //////////////////////////////////////////////////  
+        // Event Handler: clear
+        //////////////////////////////////////////////////
+        case 'CLEAR_QUEUE_EMPTY':
+        {
+            let logReason = 'Queue is empty, nothing to clear out.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Queue Empty')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'CLEAR_PLAYING_TARGET_IDX':
+        {
+            let logReason = 'Current track is the only track in queue.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Cannot Remove Current Track')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'CLEAR_SUCCESS':
+        {
+            let logReason = 'Removed all track from queue.';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'CLEAR_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/clear',        true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
         default:
         {
             emLog=null;

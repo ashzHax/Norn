@@ -311,6 +311,23 @@ module.exports.TB_QUEUE_ADD = TB_QUEUE_ADD;
 
 async function TB_QUEUE_REMOVE(guildData,targetIdx)
 {
-    guildData.TB.DYNAMIC.queue = guildData.TB.DYNAMIC.queue.splice(targetIdx,1);
+    guildData.TB.DYNAMIC.queue.splice(targetIdx,1);
+    if(guildData.TB.DYNAMIC.index > targetIdx) {
+        guildData.TB.DYNAMIC.index--;
+    }
 }
 module.exports.TB_QUEUE_REMOVE = TB_QUEUE_REMOVE
+
+async function TB_QUEUE_CLEAR(guildData)
+{
+    let queueLength = guildData.TB.DYNAMIC.queue.length;
+    let cIndex = guildData.TB.DYNAMIC.index;
+
+    if(queueLength-1 > cIndex) {
+        guildData.TB.DYNAMIC.queue.splice(cIndex+1,(queueLength-1)-cIndex);
+    } 
+    
+    guildData.TB.DYNAMIC.queue.splice(0,cIndex);
+    guildData.TB.DYNAMIC.index = 0;
+}
+module.exports.TB_QUEUE_CLEAR = TB_QUEUE_CLEAR;

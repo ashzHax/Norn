@@ -281,7 +281,7 @@ async function command_next(message,commandArray,guildData)
         case 2:
         {
             if(guildData.TB.DYNAMIC.queue.length <= 0) {
-                log_command('NEXT_QUEUE_EMPTY');
+                log_command('NEXT_QUEUE_EMPTY', message, gyukdData);
                 break;
             }
 
@@ -437,9 +437,14 @@ async function command_remove(message,commandArray,guildData)
             }
 
 			if(targetIdx<0 || targetIdx>=guildData.TB.DYNAMIC.queue.length) {
-                log_command('REMOVE_INVALID_ARG_VALUE', message, guildData);
+                log_command('REMOVE_INVALID_ARG_VAL', message, guildData);
 				break;
-			}
+            }
+            
+            if(targetIdx==guildData.TB.DYNAMIC.index) {
+                log_command('REMOVE_PLAYING_TARGET_IDX', message, guildData);
+                break;
+            }
 
             log_command('REMOVE_SUCCESS', message, guildData);
             TB.TB_QUEUE_REMOVE(guildData, targetIdx);
@@ -453,19 +458,52 @@ async function command_remove(message,commandArray,guildData)
     return;
 }
 
-module.exports.command_help     = command_help;
-module.exports.command_join     = command_join;
-module.exports.command_leave    = command_leave;
-module.exports.command_play     = command_play;
-module.exports.command_start    = command_start;
-module.exports.command_stop     = command_stop;
-module.exports.command_resume   = command_resume;
-module.exports.command_pause    = command_pause;
-module.exports.command_next     = command_next;
-module.exports.command_previous = command_previous;
-module.exports.command_list     = command_list;
-module.exports.command_add      = command_add;
-module.exports.command_remove   = command_remove;
+async function command_clear(message,commandArray,guildData)
+{
+    switch(commandArray.length)
+    {
+        case 1:
+        {
+            let queueLength = guildData.TB.DYNAMIC.queue.length;
+
+            if(guildData.TB.DYNAMIC.queue == null || queueLength <= 0) {
+                log_command('CLEAR_QUEUE_EMPTY', message, guildData);
+                break;
+            }
+            
+            if(guildData.TB.DYNAMIC.playing && queueLength == 1) {
+                log_command('CLEAR_PLAYING_TARGET_IDX', message, guildData);
+                break;
+            }
+
+            log_command('CLEAR_SUCCESS', message, guildData);
+            TB.TB_QUEUE_CLEAR(guildData);
+            break;
+        }
+        default:
+        {
+            log_command('CLEAR_OVER_MAX_ARG_CNT', message, guildData);
+        }
+    }
+    return;
+}
+
+module.exports = {
+    command_help,
+    command_join,
+    command_leave,
+    command_play,
+    command_start,
+    command_stop,
+    command_resume,
+    command_pause,
+    command_next,
+    command_previous,
+    command_list,
+    command_add,
+    command_remove,
+    command_clear
+};
 
 //////////////////////////////////////////////////////////////
 // TODO
@@ -476,27 +514,7 @@ async function command_status(message,commandArray,guildData)
 {
     return;
 }
-module.exports.command_status = command_status;
-
-// TODO: create this thing, already made, just need to imply to system
-async function command_clear(message,commandArray,guildData) 
-{
-    switch(commandArray.length) 
-    {
-        case 1:
-        {
-            guildData.TB.DYNAMIC.index = 0;
-            guildData.TB.DYNAMIC.queue = [];
-            log_command('CLEAR_SUCCESS',message,guildData);
-            break;
-        }
-        default:
-        {
-            log_command('CLEAR_TOO_MANY_ARGUMENTS',message,guildData);
-        }
-    }
-}
-module.exports.command_clear = command_clear;
+//module.exports.command_status = command_status;
 
 const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
 function writePlaylistData(playlistName,guildData)
