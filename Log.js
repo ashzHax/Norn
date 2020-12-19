@@ -1584,6 +1584,111 @@ function log_command(logType,message,guildData,extraData=null)
             break;
         }
 
+        //////////////////////////////////////////////////  
+        // Event Handler: loop
+        //////////////////////////////////////////////////
+        case 'LOOP_UNDER_REQ_ARG_CNT':
+        {
+            let logReason = 'Received not enough arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Require More Arguments')
+                .addField('Usage',    '/loop [single/queue] [on/off]', true)
+                .addField('Received', message.content,   true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LOOP_INVALID_ARG_VAL_1':
+        {
+            let logReason = `Invalid argument value received. ( Expecting: [ single | queue ] )`;
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Value')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LOOP_INVALID_ARG_VAL_2':
+        {
+            let logReason = `Invalid argument value received. ( Expecting: [ on | off ] )`;
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Invalid Argument Value')
+                .setDescription(logReason)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LOOP_SUCCESS':
+        {
+            let logReason = 'Edited Loop';
+            let logData = 
+            {
+                error            : "false",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog = null;
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+        case 'LOOP_OVER_MAX_ARG_CNT':
+        {
+            let logReason = 'Received too many arguments.';
+            let logData = 
+            {
+                error            : "true",
+                critical         : "false",
+                received_command : message.content,
+                reason           : logReason,
+            };
+
+            emLog
+                .setColor(Function.html_yellow)
+                .setAuthor(commandIssuer)
+                .setTitle('Too Many Arguments')
+                .addField('Usage',    '/loop [single/queue] [on/off]',        true)
+                .addField('Received', message.content, true)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
+            break;
+        }
+
         default:
         {
             emLog=null;

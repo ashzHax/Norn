@@ -146,7 +146,9 @@ function TB_QUEUE_NEXT(guildData)
         }
         default:
         {
-            if(loopSingle || loopQueue) {
+            if(loopSingle) {
+                TB_PLAY(guildData);
+            } else if (loopQueue) {
                 guildData.TB.DYNAMIC.index = (guildData.TB.DYNAMIC.index + 1) % guildData.TB.DYNAMIC.queue.length;
                 TB_PLAY(guildData);
             } else {
@@ -331,3 +333,23 @@ async function TB_QUEUE_CLEAR(guildData)
     guildData.TB.DYNAMIC.index = 0;
 }
 module.exports.TB_QUEUE_CLEAR = TB_QUEUE_CLEAR;
+
+async function TB_SETTING_LOOP_TOGGLE(guildData,targetLoop)
+{
+    if(targetLoop === 'single') {
+        guildData.TB.STATIC.loopSingle = !guildData.TB.STATIC.loopSingle;
+    } else if(targetLoop === 'queue') {
+        guildData.TB.STATIC.loopQueue = !guildData.TB.STATIC.loopQueue;
+    }
+}
+module.exports.TB_SETTING_LOOP_TOGGLE = TB_SETTING_LOOP_TOGGLE;
+
+async function TB_SETTING_LOOP_EDIT(guildData,targetLoop,value)
+{
+    if(targetLoop === 'single') {
+        guildData.TB.STATIC.loopSingle = value;
+    } else if(targetLoop === 'queue') {
+        guildData.TB.STATIC.loopQueue = value;
+    }
+}
+module.exports.TB_SETTING_LOOP_EDIT = TB_SETTING_LOOP_EDIT;

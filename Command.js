@@ -488,6 +488,54 @@ async function command_clear(message,commandArray,guildData)
     return;
 }
 
+async function command_loop(message,commandArray,guildData)
+{
+    switch(commandArray.length)
+    {
+        case 1:
+        {
+            log_command('LOOP_UNDER_REQ_ARG_CNT', message, guildData);
+            break;
+        }
+        case 2:
+        {
+            let targetConv = commandArray[1].toLowerCase();
+            if(targetConv === 'single' || targetConv === 'queue') {
+                log_command('LOOP_SUCCESS', message, guildData);
+                TB.TB_SETTING_LOOP_TOGGLE(guildData,targetConv);
+            } else {
+                log_command('LOOP_INVALID_ARG_VAL_1', message, guildData);
+            }
+            console.log(guildData.TB.STATIC);
+            break;
+        }
+        case 3:
+        {
+            let targetConv1 = commandArray[1].toLowerCase();
+            let targetConv2 = commandArray[2].toLowerCase();
+            if(targetConv1 === 'single' || targetConv1 === 'queue') {
+                if(targetConv2 === 'on') {
+                    TB.TB_SETTING_LOOP_EDIT(guildData,targetConv1,true);
+                } else if(targetConv2 === 'off') {
+                    TB.TB_SETTING_LOOP_EDIT(guildData,targetConv1,false);
+                } else {
+                    log_command('LOOP_INVALID_ARG_VAL_2', message, guildData);
+                    break;
+                }
+                log_command('LOOP_SUCCESS', message, guildData);
+            } else {
+                log_command('LOOP_INVALID_ARG_VAL_1', message, guildData);
+            }
+            console.log(guildData.TB.STATIC);
+            break;
+        }
+        default:
+        {
+            log_command('LOOP_OVER_MAX_ARG_CNT', message, guildData);
+        }
+    }
+}
+
 module.exports = {
     command_help,
     command_join,
@@ -502,7 +550,8 @@ module.exports = {
     command_list,
     command_add,
     command_remove,
-    command_clear
+    command_clear,
+    command_loop,
 };
 
 //////////////////////////////////////////////////////////////

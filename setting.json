@@ -3,6 +3,7 @@
     "token_part2"         : ".XpX5lg",
     "token_part3"         : ".00DcIC9VlJWTyzi25nVAN8t7FPM",
 	"guild_data_path"     : "./config/",
+	"guild_data_file"     : "setting.json",
 	"log_data_path"       : "./log/",
 	"default_volume"      : "3",
 	"default_loop_queue"  : "true",
