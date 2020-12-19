@@ -514,6 +514,7 @@ Norn.on('message', async function(eventMessage)
             Command.command_clear(eventMessage, commandArray, guildData);
             break;   
         }
+        case 'loop':
         {
             Command.command_loop(eventMessage, commandArray, guildData);
             break;
