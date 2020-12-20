@@ -43,7 +43,7 @@ function log_event(logType,eventData,guildData=null)
         case 'BOT_READY':
         {
             embdLog = null;
-            consoleLogText = consoleLogText.concat(' (*high animie sqeak*) I am here to serve!');
+            consoleLogText = consoleLogText.concat(' Here to serve! (And to steal API bandwidth usage)');
             break;
         }
 

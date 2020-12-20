@@ -4,7 +4,7 @@
 const YTDLC  = require('ytdl-core');
 
 // custom module
-const AXC    = require('./Function.js');
+const ExF    = require('./Function.js');
 const log_TB = require('./Log.js').log_TB;
 
 async function TB_JOIN(guildData,userVoiceChannel)
@@ -341,6 +341,7 @@ async function TB_SETTING_LOOP_TOGGLE(guildData,targetLoop)
     } else if(targetLoop === 'queue') {
         guildData.TB.STATIC.loopQueue = !guildData.TB.STATIC.loopQueue;
     }
+    ExF.saveGuildData(guildData);
 }
 module.exports.TB_SETTING_LOOP_TOGGLE = TB_SETTING_LOOP_TOGGLE;
 
@@ -351,5 +352,6 @@ async function TB_SETTING_LOOP_EDIT(guildData,targetLoop,value)
     } else if(targetLoop === 'queue') {
         guildData.TB.STATIC.loopQueue = value;
     }
+    ExF.saveGuildData(guildData);
 }
 module.exports.TB_SETTING_LOOP_EDIT = TB_SETTING_LOOP_EDIT;

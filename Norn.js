@@ -39,7 +39,12 @@ Process.on('exit', code =>
     {
         case ExF.CONFIG_FILE_NOT_FOUND:
         {
-            log_console('Ending program with code 1900 (NO_CONFIG_FILE_FOUND)',null);
+            log_console('Ending program with code. (NO_CONFIG_FILE_FOUND)',null);
+            break;
+        }
+        case ExF.CONFIG_GUILD_DIR_FAILED_TO_READ:
+        {
+            log_console('Ending program with error code. (CONFIG_GUILD_DIR_FAILED_TO_READ)',null);
             break;
         }
         default:
@@ -59,12 +64,11 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     if(errorData) {
         console.log(errorData);
         Process.exit(ExF.CONFIG_NORN_FILE_NOT_FOUND);
-        return;
     }
 
-    CONFIGURATION_NORN_VAR   = JSON.parse(fileData);
+    CONFIGURATION_NORN_VAR        = JSON.parse(fileData);
     CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
-    CONFIGURATION_LOG_DIR_PATH = Path.join(__dirname,CONFIGURATION_NORN_VAR.log_data_path);
+    CONFIGURATION_LOG_DIR_PATH    = Path.join(__dirname,CONFIGURATION_NORN_VAR.log_data_path);
 
     // login to Discord server
     Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
@@ -74,20 +78,20 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
     {
         if(errorData) {
             console.log(errorData);
-            Process.exit(ExF.CONFIG_GUILD_DIR_NOT_FOUND);
-            return;
+            Process.exit(ExF.CONFIG_GUILD_DIR_FAILED_TO_READ);
         }
 
-        lsData.forEach((fileName) =>
+        lsData.forEach((dirName) => 
         {
-            if(fileName.endsWith('.json')) {
-                let configurationPath = Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName);
-                fs.readFile(Path.join(CONFIGURATION_GUILD_DIR_PATH,fileName), (errorData,fileData) =>
+            let configurationDirPath = Path.join(CONFIGURATION_GUILD_DIR_PATH, dirName);
+            let configurationPath    = Path.join(configurationDirPath, CONFIGURATION_NORN_VAR.guild_data_file);
+
+            if(fs.existsSync(configurationPath)) {
+                fs.readFile(configurationPath, (errorData,fileData) =>
                 {
                     if(errorData) {
+                        log_console('Unable to read existing file. (Critical file system error)',null);
                         console.log(errorData);
-                        // TODO ashz : change to log error, instead of ending entire program
-                        Process.exit(ExF.CONFIG_GUILD_FILE_NOT_FOUND);
                         return;
                     }
 
@@ -96,15 +100,16 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                     {
                         STATIC:
                         {
-                            guildName:           jsonMap.GUILD_NAME,
+                            guildName:           dirName,
                             guildID:             jsonMap.GUILD_ID,
-                            administratorList:   jsonMap.ADMINISTRATOR_LIST,
+                            administratorList:   jsonMap.ADMINISTRATOR_LIST, 
                         },
                         DYNAMIC:
                         {
                             Norn:                null,
                             systemChannel:       null,
-                            configurationPath:   configurationPath,
+                            configurationDir:    configurationDirPath,
+                            configurationFile:   CONFIGURATION_NORN_VAR.guild_data_file,
                             logPath:             CONFIGURATION_LOG_DIR_PATH,
                         },
                         TB:
@@ -128,39 +133,12 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                             PLAYLIST: jsonMap.TB.PLAYLIST,
                         },
                     };
-
-                    guildDataMap.set(jsonMap.GUILD_ID,guildData);
+                    guildDataMap.set(dirName,guildData);
                 });	
             }
         });
     });
 });
-
-function saveGuildData(guildData)
-{
-    let finalizedData = {
-        GUILD_ID             : guildData.STATIC.guildID,
-        GUILD_NAME           : guildData.STATIC.guildName,
-        ADMINISTRATOR_LIST   : guildData.STATIC.administratorList,
-        TB: {
-            VOLUME           : guildData.TB.STATIC.volume,
-            LOOP_SINGLE      : guildData.TB.STATIC.loopSingle,
-            LOOP_QUEUE       : guildData.TB.STATIC.loopQueue,
-            PLAYLIST         : guildData.TB.PLAYLIST,
-        }
-    };
-
-    const writeData = JSON.stringify(finalizedData,null,4);
-    fs.writeFile(guildData.DYNAMIC.configurationPath, writeData, (errorData) =>
-    {
-        if(errorData) {
-            console.log(error);
-            // TODO: change to log write error only, not finish
-            Process.exit(ExF.CONFIG_GUILD_WRITE_ERROR);
-            return;
-        }
-    });
-}
 
 //////////////////////////////////////////////////
 // Initial Variable Set
@@ -183,11 +161,12 @@ const commandList = [
     {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
     {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
     {command : "remove",        data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
-    {command : "clear(WIP)",    data : {arg:"",                                                                                      info:"Clears the entire queue."}},
-    {command : "loop(WIP)",     data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
+    {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
+    {command : "loop",          data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
     {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
     {command : "playlist(WIP)", data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
 ];
+
 helpEmbed
     .setColor(ExF.html_sky)
     .setTitle('Command List')
@@ -209,7 +188,6 @@ Norn.on('ready', () =>
     Norn.guilds.cache.forEach(guildInstance =>
     {
         let guildData = guildDataMap.get(guildInstance.id);
-
         if(guildData == null) {
             let new_guildData =
             {
@@ -221,10 +199,11 @@ Norn.on('ready', () =>
                 },
                 DYNAMIC:
                 {
-                    Norn:                Norn,
-                    systemChannel:       guildInstance.systemChannel,
-                    configurationPath:   Path.join(CONFIGURATION_GUILD_DIR_PATH, (guildInstance.id+'.json')),
-                    logPath:             CONFIGURATION_LOG_DIR_PATH,
+                    Norn:                 Norn,
+                    systemChannel:        guildInstance.systemChannel,
+                    configurationDir:   Path.join(CONFIGURATION_GUILD_DIR_PATH,guildInstance.id),
+                    configurationFile:    'setting.json',
+                    logPath:              CONFIGURATION_LOG_DIR_PATH,
                 },
                 TB:
                 {
@@ -244,16 +223,16 @@ Norn.on('ready', () =>
                         playing:         false,
                         paused:          false,
                     },
-                    PLAYLIST: null,
+                    PLAYLIST: [],
                 },
             };
             guildDataMap.set(guildInstance.id,new_guildData);
-            saveGuildData(new_guildData);
+            ExF.saveGuildData(new_guildData, true);
         }
         else {
             guildData.DYNAMIC.Norn          = Norn;
             guildData.DYNAMIC.systemChannel = guildInstance.systemChannel;
-            saveGuildData(guildData);
+            ExF.saveGuildData(guildData);
         }
     });
     log_event('BOT_READY', null, null);
@@ -417,7 +396,7 @@ Norn.on('error', eventError =>
 // Event Handler: Command
 //////////////////////////////////////////////////
 
-Norn.on('message', async function(eventMessage)
+Norn.on('message', function(eventMessage)
 {
     if(eventMessage.author.bot) return;
     if(!eventMessage.content.startsWith('/')) return;

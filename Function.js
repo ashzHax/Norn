@@ -2,13 +2,17 @@
 
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 const { pid } = require("process");
+const fs          = require('fs');
+const Process     = require('process');
+const Path        = require('path');
 
 // fixed error values
 module.exports.CONFIG_NORN_FILE_NOT_FOUND  = 1900;
-module.exports.CONFIG_GUILD_DIR_NOT_FOUND  = 1901;
+module.exports.CONFIG_GUILD_DIR_FAILED_TO_READ  = 1901;
 module.exports.CONFIG_GUILD_FILE_NOT_FOUND = 1902;
-module.exports.CONFIG_GUILD_WRITE_ERROR    = 1903;
+module.exports.CONFIG_GUILD_WRITE_FAIL    = 1903;
 module.exports.CONFIG_FILE_NOT_FOUND       = 1904;
+module.exports.CONFIG_GUILD_MKDIR_FAIL      = 1905;
 
 // color values
 module.exports.html_red          = '#FF0000';
@@ -121,3 +125,38 @@ function get_string_with_format_from_second(second)
 }
 
 module.exports.getSecondFormat = get_string_with_format_from_second;
+
+function saveGuildData(guildData,newData=false)
+{
+    const finalizedData = {
+        GUILD_ID             : guildData.STATIC.guildID,
+        GUILD_NAME           : guildData.STATIC.guildName,
+        ADMINISTRATOR_LIST   : guildData.STATIC.administratorList,
+        TB: {
+            VOLUME           : guildData.TB.STATIC.volume,
+            LOOP_SINGLE      : guildData.TB.STATIC.loopSingle,
+            LOOP_QUEUE       : guildData.TB.STATIC.loopQueue,
+            PLAYLIST         : guildData.TB.PLAYLIST,
+        }
+    };
+    const writeData = JSON.stringify(finalizedData,null,4);
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, guildData.DYNAMIC.configurationFile);
+
+    if(newData) {
+        fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
+            if(errorData) {
+                console.log(errorData);
+                Process.exit(ExF.CONFIG_GUILD_MKDIR_FAIL);
+            }
+        });
+    }
+
+    fs.writeFile(targetFile, writeData, (errorData) =>
+    {
+        if(errorData) {
+            console.log(errorData);
+            Process.exit(ExF.CONFIG_GUILD_WRITE_FAIL);
+        }
+    });
+}
+module.exports.saveGuildData = saveGuildData;

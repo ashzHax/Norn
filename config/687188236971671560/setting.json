@@ -1,6 +1,6 @@
 {
     "GUILD_ID": "687188236971671560",
-    "GUILD_NAME": "AXC",
+    "GUILD_NAME": "687188236971671560",
     "ADMINISTRATOR_LIST": [
         "ashz#3656",
         "OpenElement#8795",
@@ -12,10 +12,10 @@
         "VOLUME": 7,
         "LOOP_SINGLE": false,
         "LOOP_QUEUE": true,
-        "PLAYLIST": {
-            "example": "example",
-            "example1": "example1",
-            "example2": "example2"
-        }
+        "PLAYLIST": [
+            "example",
+            "example1",
+            "example2"
+        ]
     }
 }
