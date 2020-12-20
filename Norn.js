@@ -498,15 +498,19 @@ Norn.on('message', function(eventMessage)
             Command.command_loop(eventMessage, commandArray, guildData);
             break;
         }
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////  
-        
         case 'playlist':
         {
             Command.command_playlist(eventMessage, commandArray, guildData);
             break;
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////  
+        case 'status':
+        {
+            //TODO : ashz
+            //Command.command_status(eventMessage, commandArray, guildData);
+            break;
+        }
         case 'syscall':
         {
             //TODO : ashz

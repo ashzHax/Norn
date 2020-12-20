@@ -536,34 +536,7 @@ async function command_loop(message,commandArray,guildData)
     }
 }
 
-module.exports = {
-    command_help,
-    command_join,
-    command_leave,
-    command_play,
-    command_start,
-    command_stop,
-    command_resume,
-    command_pause,
-    command_next,
-    command_previous,
-    command_list,
-    command_add,
-    command_remove,
-    command_clear,
-    command_loop,
-};
 
-//////////////////////////////////////////////////////////////
-// TODO
-
-
-// TODO: create this thing
-async function command_status(message,commandArray,guildData) 
-{
-    return;
-}
-//module.exports.command_status = command_status;
 
 const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
 function writePlaylistData(playlistName,guildData)
@@ -598,7 +571,7 @@ async function command_playlist(message,commandArray,guildData)
     {
         case 1:
         {
-            log_command('PLAYLIST_NOT_ENOUGH_ARGUMENT',message,guildData);
+            log_command('PLAYLIST_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 2:
@@ -630,9 +603,28 @@ async function command_playlist(message,commandArray,guildData)
         }
     }
 }
-module.exports.command_playlist = command_playlist;
 
 
+module.exports = {
+    command_help,
+    command_join,
+    command_leave,
+    command_play,
+    command_start,
+    command_stop,
+    command_resume,
+    command_pause,
+    command_next,
+    command_previous,
+    command_list,
+    command_add,
+    command_remove,
+    command_clear,
+    command_loop,
+    command_playlist,
+};
+
+//////////////////////////////////////////////////////////////
 // TODO: move it over to syscall
 /*
 async function command_delete(message,commandArray,guildData)
