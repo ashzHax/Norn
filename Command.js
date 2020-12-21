@@ -9,7 +9,7 @@ const FileSystem = require('fs');
 
 // custom module
 const TB          = require('./TrackBot.js');
-const Function    = require('./Function.js');
+const ExF    = require('./Function.js');
 const log_command = require('./Log.js').log_command;
 
 async function command_help(message,commandArray,guildData,helpEmbed)
@@ -364,13 +364,13 @@ async function command_list(message,commandArray,guildData)
             }
 
             queueList
-                .setColor(Function.html_sky)
+                .setColor(ExF.html_sky)
                 .setTitle('Queue List')
                 .setTimestamp();
             
             for(loopIdx=0 ; loopIdx<guildQueue.length ; loopIdx++) {
                 queueList.addField(
-                    Function.stringCut(`${guildData.TB.DYNAMIC.index==loopIdx?'-> ':' '}[${loopIdx}] [${Function.getSecondFormat(guildQueue[loopIdx].length)}] ${guildQueue[loopIdx].title}`,89),
+                    ExF.stringCut(`${guildData.TB.DYNAMIC.index==loopIdx?'-> ':' '}[${loopIdx}] [${ExF.getSecondFormat(guildQueue[loopIdx].length)}] ${guildQueue[loopIdx].title}`,89),
                     `${guildQueue[loopIdx].video_url}`,
                     false
                 );
