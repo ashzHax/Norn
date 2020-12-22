@@ -223,7 +223,7 @@ Norn.on('ready', () =>
                         playing:         false,
                         paused:          false,
                     },
-                    PLAYLIST: [],
+                    PLAYLIST: {},
                 },
             };
             guildDataMap.set(guildInstance.id,new_guildData);

@@ -578,13 +578,32 @@ async function command_playlist(message,commandArray,guildData)
         {
             switch(commandArray[1].toLowerCase()) 
             {
-                case 'show':
+				case 'create':
+				{
+					log_command('PLAYLIST_CREATE_UNDER_REQ_ARG_CNT', message, guildData);	
+					break;
+				}
                 case 'play': {
-                    log_command('PLAYLIST_SHOW_PLAYLIST_LIST',message,guildData);
+					log_command('PLAYLIST_PLAY_UNDER_REQ_ARG_CNT', message, guildData);	
                     break;
                 }
+                case 'list':
+				{
+					let LE = new Discord.MessageEmbed();
+
+					LE
+						.setColor(ExF.html_sky)
+						.setTitle('Playlist List')
+						.setTimestamp();
+
+					guildData.TB.PLAYLIST.forEach((element) => {
+						helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
+					});
+						
+					break;
+				}	
                 default: {
-                    log_command('PLAYLIST_NOT_ENOUGH_ARGUMENT',message,guildData);
+                    log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
             }      
             break;

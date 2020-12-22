@@ -6,16 +6,29 @@
         "OpenElement#8795",
         "김예림#1260",
         "Dabig#3853",
-        "conner#2879"
+        "conner#2879",
+		"maria05#4732"
     ],
     "TB": {
         "VOLUME": 7,
         "LOOP_SINGLE": false,
         "LOOP_QUEUE": true,
-        "PLAYLIST": [
-            "example",
-            "example1",
-            "example2"
-        ]
+        "PLAYLIST": {
+            "example": {
+				"owner":"ashz#3656",
+				"length": 0,
+				"elements": 0
+			},
+            "example1": {
+				"owner":"ashz#3656",
+				"length": 0,
+				"elements": 0
+			},
+            "example2": {
+				"owner":"ashz#3656",
+				"length": 0,
+				"elements": 0
+			}
+		}
     }
 }
