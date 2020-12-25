@@ -589,16 +589,21 @@ async function command_playlist(message,commandArray,guildData)
                 }
                 case 'list':
 				{
-					let LE = new Discord.MessageEmbed();
+                    let LE = new Discord.MessageEmbed();
+                    let playlist = guildData.TB.PLAYLIST;
 
 					LE
 						.setColor(ExF.html_sky)
 						.setTitle('Playlist List')
 						.setTimestamp();
 
-					guildData.TB.PLAYLIST.forEach((element) => {
-						helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
-					});
+                        
+                        console.log(playlist);
+                        console.log(Object.entries(playlist)[0][0]);
+                        
+                        //.forEach((entry) => {
+						//helpEmbed.addField(`${playlist.entry.command} ${playlist.entry.data.arg}`,playlist.entry.data.info,false);
+					//});
 						
 					break;
 				}	
