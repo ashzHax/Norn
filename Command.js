@@ -5,7 +5,8 @@ const YTDLC       = require("ytdl-core");
 const Discord     = require('discord.js');
 
 // internal module
-const FileSystem = require('fs');
+const fs = require('fs');
+const Path = require('path');
 
 // custom module
 const TB          = require('./TrackBot.js');
@@ -17,7 +18,8 @@ async function command_help(message,commandArray,guildData,helpEmbed)
     switch(commandArray.length) 
     {
         case 1:
-        {            
+        {   
+            helpEmbed.setAuthor(message.author.tag);
             message.channel.send(helpEmbed);
             log_command('HELP_SUCCESS', message, guildData);
             break;
@@ -536,35 +538,6 @@ async function command_loop(message,commandArray,guildData)
     }
 }
 
-
-
-const CONFIGURATION_GUILD_DATA_FILE_PATH = './config.json';
-function writePlaylistData(playlistName,guildData)
-{
-    FileSystem.readFile(CONFIGURATION_GUILD_DATA_FILE_PATH, (errorData,fileData) => {
-        if(errorData) {
-            console.log(errorData);
-            return;
-        }
-        
-        guildData.TB.playlist = playlistName;
-
-        let TMP_CONFIGURATION_GUILD_DATA = JSON.parse(fileData);
-
-        TMP_CONFIGURATION_GUILD_DATA[guildData.guildID].TRACK_BOT_PLAYLIST = playlistName;
-
-        const writeData = JSON.stringify(TMP_CONFIGURATION_GUILD_DATA);
-        
-        FileSystem.writeFile(CONFIGURATION_GUILD_DATA_FILE_PATH,writeData, errorData =>
-        {
-            if(errorData) {
-                console.log(error);
-                return;
-            }
-        });
-    });
-}
-
 async function command_playlist(message,commandArray,guildData) 
 {
     switch(commandArray.length) 
@@ -583,8 +556,8 @@ async function command_playlist(message,commandArray,guildData)
 					log_command('PLAYLIST_CREATE_UNDER_REQ_ARG_CNT', message, guildData);	
 					break;
 				}
-                case 'play': {
-					log_command('PLAYLIST_PLAY_UNDER_REQ_ARG_CNT', message, guildData);	
+                case 'delete': {
+					log_command('PLAYLIST_DELETE_UNDER_REQ_ARG_CNT', message, guildData);	
                     break;
                 }
                 case 'list':
@@ -593,20 +566,28 @@ async function command_playlist(message,commandArray,guildData)
                     let playlist = guildData.TB.PLAYLIST;
 
 					LE
-						.setColor(ExF.html_sky)
+                        .setColor(ExF.html_sky)
+                        .setAuthor(message.author.tag)
 						.setTitle('Playlist List')
 						.setTimestamp();
-
                         
-                        console.log(playlist);
-                        console.log(Object.entries(playlist)[0][0]);
-                        
-                        //.forEach((entry) => {
-						//helpEmbed.addField(`${playlist.entry.command} ${playlist.entry.data.arg}`,playlist.entry.data.info,false);
-					//});
-						
+                    Object.entries(playlist).forEach((element) => {
+                        LE.addField(element[0], `Created By: ${playlist[element[0]].owner}\nTrack Count: ${playlist[element[0]].elements}\nLength: ${ExF.getSecondFormat(playlist[element[0]].length)}`, false);
+                    });
+                    message.channel.send(LE);
+                    log_command('PLAYLIST_LIST_SUCCESS', message, guildData);	
 					break;
-				}	
+                }
+                case 'add':
+                {
+                    log_command('PLAYLIST_ADD_UNDER_REQ_ARG_CNT', message, guildData);	
+                    break;
+                }
+                case 'remove':
+                {
+                    log_command('PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT', message, guildData);	
+                    break;
+                }
                 default: {
                     log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
@@ -617,13 +598,168 @@ async function command_playlist(message,commandArray,guildData)
         {
             switch(commandArray[1].toLowerCase())
             {
-                case 'create': {
-                    writePlaylistData(commandArray[1],guildData);
-                    console.log('done');
+                case 'create': 
+                {
+                    let newPLname = commandArray[2];
+
+                    if(newPLname in guildData.TB.PLAYLIST)
+                    {
+                        log_command('PLAYLIST_CREATE_FILE_EXISTS', message, guildData);
+                        break;
+                    }
+                    TB.TB_PLAYLIST_CREATE(guildData, newPLname, message.author.tag);
+                    log_command('PLAYLIST_CREATE_SUCCESS', message, guildData);
+                    break;
+                }
+                case 'delete': 
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_DELETE_FILE_NOT_EXISTS', message, guildData);
+                        break;
+                    }
+                    TB.TB_PLAYLIST_DELETE(guildData, targetPLname);
+                    log_command('PLAYLIST_DELETE_SUCCESS', message, guildData);
+                    break;
+                }
+                case 'add':
+                {
+                    log_command('PLAYLIST_ADD_UNDER_REQ_ARG_CNT', message, guildData);	
+                    break;
+                }
+                case 'remove':
+                {
+                    log_command('PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT', message, guildData);	
+                    break;
+                }
+                case 'show':
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_SHOW_FILE_NOT_EXISTS', message, guildData);
+                        break;
+                    }
+                    
+                    let SE = new Discord.MessageEmbed();
+                    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+                    let playlist = ExF.getArrayFromFile(targetFile);
+
+					SE
+                        .setColor(ExF.html_sky)
+                        .setAuthor(message.author.tag)
+						.setTitle(`[${targetPLname}][C:${guildData.TB.PLAYLIST[targetPLname].elements}][${ExF.getSecondFormat(guildData.TB.PLAYLIST[targetPLname].length)}] Playlist Info`)
+						.setTimestamp();
+
+                        
+                    var i;
+                    for(i=0;i<playlist.length;i++) {
+                        SE.addField(
+                            ExF.stringCut(`[${i}] ${playlist[0].title}`,84),
+                            `[URL] ${playlist[i].url}\n[Length] ${ExF.getSecondFormat(playlist[i].length)}\n[Volume] ${playlist[i].vol}`,
+                            false);
+                    }
+                    message.channel.send(SE);
+
+                    log_command('PLAYLIST_SHOW_SUCCESS', message, guildData);
+                    break;
+                }
+                case 'queue':
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_QUEUE_FILE_NOT_EXISTS', message, guildData);
+                        break;
+                    }
+
+                    TB.TB_PLAYLIST_QUEUE(guildData, targetPLname);
+                    log_command('PLAYLIST_QUEUE_SUCCESS', message, guildData);
                     break;
                 }
             }
             break;
+        }
+        case 4:
+        {
+            switch(commandArray[1].toLowerCase())
+            {
+                case 'add':
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_ADD_NO_PLAYLIST_FOUND', message, guildData);
+                        break;
+                    }
+
+                    TB.TB_PLAYLIST_ADD(guildData,targetPLname,commandArray[3],guildData.TB.STATIC.volume);
+                    log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    break;
+                }
+                case 'remove':
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_REMOVE_NO_PLAYLIST_FOUND', message, guildData);
+                        break;
+                    }
+
+                    let targetIdx = parseInt(commandArray[3]);
+                    if(isNaN(targetIdx)) {
+                        log_command('PLAYLIST_REMOVE_INVALID_ARG_TYPE', message, guildData);
+                        break;
+                    }
+
+                    if(targetIdx >= guildData.TB.PLAYLIST[targetPLname].length || targetIdx < 0) {
+                        log_command('PLAYLIST_REMOVE_INVALID_ARG_VALUE', message, guildData);
+                        break;
+                    }
+
+                    TB.TB_PLAYLIST_REMOVE(guildData,targetPLname,targetIdx);
+                    log_command('PLAYLIST_REMOVE_SUCCESS', message, guildData);
+                    break;
+                }
+            }
+            break;
+        }
+        case 5:
+        {
+            switch(commandArray[1].toLowerCase())
+            {
+                case 'add':
+                {
+                    let targetPLname = commandArray[2];
+
+                    if(!(targetPLname in guildData.TB.PLAYLIST))
+                    {
+                        log_command('PLAYLIST_ADD_NO_PLAYLIST_FOUND', message, guildData);
+                        break;
+                    }
+
+                    let volumeData = parseInt(commandArray[4]);
+                    if(isNaN(volumeData)) {
+                        log_command('PLAYLIST_ADD_INVALID_ARG_TYPE', message, guildData);
+                        break;
+                    }
+
+                    TB.TB_PLAYLIST_ADD(guildData,targetPLname,commandArray[3],volumeData);
+                    log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+        {
+
         }
     }
 }

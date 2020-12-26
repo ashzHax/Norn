@@ -6,6 +6,7 @@ const YTDLC  = require('ytdl-core');
 // custom module
 const ExF    = require('./Function.js');
 const log_TB = require('./Log.js').log_TB;
+const Path = require('path');
 
 async function TB_JOIN(guildData,userVoiceChannel)
 {
@@ -355,3 +356,92 @@ async function TB_SETTING_LOOP_EDIT(guildData,targetLoop,value)
     ExF.saveGuildData(guildData);
 }
 module.exports.TB_SETTING_LOOP_EDIT = TB_SETTING_LOOP_EDIT;
+
+async function TB_PLAYLIST_CREATE(guildData, newPLname, plOwner)
+{
+    guildData.TB.PLAYLIST[newPLname] = 
+    {
+        owner: plOwner,
+        length: 0,
+        elements: 0,
+    };
+
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${newPLname}.json`);
+
+    ExF.createNewFile(targetFile,null);
+    ExF.saveGuildData(guildData);
+}
+module.exports.TB_PLAYLIST_CREATE = TB_PLAYLIST_CREATE;
+
+async function TB_PLAYLIST_DELETE(guildData, targetPLname)
+{
+    delete guildData.TB.PLAYLIST[targetPLname];
+
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+
+    ExF.removeFile(targetFile);
+    ExF.saveGuildData(guildData);
+}
+module.exports.TB_PLAYLIST_DELETE = TB_PLAYLIST_DELETE;
+
+async function TB_PLAYLIST_ADD(guildData, targetPLname, url, vol)
+{
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    let playlistData = ExF.getArrayFromFile(targetFile);
+    let requestData;
+
+    if(playlistData === null) {
+        playlistData = [];
+    }
+    console.log(playlistData);
+
+    try {
+        requestData = await YTDLC.getInfo(url);
+    }
+    catch(receivedError) {
+        log_TB('QUEUE_ADD_GET_INFO_FAILED',guildData,url);
+        console.log(receivedError);
+        return false;
+    }
+
+    if(requestData==null) {
+        log_TB('QUEUE_ADD_DATA_NULL',guildData,url);
+        return false;
+    }
+    
+    console.log(requestData.videoDetails.lengthSeconds);
+    guildData.TB.PLAYLIST[targetPLname].length += parseInt(requestData.videoDetails.lengthSeconds);
+
+    console.log(guildData.TB.PLAYLIST[targetPLname].length);
+    guildData.TB.PLAYLIST[targetPLname].elements++;
+
+    playlistData.push({title:requestData.videoDetails.title,length:requestData.videoDetails.lengthSeconds,video_url:url,volume:vol});
+
+    ExF.saveGuildData(guildData);
+    ExF.saveArrayToFile(targetFile,playlistData);
+
+}
+module.exports.TB_PLAYLIST_ADD = TB_PLAYLIST_ADD;
+
+async function TB_PLAYLIST_REMOVE(guildData,targetPLname,targetIdx)
+{
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    let playlistData = ExF.getArrayFromFile(targetFile);
+    
+    guildData.TB.PLAYLIST[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
+    guildData.TB.PLAYLIST[targetPLname].elements--;
+    playlistData.splice(targetIdx,1);
+
+    ExF.saveGuildData(guildData);
+    ExF.saveArrayToFile(targetFile,playlistData);
+}
+module.exports.TB_PLAYLIST_REMOVE = TB_PLAYLIST_REMOVE;
+
+async function TB_PLAYLIST_QUEUE(guildData, targetPLname)
+{
+    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    let playlistData = ExF.getArrayFromFile(targetFile);
+    
+    guildData.TB.DYNAMIC.queue = guildData.TB.DYNAMIC.queue.concat(playlistData);
+}
+module.exports.TB_PLAYLIST_QUEUE = TB_PLAYLIST_QUEUE;

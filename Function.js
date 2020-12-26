@@ -160,3 +160,38 @@ function saveGuildData(guildData,newData=false)
     });
 }
 module.exports.saveGuildData = saveGuildData;
+
+function createNewFile(path,data)
+{
+    fs.writeFileSync(path,data,'utf8',(error) => {
+        if(error) {
+            console.error(error);
+        }
+    });
+}
+module.exports.createNewFile = createNewFile;
+
+function removeFile(targetPath)
+{
+    fs.unlinkSync(targetPath);
+}
+module.exports.removeFile = removeFile;
+
+function getArrayFromFile(targetPath)
+{
+    let data = fs.readFileSync(targetPath,'utf8');
+    console.log(data);
+    if(data===null) return null;
+    return JSON.parse(data);
+}
+module.exports.getArrayFromFile = getArrayFromFile;
+
+function saveArrayToFile(targetPath,arrayData)
+{
+    fs.writeFileSync(targetPath,JSON.stringify(arrayData,null,4),(err)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+}
+module.exports.saveArrayToFile = saveArrayToFile;
