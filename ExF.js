@@ -7,12 +7,13 @@ const Process     = require('process');
 const Path        = require('path');
 
 // fixed error values
-module.exports.CONFIG_NORN_FILE_NOT_FOUND  = 1900;
-module.exports.CONFIG_GUILD_DIR_FAILED_TO_READ  = 1901;
-module.exports.CONFIG_GUILD_FILE_NOT_FOUND = 1902;
-module.exports.CONFIG_GUILD_WRITE_FAIL    = 1903;
-module.exports.CONFIG_FILE_NOT_FOUND       = 1904;
-module.exports.CONFIG_GUILD_MKDIR_FAIL      = 1905;
+module.exports.NORN_SETTING_FILE_NOT_FOUND     = 1900;
+module.exports.GUILD_CONFIG_DIR_FAILED_TO_READ = 1901;
+module.exports.GUILD_SETTING_FILE_NOT_FOUND    = 1902;
+module.exports.GUILD_CONFIG_DIR_CREATE_FAIL    = 1903;
+module.exports.GUILD_WRITE_FAIL                = 1904;
+module.exports.FILE_NOT_FOUND                  = 1905;
+module.exports.GUILD_MKDIR_FAIL                = 1906;
 
 // color values
 module.exports.html_red          = '#FF0000';
@@ -146,7 +147,7 @@ function saveGuildData(guildData,newData=false)
         fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
             if(errorData) {
                 console.log(errorData);
-                Process.exit(ExF.CONFIG_GUILD_MKDIR_FAIL);
+                Process.exit(ExF.GUILD_MKDIR_FAIL);
             }
         });
     }

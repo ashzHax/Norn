@@ -10,7 +10,7 @@ const Path = require('path');
 
 // custom module
 const TB          = require('./TrackBot.js');
-const ExF    = require('./Function.js');
+const ExF    = require('./ExF.js');
 const log_command = require('./Log.js').log_command;
 
 // command list help page

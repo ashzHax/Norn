@@ -1,77 +1,83 @@
 "use strict";
 
-// setting
-const CONFIGURATION_NORN_PATH = './setting.json';
-
 // external module
-const Discord     = require('discord.js');
+const Discord      = require('discord.js');
 
 // internal module
-const fs          = require('fs');
-const Process     = require('process');
-const Path        = require('path');
+const fs           = require('fs');
+const Process      = require('process');
+const Path         = require('path');
 
 // custom module
-const ExF         = require('./Function.js');
-const Command     = require('./Command.js');
+const ExF          = require('./ExF.js');
+const Command      = require('./Command.js');
 
 // custom function
-const log_console = require('./Log.js').log_console;
-const log_event   = require('./Log.js').log_event;
+const log_console  = require('./Log.js').log_console;
+const log_event    = require('./Log.js').log_event;
 
 // global constant
-const Norn         = new Discord.Client();
-const guildDataMap = new Map();
+const CONFIGURATION_NORN_PATH = './setting.json';
+const Norn                    = new Discord.Client();
+const guildDataMap            = new Map();
 
-// setting variable
-var CONFIGURATION_NORN_VAR;
+// global variable
+var CONFIG_NORN;
 var CONFIGURATION_GUILD_DIR_PATH;
 var CONFIGURATION_LOG_DIR_PATH;
 
 //////////////////////////////////////////////////
-// Process Handling Function
+// Process 'exit' Event Handle
 //////////////////////////////////////////////////
 
-// ashz : system process event check code
-Process.on('exit', code =>
-{
-    switch(code)
-    {
-        case ExF.CONFIG_FILE_NOT_FOUND:
-        {
-            log_console('Ending program with code. (NO_CONFIG_FILE_FOUND)',null);
+// ashz> custom system exit code
+Process.on('exit', code => {
+    switch(code) {
+        case ExF.NORN_FILE_NOT_FOUND: {
+            log_console('Ending program with error code. (NORN_FILE_NOT_FOUND)', null);
             break;
         }
-        case ExF.CONFIG_GUILD_DIR_FAILED_TO_READ:
-        {
-            log_console('Ending program with error code. (CONFIG_GUILD_DIR_FAILED_TO_READ)',null);
+        case ExF.GUILD_CONFIG_DIR_FAILED_TO_READ: {
+            log_console('Ending program with error code. (GUILD_CONFIG_DIR_FAILED_TO_READ)', null);
             break;
         }
-        default:
-        {
+        case ExF.GUILD_SETTING_FILE_NOT_FOUND: {
+            log_console('Ending program with error code. (GUILD_SETTING_FILE_NOT_FOUND)', null);
+            break;
+        }
+        default: {
             log_console(`Ending program with unknown code ${code}`,null);
         }
     }
 });
 
 //////////////////////////////////////////////////
-// Reading Configuration Files
+// Init/Reading Configuration Files
 //////////////////////////////////////////////////
 
-// norn configuration
-fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
-{
+fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
     if(errorData) {
-        console.log(errorData);
-        Process.exit(ExF.CONFIG_NORN_FILE_NOT_FOUND);
+        console.error(errorData);
+        Process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
+    }
+});
+
+// ashz> norn configuration read / guild configuration read
+fs.readFile(CONFIGURATION_NORN_PATH, (errorData, fileData) => {
+    if(errorData) {
+        console.error(errorData);
+        Process.exit(ExF.NORN_SETTING_FILE_NOT_FOUND);
     }
 
-    CONFIGURATION_NORN_VAR        = JSON.parse(fileData);
-    CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIGURATION_NORN_VAR.guild_data_path);
-    CONFIGURATION_LOG_DIR_PATH    = Path.join(__dirname,CONFIGURATION_NORN_VAR.log_data_path);
+    CONFIG_NORN        = JSON.parse(fileData);
+
+///////////////// CLEANED
+
+    CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIG_NORN.guild_data_path);
+    CONFIGURATION_LOG_DIR_PATH    = Path.join(__dirname,CONFIG_NORN.log_data_path);
 
     // login to Discord server
-    Norn.login(CONFIGURATION_NORN_VAR.token_part1 + CONFIGURATION_NORN_VAR.token_part2 + CONFIGURATION_NORN_VAR.token_part3);
+    Norn.login(CONFIG_NORN.token_part1 + CONFIG_NORN.token_part2 + CONFIG_NORN.token_part3);
     
     // get saved per/guild data
     fs.readdir(CONFIGURATION_GUILD_DIR_PATH,(errorData,lsData) =>
@@ -84,7 +90,7 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
         lsData.forEach((dirName) => 
         {
             let configurationDirPath = Path.join(CONFIGURATION_GUILD_DIR_PATH, dirName);
-            let configurationPath    = Path.join(configurationDirPath, CONFIGURATION_NORN_VAR.guild_data_file);
+            let configurationPath    = Path.join(configurationDirPath, CONFIG_NORN.guild_data_file);
 
             if(fs.existsSync(configurationPath)) {
                 fs.readFile(configurationPath, (errorData,fileData) =>
@@ -102,14 +108,13 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
                         {
                             guildName:           dirName,
                             guildID:             jsonMap.GUILD_ID,
-                            administratorList:   jsonMap.ADMINISTRATOR_LIST, 
                         },
                         DYNAMIC:
                         {
                             Norn:                null,
                             systemChannel:       null,
                             configurationDir:    configurationDirPath,
-                            configurationFile:   CONFIGURATION_NORN_VAR.guild_data_file,
+                            configurationFile:   CONFIG_NORN.guild_data_file,
                             logPath:             CONFIGURATION_LOG_DIR_PATH,
                         },
                         TB:
@@ -144,41 +149,6 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 // Initial Variable Set
 //////////////////////////////////////////////////
 
-// command list help page
-/*
-const helpEmbed = new Discord.MessageEmbed();
-const commandList = [
-    {command : "help",          data : {arg:"",                                                                                      info:"Show this list of commands."}},
-    {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                 info:"Specialized commands, mostly for administrators."}},
-    {command : "join",          data : {arg:"",                                                                                      info:"Bot joins your current voice channel."}},
-    {command : "leave",         data : {arg:"",                                                                                      info:"Bot leaves whatever channel it's currently connected to."}},
-    {command : "play",          data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Immediately plays the track from the video of the URL."}},
-    {command : "start",         data : {arg:"",                                                                                      info:"Starts the current track."}},
-    {command : "stop",          data : {arg:"",                                                                                      info:"Stops the current track."}},
-    {command : "pause",         data : {arg:"",                                                                                      info:"Pauses the current track."}},
-    {command : "resume",        data : {arg:"",                                                                                      info:"Resumes paused track."}},
-    {command : "next",          data : {arg:"[ Count ]",                                                                             info:"Plays the next queued track. (Default: 1)"}},
-    {command : "previous",      data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
-    {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
-    {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
-    {command : "remove",        data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
-    {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
-    {command : "loop",          data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
-    {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
-    {command : "playlist",      data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
-];
-
-helpEmbed
-    .setColor(ExF.html_sky)
-    .setTitle('Command List')
-    .setDescription('Semi-helpful list of commands used by Norn\nWIP = Work In Progress (It means DON\'T USE IT)')
-    .setTimestamp();
-
-commandList.forEach((element) => {
-    helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
-});
-*/
-
 log_console('Finished Data Handling, waiting on Discord API...',null);
 
 //////////////////////////////////////////////////
@@ -197,7 +167,6 @@ Norn.on('ready', () =>
                 {
                     guildName:           guildInstance.name,
                     guildID:             guildInstance.id,
-                    administratorList:   [],
                 },
                 DYNAMIC:
                 {
@@ -211,9 +180,9 @@ Norn.on('ready', () =>
                 {
                     STATIC: 
                     {
-                        volume:          CONFIGURATION_NORN_VAR.default_volume,
-                        loopSingle:      CONFIGURATION_NORN_VAR.default_loop_single,
-                        loopQueue:       CONFIGURATION_NORN_VAR.default_loop_queue,
+                        volume:          CONFIG_NORN.default_volume,
+                        loopSingle:      CONFIG_NORN.default_loop_single,
+                        loopQueue:       CONFIG_NORN.default_loop_queue,
                     },
                     DYNAMIC: 
                     {

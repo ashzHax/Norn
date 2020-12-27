@@ -8,7 +8,7 @@ const FileSystem = require('fs');
 const Path       = require('path');
 
 // custom module
-const Function   =  require('./Function.js');
+const ExF   =  require('./ExF.js');
 
 function log_console(message=null,guildData=null)
 {
@@ -17,10 +17,10 @@ function log_console(message=null,guildData=null)
     }
     else {
         if(guildData!=null) {
-            let dataPath = Path.join(guildData.DYNAMIC.logPath,`${Function.getDay(new Date())}.log`);
-            FileSystem.appendFile(dataPath,`[${Function.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`,'utf8',()=>{});
+            let dataPath = Path.join(guildData.DYNAMIC.logPath,`${ExF.getDay(new Date())}.log`);
+            FileSystem.appendFile(dataPath,`[${ExF.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`,'utf8',()=>{});
         }
-        console.log(`[${Function.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
+        console.log(`[${ExF.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
     }
 }
 module.exports.log_console = log_console;
@@ -53,7 +53,7 @@ function log_event(logType,eventData,guildData=null)
         case 'CHANNEL_CREATE':
         {
             let channelType = (eventData.type == 'voice') ? 'Voice Channel' : 'Text Channel';
-            let channelName = Function.getChannelName(eventData);
+            let channelName = ExF.getChannelName(eventData);
 
             embdLog = null;
             consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${channelName}\",type:\"${channelType}\"}`);
@@ -62,7 +62,7 @@ function log_event(logType,eventData,guildData=null)
         case 'CHANNEL_DELETE':
         {
             let channelType = (eventData.type == 'voice') ? 'Voice Channel' : 'Text Channel';
-            let channelName = Function.getChannelName(eventData);
+            let channelName = ExF.getChannelName(eventData);
 
             embdLog = null;
             consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${channelName}\",type:\"${channelType}\"}`);
@@ -70,8 +70,8 @@ function log_event(logType,eventData,guildData=null)
         }
         case 'CHANNEL_PINS_UPDATE':
         {
-            let channelName = Function.getChannelName(eventData[0]);
-            let strTimeStamp = Function.getStringDate(eventData[1]);
+            let channelName = ExF.getChannelName(eventData[0]);
+            let strTimeStamp = ExF.getStringDate(eventData[1]);
 
             embdLog = null;
             consoleLogText = consoleLogText.concat(` {id:\"${eventData[0].id},name:\"${channelName}\",timestamp:\"${strTimeStamp}\"}`);
@@ -79,8 +79,8 @@ function log_event(logType,eventData,guildData=null)
         }
         case 'CHANNEL_UPDATE':
         {
-            let previousChannelName = Function.getChannelName(eventData[0]);
-            let updatedChannelName  = Function.getChannelName(eventData[1]);
+            let previousChannelName = ExF.getChannelName(eventData[0]);
+            let updatedChannelName  = ExF.getChannelName(eventData[1]);
             var isChange = false;
 
             consoleLogText = consoleLogText.concat(' ');
@@ -141,7 +141,7 @@ function log_event(logType,eventData,guildData=null)
             if(eventData.content.startsWith('/')) return;
             
             embdLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {message:\"${Function.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`); 
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`); 
             break;               
         }
         case 'MESSAGE_DELETE':
@@ -153,7 +153,7 @@ function log_event(logType,eventData,guildData=null)
             if(eventData.author.tag == guildData.DYNAMIC.Norn.user.tag) return;
             
             embdLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData.member.user.tag}] {message:\"${Function.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`);
+            consoleLogText = consoleLogText.concat(`[${eventData.member.user.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`);
             break;
         }
         case 'MESSAGE_DELETE_BULK':
@@ -211,7 +211,7 @@ function log_event(logType,eventData,guildData=null)
         case 'COMMAND_NO_PERMISSION':
         {
             embdLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('No Permission')
                 .setDescription('[!.!] You have no permission to issue commands')
@@ -226,7 +226,7 @@ function log_event(logType,eventData,guildData=null)
         case 'COMMAND_UNKNOWN':
         {
             embdLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('Unknown Command')
                 .setDescription('[?.?] Unknown command, try \"/help\" for a list of commands')
@@ -241,7 +241,7 @@ function log_event(logType,eventData,guildData=null)
         case 'COMMAND_DATA_NULL':
         {
             embdLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('Null Data Detected')
                 .setDescription('[X.X] Critical error, something broke inside...')
@@ -264,7 +264,7 @@ function log_event(logType,eventData,guildData=null)
         guildData.DYNAMIC.systemChannel.send(embdLog);
     }
     if(consoleLogText == null) {
-        console.log(Function.traceDebug('log event error, guildData is null'));
+        console.log(ExF.traceDebug('log event error, guildData is null'));
     } else {
         log_console(consoleLogText,guildData);
     }
@@ -315,7 +315,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/help',         true)
@@ -341,7 +341,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
                 .setDescription(logReason)
@@ -361,7 +361,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('No Voice Channel Found')
                 .setDescription('You are not inside a voice channel.')
@@ -381,7 +381,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
                 .setDescription(logReason)
@@ -401,7 +401,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
                 .setDescription(logReason)
@@ -421,7 +421,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Connected')
                 .setDescription(logReason)
@@ -442,7 +442,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
                 .setDescription(logReason)
@@ -462,7 +462,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_green)
+                .setColor(ExF.html_green)
                 .setAuthor(commandIssuer)
                 .setTitle('Joined Voice Channel')
                 .setTimestamp();
@@ -481,7 +481,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/join',         true)
@@ -507,7 +507,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/leave',        true)
@@ -529,7 +529,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
     
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Inside Voice Channel')
                 .setDescription('You need to be inside a voice channel first.')
@@ -550,7 +550,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
     
             emLog
-                .setColor(Function.html_orange)
+                .setColor(ExF.html_orange)
                 .setAuthor(commandIssuer)
                 .setTitle('Left Voice Channel')
                 .setTimestamp();
@@ -574,7 +574,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/play [URL] [Volume]', true)
@@ -596,7 +596,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/play [URL] [Volume]', true)
@@ -633,7 +633,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/play [URL] [Volume]', true)
@@ -659,7 +659,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected')
                 .setDescription(logReason)
@@ -680,7 +680,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Playing')
                 .setDescription(logReason)
@@ -716,7 +716,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/start',        true)
@@ -742,7 +742,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Running Anything')
                 .setDescription(logReason)
@@ -763,7 +763,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
                 .setDescription(logReason)
@@ -799,7 +799,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/stop',         true)
@@ -825,7 +825,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Running')
                 .setDescription(logReason)
@@ -846,7 +846,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Paused')
                 .setDescription(logReason)
@@ -867,7 +867,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected To A Voice Channel')
                 .setDescription(logReason)
@@ -903,7 +903,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/resume',       true)
@@ -929,7 +929,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Stopped')
                 .setDescription(logReason)
@@ -950,7 +950,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Paused')
                 .setDescription(logReason)
@@ -971,7 +971,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected To A Voice Channel')
                 .setDescription(logReason)
@@ -1007,7 +1007,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/pause',        true)
@@ -1033,7 +1033,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
                 .setDescription(logReason)
@@ -1054,7 +1054,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .setDescription(logReason)
@@ -1075,7 +1075,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .setDescription(logReason)
@@ -1111,7 +1111,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/next [Skip Count]', true)
@@ -1137,7 +1137,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
                 .setDescription(logReason)
@@ -1158,7 +1158,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .setDescription(logReason)
@@ -1179,7 +1179,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .setDescription(logReason)
@@ -1215,7 +1215,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/previous [Skip Count]', true)
@@ -1241,7 +1241,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
                 .setDescription(logReason)
@@ -1277,7 +1277,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/list',         true)
@@ -1303,7 +1303,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/add [URL] [Volume]', true)
@@ -1325,7 +1325,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/add [URL] [Volume]', true)
@@ -1362,7 +1362,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/add [URL] [Volume]', true)
@@ -1388,7 +1388,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/remove [Index]', true)
@@ -1410,7 +1410,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/remove [Index]', true)
@@ -1433,7 +1433,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .setDescription(logReason)
@@ -1454,7 +1454,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Cannot Remove Current Track')
                 .setDescription(logReason)
@@ -1490,7 +1490,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/remove [Index]', true)
@@ -1516,7 +1516,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
                 .setDescription(logReason)
@@ -1537,7 +1537,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Cannot Remove Current Track')
                 .setDescription(logReason)
@@ -1573,7 +1573,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/clear',        true)
@@ -1599,7 +1599,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/loop [single/queue] [on/off]', true)
@@ -1621,7 +1621,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Value')
                 .setDescription(logReason)
@@ -1642,7 +1642,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Value')
                 .setDescription(logReason)
@@ -1678,7 +1678,7 @@ function log_command(logType,message,guildData,extraData=null)
             };
 
             emLog
-                .setColor(Function.html_yellow)
+                .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/loop [single/queue] [on/off]',        true)
@@ -1700,7 +1700,7 @@ function log_command(logType,message,guildData,extraData=null)
         message.channel.send(emLog);
     }
     if(consoleLogText == null) {
-        console.log(Function.traceDebug('log event error, guildData is null'));
+        console.log(ExF.traceDebug('log event error, guildData is null'));
     } else {
         log_console(consoleLogText,guildData);
     }
@@ -1726,12 +1726,12 @@ function log_TB(logType,guildData,extraData=null)
         case 'PLAY_STREAM_DISCONNECTION_ERROR':
         {
             devLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setTitle(logType)
                 .setDescription('Stream disconnection error has occured, restarting current track')
                 .setTimestamp();
             usrLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setTitle('Error trying to play track')
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` disconnected from data stream`);
@@ -1743,17 +1743,17 @@ function log_TB(logType,guildData,extraData=null)
             const trackData = guildData.TB.DYNAMIC.queue[idx];
 
             devLog=null;
-            //     .setColor(Function.html_green)
+            //     .setColor(ExF.html_green)
             //     .setTitle(logType)
             //     .setDescription(`playing:{${JSON.stringify(trackData)}`)
             //     .setTimestamp();
             usrLog
-                .setColor(Function.html_spring_green)
-                .setTitle(`\"${Function.stringCut(trackData.title,43)}\"`)
+                .setColor(ExF.html_spring_green)
+                .setTitle(`\"${ExF.stringCut(trackData.title,43)}\"`)
                 // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
                 .addFields(
                     { name: 'Index',  value: idx,                                   inline: true },
-                    { name: 'Length', value: Function.getSecondFormat(trackData.length), inline: true },
+                    { name: 'Length', value: ExF.getSecondFormat(trackData.length), inline: true },
                     { name: 'Volume', value: trackData.volume,                      inline: true },
                     { name: 'URL',    value: trackData.video_url,                   inline: false },
                 )  
@@ -1774,7 +1774,7 @@ function log_TB(logType,guildData,extraData=null)
         case 'SKIP_QUEUE_EMPTY':
         {
             usrLog
-                .setColor(Function.html_red)
+                .setColor(ExF.html_red)
                 .setTitle('Queue Empty')
                 .setDescription('Nothing to skip.')
                 .setTimestamp();

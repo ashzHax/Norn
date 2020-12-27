@@ -4,7 +4,7 @@
 const YTDLC  = require('ytdl-core');
 
 // custom module
-const ExF    = require('./Function.js');
+const ExF    = require('./ExF.js');
 const log_TB = require('./Log.js').log_TB;
 const Path = require('path');
 
