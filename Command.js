@@ -13,7 +13,40 @@ const TB          = require('./TrackBot.js');
 const ExF    = require('./Function.js');
 const log_command = require('./Log.js').log_command;
 
-async function command_help(message,commandArray,guildData,helpEmbed)
+// command list help page
+const helpEmbed = new Discord.MessageEmbed();
+const commandList = [
+    {command : "help",          data : {arg:"",                                                                                      info:"Show this list of commands."}},
+    {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                 info:"Specialized commands, mostly for administrators."}},
+    {command : "join",          data : {arg:"",                                                                                      info:"Bot joins your current voice channel."}},
+    {command : "leave",         data : {arg:"",                                                                                      info:"Bot leaves whatever channel it's currently connected to."}},
+    {command : "play",          data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Immediately plays the track from the video of the URL."}},
+    {command : "start",         data : {arg:"",                                                                                      info:"Starts the current track."}},
+    {command : "stop",          data : {arg:"",                                                                                      info:"Stops the current track."}},
+    {command : "pause",         data : {arg:"",                                                                                      info:"Pauses the current track."}},
+    {command : "resume",        data : {arg:"",                                                                                      info:"Resumes paused track."}},
+    {command : "next",          data : {arg:"[ Count ]",                                                                             info:"Plays the next queued track. (Default: 1)"}},
+    {command : "previous",      data : {arg:"[ Count ]",                                                                             info:"Plays the previous queued track. (Default: 1)"}},
+    {command : "list",          data : {arg:"",                                                                                      info:"Shows the queue list."}},
+    {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                    info:"Adds the URL data to the queue."}},
+    {command : "remove",        data : {arg:"[ Index ]",                                                                             info:"Removes the URL/Index data from the queue."}},
+    {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
+    {command : "loop",          data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
+    {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
+    {command : "playlist",      data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
+];
+
+helpEmbed
+    .setColor(ExF.html_sky)
+    .setTitle('Command List')
+    .setDescription('Semi-helpful list of commands used by Norn\nWIP = Work In Progress (It means DON\'T USE IT)')
+    .setTimestamp();
+
+commandList.forEach((element) => {
+    helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
+});
+
+async function command_help(message,commandArray,guildData)
 {
     switch(commandArray.length) 
     {
@@ -764,6 +797,20 @@ async function command_playlist(message,commandArray,guildData)
     }
 }
 
+async function command_status(message,commandArray,guildData)
+{
+    switch(commandArray.length)
+    {
+        case 1:
+        {
+            if(guildData.TB.DYNAMIC.playing) {
+
+            }
+            break;
+        }
+    }
+}
+
 
 module.exports = {
     command_help,
@@ -782,6 +829,7 @@ module.exports = {
     command_clear,
     command_loop,
     command_playlist,
+    command_status,
 };
 
 //////////////////////////////////////////////////////////////

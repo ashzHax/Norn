@@ -145,6 +145,7 @@ fs.readFile(CONFIGURATION_NORN_PATH, (errorData,fileData) =>
 //////////////////////////////////////////////////
 
 // command list help page
+/*
 const helpEmbed = new Discord.MessageEmbed();
 const commandList = [
     {command : "help",          data : {arg:"",                                                                                      info:"Show this list of commands."}},
@@ -164,7 +165,7 @@ const commandList = [
     {command : "clear",         data : {arg:"",                                                                                      info:"Clears the entire queue."}},
     {command : "loop",          data : {arg:"[ single / queue ] [ on / off ]",                                                       info:"Edits the loop settings."}},
     {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                    info:"Edits the bot general settings."}},
-    {command : "playlist(WIP)", data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
+    {command : "playlist",      data : {arg:"[ create / delete / add / remove / queue ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
 ];
 
 helpEmbed
@@ -176,6 +177,7 @@ helpEmbed
 commandList.forEach((element) => {
     helpEmbed.addField(`${element.command} ${element.data.arg}`,element.data.info,false);
 });
+*/
 
 log_console('Finished Data Handling, waiting on Discord API...',null);
 
@@ -354,174 +356,79 @@ Norn.on('guildDelete', eventGuild =>
 Norn.on('guildUpdate', (previousGuild,newGuild) =>
     log_event('GUILD_UPDATE', [previousGuild,newGuild], guildDataMap.get(newGuild.id)));
 
-Norn.on('guildUnavailable', eventGuild =>
-    log_event('GUILD_UNAVAILABLE', eventGuild, guildDataMap.get(eventGuild.id)));
+Norn.on('guildUnavailable', guildData =>
+    log_event('GUILD_UNAVAILABLE', guildData, guildDataMap.get(guildData.id)));
 
 //////////////////////////////////////////////////
 // Event Handler: User
 //////////////////////////////////////////////////
 
-Norn.on('userUpdate', (previousUser,newUser) =>
-        log_event('USER_UPDATE', [previousUser,newUser], null));
+Norn.on('userUpdate', (previousUser, newUser) =>
+    log_event('USER_UPDATE', [previousUser, newUser], null));
 
-Norn.on('presenceUpdate', (previousPresence,newPresence) =>
-    log_event('PRESENCE_UPDATE', [previousPresence,newPresence], null));
+Norn.on('presenceUpdate', (previousPresence, newPresence) =>
+    log_event('PRESENCE_UPDATE', [previousPresence, newPresence], null));
     
 /*
-// TODO : use to check if Norn was moved around 
-Norn.on('voiceStateUpdate', (previousVoiceState,newVoiceState) =>
-    log_event('VOICE_STATE_UPDATE', [previousVoiceState,newVoiceState], guildDataMap.get(newVoiceState.guild.id)));
+// TODO : use to check if Norn was moved around
+Norn.on('voiceStateUpdate', (previousVoiceState, newVoiceState) =>
+    log_event('VOICE_STATE_UPDATE', [previousVoiceState, newVoiceState], guildDataMap.get(newVoiceState.guild.id)));
 */
 
 //////////////////////////////////////////////////
 // Event Handler: Other
 //////////////////////////////////////////////////
 
-Norn.on('disconnect', (eventAny,eventNumber) =>
-    log_event('DISCONNECT', [eventAny,eventNumber], null));
+Norn.on('disconnect', (anyData, numberData) =>
+    log_event('DISCONNECT', [anyData,numberData], null));
 
-Norn.on('warn', eventString =>
-    log_event('WARN', eventString, null));
+Norn.on('warn', (warnData) =>
+    log_event('WARN', warnData, null));
 
 /*
-// too many logs
-Norn.on('debug', eventString =>
-    log_event('DEBUG', eventString, null));
+// ashz> too many logs
+Norn.on('debug', (debugData) =>
+    log_event('DEBUG', debugData, null));
 */
 
-Norn.on('error', eventError =>
-    log_event('ERROR', eventError, null));
+Norn.on('error', (errorData) =>
+    log_event('ERROR', errorData, null));
 
 //////////////////////////////////////////////////
 // Event Handler: Command
 //////////////////////////////////////////////////
 
-Norn.on('message', function(eventMessage)
-{
-    if(eventMessage.author.bot) return;
-    if(!eventMessage.content.startsWith('/')) return;
+Norn.on('message', (messageData) => {
 
-    let guildData = guildDataMap.get(eventMessage.guild.id);
+    if(messageData.author.bot) return;
+    if(!messageData.content.startsWith('/')) return;
 
-    if(!guildData.STATIC.administratorList.includes(eventMessage.author.tag)) {
-        log_event('COMMAND_NO_PERMISSION', eventMessage, guildData);
-        return;
-    }
-
-    var commandArray = eventMessage.content.split(' ');
+    let guildData = guildDataMap.get(messageData.guild.id);
+    let commandArray = messageData.content.split(' ');
+    let permissionFlag = false;
     commandArray[0] = commandArray[0].substring(1);
-
-    if(eventMessage == null || guildData == null || commandArray == null) {
-        log_event('COMMAND_DATA_NULL', eventMessage, guildData);
-        if(!eventMessage.deleted) eventMessage.delete();
+    
+    if(messageData == null || guildData == null || commandArray == null) {
+        log_event('COMMAND_DATA_NULL', messageData, guildData);
+        if(!messageData.deleted) messageData.delete();
         return;
     }
 
-    switch(commandArray[0].toLowerCase()) 
-    {
-        case 'help':
-        {
-            Command.command_help(eventMessage, commandArray, guildData, helpEmbed);
-            break; 
-        }
-        case 'join':
-        {
-            Command.command_join(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'leave':
-        {
-            Command.command_leave(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'play':
-        {
-            Command.command_play(eventMessage, commandArray, guildData, false);
-            break;
-        }
-        case 'start':
-        {
-            Command.command_start(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'stop':
-        {
-            Command.command_stop(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'resume':
-        {
-            Command.command_resume(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'pause':
-        {
-            Command.command_pause(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'skip':
-		case 'jump':
-        case 'next':
-        {
-            Command.command_next(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'prev':
-        case 'previous':
-        {
-            Command.command_previous(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'list':
-        {
-            Command.command_list(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'add':
-        {
-            Command.command_add(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'rm':
-        case 'remove':
-        {
-            Command.command_remove(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'clear':
-        {
-            Command.command_clear(eventMessage, commandArray, guildData);
-            break;   
-        }
-        case 'loop':
-        {
-            Command.command_loop(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'playlist':
-        {
-            Command.command_playlist(eventMessage, commandArray, guildData);
-            break;
-        }
+    messageData.member.roles.member._roles.forEach((roles) => {
+        if(messageData.guild.roles.cache.get(roles).name.toLowerCase() === 'bot') permissionFlag = true;
+    });
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////  
-        case 'status':
-        {
-            //TODO : ashz
-            //Command.command_status(eventMessage, commandArray, guildData);
-            break;
-        }
-        case 'syscall':
-        {
-            //TODO : ashz
-            //Command.command_syscall(eventMessage, commandArray, guildData);
-            break;   
-        }
-        default:
-        {
-            log_event('COMMAND_UNKNOWN', eventMessage, guildData);
-        }
+    if(!permissionFlag) {
+        log_event('COMMAND_NO_PERMISSION', messageData, guildData);
+        if(!messageData.deleted) messageData.delete();
+        return;
     }
 
-    if(!eventMessage.deleted) eventMessage.delete();
+    try {
+        Command['command_'+commandArray[0].toLowerCase()](messageData,commandArray,guildData);
+    } catch(errorData) {
+        if(errorData) log_event('COMMAND_UNKNOWN', messageData, guildData);
+    }
+    
+    if(!messageData.deleted) messageData.delete();
 });
