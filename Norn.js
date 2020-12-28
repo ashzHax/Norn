@@ -18,6 +18,7 @@ const log_event    = require('./Log.js').log_event;
 
 // global constant
 const CONFIG_NORN_FILE_PATH = './setting.json';
+const CONFIG_GUILD_DIR_NAME = './config/';
 const Norn                    = new Discord.Client();
 const guildDataMap            = new Map();
 
@@ -49,13 +50,6 @@ process.on('exit', code => {
 // Init/Reading Configuration Files
 //////////////////////////////////////////////////
 
-fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
-    if(errorData) {
-        console.error(errorData);
-        process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
-    }
-});
-
 // ashz> norn configuration read / guild configuration read
 fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
     if(errorData) {
@@ -64,14 +58,22 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
     }
 
     CONFIG_NORN           = JSON.parse(fileData);
-    CONFIG_GUILD_DIR_PATH = path.join(__dirname, CONFIG_NORN.guild_data_path);
+    CONFIG_GUILD_DIR_PATH = path.join(__dirname, CONFIG_GUILD_DIR_NAME);
     CONFIG_LOG_DIR_PATH   = path.join(__dirname, CONFIG_NORN.log_data_path);
+
+    fs.mkdir(CONFIG_GUILD_DIR_PATH, (errorData) => {
+        if(errorData) {
+            // console.error(errorData);
+            log_console(`Directory already exists. (${CONFIG_GUILD_DIR_PATH})`, null);
+            // process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
+        }
+    });
 
     // ashz> login to Discord server
     Norn.login(CONFIG_NORN.tpo + CONFIG_NORN.tpt + CONFIG_NORN.tpth);
     
 	// ashz> get saved per/guild data
-    fs.readdir(CONFIG_GUILD_DIR_PATH, (errorData, dirData) => {
+    fs.readdir(CONFIG_GUILD_DIR_NAME, (errorData, dirData) => {
         if(errorData) {
             console.error(errorData);
 			// ashz> better to exit, since client needs access to directory later
