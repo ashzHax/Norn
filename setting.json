@@ -1,7 +1,7 @@
 {
-    "token_part1"         : "Njk5Njc5Nzk2Mjk2Mjg2MjQ3",
-    "token_part2"         : ".XpX5lg",
-    "token_part3"         : ".00DcIC9VlJWTyzi25nVAN8t7FPM",
+    "tpo"                 : "Njk5Njc5Nzk2Mjk2Mjg2MjQ3",
+    "tpt"                 : ".XpX5lg",
+    "tpth"                : ".00DcIC9VlJWTyzi25nVAN8t7FPM",
 	"guild_data_path"     : "./config/",
 	"guild_data_file"     : "setting.json",
 	"log_data_path"       : "./log/",

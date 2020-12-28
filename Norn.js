@@ -5,8 +5,8 @@ const Discord      = require('discord.js');
 
 // internal module
 const fs           = require('fs');
-const Process      = require('process');
-const Path         = require('path');
+const process      = require('process');
+const path         = require('path');
 
 // custom module
 const ExF          = require('./ExF.js');
@@ -17,36 +17,30 @@ const log_console  = require('./Log.js').log_console;
 const log_event    = require('./Log.js').log_event;
 
 // global constant
-const CONFIGURATION_NORN_PATH = './setting.json';
+const CONFIG_NORN_FILE_PATH = './setting.json';
 const Norn                    = new Discord.Client();
 const guildDataMap            = new Map();
 
 // global variable
-var CONFIG_NORN;
-var CONFIGURATION_GUILD_DIR_PATH;
-var CONFIGURATION_LOG_DIR_PATH;
+let CONFIG_NORN;
+let CONFIG_GUILD_DIR_PATH;
+let CONFIG_LOG_DIR_PATH;
 
 //////////////////////////////////////////////////
-// Process 'exit' Event Handle
+// process 'exit' Event Handle
 //////////////////////////////////////////////////
 
 // ashz> custom system exit code
-Process.on('exit', code => {
+process.on('exit', code => {
     switch(code) {
-        case ExF.NORN_FILE_NOT_FOUND: {
-            log_console('Ending program with error code. (NORN_FILE_NOT_FOUND)', null);
-            break;
-        }
+        case ExF.NORN_FILE_NOT_FOUND:
+        case ExF.GUILD_SETTING_FILE_NOT_FOUND:
         case ExF.GUILD_CONFIG_DIR_FAILED_TO_READ: {
-            log_console('Ending program with error code. (GUILD_CONFIG_DIR_FAILED_TO_READ)', null);
-            break;
-        }
-        case ExF.GUILD_SETTING_FILE_NOT_FOUND: {
-            log_console('Ending program with error code. (GUILD_SETTING_FILE_NOT_FOUND)', null);
+            log_console(`Ending program. Error code: ${code}`, null);
             break;
         }
         default: {
-            log_console(`Ending program with unknown code ${code}`,null);
+            log_console(`Ending program. Unknown error code: ${code}`, null);
         }
     }
 });
@@ -58,89 +52,78 @@ Process.on('exit', code => {
 fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
     if(errorData) {
         console.error(errorData);
-        Process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
+        process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
     }
 });
 
 // ashz> norn configuration read / guild configuration read
-fs.readFile(CONFIGURATION_NORN_PATH, (errorData, fileData) => {
+fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
     if(errorData) {
         console.error(errorData);
-        Process.exit(ExF.NORN_SETTING_FILE_NOT_FOUND);
+        process.exit(ExF.NORN_SETTING_FILE_NOT_FOUND);
     }
 
-    CONFIG_NORN        = JSON.parse(fileData);
+    CONFIG_NORN           = JSON.parse(fileData);
+    CONFIG_GUILD_DIR_PATH = path.join(__dirname, CONFIG_NORN.guild_data_path);
+    CONFIG_LOG_DIR_PATH   = path.join(__dirname, CONFIG_NORN.log_data_path);
 
-///////////////// CLEANED
-
-    CONFIGURATION_GUILD_DIR_PATH  = Path.join(__dirname,CONFIG_NORN.guild_data_path);
-    CONFIGURATION_LOG_DIR_PATH    = Path.join(__dirname,CONFIG_NORN.log_data_path);
-
-    // login to Discord server
-    Norn.login(CONFIG_NORN.token_part1 + CONFIG_NORN.token_part2 + CONFIG_NORN.token_part3);
+    // ashz> login to Discord server
+    Norn.login(CONFIG_NORN.tpo + CONFIG_NORN.tpt + CONFIG_NORN.tpth);
     
-    // get saved per/guild data
-    fs.readdir(CONFIGURATION_GUILD_DIR_PATH,(errorData,lsData) =>
-    {
+	// ashz> get saved per/guild data
+    fs.readdir(CONFIG_GUILD_DIR_PATH, (errorData, dirData) => {
         if(errorData) {
-            console.log(errorData);
-            Process.exit(ExF.CONFIG_GUILD_DIR_FAILED_TO_READ);
+            console.error(errorData);
+			// ashz> better to exit, since client needs access to directory later
+			//log_console('Failed reading guild config directory. (CONFIG_GUILD_DIR_FAILED_TO_READ)', null);
+            process.exit(ExF.CONFIG_GUILD_DIR_FAILED_TO_READ);
         }
 
-        lsData.forEach((dirName) => 
-        {
-            let configurationDirPath = Path.join(CONFIGURATION_GUILD_DIR_PATH, dirName);
-            let configurationPath    = Path.join(configurationDirPath, CONFIG_NORN.guild_data_file);
+        dirData.forEach((dirName) => {
+            let configDirPath  = path.join(CONFIG_GUILD_DIR_PATH, dirName);
+            let configFilePath = path.join(configDirPath, CONFIG_NORN.guild_data_file);
 
-            if(fs.existsSync(configurationPath)) {
-                fs.readFile(configurationPath, (errorData,fileData) =>
-                {
-                    if(errorData) {
-                        log_console('Unable to read existing file. (Critical file system error)',null);
-                        console.log(errorData);
-                        return;
-                    }
+			fs.readFile(configFilePath, (errorData, fileData) => {
+				if(errorData) {
+					console.error(errorData);
+					log_console('Unable to read a guild setting file.', null);
+					return;
+				}
 
-                    let jsonMap = JSON.parse(fileData);                 
-                    let guildData =
-                    {
-                        STATIC:
-                        {
-                            guildName:           dirName,
-                            guildID:             jsonMap.GUILD_ID,
-                        },
-                        DYNAMIC:
-                        {
-                            Norn:                null,
-                            systemChannel:       null,
-                            configurationDir:    configurationDirPath,
-                            configurationFile:   CONFIG_NORN.guild_data_file,
-                            logPath:             CONFIGURATION_LOG_DIR_PATH,
-                        },
-                        TB:
-                        {
-                            STATIC: 
-                            {
-                                volume:          jsonMap.TB.VOLUME,
-                                loopSingle:      jsonMap.TB.LOOP_SINGLE,
-                                loopQueue:       jsonMap.TB.LOOP_QUEUE,
-                            },
-                            DYNAMIC: 
-                            {
-                                textChannel:     null,
-                                voiceChannel:    null,
-                                voiceConnection: null,
-                                queue:           [],
-                                index:           0,
-                                playing:         false,
-                                paused:          false,
-                            },
-                            PLAYLIST: jsonMap.TB.PLAYLIST,
-                        },
-                    };
-                    guildDataMap.set(dirName,guildData);
-                });	
-            }
+///////////////// ^CLEANED
+				let settingData = JSON.parse(fileData);
+				let guildData = {
+					STATIC: {
+						guildName:           settingData.GUILD_NAME,
+						guildID:             dirName,
+					},
+					DYNAMIC: {
+						Norn:                null,
+						systemChannel:       null,
+						configurationDir:    configDirPath,
+						configurationFile:   CONFIG_NORN.guild_data_file,
+						logPath:             CONFIG_LOG_DIR_PATH,
+					},
+					TB: {
+						STATIC: {
+							volume:          settingData.TB.VOLUME,
+							loopSingle:      settingData.TB.LOOP_SINGLE,
+							loopQueue:       settingData.TB.LOOP_QUEUE,
+						},
+						DYNAMIC: {
+							textChannel:     null,
+							voiceChannel:    null,
+							voiceConnection: null,
+							queue:           [],
+							index:           0,
+							playing:         false,
+							paused:          false,
+						},
+						PLAYLIST: settingData.TB.PLAYLIST,
+					},
+				};
+				guildDataMap.set(dirName,guildData);
+			});	
         });
     });
 });
@@ -172,9 +155,9 @@ Norn.on('ready', () =>
                 {
                     Norn:                 Norn,
                     systemChannel:        guildInstance.systemChannel,
-                    configurationDir:   Path.join(CONFIGURATION_GUILD_DIR_PATH,guildInstance.id),
+                    configurationDir:   path.join(CONFIG_GUILD_DIR_PATH,guildInstance.id),
                     configurationFile:    'setting.json',
-                    logPath:              CONFIGURATION_LOG_DIR_PATH,
+                    logPath:              CONFIG_LOG_DIR_PATH,
                 },
                 TB:
                 {
