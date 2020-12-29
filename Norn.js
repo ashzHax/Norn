@@ -19,8 +19,8 @@ const log_event    = require('./Log.js').log_event;
 // global constant
 const CONFIG_NORN_FILE_PATH = './setting.json';
 const CONFIG_GUILD_DIR_NAME = './config/';
-const Norn                    = new Discord.Client();
-const guildDataMap            = new Map();
+const Norn                  = new Discord.Client();
+const guildDataMap          = new Map();
 
 // global variable
 let CONFIG_NORN;
@@ -36,12 +36,14 @@ process.on('exit', code => {
     switch(code) {
         case ExF.NORN_FILE_NOT_FOUND:
         case ExF.GUILD_SETTING_FILE_NOT_FOUND:
-        case ExF.GUILD_CONFIG_DIR_FAILED_TO_READ: {
-            log_console(`Ending program. Error code: ${code}`, null);
+        case ExF.GUILD_CONFIG_DIR_FAILED_TO_READ: 
+        case ExF.GUILD_CONFIG_DIR_CREATE_FAIL: 
+        case ExF.GUILD_SETTING_FILE_FAILED_TO_WRITE : {
+            log_console(`[CRIT] Ending program. Error code: ${code}`, null);
             break;
         }
         default: {
-            log_console(`Ending program. Unknown error code: ${code}`, null);
+            log_console(`[?] Ending program. Unknown error code: ${code}`, null);
         }
     }
 });
@@ -64,7 +66,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
     fs.mkdir(CONFIG_GUILD_DIR_PATH, (errorData) => {
         if(errorData) {
             // console.error(errorData);
-            log_console(`Directory already exists. (${CONFIG_GUILD_DIR_PATH})`, null);
+            log_console(`[ALERT] Directory already exists. (${CONFIG_GUILD_DIR_PATH})`, null);
             // process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
         }
     });
@@ -77,8 +79,8 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
         if(errorData) {
             console.error(errorData);
 			// ashz> better to exit, since client needs access to directory later
-			//log_console('Failed reading guild config directory. (CONFIG_GUILD_DIR_FAILED_TO_READ)', null);
-            process.exit(ExF.CONFIG_GUILD_DIR_FAILED_TO_READ);
+			//log_console('Failed reading guild config directory. (GUILD_DIR_FAILED_TO_READ)', null);
+            process.exit(ExF.GUILD_DIR_FAILED_TO_READ);
         }
 
         dirData.forEach((dirName) => {
@@ -88,43 +90,39 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
 			fs.readFile(configFilePath, (errorData, fileData) => {
 				if(errorData) {
 					console.error(errorData);
-					log_console('Unable to read a guild setting file.', null);
+					log_console('[WARN] Unable to read a guild setting file.', null);
 					return;
 				}
 
-///////////////// ^CLEANED
 				let settingData = JSON.parse(fileData);
 				let guildData = {
-					STATIC: {
-						guildName:           settingData.GUILD_NAME,
-						guildID:             dirName,
-					},
-					DYNAMIC: {
-						Norn:                null,
-						systemChannel:       null,
-						configurationDir:    configDirPath,
-						configurationFile:   CONFIG_NORN.guild_data_file,
-						logPath:             CONFIG_LOG_DIR_PATH,
-					},
+                    // ashz> Static Data
+                    guildName:           settingData.GUILD_NAME,
+                    guildID:             dirName,
+                    // ashz> Dynamic Data
+                    Norn:                null,
+                    systemChannel:       null,
+                    configurationDir:    configDirPath,
+                    configurationFile:   CONFIG_NORN.guild_data_file,
+                    logPath:             CONFIG_LOG_DIR_PATH,
+                    // ashz> Track Bot Data
 					TB: {
-						STATIC: {
-							volume:          settingData.TB.VOLUME,
-							loopSingle:      settingData.TB.LOOP_SINGLE,
-							loopQueue:       settingData.TB.LOOP_QUEUE,
-						},
-						DYNAMIC: {
-							textChannel:     null,
-							voiceChannel:    null,
-							voiceConnection: null,
-							queue:           [],
-							index:           0,
-							playing:         false,
-							paused:          false,
-						},
-						PLAYLIST: settingData.TB.PLAYLIST,
+                        // ashz> Static Data
+                        volume:          settingData.TB.VOLUME,
+                        loopSingle:      settingData.TB.LOOP_SINGLE,
+                        loopQueue:       settingData.TB.LOOP_QUEUE,
+                        playlist:        settingData.TB.PLAYLIST,
+                        // ashz> Dynamic Data
+                        textChannel:     null,
+                        voiceChannel:    null,
+                        voiceConnection: null,
+                        queue:           [],
+                        index:           0,
+                        playing:         false,
+                        paused:          false,
 					},
 				};
-				guildDataMap.set(dirName,guildData);
+				guildDataMap.set(dirName, guildData);
 			});	
         });
     });
@@ -134,60 +132,50 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
 // Initial Variable Set
 //////////////////////////////////////////////////
 
-log_console('Finished Data Handling, waiting on Discord API...',null);
+log_console('[ALERT] Finished Data Handling, waiting on Discord API...',null);
 
 //////////////////////////////////////////////////
 // Bot Ready Event
 //////////////////////////////////////////////////
 
-Norn.on('ready', () =>
-{
-    Norn.guilds.cache.forEach(guildInstance =>
-    {
+Norn.on('ready', () => {
+    Norn.guilds.cache.forEach(guildInstance => {
         let guildData = guildDataMap.get(guildInstance.id);
         if(guildData == null) {
-            let new_guildData =
-            {
-                STATIC:
-                {
-                    guildName:           guildInstance.name,
-                    guildID:             guildInstance.id,
-                },
-                DYNAMIC:
-                {
-                    Norn:                 Norn,
-                    systemChannel:        guildInstance.systemChannel,
-                    configurationDir:   path.join(CONFIG_GUILD_DIR_PATH,guildInstance.id),
-                    configurationFile:    'setting.json',
-                    logPath:              CONFIG_LOG_DIR_PATH,
-                },
-                TB:
-                {
-                    STATIC: 
-                    {
-                        volume:          CONFIG_NORN.default_volume,
-                        loopSingle:      CONFIG_NORN.default_loop_single,
-                        loopQueue:       CONFIG_NORN.default_loop_queue,
-                    },
-                    DYNAMIC: 
-                    {
-                        textChannel:     null,
-                        voiceChannel:    null,
-                        voiceConnection: null,
-                        queue:           [],
-                        index:           0,
-                        playing:         false,
-                        paused:          false,
-                    },
-                    PLAYLIST: {},
+            let new_guildData = {
+                // ashz> Static Data
+                guildName:           guildInstance.name,
+                guildID:             guildInstance.id,
+                // ashz> Dynamic Data
+                Norn:                Norn,
+                systemChannel:       guildInstance.systemChannel,
+                configurationDir:    path.join(CONFIG_GUILD_DIR_PATH, guildInstance.id),
+                configurationFile:   CONFIG_NORN.guild_data_file,
+                logPath:             CONFIG_LOG_DIR_PATH,
+                // ashz> Track Bot Data
+                TB: {
+                    // ashz> Static Data
+                    volume:          CONFIG_NORN.default_volume,
+                    loopSingle:      CONFIG_NORN.default_loop_single,
+                    loopQueue:       CONFIG_NORN.default_loop_queue,
+                    playlist:        {},
+                    // ashz> Dynamic Data
+                    textChannel:     null,
+                    voiceChannel:    null,
+                    voiceConnection: null,
+                    queue:           [],
+                    index:           0,
+                    playing:         false,
+                    paused:          false,
                 },
             };
-            guildDataMap.set(guildInstance.id,new_guildData);
+            guildDataMap.set(guildInstance.id, new_guildData);
             ExF.saveGuildData(new_guildData, true);
-        }
-        else {
-            guildData.DYNAMIC.Norn          = Norn;
-            guildData.DYNAMIC.systemChannel = guildInstance.systemChannel;
+        } else {
+            guildData.guildName     = guildInstance.name;
+            guildData.guildID       = guildInstance.id;
+            guildData.Norn          = Norn;
+            guildData.systemChannel = guildInstance.systemChannel;
             ExF.saveGuildData(guildData);
         }
     });
@@ -204,17 +192,17 @@ Norn.on('channelCreate', eventChannel =>
 Norn.on('channelDelete', eventChannel =>
     log_event('CHANNEL_DELETE', eventChannel, guildDataMap.get(eventChannel.guild.id)));
 
-Norn.on('channelPinsUpdate', (eventChannel,eventDate) =>
+Norn.on('channelPinsUpdate', (eventChannel, eventDate) =>
     log_event('CHANNEL_PINS_UPDATE', [eventChannel,eventDate], guildDataMap.get(eventChannel.guild.id)));
 
-Norn.on('channelUpdate', (previousChannel,newChannel) =>
-    log_event('CHANNEL_UPDATE', [previousChannel,newChannel], guildDataMap.get(newChannel.guild.id)));
+Norn.on('channelUpdate', (previousChannel, newChannel) =>
+    log_event('CHANNEL_UPDATE', [previousChannel, newChannel], guildDataMap.get(newChannel.guild.id)));
 
 //////////////////////////////////////////////////
 // Event Handler: Message
 //////////////////////////////////////////////////
 
-Norn.on('message', eventMessage => 
+Norn.on('message', eventMessage =>
     log_event('MESSAGE', eventMessage, guildDataMap.get(eventMessage.guild.id)));
 
 Norn.on('messageDelete', eventMessage =>
@@ -224,34 +212,36 @@ Norn.on('messageDelete', eventMessage =>
 Norn.on('messageDeleteBulk', eventMessageCollection =>
     log_event('MESSAGE_DELETE_BULK', eventMessageCollection, guildDataMap.get(eventMessageCollection.first().guild.id)));
 
-Norn.on('messageUpdate', (previousMessage,newMessage) =>
-    log_event('MESSAGE_UPDATE', [previousMessage,newMessage], guildDataMap.get(newMessage.guild.id)));
+Norn.on('messageUpdate', (previousMessage, newMessage) =>
+    log_event('MESSAGE_UPDATE', [previousMessage, newMessage], guildDataMap.get(newMessage.guild.id)));
 
-Norn.on('messageReactionAdd', (eventMessageReaction,eventUser) => 
-    log_event('MESSAGE_REACTION_ADD', [eventMessageReaction,eventUser], guildDataMap.get(eventMessageReaction.message.guild.id)));
+Norn.on('messageReactionAdd', (eventMessageReaction, eventUser) =>
+    log_event('MESSAGE_REACTION_ADD', [eventMessageReaction, eventUser], guildDataMap.get(eventMessageReaction.message.guild.id)));
 
-Norn.on('messageReactionRemove', (eventMessageReaction,eventUser) => 
-    log_event('MESSAGE_REACTION_DELETE', [eventMessageReaction,eventUser], guildDataMap.get(eventMessageReaction.message.guild.id)));
+Norn.on('messageReactionRemove', (eventMessageReaction, eventUser) =>
+    log_event('MESSAGE_REACTION_DELETE', [eventMessageReaction, eventUser], guildDataMap.get(eventMessageReaction.message.guild.id)));
 
 Norn.on('messageReactionRemoveAll', eventMessage =>
     log_event('MESSAGE_REACTION_REMOVE_ALL', eventMessage, guildDataMap.get(eventMessage.guild.id)));
 
 /*
 // this function is too buggy to use
-Norn.on('typingStart', (eventChannel,eventUser) =>
-    log_event('TYPING_START', [eventChannel,eventUser], guildDataMap.get(eventChannel.lastMessage.guild.id)));
+Norn.on('typingStart', (eventChannel, eventUser) =>
+    log_event('TYPING_START', [eventChannel, eventUser], guildDataMap.get(eventChannel.lastMessage.guild.id)));
 */
-// Log is handled up to this point
 
 //////////////////////////////////////////////////
 // Event Handler: Guild/Role
 //////////////////////////////////////////////////
 
-Norn.on('roleCreate', eventRole => log_event('ROLE_CREATE', eventRole, guildDataMap.get(eventRole.guild.id)));
+Norn.on('roleCreate', eventRole =>
+    log_event('ROLE_CREATE', eventRole, guildDataMap.get(eventRole.guild.id)));
 
-Norn.on('roleDelete', eventRole => log_event('ROLE_DELETE', eventRole, guildDataMap.get(eventRole.guild.id)));
+Norn.on('roleDelete', eventRole =>
+    log_event('ROLE_DELETE', eventRole, guildDataMap.get(eventRole.guild.id)));
 
-Norn.on('roleUpdate', (previousRole,newRole) => log_event('ROLE_UPDATE', [previousRole,newRole], guildDataMap.get(newRole.guild.id)));
+Norn.on('roleUpdate', (previousRole, newRole) =>
+    log_event('ROLE_UPDATE', [previousRole, newRole], guildDataMap.get(newRole.guild.id)));
 
 //////////////////////////////////////////////////
 // Event Handler: Guild/Emoji
@@ -263,18 +253,18 @@ Norn.on('emojiCreate', eventGuildEmoji =>
 Norn.on('emojiDelete', eventGuildEmoji =>
     log_event('EMOJI_DELETE', eventGuildEmoji, guildDataMap.get(eventGuildEmoji.guild.id)));
 
-Norn.on('emojiUpdate', (previousGuildEmoji,newGuildEmoji) =>
-    log_event('EMOJI_UPDATE', [previousGuildEmoji,newGuildEmoji], guildDataMap.get(newGuildEmoji.guild.id)));
+Norn.on('emojiUpdate', (previousGuildEmoji, newGuildEmoji) =>
+    log_event('EMOJI_UPDATE', [previousGuildEmoji, newGuildEmoji], guildDataMap.get(newGuildEmoji.guild.id)));
 
 //////////////////////////////////////////////////
 // Event Handler: Guild/Member
 //////////////////////////////////////////////////
 
-Norn.on('guildBanAdd', (eventGuild,eventUser) =>
-    log_event('GUILD_BAN_ADD', [eventGuild,eventUser], guildDataMap.get(eventGuild.id)));
+Norn.on('guildBanAdd', (eventGuild, eventUser) =>
+    log_event('GUILD_BAN_ADD', [eventGuild, eventUser], guildDataMap.get(eventGuild.id)));
 
-Norn.on('guildBanRemove', (eventGuild,eventUser) =>
-    log_event('GUILD_BAN_REMOVE', [eventGuild,eventUser], guildDataMap.get(eventGuild.id)));
+Norn.on('guildBanRemove', (eventGuild, eventUser) =>
+    log_event('GUILD_BAN_REMOVE', [eventGuild, eventUser], guildDataMap.get(eventGuild.id)));
 
 Norn.on('guildMemberAdd', eventGuildMember =>
     log_event('GUILD_MEMBER_ADD', eventGuildMember, guildDataMap.get(eventGuildMember.guild.id)));
@@ -282,19 +272,19 @@ Norn.on('guildMemberAdd', eventGuildMember =>
 Norn.on('guildMemberRemove', eventGuildMember =>
     log_event('GUILD_MEMBER_REMOVE', eventGuildMember, guildDataMap.get(eventGuildMember.guild.id)));
 
-Norn.on('guildMemberUpdate', (previousGuildMemeber,newGuildMember) =>
-    log_event('GUILD_MEMBEr_UPDATE', [previousGuildMemeber,newGuildMember], guildDataMap.get(newGuildMember.guild.id)));
+Norn.on('guildMemberUpdate', (previousGuildMemeber, newGuildMember) =>
+    log_event('GUILD_MEMBEr_UPDATE', [previousGuildMemeber, newGuildMember], guildDataMap.get(newGuildMember.guild.id)));
 
-Norn.on('guildMemberAvailable', eventGuildMember => 
+Norn.on('guildMemberAvailable', eventGuildMember =>
     log_event('GUILD_MEMBER_AVAILABLE', eventGuildMember, guildDataMap.get(eventGuildMember.guild.id)));
 
-Norn.on('guildMembersChunk', (eventGuildMembers,eventGuild,eventData) =>
-    log_event('GUILD_MEMBERS_CHUNK', [eventGuildMembers,eventGuild,eventData], guildDataMap.get(eventGuild.id)));
+Norn.on('guildMembersChunk', (eventGuildMembers, eventGuild, eventData) =>
+    log_event('GUILD_MEMBERS_CHUNK', [eventGuildMembers, eventGuild, eventData], guildDataMap.get(eventGuild.id)));
 
 /*
 // too many logs
-Norn.on('guildMemberSpeaking', (eventGuildMember,eventReadOnlySpeaking) =>
-    log_event('GUILD_MEMBER_SPEAKING', [eventGuildMember,eventReadOnlySpeaking], guildDataMap.get(eventGuildMember.guild.id)));
+Norn.on('guildMemberSpeaking', (eventGuildMember, eventReadOnlySpeaking) =>
+    log_event('GUILD_MEMBER_SPEAKING', [eventGuildMember, eventReadOnlySpeaking], guildDataMap.get(eventGuildMember.guild.id)));
 */
 
 //////////////////////////////////////////////////
@@ -307,8 +297,8 @@ Norn.on('guildCreate', eventGuild =>
 Norn.on('guildDelete', eventGuild =>
     log_event('GUILD_DELETE', eventGuild, guildDataMap.get(eventGuild.id)));
 
-Norn.on('guildUpdate', (previousGuild,newGuild) =>
-    log_event('GUILD_UPDATE', [previousGuild,newGuild], guildDataMap.get(newGuild.id)));
+Norn.on('guildUpdate', (previousGuild, newGuild) =>
+    log_event('GUILD_UPDATE', [previousGuild, newGuild], guildDataMap.get(newGuild.id)));
 
 Norn.on('guildUnavailable', guildData =>
     log_event('GUILD_UNAVAILABLE', guildData, guildDataMap.get(guildData.id)));
@@ -334,7 +324,7 @@ Norn.on('voiceStateUpdate', (previousVoiceState, newVoiceState) =>
 //////////////////////////////////////////////////
 
 Norn.on('disconnect', (anyData, numberData) =>
-    log_event('DISCONNECT', [anyData,numberData], null));
+    log_event('DISCONNECT', [anyData, numberData], null));
 
 Norn.on('warn', (warnData) =>
     log_event('WARN', warnData, null));
@@ -353,14 +343,13 @@ Norn.on('error', (errorData) =>
 //////////////////////////////////////////////////
 
 Norn.on('message', (messageData) => {
-
     if(messageData.author.bot) return;
     if(!messageData.content.startsWith('/')) return;
 
-    let guildData = guildDataMap.get(messageData.guild.id);
-    let commandArray = messageData.content.split(' ');
+    let guildData      = guildDataMap.get(messageData.guild.id);
+    let commandArray   = messageData.content.split(' ');
     let permissionFlag = false;
-    commandArray[0] = commandArray[0].substring(1);
+    commandArray[0]    = commandArray[0].substring(1);
     
     if(messageData == null || guildData == null || commandArray == null) {
         log_event('COMMAND_DATA_NULL', messageData, guildData);

@@ -1,16 +1,9 @@
 {
     "GUILD_ID": "687188236971671560",
-    "GUILD_NAME": "687188236971671560",
+    "GUILD_NAME": "AXC",
     "TB": {
         "VOLUME": 7,
         "LOOP_SINGLE": false,
-        "LOOP_QUEUE": true,
-        "PLAYLIST": {
-            "EDM_playlist": {
-                "owner": "ashz#3656",
-                "length": 18274,
-                "elements": 3
-            }
-        }
+        "LOOP_QUEUE": true
     }
 }

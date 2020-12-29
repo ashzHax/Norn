@@ -1,64 +1,30 @@
 "use strict";
 
-const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
-const { pid } = require("process");
-const fs          = require('fs');
-const Process     = require('process');
-const Path        = require('path');
+const fs      = require('fs');
+const process = require('process');
 
-// fixed error values
-module.exports.NORN_SETTING_FILE_NOT_FOUND     = 1900;
-module.exports.GUILD_CONFIG_DIR_FAILED_TO_READ = 1901;
-module.exports.GUILD_SETTING_FILE_NOT_FOUND    = 1902;
-module.exports.GUILD_CONFIG_DIR_CREATE_FAIL    = 1903;
-module.exports.GUILD_WRITE_FAIL                = 1904;
-module.exports.FILE_NOT_FOUND                  = 1905;
-module.exports.GUILD_MKDIR_FAIL                = 1906;
-
-// color values
-module.exports.html_red          = '#FF0000';
-module.exports.html_white        = '#000000';
-module.exports.html_spring_green = '#00FF9E';
-module.exports.html_blue         = '#0032FF';
-module.exports.html_green        = '#00FF08';
-module.exports.html_sky          = '#00D1FF';
-module.exports.html_warm         = '#F1C40F';
-module.exports.html_yellow       = '#F3FF00';
-module.exports.html_orange       = '#FFAE00'; 
-
-// log values
-module.exports.TYPE_LOG =     'LOG';
-module.exports.TYPE_ALERT =   'ALT';
-module.exports.TYPE_EVENT =   'EVT';
-module.exports.TYPE_COMMAND = 'CMD';
-module.exports.TYPE_ERROR =   'ERR';
-module.exports.TYPE_MESSAGE = 'MSG';
-module.exports.TYPE_DEBUG =   'DBG';
-
-// get personal date format
-function get_date_string_format(DateInstance)
-{
-    return DateInstance.getFullYear().toString().padStart(2, '0')+'/'
-          +(DateInstance.getMonth()+1).toString().padStart(2, '0')+'/'
-          +DateInstance.getDate().toString().padStart(2, '0')+' '
-          +DateInstance.getHours().toString().padStart(2, '0')+':'
-          +DateInstance.getMinutes().toString().padStart(2, '0')+':'
-          +DateInstance.getSeconds().toString().padStart(2, '0')+'.'
-          +DateInstance.getMilliseconds().toString().padStart(3, '0');
+// ashz> get full date/time format
+const get_full_date_time_to_string_log_format = (dateInstance) => {
+    return dateInstance.getFullYear().toString().padStart(2, '0') + '/'
+         +(dateInstance.getMonth()+1).toString().padStart(2, '0') + '/'
+          +dateInstance.getDate().toString().padStart(2, '0')     + '  '
+          +dateInstance.getHours().toString().padStart(2, '0')    + ':'
+          +dateInstance.getMinutes().toString().padStart(2, '0')  + ':'
+          +dateInstance.getSeconds().toString().padStart(2, '0')  + '.'
+          +dateInstance.getMilliseconds().toString().padStart(3, '0');
 }
-module.exports.getStringDate = get_date_string_format;
 
-function get_current_day_simple_string_format(DateInstance)
-{
+// ashz> get full date, simple output format
+const get_full_date_to_string_output_format = (DateInstance) => {
     return DateInstance.getFullYear().toString()
         +(DateInstance.getMonth()+1).toString().padStart(2, '0')
         +DateInstance.getDate().toString().padStart(2, '0');
 }
-module.exports.getDay = get_current_day_simple_string_format;
+
+//////////////////////////////////////////// ^ CLEAN
 
 // replace all character instance of parameter 0 with parameter 1
-function string_replace_all(target_string,target_character,replacement_character)
-{
+const string_replace_all = (target_string,target_character,replacement_character) => {
     while(target_string.search(target_character) !== -1)
     {
         target_string = target_string.replace(target_character,replacement_character);
@@ -66,10 +32,8 @@ function string_replace_all(target_string,target_character,replacement_character
 
     return target_string;
 }
-module.exports.replaceAll = string_replace_all;
 
-function trace_debug(debug_message=null)
-{
+const trace_debug = (debug_message=null) => {
     const errorInstance               = new Error();
     let errorFrame                    = errorInstance.stack.split("\n")[2];
     const trace_debug_called_function = errorFrame.split(" ")[5];
@@ -77,10 +41,8 @@ function trace_debug(debug_message=null)
 
     return `${trace_debug_called_function}():${trace_debug_called_line}${ debug_message!==null?`:\"${debug_message}\"`:"" }`;
 }
-module.exports.traceDebug = trace_debug;
 
-function string_cut(target_string,limit)
-{
+const string_cut = (target_string,limit) => {
     var returnString = target_string;
     if ((target_string.length+3) >= limit) 
     {
@@ -89,16 +51,12 @@ function string_cut(target_string,limit)
 
     return returnString;
 }
-module.exports.stringCut = string_cut;
 
-function get_channel_name_with_channel_instance(channel)
-{
+const get_channel_name_with_channel_instance = (channel) => {
     return JSON.parse(JSON.stringify(channel.toJSON()))['name'];
 }
-module.exports.getChannelName = get_channel_name_with_channel_instance;
 
-function get_string_with_format_from_second(second)
-{
+const get_string_with_format_from_second = (second) => {
     var hour=0;
     var minute=0;
 
@@ -125,29 +83,26 @@ function get_string_with_format_from_second(second)
     }
 }
 
-module.exports.getSecondFormat = get_string_with_format_from_second;
-
-function saveGuildData(guildData,newData=false)
-{
+const saveGuildData = (guildData,newData=false) => {
     const finalizedData = {
-        GUILD_ID             : guildData.STATIC.guildID,
-        GUILD_NAME           : guildData.STATIC.guildName,
-        ADMINISTRATOR_LIST   : guildData.STATIC.administratorList,
+        GUILD_ID             : guildData.guildID,
+        GUILD_NAME           : guildData.guildName,
+        ADMINISTRATOR_LIST   : guildData.administratorList,
         TB: {
-            VOLUME           : guildData.TB.STATIC.volume,
-            LOOP_SINGLE      : guildData.TB.STATIC.loopSingle,
-            LOOP_QUEUE       : guildData.TB.STATIC.loopQueue,
+            VOLUME           : guildData.TB.volume,
+            LOOP_SINGLE      : guildData.TB.loopSingle,
+            LOOP_QUEUE       : guildData.TB.loopQueue,
             PLAYLIST         : guildData.TB.PLAYLIST,
         }
     };
     const writeData = JSON.stringify(finalizedData,null,4);
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, guildData.DYNAMIC.configurationFile);
+    const targetFile = require('path').join(guildData.configurationDir, guildData.configurationFile);
 
     if(newData) {
-        fs.mkdir(guildData.DYNAMIC.configurationDir, (errorData) => {
+        fs.mkdir(guildData.configurationDir, (errorData) => {
             if(errorData) {
                 console.log(errorData);
-                Process.exit(ExF.GUILD_MKDIR_FAIL);
+                process.exit(ExF.GUILD_MKDIR_FAIL);
             }
         });
     }
@@ -156,43 +111,79 @@ function saveGuildData(guildData,newData=false)
     {
         if(errorData) {
             console.log(errorData);
-            Process.exit(ExF.CONFIG_GUILD_WRITE_FAIL);
+            process.exit(ExF.CONFIG_GUILD_WRITE_FAIL);
         }
     });
 }
-module.exports.saveGuildData = saveGuildData;
 
-function createNewFile(path,data)
-{
-    fs.writeFileSync(path,data,'utf8',(error) => {
+const createNewFile = (fpath,data) => {
+    fs.writeFileSync(fpath,data,'utf8',(error) => {
         if(error) {
             console.error(error);
         }
     });
 }
-module.exports.createNewFile = createNewFile;
 
-function removeFile(targetPath)
-{
+const removeFile = (targetPath) => {
     fs.unlinkSync(targetPath);
 }
-module.exports.removeFile = removeFile;
 
-function getArrayFromFile(targetPath)
-{
+const getArrayFromFile = (targetPath) => {
     let data = fs.readFileSync(targetPath,'utf8');
     console.log(data);
     if(data===null) return null;
     return JSON.parse(data);
 }
-module.exports.getArrayFromFile = getArrayFromFile;
 
-function saveArrayToFile(targetPath,arrayData)
-{
+const saveArrayToFile = (targetPath,arrayData) => {
     fs.writeFileSync(targetPath,JSON.stringify(arrayData,null,4),(err)=>{
         if(err){
             console.log(err);
         }
     });
 }
-module.exports.saveArrayToFile = saveArrayToFile;
+
+module.exports = {
+    // ashz> Error Values For Process
+    NORN_FILE_NOT_FOUND                : 1900,
+    GUILD_CONFIG_DIR_FAILED_TO_READ    : 1901,
+    GUILD_SETTING_FILE_NOT_FOUND       : 1902,
+    GUILD_CONFIG_DIR_CREATE_FAIL       : 1903,
+    GUILD_SETTING_FILE_FAILED_TO_WRITE : 1904,
+    
+    // ashz> Color Values
+    html_red          : '#FF0000',
+    html_white        : '#000000',
+    html_spring_green : '#00FF9E',
+    html_blue         : '#0032FF',
+    html_green        : '#00FF08',
+    html_sky          : '#00D1FF',
+    html_warm         : '#F1C40F',
+    html_yellow       : '#F3FF00',
+    html_orange       : '#FFAE00', 
+    
+    /*
+    // ashz> Log Values
+    TYPE_LOG     : 'LOG',
+    TYPE_ALERT   : 'ALT',
+    TYPE_EVENT   : 'EVT',
+    TYPE_COMMAND : 'CMD',
+    TYPE_ERROR   : 'ERR',
+    TYPE_MESSAGE : 'MSG',
+    TYPE_DEBUG   : 'DBG',
+    */
+
+    // ashz> Functions
+    getStringDate : get_full_date_time_to_string_log_format,
+    getDay : get_full_date_to_string_output_format,
+    replaceAll : string_replace_all,
+    traceDebug : trace_debug,
+    stringCut : string_cut,
+    getChannelName : get_channel_name_with_channel_instance,
+    getSecondFormat : get_string_with_format_from_second,
+    saveGuildData : saveGuildData,
+    createNewFile : createNewFile,
+    removeFile : removeFile,
+    getArrayFromFile : getArrayFromFile,
+    saveArrayToFile : saveArrayToFile,
+};
