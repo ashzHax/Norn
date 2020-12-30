@@ -15,37 +15,32 @@ const get_full_date_time_to_string_log_format = (dateInstance) => {
 }
 
 // ashz> get full date, simple output format
-const get_full_date_to_string_output_format = (DateInstance) => {
-    return DateInstance.getFullYear().toString()
-        +(DateInstance.getMonth()+1).toString().padStart(2, '0')
-        +DateInstance.getDate().toString().padStart(2, '0');
+const get_full_date_to_string_output_format = (dateInstance) => {
+    return dateInstance.getFullYear().toString()
+    	 +(dateInstance.getMonth()+1).toString().padStart(2, '0')
+		  +dateInstance.getDate().toString().padStart(2, '0');
 }
 
-//////////////////////////////////////////// ^ CLEAN
-
-// replace all character instance of parameter 0 with parameter 1
-const string_replace_all = (target_string,target_character,replacement_character) => {
-    while(target_string.search(target_character) !== -1)
-    {
-        target_string = target_string.replace(target_character,replacement_character);
+// ashz> custom String.replaceAll()
+const edit_string_replaceAll_substring = (target_string, target_substring, replacement_substring) => {
+    while(target_string.search(target_substring !== -1) {
+        target_string = target_string.replace(target_substring,replacement_substring);
     }
-
     return target_string;
 }
 
-const trace_debug = (debug_message=null) => {
-    const errorInstance               = new Error();
-    let errorFrame                    = errorInstance.stack.split("\n")[2];
-    const trace_debug_called_function = errorFrame.split(" ")[5];
-    const trace_debug_called_line     = errorFrame.split(":")[2];
-
-    return `${trace_debug_called_function}():${trace_debug_called_line}${ debug_message!==null?`:\"${debug_message}\"`:"" }`;
+const print_debug_tracelog = (debug_message=null) => {
+    let errorInstance               = new Error();
+    let errorFrame                  = errorInstance.stack.split("\n")[2];
+    let trace_debug_called_function = errorFrame.split(" ")[5];
+    let trace_debug_called_line     = errorFrame.split(":")[2];
+    return `${trace_debug_called_function}():${trace_debug_called_line} ${(debug_message!==null)?\":${debug_message}\":""}`;
 }
 
-const string_cut = (target_string,limit) => {
+//////////////////////////////////////////// ^ CLEAN
+const string_cut = (target_string, limit) => {
     var returnString = target_string;
-    if ((target_string.length+3) >= limit) 
-    {
+    if ((target_string.length+3) >= limit) {
         returnString = `${target_string.substring(0,limit-1)}...`;
     }
 
@@ -175,9 +170,9 @@ module.exports = {
 
     // ashz> Functions
     getStringDate : get_full_date_time_to_string_log_format,
-    getDay : get_full_date_to_string_output_format,
-    replaceAll : string_replace_all,
-    traceDebug : trace_debug,
+    getDay        : get_full_date_to_string_output_format,
+    replaceAll    : edit_string_replaceAll_substring,
+    traceDebug    : print_debug_tracelog,
     stringCut : string_cut,
     getChannelName : get_channel_name_with_channel_instance,
     getSecondFormat : get_string_with_format_from_second,
