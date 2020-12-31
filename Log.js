@@ -17,10 +17,10 @@ function log_console(message=null,guildData=null)
     }
     else {
         if(guildData!=null) {
-            let dataPath = Path.join(guildData.DYNAMIC.logPath,`${ExF.getDay(new Date())}.log`);
-            FileSystem.appendFile(dataPath,`[${ExF.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`,'utf8',()=>{});
+            let dataPath = Path.join(guildData.logPath,`${ExF.getStrDate(new Date())}.log`);
+            FileSystem.appendFile(dataPath,`[${ExF.getStrDateTime(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`,'utf8',()=>{});
         }
-        console.log(`[${ExF.getStringDate(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
+        console.log(`[${ExF.getStrDateTime(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
     }
 }
 module.exports.log_console = log_console;
@@ -32,7 +32,7 @@ function log_event(logType,eventData,guildData=null)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.STATIC.guildID}][event][${logType}]`;
+        consoleLogText = `[${guildData.guildID}][event][${logType}]`;
     }
     else {
         consoleLogText = `[guild_null][event][${logType}]`;
@@ -71,7 +71,7 @@ function log_event(logType,eventData,guildData=null)
         case 'CHANNEL_PINS_UPDATE':
         {
             let channelName = ExF.getChannelName(eventData[0]);
-            let strTimeStamp = ExF.getStringDate(eventData[1]);
+            let strTimeStamp = ExF.getStrDateTime(eventData[1]);
 
             embdLog = null;
             consoleLogText = consoleLogText.concat(` {id:\"${eventData[0].id},name:\"${channelName}\",timestamp:\"${strTimeStamp}\"}`);
@@ -132,7 +132,7 @@ function log_event(logType,eventData,guildData=null)
         case 'MESSAGE':
         {
             // if event occuring channel is the bot channel, does not log
-            if(eventData.author.id == guildData.DYNAMIC.Norn.user.id) return;
+            if(eventData.author.id == guildData.Norn.user.id) return;
             
             // sometimes, contents could be empty
             if(eventData.content == '') return;
@@ -150,7 +150,7 @@ function log_event(logType,eventData,guildData=null)
             if(eventData.content.startsWith('/')) return;
             
             // all delete by Norn will be ignored
-            if(eventData.author.tag == guildData.DYNAMIC.Norn.user.tag) return;
+            if(eventData.author.tag == guildData.Norn.user.tag) return;
             
             embdLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.member.user.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`);
@@ -167,7 +167,7 @@ function log_event(logType,eventData,guildData=null)
         case 'MESSAGE_UPDATE':
         {
             // all update caused by Norn will be ignored
-            if(eventData[1].author.tag == guildData.DYNAMIC.Norn.user.tag) return;
+            if(eventData[1].author.tag == guildData.Norn.user.tag) return;
             if(eventData[0].content == eventData[1].content) return;
 
             embdLog = null;
@@ -261,10 +261,10 @@ function log_event(logType,eventData,guildData=null)
     }
 
     if(embdLog != null && guildData != null) {
-        guildData.DYNAMIC.systemChannel.send(embdLog);
+        guildData.systemChannel.send(embdLog);
     }
     if(consoleLogText == null) {
-        console.log(ExF.traceDebug('log event error, guildData is null'));
+        console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
         log_console(consoleLogText,guildData);
     }
@@ -278,7 +278,7 @@ function log_command(logType,message,guildData,extraData=null)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.STATIC.guildID}][command][${logType}][${message.author.tag}]`;
+        consoleLogText = `[${guildData.guildID}][command][${logType}][${message.author.tag}]`;
     } else {
         consoleLogText = `[guild_null][command][${logType}][${message.author.tag}]`;
     }
@@ -1422,7 +1422,7 @@ function log_command(logType,message,guildData,extraData=null)
         }
         case 'REMOVE_INVALID_ARG_VAL':
         {
-            let maxLength = guildData.TB.DYNAMIC.queue.length-1;
+            let maxLength = guildData.TB.queue.length-1;
             let logReason = `Invalid argument value received (${maxLength==0?'0':`0~${maxLength}`})`;
             let logData = 
             {
@@ -1700,7 +1700,7 @@ function log_command(logType,message,guildData,extraData=null)
         message.channel.send(emLog);
     }
     if(consoleLogText == null) {
-        console.log(ExF.traceDebug('log event error, guildData is null'));
+        console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
         log_console(consoleLogText,guildData);
     }
@@ -1715,7 +1715,7 @@ function log_TB(logType,guildData,extraData=null)
     var consoleLogText;
 
     if(guildData != null) {
-        consoleLogText = `[${guildData.STATIC.guildID}][TB][${logType}]`;
+        consoleLogText = `[${guildData.guildID}][TB][${logType}]`;
     }
     else {
         consoleLogText = `[guild_null][TB][${logType}]`;
@@ -1739,8 +1739,8 @@ function log_TB(logType,guildData,extraData=null)
         }
         case 'PLAY_SUCCESS':
         {
-            const idx = guildData.TB.DYNAMIC.index;
-            const trackData = guildData.TB.DYNAMIC.queue[idx];
+            const idx = guildData.TB.index;
+            const trackData = guildData.TB.queue[idx];
 
             devLog=null;
             //     .setColor(ExF.html_green)
@@ -1749,11 +1749,11 @@ function log_TB(logType,guildData,extraData=null)
             //     .setTimestamp();
             usrLog
                 .setColor(ExF.html_spring_green)
-                .setTitle(`\"${ExF.stringCut(trackData.title,43)}\"`)
+                .setTitle(`\"${ExF.getLimitedString(trackData.title,43)}\"`)
                 // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
                 .addFields(
                     { name: 'Index',  value: idx,                                   inline: true },
-                    { name: 'Length', value: ExF.getSecondFormat(trackData.length), inline: true },
+                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
                     { name: 'Volume', value: trackData.volume,                      inline: true },
                     { name: 'URL',    value: trackData.video_url,                   inline: false },
                 )  
@@ -1792,10 +1792,10 @@ function log_TB(logType,guildData,extraData=null)
     log_console(consoleLogText,guildData);
 
     if( (guildData!=null) && (devLog!=null) ) {
-        guildData.DYNAMIC.systemChannel.send(devLog);
+        guildData.systemChannel.send(devLog);
     }
     if( (guildData!=null) && (usrLog!=null) ) {
-        guildData.TB.DYNAMIC.textChannel.send(usrLog);
+        guildData.TB.textChannel.send(usrLog);
     }
 }
 module.exports.log_TB = log_TB;

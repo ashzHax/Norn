@@ -1,7 +1,12 @@
 "use strict";
 
-const fs      = require('fs');
-const process = require('process');
+// ashz> internal modules
+const fs          = require('fs');
+const process     = require('process');
+const path        = require('path');
+
+// ashz> custom modules
+const log_console = require('./Log').log_console;
 
 // ashz> get full date/time format
 const get_full_date_time_to_string_log_format = (dateInstance) => {
@@ -23,42 +28,44 @@ const get_full_date_to_string_output_format = (dateInstance) => {
 
 // ashz> custom String.replaceAll()
 const edit_string_replaceAll_substring = (target_string, target_substring, replacement_substring) => {
-    while(target_string.search(target_substring !== -1) {
+    while(target_string.search(target_substring !== -1)) {
         target_string = target_string.replace(target_substring,replacement_substring);
     }
     return target_string;
 }
 
-const print_debug_tracelog = (debug_message=null) => {
+// ashz> leaves debugging log
+const get_debug_tracelog = (debug_message=null) => {
     let errorInstance               = new Error();
     let errorFrame                  = errorInstance.stack.split("\n")[2];
     let trace_debug_called_function = errorFrame.split(" ")[5];
     let trace_debug_called_line     = errorFrame.split(":")[2];
-    return `${trace_debug_called_function}():${trace_debug_called_line} ${(debug_message!==null)?\":${debug_message}\":""}`;
+    return `${trace_debug_called_function}():${trace_debug_called_line} ${debug_message!==null?`${debug_message}`:``}`;
 }
 
-//////////////////////////////////////////// ^ CLEAN
-const string_cut = (target_string, limit) => {
-    var returnString = target_string;
+// ashz> for limited string length outputing functions, adds 3 dots for excluded strings
+const get_string_cut_withint_limit = (target_string, limit) => {
+    let returnString = target_string;
     if ((target_string.length+3) >= limit) {
-        returnString = `${target_string.substring(0,limit-1)}...`;
+        returnString = `${target_string.substring(0,target_string.length-((target_string.length+3)-limit))}...`;
     }
-
     return returnString;
 }
 
-const get_channel_name_with_channel_instance = (channel) => {
-    return JSON.parse(JSON.stringify(channel.toJSON()))['name'];
+// ashz> gets channel name from channel object
+const get_channel_name_from_channel_instance = (channelInstance) => {
+    return JSON.parse(JSON.stringify(channelInstance.toJSON()))['name'];
 }
 
-const get_string_with_format_from_second = (second) => {
-    var hour=0;
-    var minute=0;
+// ashz> time format from seconds
+const get_string_with_time_format_from_second = (total_seconds) => {
+    let hour=0;
+    let minute=0;
 
-    if(second >= 60) {
-        minute = second % 60;
-        minute = (second - minute) / 60;
-        second %= 60;            
+    if(total_seconds >= 60) {
+        minute = total_seconds % 60;
+        minute = (total_seconds - minute) / 60;
+        total_seconds %= 60;            
     }
 
     if(minute >= 60) {
@@ -68,72 +75,87 @@ const get_string_with_format_from_second = (second) => {
     }
 
     if(hour > 0) {
-        return `${hour}:${minute}:${second}`
+        return `${hour}:${minute}:${total_seconds}`
     }
     else if(minute > 0){
-        return `${minute}:${second}`
+        return `${minute}:${total_seconds}`
     }
     else {
-        return `${second}`;
+        return `${total_seconds}`;
     }
 }
 
-const saveGuildData = (guildData,newData=false) => {
-    const finalizedData = {
+// ashz> save guild data into file
+const save_dynamic_guild_data_from_guild_object = (guildData, newData=false) => {
+    let finalizedData = {
         GUILD_ID             : guildData.guildID,
         GUILD_NAME           : guildData.guildName,
-        ADMINISTRATOR_LIST   : guildData.administratorList,
         TB: {
             VOLUME           : guildData.TB.volume,
             LOOP_SINGLE      : guildData.TB.loopSingle,
             LOOP_QUEUE       : guildData.TB.loopQueue,
-            PLAYLIST         : guildData.TB.PLAYLIST,
+            PLAYLIST         : guildData.TB.playlist,
         }
     };
-    const writeData = JSON.stringify(finalizedData,null,4);
-    const targetFile = require('path').join(guildData.configurationDir, guildData.configurationFile);
+    let writeData = JSON.stringify(finalizedData, null, 4);
+    let targetFile = path.join(guildData.configurationDir, guildData.configurationFile);
 
     if(newData) {
-        fs.mkdir(guildData.configurationDir, (errorData) => {
-            if(errorData) {
-                console.log(errorData);
-                process.exit(ExF.GUILD_MKDIR_FAIL);
+        fs.mkdir(guildData.configurationDir, (error_data) => {
+            if(error_data) {
+                console.error(error_data);
+                log_console('[ERROR] Failed to create new directory for new guild.', guildData);
             }
         });
     }
 
-    fs.writeFile(targetFile, writeData, (errorData) =>
-    {
-        if(errorData) {
-            console.log(errorData);
-            process.exit(ExF.CONFIG_GUILD_WRITE_FAIL);
+    fs.writeFile(targetFile, writeData, (error_data) => {
+        if(error_data) {
+            console.error(error_data);
+            log_console('[ERROR] Failed to create new file for new guild.', guildData);
         }
     });
 }
 
-const createNewFile = (fpath,data) => {
-    fs.writeFileSync(fpath,data,'utf8',(error) => {
-        if(error) {
-            console.error(error);
+// ashz> creates a new file
+const create_target_file = (file_path, data) => {
+    fs.writeFileSync(file_path, data, 'utf8', (error_data) => {
+        if(error_data) {
+            console.error(error_data);
+            log_console('[ERROR] Failed to write file.', guildData);
         }
     });
 }
 
-const removeFile = (targetPath) => {
-    fs.unlinkSync(targetPath);
+// ashz> deleteds a name from file system (simply, deletes a file)
+const remove_target_file = (target_file_path) => {
+    try {
+        fs.unlinkSync(target_file_path);
+    } catch (error_data) {
+        console.error(error_data);
+    }
 }
 
-const getArrayFromFile = (targetPath) => {
-    let data = fs.readFileSync(targetPath,'utf8');
-    console.log(data);
-    if(data===null) return null;
-    return JSON.parse(data);
+// ashz> gets JSON formated array to normal array data
+const get_array_from_file = (target_file_path) => {
+    let file_data;
+    
+    try {
+        file_data = fs.readFileSync(target_file_path, 'utf8');
+    } catch (error_data) {
+        console.error(error_data);
+    }
+    
+    if(file_data==null) return null;
+    return JSON.parse(file_data);
 }
 
-const saveArrayToFile = (targetPath,arrayData) => {
-    fs.writeFileSync(targetPath,JSON.stringify(arrayData,null,4),(err)=>{
-        if(err){
-            console.log(err);
+// ashz> saves array data into a file after converting said array to JSON format
+const save_array_to_file = (target_file_path, array_data) => {
+    fs.writeFileSync(target_file_path, JSON.stringify(array_data, null, 4), (error_data) => {
+        if(error_data) {
+            console.error(error_data);
+            log_console('[ERROR] Saving array data failed.', null);
         }
     });
 }
@@ -169,16 +191,16 @@ module.exports = {
     */
 
     // ashz> Functions
-    getStringDate : get_full_date_time_to_string_log_format,
-    getDay        : get_full_date_to_string_output_format,
-    replaceAll    : edit_string_replaceAll_substring,
-    traceDebug    : print_debug_tracelog,
-    stringCut : string_cut,
-    getChannelName : get_channel_name_with_channel_instance,
-    getSecondFormat : get_string_with_format_from_second,
-    saveGuildData : saveGuildData,
-    createNewFile : createNewFile,
-    removeFile : removeFile,
-    getArrayFromFile : getArrayFromFile,
-    saveArrayToFile : saveArrayToFile,
+    getStrDateTime   : get_full_date_time_to_string_log_format,
+    getStrDate       : get_full_date_to_string_output_format,
+    replaceAll       : edit_string_replaceAll_substring,
+    traceLog         : get_debug_tracelog,
+    getLimitedString : get_string_cut_withint_limit,
+    getChannelName   : get_channel_name_from_channel_instance,
+    getSecFormat     : get_string_with_time_format_from_second,
+    saveGuildData    : save_dynamic_guild_data_from_guild_object,
+    createFile       : create_target_file,
+    removeFile       : remove_target_file,
+    getArrayFromFile : get_array_from_file,
+    saveArrayToFile  : save_array_to_file,
 };

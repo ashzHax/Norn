@@ -11,8 +11,6 @@ const path         = require('path');
 // custom module
 const ExF          = require('./ExF.js');
 const Command      = require('./Command.js');
-
-// custom function
 const log_console  = require('./Log.js').log_console;
 const log_event    = require('./Log.js').log_event;
 
@@ -368,7 +366,7 @@ Norn.on('message', (messageData) => {
     }
 
     try {
-        Command['command_'+commandArray[0].toLowerCase()](messageData,commandArray,guildData);
+        Command[commandArray[0].toLowerCase()](messageData,commandArray,guildData);
     } catch(errorData) {
         if(errorData) log_event('COMMAND_UNKNOWN', messageData, guildData);
     }

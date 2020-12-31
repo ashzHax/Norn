@@ -11,48 +11,48 @@ const Path = require('path');
 async function TB_JOIN(guildData,userVoiceChannel)
 {
     try {
-        guildData.TB.DYNAMIC.voiceConnection = await userVoiceChannel.join();
+        guildData.TB.voiceConnection = await userVoiceChannel.join();
     } catch (errorData) {
         log_TB('join_fail',guildData);
         console.log(errorData);
         return false;
     }
     
-    guildData.TB.DYNAMIC.voiceConnection.voice.setSelfDeaf(true); // ashz> faster connection speed
-    guildData.TB.DYNAMIC.voiceChannel = userVoiceChannel;
+    guildData.TB.voiceConnection.voice.setSelfDeaf(true); // ashz> faster connection speed
+    guildData.TB.voiceChannel = userVoiceChannel;
     return true;
 }
 module.exports.TB_JOIN = TB_JOIN;
 
 async function TB_LEAVE(guildData)
 {
-    try { guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
-    try { await guildData.TB.DYNAMIC.voiceConnection.disconnect(); } catch(errorData) {}
-    guildData.TB.DYNAMIC.voiceConnection  = null;
-    guildData.TB.DYNAMIC.userVoiceChannel = null;
-    guildData.TB.DYNAMIC.userTextChannel  = null;
-    guildData.TB.DYNAMIC.queue            = [];
-    guildData.TB.DYNAMIC.index            = 0;
-    guildData.TB.DYNAMIC.playing          = false;
-    guildData.TB.DYNAMIC.paused          = false;
+    try { guildData.TB.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
+    try { await guildData.TB.voiceConnection.disconnect(); } catch(errorData) {}
+    guildData.TB.voiceConnection  = null;
+    guildData.TB.userVoiceChannel = null;
+    guildData.TB.userTextChannel  = null;
+    guildData.TB.queue            = [];
+    guildData.TB.index            = 0;
+    guildData.TB.playing          = false;
+    guildData.TB.paused          = false;
     return true;
 }
 module.exports.TB_LEAVE = TB_LEAVE;
 
 async function TB_PLAY(guildData)
 {
-    const trackData = guildData.TB.DYNAMIC.queue[guildData.TB.DYNAMIC.index];
+    const trackData = guildData.TB.queue[guildData.TB.index];
 
-    if(guildData.TB.DYNAMIC.playing) {
-        await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
+    if(guildData.TB.playing) {
+        await guildData.TB.voiceConnection.dispatcher.destroy();
     }
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
-    guildData.TB.DYNAMIC.voiceConnection
+    guildData.TB.voiceConnection
         .play( YTDLC(trackData.video_url), {filter:'audioonly',quality:'highestaudio',highWaterMark:(1<<25)} )
         .on('finish', () => 
         {
-            guildData.TB.DYNAMIC.playing = false;
+            guildData.TB.playing = false;
             TB_QUEUE_NEXT(guildData);
         })
         .on('error', (errorData) =>
@@ -60,17 +60,17 @@ async function TB_PLAY(guildData)
             log_TB('PLAY_STREAM_DISCONNECTION_ERROR',guildData);
             console.error(errorData);
 
-            guildData.TB.DYNAMIC.errorCount++;
-            if(guildData.TB.DYNAMIC.errorCount >= 3) {
+            guildData.TB.errorCount++;
+            if(guildData.TB.errorCount >= 3) {
                 log_TB('PLAY_STREAM_CONTINUOUS_DISCONNECTION_ERROR');
                 return;
             }
             TB_PLAY(guildData);
         });
 
-    guildData.TB.DYNAMIC.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
-    guildData.TB.DYNAMIC.playing=true;
-    guildData.TB.DYNAMIC.paused=false;
+    guildData.TB.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
+    guildData.TB.playing=true;
+    guildData.TB.paused=false;
 
     log_TB('PLAY_SUCCESS',guildData);
     return true;
@@ -80,14 +80,14 @@ module.exports.TB_PLAY = TB_PLAY;
 async function TB_STOP(guildData)
 {
     try{
-        await  guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
+        await  guildData.TB.voiceConnection.dispatcher.destroy();
     } catch(errorData) {
         log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData,errorData);
         return;
     }
 
-    guildData.TB.DYNAMIC.playing          = false;
-    guildData.TB.DYNAMIC.paused = false;
+    guildData.TB.playing          = false;
+    guildData.TB.paused = false;
     log_TB('STOP_SUCCESS',guildData);
 }
 module.exports.TB_STOP = TB_STOP;
@@ -95,19 +95,19 @@ module.exports.TB_STOP = TB_STOP;
 // queue clear & stop TB
 async function TB_CLEAR(guildData)
 {
-    if(!guildData.TB.DYNAMIC.playing) {
-        if(guildData.TB.DYNAMIC.queue == null) {
+    if(!guildData.TB.playing) {
+        if(guildData.TB.queue == null) {
             log_TB('CLEAR_NOTHING_TO_STOP',guildData);
         }
         else {
             log_TB('CLEAR_CLEARING_QUEUE',guildData);
-            guildData.TB.DYNAMIC.index = 0;
-            guildData.TB.DYNAMIC.queue = [];
+            guildData.TB.index = 0;
+            guildData.TB.queue = [];
         }
     } 
     else {
         try {
-            await guildData.TB.DYNAMIC.voiceConnection.dispatcher.destroy();
+            await guildData.TB.voiceConnection.dispatcher.destroy();
         }
         catch(errorData) {
             log_TB('CLEAR_FAILED_TO_DESTROY_DISPATCH',guildData);
@@ -115,9 +115,9 @@ async function TB_CLEAR(guildData)
             return;
         }
 
-        guildData.TB.DYNAMIC.index = 0;
-        guildData.TB.DYNAMIC.queue = [];
-        guildData.TB.DYNAMIC.playing = false;
+        guildData.TB.index = 0;
+        guildData.TB.queue = [];
+        guildData.TB.playing = false;
 
         log_TB('CLEAR_SUCCESS',guildData);
     }
@@ -126,10 +126,10 @@ async function TB_CLEAR(guildData)
 // next queue
 function TB_QUEUE_NEXT(guildData)
 {
-    const loopSingle = guildData.TB.STATIC.loopSingle;
-    const loopQueue = guildData.TB.STATIC.loopQueue;
+    const loopSingle = guildData.TB.loopSingle;
+    const loopQueue = guildData.TB.loopQueue;
  
-    switch(guildData.TB.DYNAMIC.queue.length)
+    switch(guildData.TB.queue.length)
     {
         case 0:
         {
@@ -150,13 +150,13 @@ function TB_QUEUE_NEXT(guildData)
             if(loopSingle) {
                 TB_PLAY(guildData);
             } else if (loopQueue) {
-                guildData.TB.DYNAMIC.index = (guildData.TB.DYNAMIC.index + 1) % guildData.TB.DYNAMIC.queue.length;
+                guildData.TB.index = (guildData.TB.index + 1) % guildData.TB.queue.length;
                 TB_PLAY(guildData);
             } else {
-                if((guildData.TB.DYNAMIC.index + 1) > guildData.TB.DYNAMIC.queue.length) {
+                if((guildData.TB.index + 1) > guildData.TB.queue.length) {
                     log_TB('NEXT_QUEUE_END',guildData);
                 } else {
-                    guildData.TB.DYNAMIC.index = guildData.TB.DYNAMIC.index + 1;
+                    guildData.TB.index = guildData.TB.index + 1;
                     TB_PLAY(guildData);
                 }
             }
@@ -169,10 +169,10 @@ function TB_QUEUE_NEXT(guildData)
 // skipCount > 0 : skips skipCount times 
 function TB_NEXT(guildData,skipCount)
 {
-    const loopSingle = guildData.TB.STATIC.loopSingle;
-    const loopQueue = guildData.TB.STATIC.loopQueue;
+    const loopSingle = guildData.TB.loopSingle;
+    const loopQueue = guildData.TB.loopQueue;
  
-    switch(guildData.TB.DYNAMIC.queue.length)
+    switch(guildData.TB.queue.length)
     {
         case 0:
         {
@@ -192,13 +192,13 @@ function TB_NEXT(guildData,skipCount)
         {
             if(skipCount <= 0) skipCount = 1;
             if(loopSingle || loopQueue) {
-                guildData.TB.DYNAMIC.index = (guildData.TB.DYNAMIC.index + skipCount) % guildData.TB.DYNAMIC.queue.length ;
+                guildData.TB.index = (guildData.TB.index + skipCount) % guildData.TB.queue.length ;
                 TB_PLAY(guildData);
             } else {
-                if((guildData.TB.DYNAMIC.index + skipCount) > guildData.TB.DYNAMIC.queue.length) {
+                if((guildData.TB.index + skipCount) > guildData.TB.queue.length) {
                     log_TB('SKIP_NOTHING_NEXT',guildData);
                 } else {
-                    guildData.TB.DYNAMIC.index = guildData.TB.DYNAMIC.index+skipCount;
+                    guildData.TB.index = guildData.TB.index+skipCount;
                     TB_PLAY(guildData);
                 }
             }
@@ -212,10 +212,10 @@ module.exports.TB_NEXT = TB_NEXT;
 // skipCount > 0 : skips skipCount times 
 function TB_PREV(guildData,skipCount)
 {
-    const loopSingle = guildData.TB.STATIC.loopSingle;
-    const loopQueue = guildData.TB.STATIC.loopQueue;
+    const loopSingle = guildData.TB.loopSingle;
+    const loopQueue = guildData.TB.loopQueue;
  
-    switch(guildData.TB.DYNAMIC.queue.length)
+    switch(guildData.TB.queue.length)
     {
         case 0:
         {
@@ -234,11 +234,11 @@ function TB_PREV(guildData,skipCount)
         default:
         {
             // INVALID ALGORITHM, INSTEAD OF GOING BACKWARDS, COUNT GO FORWARDS TODO : ashz
-            let Uz_check = guildData.TB.DYNAMIC.index - skipCount;
+            let Uz_check = guildData.TB.index - skipCount;
             if(Uz_check < 0) {
                 Uz_check = Uz_check * -1;
             }
-            guildData.TB.DYNAMIC.index = Uz_check % guildData.TB.DYNAMIC.queue.length;
+            guildData.TB.index = Uz_check % guildData.TB.queue.length;
             TB_PLAY(guildData);
         }
     }
@@ -249,36 +249,36 @@ async function TB_PAUSE(guildData)
 {
    
     try {
-        await guildData.TB.DYNAMIC.voiceConnection.dispatcher.pause(false);
+        await guildData.TB.voiceConnection.dispatcher.pause(false);
     }
     catch(errorData) {
         log_TB('PAUSE_PROCESS_ERROR',guildData);
         return;
     }
     
-    guildData.TB.DYNAMIC.paused = true;
-    guildData.TB.DYNAMIC.playing = false;
+    guildData.TB.paused = true;
+    guildData.TB.playing = false;
     log_TB('PAUSE_SUCCESS',guildData);
 }
 module.exports.TB_PAUSE  = TB_PAUSE;
 
 async function TB_RESUME(guildData)
 {
-    if (guildData.TB.DYNAMIC.playing) {
+    if (guildData.TB.playing) {
         log_TB('RESUME_ALREADY_PLAYING',guildData);
         return;
     }
 
     try {
-        await guildData.TB.DYNAMIC.voiceConnection.dispatcher.resume();
+        await guildData.TB.voiceConnection.dispatcher.resume();
     }
     catch(errorData) {
         log_TB('RESUME_PROCESS_ERROR',guildData);
         return;
     }
 
-    guildData.TB.DYNAMIC.paused  = false;
-    guildData.TB.DYNAMIC.playing = true;
+    guildData.TB.paused  = false;
+    guildData.TB.playing = true;
     log_TB('RESUME_SUCCESS',guildData);    
 }
 module.exports.TB_RESUME = TB_RESUME;
@@ -307,40 +307,40 @@ async function TB_QUEUE_ADD(guildData,targetURL,rvolume)
         volume:    rvolume
     };
 
-    guildData.TB.DYNAMIC.queue.push(videoData);
+    guildData.TB.queue.push(videoData);
     return true;
 }
 module.exports.TB_QUEUE_ADD = TB_QUEUE_ADD;
 
 async function TB_QUEUE_REMOVE(guildData,targetIdx)
 {
-    guildData.TB.DYNAMIC.queue.splice(targetIdx,1);
-    if(guildData.TB.DYNAMIC.index > targetIdx) {
-        guildData.TB.DYNAMIC.index--;
+    guildData.TB.queue.splice(targetIdx,1);
+    if(guildData.TB.index > targetIdx) {
+        guildData.TB.index--;
     }
 }
 module.exports.TB_QUEUE_REMOVE = TB_QUEUE_REMOVE
 
 async function TB_QUEUE_CLEAR(guildData)
 {
-    let queueLength = guildData.TB.DYNAMIC.queue.length;
-    let cIndex = guildData.TB.DYNAMIC.index;
+    let queueLength = guildData.TB.queue.length;
+    let cIndex = guildData.TB.index;
 
     if(queueLength-1 > cIndex) {
-        guildData.TB.DYNAMIC.queue.splice(cIndex+1,(queueLength-1)-cIndex);
+        guildData.TB.queue.splice(cIndex+1,(queueLength-1)-cIndex);
     } 
     
-    guildData.TB.DYNAMIC.queue.splice(0,cIndex);
-    guildData.TB.DYNAMIC.index = 0;
+    guildData.TB.queue.splice(0,cIndex);
+    guildData.TB.index = 0;
 }
 module.exports.TB_QUEUE_CLEAR = TB_QUEUE_CLEAR;
 
 async function TB_SETTING_LOOP_TOGGLE(guildData,targetLoop)
 {
     if(targetLoop === 'single') {
-        guildData.TB.STATIC.loopSingle = !guildData.TB.STATIC.loopSingle;
+        guildData.TB.loopSingle = !guildData.TB.loopSingle;
     } else if(targetLoop === 'queue') {
-        guildData.TB.STATIC.loopQueue = !guildData.TB.STATIC.loopQueue;
+        guildData.TB.loopQueue = !guildData.TB.loopQueue;
     }
     ExF.saveGuildData(guildData);
 }
@@ -349,9 +349,9 @@ module.exports.TB_SETTING_LOOP_TOGGLE = TB_SETTING_LOOP_TOGGLE;
 async function TB_SETTING_LOOP_EDIT(guildData,targetLoop,value)
 {
     if(targetLoop === 'single') {
-        guildData.TB.STATIC.loopSingle = value;
+        guildData.TB.loopSingle = value;
     } else if(targetLoop === 'queue') {
-        guildData.TB.STATIC.loopQueue = value;
+        guildData.TB.loopQueue = value;
     }
     ExF.saveGuildData(guildData);
 }
@@ -366,9 +366,9 @@ async function TB_PLAYLIST_CREATE(guildData, newPLname, plOwner)
         elements: 0,
     };
 
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${newPLname}.json`);
+    const targetFile = Path.join(guildData.configurationDir, `${newPLname}.json`);
 
-    ExF.createNewFile(targetFile,null);
+    ExF.createFile(targetFile,null);
     ExF.saveGuildData(guildData);
 }
 module.exports.TB_PLAYLIST_CREATE = TB_PLAYLIST_CREATE;
@@ -377,7 +377,7 @@ async function TB_PLAYLIST_DELETE(guildData, targetPLname)
 {
     delete guildData.TB.PLAYLIST[targetPLname];
 
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
 
     ExF.removeFile(targetFile);
     ExF.saveGuildData(guildData);
@@ -386,7 +386,7 @@ module.exports.TB_PLAYLIST_DELETE = TB_PLAYLIST_DELETE;
 
 async function TB_PLAYLIST_ADD(guildData, targetPLname, url, vol)
 {
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     let requestData;
 
@@ -425,7 +425,7 @@ module.exports.TB_PLAYLIST_ADD = TB_PLAYLIST_ADD;
 
 async function TB_PLAYLIST_REMOVE(guildData,targetPLname,targetIdx)
 {
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
     guildData.TB.PLAYLIST[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
@@ -439,9 +439,9 @@ module.exports.TB_PLAYLIST_REMOVE = TB_PLAYLIST_REMOVE;
 
 async function TB_PLAYLIST_QUEUE(guildData, targetPLname)
 {
-    const targetFile = Path.join(guildData.DYNAMIC.configurationDir, `${targetPLname}.json`);
+    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
-    guildData.TB.DYNAMIC.queue = guildData.TB.DYNAMIC.queue.concat(playlistData);
+    guildData.TB.queue = guildData.TB.queue.concat(playlistData);
 }
 module.exports.TB_PLAYLIST_QUEUE = TB_PLAYLIST_QUEUE;
