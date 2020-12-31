@@ -140,8 +140,7 @@ const command_setting = (message, commandArray, guildData) => {
 // TrackBot Control Commands
 //////////////////////////////////////////////////
 
-async function tryJoining(message,guildData) 
-{
+async function tryJoining(message, guildData) {
     const userTextChannel  = message.channel;
     const userVoiceChannel = message.member.voice.channel;
 
@@ -165,10 +164,6 @@ async function tryJoining(message,guildData)
         return false;
     }
 
-    if(guildData.TB.voiceConnection != null) {
-        log_command('JOIN_ALREADY_CONNECTED', message, guildData);
-        return false;
-    }
 
     if(!(await TrackBot.TB_JOIN(guildData,userVoiceChannel))) {
         return false;
@@ -179,12 +174,14 @@ async function tryJoining(message,guildData)
     return true;
 }
 
-async function command_join(message,commandArray,guildData)
-{
-    switch(commandArray.length)
-    {
-        case 1:
-        {
+async function command_join(message,commandArray,guildData) {
+    switch(commandArray.length) {
+        case 1: {
+            if(guildData.TB.voiceConnection != null) {
+                log_command('JOIN_ALREADY_CONNECTED', message, guildData);
+                return false;
+            }
+            
             await tryJoining(message, guildData);
             break;
         }
