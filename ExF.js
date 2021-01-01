@@ -2,17 +2,13 @@
 
 // ashz> internal modules
 const fs          = require('fs');
-const process     = require('process');
 const path        = require('path');
-
-// ashz> custom modules
-const log_console = require('./Log').log_console;
 
 // ashz> get full date/time format
 const get_full_date_time_to_string_log_format = (dateInstance) => {
     return dateInstance.getFullYear().toString().padStart(2, '0') + '/'
          +(dateInstance.getMonth()+1).toString().padStart(2, '0') + '/'
-          +dateInstance.getDate().toString().padStart(2, '0')     + '  '
+          +dateInstance.getDate().toString().padStart(2, '0')     + ' '
           +dateInstance.getHours().toString().padStart(2, '0')    + ':'
           +dateInstance.getMinutes().toString().padStart(2, '0')  + ':'
           +dateInstance.getSeconds().toString().padStart(2, '0')  + '.'
@@ -24,6 +20,19 @@ const get_full_date_to_string_output_format = (dateInstance) => {
     return dateInstance.getFullYear().toString()
     	 +(dateInstance.getMonth()+1).toString().padStart(2, '0')
 		  +dateInstance.getDate().toString().padStart(2, '0');
+}
+
+// ashz> log to console & append log to file
+const log_console = (message=null, guildData=null) => {
+    if(message === null) {
+        console.log('Invalid \"log_console()\" function usage!');
+    } else {
+        if(guildData !== null) {
+            let dataPath = Path.join(guildData.logPath, `${get_full_date_to_string_output_format(new Date())}.log`);
+            FileSystem.appendFile(dataPath, `[${get_full_date_time_to_string_log_format(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`, 'utf8', () => {});
+        }
+        console.log(`[${get_full_date_time_to_string_log_format(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
+    }
 }
 
 // ashz> custom String.replaceAll()
@@ -137,7 +146,7 @@ const remove_target_file = (target_file_path) => {
 }
 
 // ashz> gets JSON formated array to normal array data
-const get_array_from_file = (target_file_path) => {
+const get_array_data_from_file = (target_file_path) => {
     let file_data;
     
     try {
@@ -151,7 +160,7 @@ const get_array_from_file = (target_file_path) => {
 }
 
 // ashz> saves array data into a file after converting said array to JSON format
-const save_array_to_file = (target_file_path, array_data) => {
+const save_array_data_to_file = (target_file_path, array_data) => {
     fs.writeFileSync(target_file_path, JSON.stringify(array_data, null, 4), (error_data) => {
         if(error_data) {
             console.error(error_data);
@@ -191,6 +200,7 @@ module.exports = {
     */
 
     // ashz> Functions
+    logConsole       : log_console,
     getStrDateTime   : get_full_date_time_to_string_log_format,
     getStrDate       : get_full_date_to_string_output_format,
     replaceAll       : edit_string_replaceAll_substring,
@@ -201,6 +211,6 @@ module.exports = {
     saveGuildData    : save_dynamic_guild_data_from_guild_object,
     createFile       : create_target_file,
     removeFile       : remove_target_file,
-    getArrayFromFile : get_array_from_file,
-    saveArrayToFile  : save_array_to_file,
+    getArrayFromFile : get_array_data_from_file,
+    saveArrayToFile  : save_array_data_to_file,
 };

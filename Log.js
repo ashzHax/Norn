@@ -8,22 +8,8 @@ const FileSystem = require('fs');
 const Path       = require('path');
 
 // custom module
-const ExF   =  require('./ExF.js');
+const ExF = require('./ExF.js');
 
-function log_console(message=null,guildData=null)
-{
-    if(message==null) {
-        console.log('Invalid \"log_console()\" function usage!');
-    }
-    else {
-        if(guildData!=null) {
-            let dataPath = Path.join(guildData.logPath,`${ExF.getStrDate(new Date())}.log`);
-            FileSystem.appendFile(dataPath,`[${ExF.getStrDateTime(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`,'utf8',()=>{});
-        }
-        console.log(`[${ExF.getStrDateTime(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
-    }
-}
-module.exports.log_console = log_console;
 
 // event data sent only to logging channel and console
 function log_event(logType,eventData,guildData=null)
@@ -266,7 +252,7 @@ function log_event(logType,eventData,guildData=null)
     if(consoleLogText == null) {
         console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
-        log_console(consoleLogText,guildData);
+        ExF.logConsole(consoleLogText,guildData);
     }
 }
 module.exports.log_event = log_event;
@@ -1702,7 +1688,7 @@ function log_command(logType,message,guildData,extraData=null)
     if(consoleLogText == null) {
         console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
-        log_console(consoleLogText,guildData);
+        ExF.logConsole(consoleLogText,guildData);
     }
 }
 module.exports.log_command = log_command;
@@ -1789,7 +1775,7 @@ function log_TB(logType,guildData,extraData=null)
         }
     }
  
-    log_console(consoleLogText,guildData);
+    ExF.logConsole(consoleLogText,guildData);
 
     if( (guildData!=null) && (devLog!=null) ) {
         guildData.systemChannel.send(devLog);

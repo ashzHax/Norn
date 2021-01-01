@@ -61,7 +61,7 @@ commandList.forEach((element) => {
 // System Commands
 //////////////////////////////////////////////////
 
-const command_help = (message, commandArray, guildData) => {
+const command_help = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
             helpEmbed.setAuthor(message.author.tag);
@@ -76,7 +76,7 @@ const command_help = (message, commandArray, guildData) => {
 }
 
 // TODO: ashz
-const command_syscall = (message, commandArray, guildData) => {
+const command_syscall = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
             log_command('SYSCALL_UNDER_REQ_ARG_CNT', message, guildData);
@@ -132,7 +132,7 @@ const command_syscall = (message, commandArray, guildData) => {
 }
 
 // TODO: ashz
-const command_setting = (message, commandArray, guildData) => {
+const command_setting = async (message, commandArray, guildData) => {
     return;
 }
 

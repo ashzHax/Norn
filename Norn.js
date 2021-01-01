@@ -11,7 +11,6 @@ const path         = require('path');
 // custom module
 const ExF          = require('./ExF.js');
 const Command      = require('./Command.js');
-const log_console  = require('./Log.js').log_console;
 const log_event    = require('./Log.js').log_event;
 
 // global constant
@@ -37,11 +36,11 @@ process.on('exit', code => {
         case ExF.GUILD_CONFIG_DIR_FAILED_TO_READ: 
         case ExF.GUILD_CONFIG_DIR_CREATE_FAIL: 
         case ExF.GUILD_SETTING_FILE_FAILED_TO_WRITE : {
-            log_console(`[CRIT] Ending program. Error code: ${code}`, null);
+            ExF.logConsole(`[CRIT] Ending program. Error code: ${code}`, null);
             break;
         }
         default: {
-            log_console(`[?] Ending program. Unknown error code: ${code}`, null);
+            ExF.logConsole(`[?] Ending program. Unknown error code: ${code}`, null);
         }
     }
 });
@@ -64,7 +63,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
     fs.mkdir(CONFIG_GUILD_DIR_PATH, (errorData) => {
         if(errorData) {
             // console.error(errorData);
-            log_console(`[ALERT] Directory already exists. (${CONFIG_GUILD_DIR_PATH})`, null);
+            ExF.logConsole(`[ALERT] Directory already exists. (${CONFIG_GUILD_DIR_PATH})`, null);
             // process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
         }
     });
@@ -77,7 +76,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
         if(errorData) {
             console.error(errorData);
 			// ashz> better to exit, since client needs access to directory later
-			//log_console('Failed reading guild config directory. (GUILD_DIR_FAILED_TO_READ)', null);
+			//ExF.logConsole('Failed reading guild config directory. (GUILD_DIR_FAILED_TO_READ)', null);
             process.exit(ExF.GUILD_DIR_FAILED_TO_READ);
         }
 
@@ -88,7 +87,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
 			fs.readFile(configFilePath, (errorData, fileData) => {
 				if(errorData) {
 					console.error(errorData);
-					log_console('[WARN] Unable to read a guild setting file.', null);
+					ExF.logConsole('[WARN] Unable to read a guild setting file.', null);
 					return;
 				}
 
@@ -130,7 +129,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
 // Initial Variable Set
 //////////////////////////////////////////////////
 
-log_console('[ALERT] Finished Data Handling, waiting on Discord API...',null);
+ExF.logConsole('[ALERT] Finished Data Handling, waiting on Discord API...', null);
 
 //////////////////////////////////////////////////
 // Bot Ready Event
