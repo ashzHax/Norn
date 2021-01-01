@@ -353,7 +353,7 @@ Norn.on('message', (messageData) => {
         if(!messageData.deleted) messageData.delete();
         return;
     }
-
+    
     messageData.member.roles.member._roles.forEach((roles) => {
         if(messageData.guild.roles.cache.get(roles).name.toLowerCase() === 'bot') permissionFlag = true;
     });

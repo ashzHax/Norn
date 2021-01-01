@@ -315,26 +315,6 @@ function log_command(logType,message,guildData,extraData=null)
         //////////////////////////////////////////////////
         // Event Handler: join
         //////////////////////////////////////////////////
-        case 'JOIN_TEXT_CHL_NULL':
-        {
-            let logReason = 'Text channel is Null inside message object.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "true",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(logReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
         case 'JOIN_VC_NULL':
         {
             let logReason = 'Voice channel is Null inside message object.';
@@ -395,7 +375,7 @@ function log_command(logType,message,guildData,extraData=null)
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'JOIN_ALREADY_CONNECTED':
+        case 'JOIN_CONNECTED':
         {
             let logReason = 'Already connected to a voice channel.';
             let logData = 

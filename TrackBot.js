@@ -8,8 +8,18 @@ const ExF    = require('./ExF.js');
 const log_TB = require('./Log.js').log_TB;
 const Path = require('path');
 
-async function TB_JOIN(guildData,userVoiceChannel)
+async function join_user_channel(guildData,client,userTextChannel,userVoiceChannel)
 {
+    if(!userVoiceChannel.permissionsFor(client).has("CONNECT")) {
+        // log_command('JOIN_NO_PERM_CONNECT', message, guildData);
+        return false;
+    }
+    
+    if(!userVoiceChannel.permissionsFor(client).has("SPEAK")) {
+        // log_command('JOIN_NO_PERM_SPEAK', message, guildData);
+        return false;
+    }
+
     try {
         guildData.TB.voiceConnection = await userVoiceChannel.join();
     } catch (errorData) {
@@ -18,11 +28,12 @@ async function TB_JOIN(guildData,userVoiceChannel)
         return false;
     }
     
+    guildData.TB.textChannel = userTextChannel;
     guildData.TB.voiceConnection.voice.setSelfDeaf(true); // ashz> faster connection speed
     guildData.TB.voiceChannel = userVoiceChannel;
     return true;
 }
-module.exports.TB_JOIN = TB_JOIN;
+module.exports.join = join_user_channel;
 
 async function TB_LEAVE(guildData)
 {

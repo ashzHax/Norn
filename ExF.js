@@ -28,8 +28,8 @@ const log_console = (message=null, guildData=null) => {
         console.log('Invalid \"log_console()\" function usage!');
     } else {
         if(guildData !== null) {
-            let dataPath = Path.join(guildData.logPath, `${get_full_date_to_string_output_format(new Date())}.log`);
-            FileSystem.appendFile(dataPath, `[${get_full_date_time_to_string_log_format(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`, 'utf8', () => {});
+            let dataPath = path.join(guildData.logPath, `${get_full_date_to_string_output_format(new Date())}.log`);
+            fs.appendFile(dataPath, `[${get_full_date_time_to_string_log_format(new Date())}]${(!message.startsWith('[')?' ':'')}${message}\n`, 'utf8', () => {});
         }
         console.log(`[${get_full_date_time_to_string_log_format(new Date())}]${(!message.startsWith('[')?' ':'')}${message}`);
     }

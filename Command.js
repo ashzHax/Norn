@@ -140,79 +140,41 @@ const command_setting = async (message, commandArray, guildData) => {
 // TrackBot Control Commands
 //////////////////////////////////////////////////
 
-async function tryJoining(message, guildData) {
-    const userTextChannel  = message.channel;
-    const userVoiceChannel = message.member.voice.channel;
-
-    if(!userTextChannel) {
-        log_command('JOIN_TEXT_CHL_NULL', message, guildData);
-        return false;
-    }
-
-    if(!userVoiceChannel) {
-        log_command('JOIN_VC_NULL', message, guildData);
-        return false;
-    }
-
-    if(!userVoiceChannel.permissionsFor(message.client.user).has("CONNECT")) {
-        log_command('JOIN_NO_PERM_CONNECT', message, guildData);
-        return false;
-    }
-    
-    if(!userVoiceChannel.permissionsFor(message.client.user).has("SPEAK")) {
-        log_command('JOIN_NO_PERM_SPEAK', message, guildData);
-        return false;
-    }
-
-
-    if(!(await TrackBot.TB_JOIN(guildData,userVoiceChannel))) {
-        return false;
-    }
-    guildData.TB.textChannel = userTextChannel;
-
-    log_command('JOIN_SUCCESS', message, guildData);
-    return true;
-}
-
-async function command_join(message,commandArray,guildData) {
+const command_join = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
-            if(guildData.TB.voiceConnection != null) {
-                log_command('JOIN_ALREADY_CONNECTED', message, guildData);
-                return false;
+            if(message.member.voice.channel == null) {
+                log_command('JOIN_VC_NULL', message, guildData);
+                return;
+            }
+            if(guildData.TB.voiceConnection !== null) {
+                log_command('JOIN_CONNECTED', message, guildData);
+                return;
             }
             
-            await tryJoining(message, guildData);
+            await TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel);
+            log_command('JOIN_SUCCESS', message, guildData);
             break;
         }
-        default:
-        {
+        default: {
             log_command('JOIN_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
-    return true;
 }
 
-async function command_leave(message,commandArray,guildData)
-{
-    switch(commandArray.length) 
-    {
-        case 1:
-        {
-            if(!guildData.TB.voiceConnection) {
+const command_leave = async (message, commandArray, guildData) => {
+    switch(commandArray.length) {
+        case 1: {
+            if(guildData.TB.voiceConnection === null) {
                 log_command('LEAVE_NO_CONNECTION', message, guildData);
-                return;
+                break;
             }
-        
-            if(!(await TrackBot.TB_LEAVE(guildData))) {
-                return;
-            }
-        
-            log_command('LEAVE_SUCCESS',message,guildData);
+            
+            await TrackBot.TB_LEAVE(guildData);
+            log_command('LEAVE_SUCCESS', message, guildData);
             break;
         }
-        default:
-        {
+        default: {
             log_command('LEAVE_OVER_MAX_ARG_CNT', message, guildData);
         }
     }    
@@ -240,9 +202,8 @@ async function command_play(message,commandArray,guildData)
         case 2:
         {
             if(guildData.TB.voiceConnection == null) {
-                if(!(await tryJoining(message, guildData))) {
-                    break;
-                }
+                TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel);
+               
             }
 
 			if(!(await TrackBot.TB_QUEUE_ADD(guildData, commandArray[1], volumeData))) {
@@ -347,6 +308,15 @@ async function command_resume(message,commandArray,guildData)
         }
     }
 }
+
+// TODO: ashz 
+const command_status = async (message, commandArray, guildData) => {
+    return;
+}
+
+//////////////////////////////////////////////////
+// TrackBot Queue Commands
+//////////////////////////////////////////////////
 
 async function command_pause(message,commandArray,guildData)
 {
@@ -870,39 +840,27 @@ async function command_playlist(message,commandArray,guildData)
     }
 }
 
-async function command_status(message,commandArray,guildData)
-{
-    switch(commandArray.length)
-    {
-        case 1:
-        {
-            if(guildData.TB.playing) {
-
-            }
-            break;
-        }
-    }
-}
-
 
 module.exports = {
-    help: command_help,
-    setting: command_setting,
-    syscall: command_syscall,
-    join:command_join,
-    leave:command_leave,
-    play:command_play,
-    start:command_start,
-    stop:command_stop,
-    resume:command_resume,
-    pause:command_pause,
-    next:command_next,
-    previous:command_previous,
-    list:command_list,
-    add:command_add,
-    remove:command_remove,
-    clear:command_clear,
-    loop:command_loop,
-    playlist:command_playlist,
-    status:command_status,
+    // System Commands
+    help     : command_help,
+    setting  : command_setting,
+    syscall  : command_syscall,
+    // TrackBot Control Commands
+    join     : command_join,
+    leave    : command_leave,
+    play     : command_play,
+    start    : command_start,
+    stop     : command_stop,
+    resume   : command_resume,
+    pause    : command_pause,
+    next     : command_next,
+    previous : command_previous,
+    list     : command_list,
+    add      : command_add,
+    remove   : command_remove,
+    clear    : command_clear,
+    loop     : command_loop,
+    playlist : command_playlist,
+    status   : command_status,
 };
