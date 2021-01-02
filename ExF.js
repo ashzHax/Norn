@@ -37,7 +37,7 @@ const log_console = (message=null, guildData=null) => {
 
 // ashz> custom String.replaceAll()
 const edit_string_replaceAll_substring = (target_string, target_substring, replacement_substring) => {
-    while(target_string.search(target_substring !== -1)) {
+    while(target_string.search(target_substring)!==-1) {
         target_string = target_string.replace(target_substring,replacement_substring);
     }
     return target_string;

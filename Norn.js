@@ -270,7 +270,7 @@ Norn.on('guildMemberRemove', eventGuildMember =>
     log_event('GUILD_MEMBER_REMOVE', eventGuildMember, guildDataMap.get(eventGuildMember.guild.id)));
 
 Norn.on('guildMemberUpdate', (previousGuildMemeber, newGuildMember) =>
-    log_event('GUILD_MEMBEr_UPDATE', [previousGuildMemeber, newGuildMember], guildDataMap.get(newGuildMember.guild.id)));
+    log_event('GUILD_MEMBER_UPDATE', [previousGuildMemeber, newGuildMember], guildDataMap.get(newGuildMember.guild.id)));
 
 Norn.on('guildMemberAvailable', eventGuildMember =>
     log_event('GUILD_MEMBER_AVAILABLE', eventGuildMember, guildDataMap.get(eventGuildMember.guild.id)));
