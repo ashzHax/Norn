@@ -372,7 +372,11 @@ async function edit_loop_values(guildData,targetLoop,value)
 
 async function create_new_playlist_index_with_file(guildData, newPLname, plOwner)
 {
-    guildData.TB.PLAYLIST[newPLname] = 
+    if(guildData.TB.playlist === undefined) {
+        guildData.TB.playlist = {};
+    }
+    
+    guildData.TB.playlist[newPLname] = 
     {
         owner: plOwner,
         length: 0,
@@ -388,7 +392,7 @@ async function create_new_playlist_index_with_file(guildData, newPLname, plOwner
 
 async function delete_playlist_index_with_file(guildData, targetPLname)
 {
-    delete guildData.TB.PLAYLIST[targetPLname];
+    delete guildData.TB.playlist[targetPLname];
 
     const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
 
@@ -423,10 +427,10 @@ async function append_to_target_playlist(guildData, targetPLname, url, vol)
     }
     
     console.log(requestData.videoDetails.lengthSeconds);
-    guildData.TB.PLAYLIST[targetPLname].length += parseInt(requestData.videoDetails.lengthSeconds);
+    guildData.TB.playlist[targetPLname].length += parseInt(requestData.videoDetails.lengthSeconds);
 
-    console.log(guildData.TB.PLAYLIST[targetPLname].length);
-    guildData.TB.PLAYLIST[targetPLname].elements++;
+    console.log(guildData.TB.playlist[targetPLname].length);
+    guildData.TB.playlist[targetPLname].elements++;
 
     playlistData.push({title:requestData.videoDetails.title,length:requestData.videoDetails.lengthSeconds,video_url:url,volume:vol});
 
@@ -441,8 +445,8 @@ async function remove_from_target_playlist(guildData,targetPLname,targetIdx)
     const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
-    guildData.TB.PLAYLIST[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
-    guildData.TB.PLAYLIST[targetPLname].elements--;
+    guildData.TB.playlist[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
+    guildData.TB.playlist[targetPLname].elements--;
     playlistData.splice(targetIdx,1);
 
     ExF.saveGuildData(guildData);

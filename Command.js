@@ -623,7 +623,7 @@ const command_playlist = async (message, commandArray, guildData) => {
             switch(commandArray[1].toLowerCase()) {
                 case 'list': {
                     let LE = new Discord.MessageEmbed();
-                    let tmpPlaylist = guildData.TB.PLAYLIST;
+                    let tmpPlaylist = guildData.TB.playlist;
 
 					LE.setColor(ExF.html_sky)
                       .setAuthor(message.author.tag)
@@ -661,10 +661,13 @@ const command_playlist = async (message, commandArray, guildData) => {
                 }
                 case 'create': {
                     let newPLname = commandArray[2];
-                    if(newPLname in guildData.TB.PLAYLIST) {
-                        log_command('PLAYLIST_CREATE_FILE_EXISTS', message, guildData);
-                        break;
-                    }
+
+                    if(guildData.TB.playlist !== undefined) {
+                        if(newPLname in guildData.TB.playlist) {
+                            log_command('PLAYLIST_CREATE_FILE_EXISTS', message, guildData);
+                            break;
+                        }
+                    } 
 
                     TrackBot.playlist_create(guildData, newPLname, message.author.tag);
                     log_command('PLAYLIST_CREATE_SUCCESS', message, guildData);
@@ -672,7 +675,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                 }
                 case 'delete': {
                     let targetPlaylist = commandArray[2];
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_DELETE_NO_FILE_EXISTS', message, guildData);
                         break;
                     }
@@ -683,7 +686,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                 }
                 case 'queue': {
                     let targetPlaylist = commandArray[2];
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_QUEUE_NO_DATA_FOUND', message, guildData);
                         break;
                     }
@@ -699,14 +702,14 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let playlist     = ExF.getArrayFromFile(targetFile);
                     let loopIdx;
 
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_SHOW_NO_PL_FOUND', message, guildData);
                         break;
                     }
                     
 					SE.setColor(ExF.html_sky)
                       .setAuthor(message.author.tag)
-					  .setTitle(`[${targetPlaylist}][C:${guildData.TB.PLAYLIST[targetPlaylist].elements}][${ExF.getSecFormat(guildData.TB.PLAYLIST[targetPlaylist].length)}] Playlist Info`)
+					  .setTitle(`[${targetPlaylist}][C:${guildData.TB.playlist[targetPlaylist].elements}][${ExF.getSecFormat(guildData.TB.playlist[targetPlaylist].length)}] Playlist Info`)
 					  .setTimestamp();
 
                     for(loopIdx=0 ; loopIdx<playlist.length ; loopIdx++) {
@@ -743,7 +746,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                 }
                 case 'add': {
                     let targetPlaylist = commandArray[2];
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
                         break;
                     }
@@ -756,7 +759,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let targetPlaylist = commandArray[2];
                     let targetIdx      = parseInt(commandArray[3]);
 
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_REMOVE_NO_PL_FOUND', message, guildData);
                         break;
                     }
@@ -766,7 +769,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    if(targetIdx >= guildData.TB.PLAYLIST[targetPlaylist].length || targetIdx < 0) {
+                    if(targetIdx >= guildData.TB.playlist[targetPlaylist].length || targetIdx < 0) {
                         log_command('PLAYLIST_REMOVE_INVALID_ARG_VALUE', message, guildData);
                         break;
                     }
@@ -795,7 +798,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let targetPlaylist = commandArray[2];
                     let volumeData     = parseInt(commandArray[4]);
 
-                    if(!(targetPlaylist in guildData.TB.PLAYLIST)) {
+                    if(!(targetPlaylist in guildData.TB.playlist)) {
                         log_command('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
                         break;
                     }

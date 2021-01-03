@@ -365,7 +365,7 @@ Norn.on('message', (messageData) => {
     }
 
     try {
-        Command[commandArray[0].toLowerCase()](messageData,commandArray,guildData);
+        Command[commandArray[0].toLowerCase()](messageData, commandArray, guildData);
     } catch(errorData) {
         if(errorData) log_event('COMMAND_UNKNOWN', messageData, guildData);
     }

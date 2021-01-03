@@ -4,6 +4,13 @@
     "TB": {
         "VOLUME": 7,
         "LOOP_SINGLE": false,
-        "LOOP_QUEUE": true
+        "LOOP_QUEUE": true,
+        "PLAYLIST": {
+            "owlc": {
+                "owner": "ashz#3656",
+                "length": 1171,
+                "elements": 5
+            }
+        }
     }
 }
