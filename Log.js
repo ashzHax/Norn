@@ -1674,7 +1674,7 @@ function log_command(logType,message,guildData,extraData=null)
 module.exports.log_command = log_command;
 
 
-function log_TB(logType,guildData,extraData=null)
+function log_TB(logType, guildData ,extraData=null)
 {
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();

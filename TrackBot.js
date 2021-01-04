@@ -4,7 +4,7 @@
 const YTDLC  = require('ytdl-core');
 
 // internal module
-const Path = require('path');
+const path   = require('path');
 
 // custom modules
 const ExF    = require('./ExF.js');
@@ -12,83 +12,87 @@ const log_TB = require('./Log.js').log_TB;
 
 const connect_to_user_channel = async (guildData, client, userTextChannel, userVoiceChannel) => {
     if(!userVoiceChannel.permissionsFor(client).has("CONNECT")) {
-        // log_command('JOIN_NO_PERM_CONNECT', message, guildData);
+        log_TB('JOIN_NO_PERM_CONNECT', guildData);
         return false;
     }
-    
     if(!userVoiceChannel.permissionsFor(client).has("SPEAK")) {
-        // log_command('JOIN_NO_PERM_SPEAK', message, guildData);
+        log_TB('JOIN_NO_PERM_SPEAK', guildData);
         return false;
     }
 
     try {
-        guildData.TB.voiceConnection = await userVoiceChannel.join();
-    } catch (errorData) {
-        log_TB('join_fail',guildData);
-        console.log(errorData);
+        guildData.TB.voiceConnection = (await userVoiceChannel.join());
+    } catch(errorData) {
+        console.error(errorData);
+        log_TB('JOIN_FAILED', guildData);
         return false;
     }
     
+    // ashz> faster connection speed
+    guildData.TB.voiceConnection.voice.setSelfDeaf(true);
+
     guildData.TB.textChannel = userTextChannel;
-    guildData.TB.voiceConnection.voice.setSelfDeaf(true); // ashz> faster connection speed
     guildData.TB.voiceChannel = userVoiceChannel;
+
     return true;
 }
 
-async function leave_connected_channel(guildData)
-{
-    try { guildData.TB.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
+const leave_connected_channel = async (guildData) => {
+    try { await guildData.TB.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
     try { await guildData.TB.voiceConnection.disconnect(); } catch(errorData) {}
+
     guildData.TB.voiceConnection  = null;
     guildData.TB.userVoiceChannel = null;
     guildData.TB.userTextChannel  = null;
     guildData.TB.queue            = [];
     guildData.TB.index            = 0;
     guildData.TB.playing          = false;
-    guildData.TB.paused          = false;
+    guildData.TB.paused           = false;
+
     return true;
 }
 
+const play_track_override = async (guildData, targetIdx=null) => {
+    let trackData;
 
-async function play_current_index_track_override(guildData,targetIdx=null)
-{
-    if(targetIdx !== null) guildData.TB.index = targetIdx;
+    if(targetIdx !== null) {
+        guildData.TB.index = targetIdx; 
+    }
     
-    const trackData = guildData.TB.queue[guildData.TB.index];
+    trackData = guildData.TB.queue[guildData.TB.index];
 
     if(guildData.TB.playing) {
         await guildData.TB.voiceConnection.dispatcher.destroy();
     }
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
-    guildData.TB.voiceConnection
-        .play( YTDLC(trackData.video_url), {filter:'audioonly',quality:'highestaudio',highWaterMark:(1<<25)} )
-        .on('finish', () => 
-        {
-            guildData.TB.playing = false;
-            TB_QUEUE_NEXT(guildData);
-        })
-        .on('error', (errorData) =>
-        {
-            log_TB('PLAY_STREAM_DISCONNECTION_ERROR',guildData);
-            console.error(errorData);
+    guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<25)})
+                                .on('finish', () => {
+                                    guildData.TB.playing = false;
+                                    queue_play_next_idx(guildData);
+                                })
+                                .on('error', (errorData) => {
+                                    console.error(errorData);
+                                    log_TB('PLAY_STREAM_ERROR', guildData);
 
-            guildData.TB.errorCount++;
-            if(guildData.TB.errorCount >= 3) {
-                log_TB('PLAY_STREAM_CONTINUOUS_DISCONNECTION_ERROR');
-                return;
-            }
-            play_current_index_track_override(guildData);
-        });
+                                    guildData.TB.errorCount++;
+                                    if(guildData.TB.errorCount >= 3) {
+                                        log_TB('PLAY_MULTI_INIT_FAIL', guildData);
+                                        queue_play_next_idx(guildData, 'fail');
+                                        return;
+                                    }
+
+                                    play_track_override(guildData);
+                                });
 
     guildData.TB.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
-    guildData.TB.playing=true;
-    guildData.TB.paused=false;
+    guildData.TB.playing = true;
+    guildData.TB.paused = false;
 
-    log_TB('PLAY_SUCCESS',guildData);
     return true;
 }
 
+/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
 
 async function stop_and_reset_current_track(guildData)
 {
@@ -137,11 +141,11 @@ async function TB_CLEAR(guildData)
 }
 
 // next queue
-function TB_QUEUE_NEXT(guildData)
+function queue_play_next_idx(guildData, status=null)
 {
     const loopSingle = guildData.TB.loopSingle;
     const loopQueue = guildData.TB.loopQueue;
- 
+
     switch(guildData.TB.queue.length)
     {
         case 0:
@@ -151,8 +155,11 @@ function TB_QUEUE_NEXT(guildData)
         }
         case 1:
         {
+            switch(status) {
+                case 'fail': return;
+            }
             if(loopSingle || loopQueue) {
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else {
                 log_TB('NEXT_NOTHING_NEXT',guildData);
             }
@@ -161,16 +168,16 @@ function TB_QUEUE_NEXT(guildData)
         default:
         {
             if(loopSingle) {
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else if (loopQueue) {
                 guildData.TB.index = (guildData.TB.index + 1) % guildData.TB.queue.length;
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else {
                 if((guildData.TB.index + 1) > guildData.TB.queue.length) {
                     log_TB('NEXT_QUEUE_END',guildData);
                 } else {
                     guildData.TB.index = guildData.TB.index + 1;
-                    play_current_index_track_override(guildData);
+                    play_track_override(guildData);
                 }
             }
         }
@@ -195,7 +202,7 @@ function play_next_track_in_queue(guildData,skipCount)
         case 1:
         {
             if(loopSingle || loopQueue) {
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else {
                 log_TB('SKIP_NOTHING_NEXT',guildData);
             }
@@ -206,13 +213,13 @@ function play_next_track_in_queue(guildData,skipCount)
             if(skipCount <= 0) skipCount = 1;
             if(loopSingle || loopQueue) {
                 guildData.TB.index = (guildData.TB.index + skipCount) % guildData.TB.queue.length ;
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else {
                 if((guildData.TB.index + skipCount) > guildData.TB.queue.length) {
                     log_TB('SKIP_NOTHING_NEXT',guildData);
                 } else {
                     guildData.TB.index = guildData.TB.index+skipCount;
-                    play_current_index_track_override(guildData);
+                    play_track_override(guildData);
                 }
             }
         }
@@ -238,7 +245,7 @@ function play_previous_track_in_queue(guildData,skipCount)
         case 1:
         {
             if(loopSingle || loopQueue) {
-                play_current_index_track_override(guildData);
+                play_track_override(guildData);
             } else {
                 log_TB('SKIP_NOTHING_NEXT',guildData);
             }
@@ -252,7 +259,7 @@ function play_previous_track_in_queue(guildData,skipCount)
                 Uz_check = Uz_check * -1;
             }
             guildData.TB.index = Uz_check % guildData.TB.queue.length;
-            play_current_index_track_override(guildData);
+            play_track_override(guildData);
         }
     }
 }
@@ -383,7 +390,7 @@ async function create_new_playlist_index_with_file(guildData, newPLname, plOwner
         elements: 0,
     };
 
-    const targetFile = Path.join(guildData.configurationDir, `${newPLname}.json`);
+    const targetFile = path.join(guildData.configurationDir, `${newPLname}.json`);
 
     ExF.createFile(targetFile,null);
     ExF.saveGuildData(guildData);
@@ -394,7 +401,7 @@ async function delete_playlist_index_with_file(guildData, targetPLname)
 {
     delete guildData.TB.playlist[targetPLname];
 
-    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
+    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
 
     ExF.removeFile(targetFile);
     ExF.saveGuildData(guildData);
@@ -403,7 +410,7 @@ async function delete_playlist_index_with_file(guildData, targetPLname)
 
 async function append_to_target_playlist(guildData, targetPLname, url, vol)
 {
-    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
+    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     let requestData;
 
@@ -442,7 +449,7 @@ async function append_to_target_playlist(guildData, targetPLname, url, vol)
 
 async function remove_from_target_playlist(guildData,targetPLname,targetIdx)
 {
-    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
+    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
     guildData.TB.playlist[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
@@ -456,7 +463,7 @@ async function remove_from_target_playlist(guildData,targetPLname,targetIdx)
 
 async function append_target_playlist_to_current_queue(guildData, targetPLname)
 {
-    const targetFile = Path.join(guildData.configurationDir, `${targetPLname}.json`);
+    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
     guildData.TB.queue = guildData.TB.queue.concat(playlistData);
@@ -465,7 +472,7 @@ async function append_target_playlist_to_current_queue(guildData, targetPLname)
 module.exports = {
     join            : connect_to_user_channel,
     leave           : leave_connected_channel,
-    play            : play_current_index_track_override,
+    play            : play_track_override,
     stop            : stop_and_reset_current_track,
     next            : play_next_track_in_queue,
     previous        : play_previous_track_in_queue,

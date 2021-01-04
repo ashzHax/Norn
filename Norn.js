@@ -117,6 +117,7 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
                         index:           0,
                         playing:         false,
                         paused:          false,
+                        errorCount:      0,
 					},
 				};
 				guildDataMap.set(dirName, guildData);
@@ -164,6 +165,7 @@ Norn.on('ready', () => {
                     index:           0,
                     playing:         false,
                     paused:          false,
+                    errorCount:      0,
                 },
             };
             guildDataMap.set(guildInstance.id, new_guildData);
@@ -364,10 +366,35 @@ Norn.on('message', (messageData) => {
         return;
     }
 
-    try {
-        Command[commandArray[0].toLowerCase()](messageData, commandArray, guildData);
-    } catch(errorData) {
-        if(errorData) log_event('COMMAND_UNKNOWN', messageData, guildData);
+    switch(commandArray[0].toLowerCase()) {
+        // System Commands
+        case 'help': Command.help(messageData, commandArray, guildData); break;
+        case 'setting': Command.setting(messageData, commandArray, guildData); break;
+        case 'syscall': Command.syscall(messageData, commandArray, guildData); break;
+        // TrackBot Control Commands
+        case 'join': Command.join(messageData, commandArray, guildData); break;
+        case 'leave': Command.leave(messageData, commandArray, guildData); break;
+        case 'ㅔㅣ묘':
+        case 'pl':
+        case 'play': Command.play(messageData, commandArray, guildData); break;
+        case 'start': Command.start(messageData, commandArray, guildData); break;
+        case 'stop': Command.stop(messageData, commandArray, guildData); break;
+        case 'resume': Command.resume(messageData, commandArray, guildData); break;
+        case 'pause': Command.pause(messageData, commandArray, guildData); break;
+        case 'status': Command.status(messageData, commandArray, guildData); break;
+        // TrackBot Queue Commands
+        case 'queue':
+        case 'q':
+        case 'list': Command.list(messageData, commandArray, guildData); break;
+        case 'add': Command.add(messageData, commandArray, guildData); break;
+        case 'remove': Command.remove(messageData, commandArray, guildData); break;
+        case 'clear': Command.clear(messageData, commandArray, guildData); break;
+        case 'next': Command.next(messageData, commandArray, guildData); break;
+        case 'previous': Command.previous(messageData, commandArray, guildData); break;
+        case 'loop': Command.loop(messageData, commandArray, guildData); break;
+        // TrackBot Playlist Commands
+        case 'playlist': Command.playlist(messageData, commandArray, guildData); break;
+        default: log_event('COMMAND_UNKNOWN', messageData, guildData);
     }
     
     if(!messageData.deleted) messageData.delete();

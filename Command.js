@@ -176,8 +176,11 @@ const command_join = async (message, commandArray, guildData) => {
                 break;
             }
 
-            log_command('JOIN_SUCCESS', message, guildData);
-            TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel);
+            if(await TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel)) {
+                log_command('JOIN_SUCCESS', message, guildData);
+            } else {
+                log_command('JOIN_FAILED', message, guildData);
+            }
             break;
         }
         default: {
@@ -194,8 +197,11 @@ const command_leave = async (message, commandArray, guildData) => {
                 break;
             }
 
-            log_command('LEAVE_SUCCESS', message, guildData);
-            TrackBot.leave(guildData);
+            if(await TrackBot.leave(guildData)) {
+                log_command('LEAVE_SUCCESS', message, guildData);
+            } else {
+                log_command('LEAVE_FAILED', message, guildData);
+            }
             break;
         }
         default: {
@@ -236,15 +242,19 @@ const command_play = async (message, commandArray, guildData) => {
 
             if(guildData.TB.voiceConnection === null) {
                 if( !(await TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel)) ) {
+                    log_command('PLAY_JOIN_FAILED', message, guildData);
                     break;
                 }
             } else if(guildData.TB.voiceChannel !== message.member.voice.channel) {
-                log_command('PLAY_USER_INVALID_VC');
+                log_command('PLAY_USER_INVALID_VC', message, guildData);
                 break;
             }
 
-            log_command('PLAY_SUCCESS', message, guildData);
-            TrackBot.play(guildData, guildData.TB.queue.length-1);
+            if(await TrackBot.play(guildData, guildData.TB.queue.length-1)) {
+                log_command('PLAY_SUCCESS', message, guildData);
+            } else {
+                log_command('PLAY_FAILED', message, guildData);
+            }
 			break;
         }
         default: {
@@ -252,6 +262,8 @@ const command_play = async (message, commandArray, guildData) => {
         }
     }
 }
+
+//// TRACKBOT SYNCED ^
 
 const command_start = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
