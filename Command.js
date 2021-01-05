@@ -263,8 +263,6 @@ const command_play = async (message, commandArray, guildData) => {
     }
 }
 
-//// TRACKBOT SYNCED ^
-
 const command_start = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
@@ -285,8 +283,11 @@ const command_start = async (message, commandArray, guildData) => {
                 break;
             }
 
-            log_command('START_SUCCESS', message, guildData);
-            TrackBot.play(guildData);
+            if(await TrackBot.play(guildData)) {
+            	log_command('START_SUCCESS', message, guildData);
+			} else {
+            	log_command('START_FAILED', message, guildData);
+			}
             break;
         }
         default: {
@@ -309,8 +310,11 @@ const command_stop = async (message, commandArray, guildData) => {
                 break;
             }
 
-            log_command('STOP_SUCCESS', message, guildData);
-            await TrackBot.stop(guildData);
+            if(await TrackBot.stop(guildData)) {
+            	log_command('STOP_SUCCESS', message, guildData);
+			} else {
+            	log_command('STOP_FAILED', message, guildData);
+			}
             break;
         }
         default: {
@@ -318,6 +322,8 @@ const command_stop = async (message, commandArray, guildData) => {
         }
     }
 }
+
+//// TRACKBOT SYNCED ^
 
 const command_resume = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
