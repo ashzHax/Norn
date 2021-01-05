@@ -24,7 +24,7 @@ const connect_to_user_channel = async (guildData, client, userTextChannel, userV
         guildData.TB.voiceConnection = (await userVoiceChannel.join());
     } catch(errorData) {
         console.error(errorData);
-        log_TB('JOIN_FAILED', guildData);
+        log_TB('JOIN_FAIL', guildData);
         return false;
     }
     
@@ -73,13 +73,13 @@ const play_track_override = async (guildData, targetIdx=null) => {
                                 })
                                 .on('error', (errorData) => {
                                     console.error(errorData);
-                                    log_TB('PLAY_STREAM_ERROR', guildData);
+                                    log_TB('PLAY_FAIL', guildData);
 
                                     guildData.TB.errorCount++;
                                     if(guildData.TB.errorCount >= 3) {
-                                        log_TB('PLAY_MULTI_INIT_FAIL', guildData);
+                                        log_TB('PLAY_STREAM_MULTIPLE_INIT_FAIL', guildData);
                                         queue_play_next_idx(guildData, 'fail');
-                                        return;
+                                        return false;
                                     }
 
                                     play_track_override(guildData);
@@ -92,22 +92,22 @@ const play_track_override = async (guildData, targetIdx=null) => {
     return true;
 }
 
-/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
-
-async function stop_and_reset_current_track(guildData)
-{
-    try{
-        await  guildData.TB.voiceConnection.dispatcher.destroy();
+const stop_and_reset_current_track = async (guildData) => {
+    try {
+        await guildData.TB.voiceConnection.dispatcher.destroy();
     } catch(errorData) {
-        log_TB('STOP_FAILED_TO_DESTROY_DISPATCH',guildData,errorData);
-        return;
+		console.error(errorData);
+        log_TB('STOP_FAIL', guildData);
+        return false;
     }
 
-    guildData.TB.playing          = false;
-    guildData.TB.paused = false;
-    log_TB('STOP_SUCCESS',guildData);
+    guildData.TB.playing = false;
+    guildData.TB.paused  = false;
+    log_TB('STOP_SUCCESS', guildData);
+	return true;
 }
 
+/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
 
 // queue clear & stop TB
 async function TB_CLEAR(guildData)

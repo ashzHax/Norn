@@ -310,7 +310,7 @@ const command_stop = async (message, commandArray, guildData) => {
             }
 
             log_command('STOP_SUCCESS', message, guildData);
-            TrackBot.stop(guildData);
+            await TrackBot.stop(guildData);
             break;
         }
         default: {
