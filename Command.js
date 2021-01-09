@@ -323,8 +323,6 @@ const command_stop = async (message, commandArray, guildData) => {
     }
 }
 
-//// TRACKBOT SYNCED ^
-
 const command_resume = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
@@ -339,8 +337,11 @@ const command_resume = async (message, commandArray, guildData) => {
                 break;
             }
             
-            log_command('RESUME_SUCCESS', message, guildData);
-            TrackBot.resume(guildData);
+            if(await TrackBot.resume(guildData)) {
+                log_command('RESUME_SUCCESS', message, guildData);
+            } else {
+                log_command('RESUME_FAILED', message, guildData);
+            }
             break;
         }
         default: {
@@ -368,8 +369,11 @@ const command_pause = async (message, commandArray, guildData) => {
                 break;
             }
             
-            log_command('PAUSE_SUCCESS', message, guildData);
-            TrackBot.pause(guildData);
+            if(await TrackBot.pause(guildData)) {
+                log_command('PAUSE_SUCCESS', message, guildData);
+            } else {
+                log_command('PAUSE_FAILED', message, guildData);
+            }
             break;
         }
         default: {
@@ -442,8 +446,11 @@ const command_add = async (message, commandArray, guildData) => {
                 break;
             }
 
-            log_command('ADD_SUCCESS', message, guildData);
-            TrackBot.add(guildData, commandArray[1], volumeData);
+            if(await TrackBot.add(guildData, commandArray[1], volumeData)) {
+                log_command('ADD_SUCCESS', message, guildData);
+            } else {
+                log_command('ADD_FAILED', message, guildData);
+            }
             break;
         }
         default: {
@@ -451,6 +458,10 @@ const command_add = async (message, commandArray, guildData) => {
         }
     }
 }
+
+
+//// TRACKBOT SYNCED ^
+
 
 const command_remove = async (message, commandArray, guildData) => {
     switch(commandArray.length) {

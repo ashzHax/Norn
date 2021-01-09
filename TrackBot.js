@@ -24,7 +24,7 @@ const connect_to_user_channel = async (guildData, client, userTextChannel, userV
         guildData.TB.voiceConnection = (await userVoiceChannel.join());
     } catch(errorData) {
         console.error(errorData);
-        log_TB('JOIN_FAIL', guildData);
+        log_TB('JOIN_FAILED', guildData);
         return false;
     }
     
@@ -73,11 +73,11 @@ const play_track_override = async (guildData, targetIdx=null) => {
                                 })
                                 .on('error', (errorData) => {
                                     console.error(errorData);
-                                    log_TB('PLAY_FAIL', guildData);
+                                    log_TB('PLAY_FAILED', guildData);
 
                                     guildData.TB.errorCount++;
                                     if(guildData.TB.errorCount >= 3) {
-                                        log_TB('PLAY_STREAM_MULTIPLE_INIT_FAIL', guildData);
+                                        log_TB('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
                                         queue_play_next_idx(guildData, 'fail');
                                         return false;
                                     }
@@ -92,59 +92,114 @@ const play_track_override = async (guildData, targetIdx=null) => {
     return true;
 }
 
-const stop_and_reset_current_track = async (guildData) => {
+const stop_and_reset_track = async (guildData) => {
     try {
         await guildData.TB.voiceConnection.dispatcher.destroy();
     } catch(errorData) {
 		console.error(errorData);
-        log_TB('STOP_FAIL', guildData);
+        log_TB('STOP_FAILED', guildData);
         return false;
     }
 
     guildData.TB.playing = false;
     guildData.TB.paused  = false;
-    log_TB('STOP_SUCCESS', guildData);
 	return true;
+}
+
+const resume_track = async (guildData) => {
+    try {
+        await guildData.TB.voiceConnection.dispatcher.resume();
+    } catch(errorData) {
+        log_TB('RESUME_FAILED', guildData);
+        return false;
+    }
+
+    guildData.TB.paused = false;
+    guildData.TB.playing = true;
+    return true;
+}
+
+const pause_track = async (guildData) => {
+    try {
+        await guildData.TB.voiceConnection.dispatcher.pause(false);
+    } catch(errorData) {
+        log_TB('PAUSE_FAILED', guildData);
+        return false;
+    }
+    
+    guildData.TB.paused = true;
+    guildData.TB.playing = false;
+    return true;
+}
+
+const add_data_from_URL_to_queue = async (guildData, targetURL, targetVolume) => {
+    let requestData;
+    let videoData;
+
+    try {
+        requestData = await YTDLC.getInfo(targetURL);
+    } catch(errorData) {
+        console.error(errorData);
+        log_TB('QUEUE_ADD_GET_DATA_FAILED', guildData);
+        return false;
+    }
+
+    if(requestData == null) {
+        log_TB('QUEUE_ADD_GET_DATA_NULL', guildData);
+        return false;
+    }
+
+    videoData = {
+        title:     requestData.videoDetails.title,
+        video_url: requestData.videoDetails.video_url,
+        length:    requestData.videoDetails.lengthSeconds,
+        volume:    targetVolume,
+    };
+
+    guildData.TB.queue.push(videoData);
+    return true;
+}
+
+const remove_idx_to_queue = async (guildData, targetIndex) => {
+    guildData.TB.queue.splice(targetIndex, 1);
+    if(guildData.TB.index > targetIndex) {
+        guildData.TB.index--;
+    }
+    return true;
 }
 
 /////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
 
-// queue clear & stop TB
-async function TB_CLEAR(guildData)
-{
-    if(!guildData.TB.playing) {
-        if(guildData.TB.queue == null) {
-            log_TB('CLEAR_NOTHING_TO_STOP',guildData);
-        }
-        else {
-            log_TB('CLEAR_CLEARING_QUEUE',guildData);
-            guildData.TB.index = 0;
-            guildData.TB.queue = [];
-        }
-    } 
-    else {
-        try {
-            await guildData.TB.voiceConnection.dispatcher.destroy();
-        }
-        catch(errorData) {
-            log_TB('CLEAR_FAILED_TO_DESTROY_DISPATCH',guildData);
-            console.error(errorData);
-            return;
-        }
+const queue_clear_all_index = async (guildData) => {
+    if(guildData.TB.queue===null || guildData.TB.queue.length<=0) {
+        log_TB('CLEAR_QUEUE_EMPTY', guildData);
+        return false;
+    }
 
+    if(!guildData.TB.playing) {
         guildData.TB.index = 0;
         guildData.TB.queue = [];
-        guildData.TB.playing = false;
+    } else {
+        let queueLength = guildData.TB.queue.length;
+        let cIndex = guildData.TB.index;
 
-        log_TB('CLEAR_SUCCESS',guildData);
+        if(queueLength-1 > cIndex) {
+            guildData.TB.queue.splice(cIndex+1,(queueLength-1)-cIndex);
+        } 
+        guildData.TB.queue.splice(0,cIndex);
+        
+        guildData.TB.index = 0;
+        guildData.TB.queue = [];
     }
+
+    return true;
 }
 
 // next queue
 function queue_play_next_idx(guildData, status=null)
 {
     const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue;
+    const loopQueue = guildData.TB.loopQueue; wwwwwwd
 
     switch(guildData.TB.queue.length)
     {
@@ -264,97 +319,6 @@ function play_previous_track_in_queue(guildData,skipCount)
     }
 }
 
-
-async function pause_current_track(guildData)
-{
-   
-    try {
-        await guildData.TB.voiceConnection.dispatcher.pause(false);
-    }
-    catch(errorData) {
-        log_TB('PAUSE_PROCESS_ERROR',guildData);
-        return;
-    }
-    
-    guildData.TB.paused = true;
-    guildData.TB.playing = false;
-    log_TB('PAUSE_SUCCESS',guildData);
-}
-
-
-async function resume_current_track(guildData)
-{
-    if (guildData.TB.playing) {
-        log_TB('RESUME_ALREADY_PLAYING',guildData);
-        return;
-    }
-
-    try {
-        await guildData.TB.voiceConnection.dispatcher.resume();
-    }
-    catch(errorData) {
-        log_TB('RESUME_PROCESS_ERROR',guildData);
-        return;
-    }
-
-    guildData.TB.paused  = false;
-    guildData.TB.playing = true;
-    log_TB('RESUME_SUCCESS',guildData);    
-}
-
-
-async function add_URL_to_track_queue(guildData,targetURL,rvolume)
-{
-    let requestData;
-    try {
-        requestData = await YTDLC.getInfo(targetURL);
-    }
-    catch(receivedError) {
-        log_TB('QUEUE_ADD_GET_INFO_FAILED',guildData,targetURL);
-        console.log(receivedError);
-        return false;
-    }
-
-    if(requestData==null) {
-        log_TB('QUEUE_ADD_DATA_NULL',guildData,targetURL);
-        return false;
-    }
-
-    const videoData = {
-        title:     requestData.videoDetails.title,
-        video_url: requestData.videoDetails.video_url,
-        length:    requestData.videoDetails.lengthSeconds,
-        volume:    rvolume
-    };
-
-    guildData.TB.queue.push(videoData);
-    return true;
-}
-
-
-async function remove_idx_to_queue(guildData,targetIdx)
-{
-    guildData.TB.queue.splice(targetIdx,1);
-    if(guildData.TB.index > targetIdx) {
-        guildData.TB.index--;
-    }
-}
-
-
-async function clear_all_tracks_in_queue(guildData)
-{
-    let queueLength = guildData.TB.queue.length;
-    let cIndex = guildData.TB.index;
-
-    if(queueLength-1 > cIndex) {
-        guildData.TB.queue.splice(cIndex+1,(queueLength-1)-cIndex);
-    } 
-    
-    guildData.TB.queue.splice(0,cIndex);
-    guildData.TB.index = 0;
-}
-
-
 async function toggle_loop_values(guildData,targetLoop)
 {
     if(targetLoop === 'single') {
@@ -473,14 +437,14 @@ module.exports = {
     join            : connect_to_user_channel,
     leave           : leave_connected_channel,
     play            : play_track_override,
-    stop            : stop_and_reset_current_track,
+    stop            : stop_and_reset_track,
     next            : play_next_track_in_queue,
     previous        : play_previous_track_in_queue,
-    pause           : pause_current_track,
-    resume          : resume_current_track,
-    add             : add_URL_to_track_queue,
+    pause           : pause_track,
+    resume          : resume_track,
+    add             : add_data_from_URL_to_queue,
     remove          : remove_idx_to_queue,
-    clear           : clear_all_tracks_in_queue,
+    clear           : queue_clear_all_index,
     loopToggle      : toggle_loop_values,
     loopEdit        : edit_loop_values,
     playlist_create : create_new_playlist_index_with_file,
