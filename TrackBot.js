@@ -132,7 +132,7 @@ const pause_track = async (guildData) => {
     return true;
 }
 
-const add_data_from_URL_to_queue = async (guildData, targetURL, targetVolume) => {
+const queue_add_data_from_URL = async (guildData, targetURL, targetVolume) => {
     let requestData;
     let videoData;
 
@@ -160,7 +160,7 @@ const add_data_from_URL_to_queue = async (guildData, targetURL, targetVolume) =>
     return true;
 }
 
-const remove_idx_to_queue = async (guildData, targetIndex) => {
+const queue_remove_idx = async (guildData, targetIndex) => {
     guildData.TB.queue.splice(targetIndex, 1);
     if(guildData.TB.index > targetIndex) {
         guildData.TB.index--;
@@ -168,38 +168,103 @@ const remove_idx_to_queue = async (guildData, targetIndex) => {
     return true;
 }
 
-/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
-
 const queue_clear_all_index = async (guildData) => {
-    if(guildData.TB.queue===null || guildData.TB.queue.length<=0) {
-        log_TB('CLEAR_QUEUE_EMPTY', guildData);
-        return false;
-    }
+    let queueLength = guildData.TB.queue.length;
+    let currentIndex = guildData.TB.index;
 
     if(!guildData.TB.playing) {
         guildData.TB.index = 0;
         guildData.TB.queue = [];
     } else {
-        let queueLength = guildData.TB.queue.length;
-        let cIndex = guildData.TB.index;
-
-        if(queueLength-1 > cIndex) {
-            guildData.TB.queue.splice(cIndex+1,(queueLength-1)-cIndex);
+        if(queueLength-1 > currentIndex) {
+            guildData.TB.queue.splice(currentIndex+1,(queueLength-1)-currentIndex);
         } 
-        guildData.TB.queue.splice(0,cIndex);
+        guildData.TB.queue.splice(0,currentIndex);
         
         guildData.TB.index = 0;
         guildData.TB.queue = [];
     }
-
     return true;
 }
 
-// next queue
+const queue_play_next_override = (guildData, skipCount) => {
+    let loopSingle = guildData.TB.loopSingle;
+    let loopQueue = guildData.TB.loopQueue;
+ 
+    if(guildData.TB.queue.length === 1) {
+        if(loopSingle || loopQueue) {
+            play_track_override(guildData);
+        } else {
+            log_TB('NEXT_END_OF_QUEUE', guildData);
+            return false;
+        }
+    } else {
+        if(loopSingle || loopQueue) {
+            guildData.TB.index = (guildData.TB.index+skipCount) % guildData.TB.queue.length;
+            play_track_override(guildData);
+        } else {
+            if((guildData.TB.index+skipCount) > guildData.TB.queue.length) {
+                log_TB('NEXT_END_OF_QUEUE', guildData);
+                return false;
+            } else {
+                guildData.TB.index = guildData.TB.index + skipCount;
+                play_track_override(guildData);
+            }
+        }
+    }
+    return true;
+}
+
+const queue_play_previous_override = async (guildData, skipCount) => {
+    let loopSingle = guildData.TB.loopSingle;
+    let loopQueue = guildData.TB.loopQueue;
+ 
+    if(guildData.TB.queue.length === 1) {
+        if(loopSingle || loopQueue) {
+            play_track_override(guildData);
+        } else {
+            log_TB('PREV_END_OF_QUEUE', guildData);
+            return false;
+        }
+    } else {
+        // TODO : ashz, INVALID ALGORITHM, INSTEAD OF GOING BACKWARDS, COUNT GO FORWARDS
+        let Uz_check = guildData.TB.index - skipCount;
+        if(Uz_check < 0) {
+            return false;
+            Uz_check = Uz_check * -1;
+        }
+        guildData.TB.index = Uz_check % guildData.TB.queue.length;
+        play_track_override(guildData);
+    }
+    return true;
+}
+
+const toggle_loop_values = async (guildData,targetLoop) => {
+    if(targetLoop === 'single') {
+        guildData.TB.loopSingle = !guildData.TB.loopSingle;
+    } else if(targetLoop === 'queue') {
+        guildData.TB.loopQueue = !guildData.TB.loopQueue;
+    }
+    ExF.saveGuildData(guildData);
+}
+
+const edit_loop_values = async (guildData,targetLoop,value) => {
+    if(targetLoop === 'single') {
+        guildData.TB.loopSingle = value;
+    } else if(targetLoop === 'queue') {
+        guildData.TB.loopQueue = value;
+    }
+    ExF.saveGuildData(guildData);
+}
+
+
+
+/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
+
 function queue_play_next_idx(guildData, status=null)
 {
     const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue; wwwwwwd
+    const loopQueue = guildData.TB.loopQueue;
 
     switch(guildData.TB.queue.length)
     {
@@ -239,106 +304,7 @@ function queue_play_next_idx(guildData, status=null)
     }
 }
 
-// command next queue
-// skipCount = 0 : skips 1
-// skipCount > 0 : skips skipCount times 
-function play_next_track_in_queue(guildData,skipCount)
-{
-    const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue;
- 
-    switch(guildData.TB.queue.length)
-    {
-        case 0:
-        {
-            log_TB('SKIP_QUEUE_EMPTY',guildData);
-            break;
-        }
-        case 1:
-        {
-            if(loopSingle || loopQueue) {
-                play_track_override(guildData);
-            } else {
-                log_TB('SKIP_NOTHING_NEXT',guildData);
-            }
-            break; 
-        }
-        default:
-        {
-            if(skipCount <= 0) skipCount = 1;
-            if(loopSingle || loopQueue) {
-                guildData.TB.index = (guildData.TB.index + skipCount) % guildData.TB.queue.length ;
-                play_track_override(guildData);
-            } else {
-                if((guildData.TB.index + skipCount) > guildData.TB.queue.length) {
-                    log_TB('SKIP_NOTHING_NEXT',guildData);
-                } else {
-                    guildData.TB.index = guildData.TB.index+skipCount;
-                    play_track_override(guildData);
-                }
-            }
-        }
-    }
-}
 
-
-// command next queue
-// skipCount = 0 : skips 1
-// skipCount > 0 : skips skipCount times 
-function play_previous_track_in_queue(guildData,skipCount)
-{
-    const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue;
- 
-    switch(guildData.TB.queue.length)
-    {
-        case 0:
-        {
-            log_TB('SKIP_QUEUE_EMPTY',guildData);
-            break;
-        }
-        case 1:
-        {
-            if(loopSingle || loopQueue) {
-                play_track_override(guildData);
-            } else {
-                log_TB('SKIP_NOTHING_NEXT',guildData);
-            }
-            break; 
-        }
-        default:
-        {
-            // INVALID ALGORITHM, INSTEAD OF GOING BACKWARDS, COUNT GO FORWARDS TODO : ashz
-            let Uz_check = guildData.TB.index - skipCount;
-            if(Uz_check < 0) {
-                Uz_check = Uz_check * -1;
-            }
-            guildData.TB.index = Uz_check % guildData.TB.queue.length;
-            play_track_override(guildData);
-        }
-    }
-}
-
-async function toggle_loop_values(guildData,targetLoop)
-{
-    if(targetLoop === 'single') {
-        guildData.TB.loopSingle = !guildData.TB.loopSingle;
-    } else if(targetLoop === 'queue') {
-        guildData.TB.loopQueue = !guildData.TB.loopQueue;
-    }
-    ExF.saveGuildData(guildData);
-}
-
-
-async function edit_loop_values(guildData,targetLoop,value)
-{
-    if(targetLoop === 'single') {
-        guildData.TB.loopSingle = value;
-    } else if(targetLoop === 'queue') {
-        guildData.TB.loopQueue = value;
-    }
-    ExF.saveGuildData(guildData);
-}
 
 
 async function create_new_playlist_index_with_file(guildData, newPLname, plOwner)
@@ -438,13 +404,14 @@ module.exports = {
     leave           : leave_connected_channel,
     play            : play_track_override,
     stop            : stop_and_reset_track,
-    next            : play_next_track_in_queue,
-    previous        : play_previous_track_in_queue,
-    pause           : pause_track,
     resume          : resume_track,
-    add             : add_data_from_URL_to_queue,
-    remove          : remove_idx_to_queue,
+    pause           : pause_track,
+    add             : queue_add_data_from_URL,
+    remove          : queue_remove_idx,
     clear           : queue_clear_all_index,
+    next            : queue_play_next_override,
+    previous        : queue_play_previous_override,
+
     loopToggle      : toggle_loop_values,
     loopEdit        : edit_loop_values,
     playlist_create : create_new_playlist_index_with_file,
