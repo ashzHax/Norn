@@ -25,6 +25,6 @@
     "discord.js": "^12.4.1",
     "ffmpeg": "0.0.4",
     "opusscript": "0.0.7",
-    "ytdl-core": "^4.4.1"
+    "ytdl-core": "^4.4.2"
   }
 }

@@ -1,84 +1,62 @@
 "use strict";
 
 // external module
-const Discord    = require('discord.js');
-
-// internal module
-const FileSystem = require('fs');
-const Path       = require('path');
+const Discord = require('discord.js');
 
 // custom module
-const ExF = require('./ExF.js');
+const ExF     = require('./ExF.js');
 
+//////////////////////////////////////////////////
+// Logging of events
+//////////////////////////////////////////////////
+const log_event = (logType, eventData=null, guildData=null) => {
+    let eLog = new Discord.MessageEmbed();
+    let consoleLogText;
 
-// event data sent only to logging channel and console
-function log_event(logType,eventData,guildData=null)
-{
-    var embdLog = new Discord.MessageEmbed();
-    var consoleLogText;
-
-    if(guildData != null) {
+    if(guildData !== null) {
         consoleLogText = `[${guildData.guildID}][event][${logType}]`;
-    }
-    else {
+    } else {
         consoleLogText = `[guild_null][event][${logType}]`;
     }
 
-    switch(logType)
-    {
-        case 'BOT_READY':
-        {
-            embdLog = null;
+    switch(logType) {
+        case 'BOT_READY': {
+            eLog = null;
             consoleLogText = consoleLogText.concat(' Here to serve! (And to steal API bandwidth usage)');
             break;
         }
+        case 'CHANNEL_CREATE': {
+            let channelType = (eventData.type==='voice') ? 'voice_channel':'text_channel';
 
-//////////////////////////////////////////////////
-// Event Handler: Channel
-//////////////////////////////////////////////////
-        case 'CHANNEL_CREATE':
-        {
-            let channelType = (eventData.type == 'voice') ? 'Voice Channel' : 'Text Channel';
-            let channelName = ExF.getChannelName(eventData);
-
-            embdLog = null;
-            consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${channelName}\",type:\"${channelType}\"}`);
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${ExF.getChannelName(eventData)}\",type:\"${channelType}\"}`);
             break;
         }
-        case 'CHANNEL_DELETE':
-        {
-            let channelType = (eventData.type == 'voice') ? 'Voice Channel' : 'Text Channel';
-            let channelName = ExF.getChannelName(eventData);
+        case 'CHANNEL_DELETE': {
+            let channelType = (eventData.type==='voice') ? 'voice_channel':'text_channel';
 
-            embdLog = null;
-            consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${channelName}\",type:\"${channelType}\"}`);
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` {id:\"${eventData.id}\",name:\"${ExF.getChannelName(eventData)}\",type:\"${channelType}\"}`);
             break;
         }
-        case 'CHANNEL_PINS_UPDATE':
-        {
-            let channelName = ExF.getChannelName(eventData[0]);
-            let strTimeStamp = ExF.getStrDateTime(eventData[1]);
-
-            embdLog = null;
-            consoleLogText = consoleLogText.concat(` {id:\"${eventData[0].id},name:\"${channelName}\",timestamp:\"${strTimeStamp}\"}`);
+        case 'CHANNEL_PINS_UPDATE': {
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` {id:\"${eventData[0].id},name:\"${ExF.getChannelName(eventData[0])}\",timestamp:\"${ExF.getStrDateTime(eventData[1])}\"}`);
             break;
         }
-        case 'CHANNEL_UPDATE':
-        {
+        case 'CHANNEL_UPDATE': {
             let previousChannelName = ExF.getChannelName(eventData[0]);
             let updatedChannelName  = ExF.getChannelName(eventData[1]);
-            var isChange = false;
+            let isChange            = false;
 
             consoleLogText = consoleLogText.concat(' ');
 
-            if(previousChannelName != updatedChannelName) 
-            {
+            if(previousChannelName!==updatedChannelName) {
                 consoleLogText = consoleLogText.concat(`{name:(\"${previousChannelName}\"->\"${updatedChannelName}\")`);
-                isChange = true;
+                isChange       = true;
             }
 
-            if(eventData[0].topic != eventData[1].topic)
-            {
+            if(eventData[0].topic!==eventData[1].topic) {
                 if(isChange) {
                     consoleLogText=consoleLogText.concat(',');
                 } else {
@@ -87,8 +65,7 @@ function log_event(logType,eventData,guildData=null)
                 consoleLogText = consoleLogText.concat(`topic:(\"${eventData[0].topic}\"->\"${eventData[1].topic}\")`);
             }
 
-            if(eventData[0].rateLimitPerUser != eventData[1].rateLimitPerUser)
-            {
+            if(eventData[0].rateLimitPerUser!==eventData[1].rateLimitPerUser) {
                 if(isChange) {
                     consoleLogText=consoleLogText.concat(',');
                 } else {
@@ -97,8 +74,7 @@ function log_event(logType,eventData,guildData=null)
                 consoleLogText = consoleLogText.concat(`rateLimit:(\"${eventData[0].rateLimitPerUser}\"->\"${eventData[1].rateLimitPerUser}\")`);
             }
 
-            if(eventData[0].nsfw != eventData[1].nsfw)
-            {
+            if(eventData[0].nsfw != eventData[1].nsfw) {
                 if(isChange) {
                     consoleLogText=consoleLogText.concat(',');
                 } else {
@@ -107,47 +83,38 @@ function log_event(logType,eventData,guildData=null)
                 consoleLogText = consoleLogText.concat(`nsfw:(\"${eventData[0].nsfw}\"->\"${eventData[1].nsfw}\")`);
             }
 
+            eLog = null;
             consoleLogText = consoleLogText.concat('}');
-            embdLog = null;
             break;
         }
-
-//////////////////////////////////////////////////
-// Event Handler: Message
-//////////////////////////////////////////////////
-        case 'MESSAGE':
-        {
-            // if event occuring channel is the bot channel, does not log
+        case 'MESSAGE': {
+            // ashz> if event occuring channel is the bot channel, does not log
             if(eventData.author.id == guildData.Norn.user.id) return;
             
-            // sometimes, contents could be empty
+            // ashz> sometimes, contents could be empty
             if(eventData.content == '') return;
             
-            // do not log commands
+            // ashz> do not log commands
             if(eventData.content.startsWith('/')) return;
             
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`); 
             break;               
         }
-        case 'MESSAGE_DELETE':
-        {
-            // command handling is a repeatitive event, not logging event
+        case 'MESSAGE_DELETE': {
+            // ashz> command handling is a repeatitive event, not logging event
             if(eventData.content.startsWith('/')) return;
             
-            // all delete by Norn will be ignored
+            // ashz> all delete by Norn will be ignored
             if(eventData.author.tag == guildData.Norn.user.tag) return;
             
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.member.user.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`);
             break;
         }
-        case 'MESSAGE_DELETE_BULK':
-        {
-            const channelName = eventData.first().channel.name;
-
-            embdLog = null;
-            consoleLogText = consoleLogText.concat(` {channel_name:\"${channelName}\"}`);s
+        case 'MESSAGE_DELETE_BULK': {
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` {channel_name:\"${eventData.first().channel.name}\"}`);
             break;
         }
         case 'MESSAGE_UPDATE':
@@ -156,19 +123,19 @@ function log_event(logType,eventData,guildData=null)
             if(eventData[1].author.tag == guildData.Norn.user.tag) return;
             if(eventData[0].content == eventData[1].content) return;
 
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].author.tag}] {message_update:(\"${eventData[0].content}\"->\"${eventData[1].content}\")}`)
             break;
         }
         case 'MESSAGE_REACTION_ADD':
         {
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
         case 'MESSAGE_REACTION_DELETE':
         {
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
@@ -180,13 +147,13 @@ function log_event(logType,eventData,guildData=null)
                 emojiCache.append(element.emoji);
             });
 
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {reaction:\"${emojiCache}\",message_id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\",message:\"${eventData.content}\"}`);
             break;
         }
         case 'TYPING_START':
         {
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected! (Honestly don't know why I left this event...)`);
             break;
         }
@@ -196,7 +163,7 @@ function log_event(logType,eventData,guildData=null)
 //////////////////////////////////////////////////
         case 'COMMAND_NO_PERMISSION':
         {
-            embdLog
+            eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('No Permission')
@@ -204,14 +171,14 @@ function log_event(logType,eventData,guildData=null)
                 .addField('Received Command',`\"${eventData.content}\"`,false)
                 .setTimestamp();
 
-            eventData.channel.send(embdLog);
-            embdLog = null;
+            eventData.channel.send(eLog);
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
             break;
         }
         case 'COMMAND_UNKNOWN':
         {
-            embdLog
+            eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('Unknown Command')
@@ -219,14 +186,14 @@ function log_event(logType,eventData,guildData=null)
                 .addField('Received Command',`\"${eventData.content}\"`,false)
                 .setTimestamp();
             
-            eventData.channel.send(embdLog);
-            embdLog = null;
+            eventData.channel.send(eLog);
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
             break;
         }
         case 'COMMAND_DATA_NULL':
         {
-            embdLog
+            eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
                 .setTitle('Null Data Detected')
@@ -234,21 +201,23 @@ function log_event(logType,eventData,guildData=null)
                 .addField('Received Command',`\"${eventData.content}\"`,false)
                 .setTimestamp();
             
-            eventData.channel.send(embdLog);
-            embdLog = null;
+            eventData.channel.send(eLog);
+            eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
             break;  
         }
         default:
         {
-            embdLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(' {error:\"undefined log type\"}');
         }
     }
 
-    if(embdLog != null && guildData != null) {
-        guildData.systemChannel.send(embdLog);
+    // Send Embedded Log
+    if(guildData!==null && eLog!==null) {
+        guildData.systemChannel.send(eLog);
     }
+
     if(consoleLogText == null) {
         console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
@@ -256,6 +225,29 @@ function log_event(logType,eventData,guildData=null)
     }
 }
 module.exports.log_event = log_event;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function log_command(logType,message,guildData,extraData=null) 
 {

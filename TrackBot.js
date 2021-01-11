@@ -10,6 +10,10 @@ const path   = require('path');
 const ExF    = require('./ExF.js');
 const log_TB = require('./Log.js').log_TB;
 
+//////////////////////////////////////////////////
+// Dynamic Functions
+//////////////////////////////////////////////////
+
 const connect_to_user_channel = async (guildData, client, userTextChannel, userVoiceChannel) => {
     if(!userVoiceChannel.permissionsFor(client).has("CONNECT")) {
         log_TB('JOIN_NO_PERM_CONNECT', guildData);
@@ -69,7 +73,7 @@ const play_track_override = async (guildData, targetIdx=null) => {
     guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<25)})
                                 .on('finish', () => {
                                     guildData.TB.playing = false;
-                                    queue_play_next_idx(guildData);
+                                    queue_play_next_override(guildData);
                                 })
                                 .on('error', (errorData) => {
                                     console.error(errorData);
@@ -78,7 +82,7 @@ const play_track_override = async (guildData, targetIdx=null) => {
                                     guildData.TB.errorCount++;
                                     if(guildData.TB.errorCount >= 3) {
                                         log_TB('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
-                                        queue_play_next_idx(guildData, 'fail');
+                                        queue_play_next_override(guildData, 1, 'fail');
                                         return false;
                                     }
 
@@ -187,11 +191,12 @@ const queue_clear_all_index = async (guildData) => {
     return true;
 }
 
-const queue_play_next_override = (guildData, skipCount) => {
+const queue_play_next_override = async (guildData, skipCount=1, status) => {
     let loopSingle = guildData.TB.loopSingle;
     let loopQueue = guildData.TB.loopQueue;
  
     if(guildData.TB.queue.length === 1) {
+        if(status === 'fail') return false;
         if(loopSingle || loopQueue) {
             play_track_override(guildData);
         } else {
@@ -239,164 +244,111 @@ const queue_play_previous_override = async (guildData, skipCount) => {
     return true;
 }
 
-const toggle_loop_values = async (guildData,targetLoop) => {
-    if(targetLoop === 'single') {
+const loop_toogle = async (guildData, targetLoop) => {
+    if(targetLoop==='single') {
         guildData.TB.loopSingle = !guildData.TB.loopSingle;
-    } else if(targetLoop === 'queue') {
+    } else if(targetLoop==='queue') {
         guildData.TB.loopQueue = !guildData.TB.loopQueue;
     }
+
     ExF.saveGuildData(guildData);
+    return true;
 }
 
-const edit_loop_values = async (guildData,targetLoop,value) => {
-    if(targetLoop === 'single') {
-        guildData.TB.loopSingle = value;
-    } else if(targetLoop === 'queue') {
-        guildData.TB.loopQueue = value;
+const loop_edit = async (guildData, targetLoop, boolValue) => {
+    if(targetLoop==='single') {
+        guildData.TB.loopSingle = boolValue;
+    } else if(targetLoop==='queue') {
+        guildData.TB.loopQueue = boolValue; 
     }
+
     ExF.saveGuildData(guildData);
+    return true;
 }
 
+const playlist_create = async (guildData, playlistName, playlistOwner) => {
+    let targetFile;
 
-
-/////////////////////////////////////////// ^ CLEANED /////////////////////////////////////////////////////////
-
-function queue_play_next_idx(guildData, status=null)
-{
-    const loopSingle = guildData.TB.loopSingle;
-    const loopQueue = guildData.TB.loopQueue;
-
-    switch(guildData.TB.queue.length)
-    {
-        case 0:
-        {
-            log_TB('NEXT_QUEUE_EMPTY',guildData);
-            break;
-        }
-        case 1:
-        {
-            switch(status) {
-                case 'fail': return;
-            }
-            if(loopSingle || loopQueue) {
-                play_track_override(guildData);
-            } else {
-                log_TB('NEXT_NOTHING_NEXT',guildData);
-            }
-            break; 
-        }
-        default:
-        {
-            if(loopSingle) {
-                play_track_override(guildData);
-            } else if (loopQueue) {
-                guildData.TB.index = (guildData.TB.index + 1) % guildData.TB.queue.length;
-                play_track_override(guildData);
-            } else {
-                if((guildData.TB.index + 1) > guildData.TB.queue.length) {
-                    log_TB('NEXT_QUEUE_END',guildData);
-                } else {
-                    guildData.TB.index = guildData.TB.index + 1;
-                    play_track_override(guildData);
-                }
-            }
-        }
-    }
-}
-
-
-
-
-async function create_new_playlist_index_with_file(guildData, newPLname, plOwner)
-{
-    if(guildData.TB.playlist === undefined) {
-        guildData.TB.playlist = {};
-    }
+    if(guildData.TB.playlist === undefined) guildData.TB.playlist = {};
     
-    guildData.TB.playlist[newPLname] = 
-    {
-        owner: plOwner,
-        length: 0,
-        elements: 0,
+    guildData.TB.playlist[playlistName] = {
+        owner    : playlistOwner,
+        length   : 0,
+        elements : 0,
     };
+    targetFile = path.join(guildData.configurationDir, `${playlistName}.json`);
 
-    const targetFile = path.join(guildData.configurationDir, `${newPLname}.json`);
-
-    ExF.createFile(targetFile,null);
+    ExF.createFile(targetFile, null);
     ExF.saveGuildData(guildData);
+    return true;
 }
 
+const playlist_delete = async (guildData, playlistName) => {
+    let targetFile = path.join(guildData.configurationDir, `${playlistName}.json`);
 
-async function delete_playlist_index_with_file(guildData, targetPLname)
-{
-    delete guildData.TB.playlist[targetPLname];
-
-    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
-
+    delete guildData.TB.playlist[playlistName];
     ExF.removeFile(targetFile);
     ExF.saveGuildData(guildData);
+    return true;
 }
 
+const playlist_append_to_queue = async (guildData, playlistName) => {
+    let targetFile   = path.join(guildData.configurationDir, `${playlistName}.json`);
+    let playlistData = ExF.getArrayFromFile(targetFile);
+    
+    guildData.TB.queue = guildData.TB.queue.concat(playlistData);
+    return true;
+}
 
-async function append_to_target_playlist(guildData, targetPLname, url, vol)
-{
-    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
+const playlist_append_idx = async (guildData, playlistName, dataURL, targetVolume) => {
+    let targetFile   = path.join(guildData.configurationDir, `${playlistName}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     let requestData;
+    let newData;
 
     if(playlistData === null) {
         playlistData = [];
     }
-    console.log(playlistData);
 
     try {
-        requestData = await YTDLC.getInfo(url);
-    }
-    catch(receivedError) {
-        log_TB('QUEUE_ADD_GET_INFO_FAILED',guildData,url);
-        console.log(receivedError);
+        requestData = await YTDLC.getInfo(dataURL);
+    } catch(errorData) {
+        console.error(errorData);
+        log_TB('QUEUE_APPEND_GET_INFO_FAILED', guildData);
         return false;
     }
 
-    if(requestData==null) {
-        log_TB('QUEUE_ADD_DATA_NULL',guildData,url);
+    if(requestData == null) {
+        log_TB('QUEUE_APPEND_DATA_NULL', guildData);
         return false;
     }
     
-    console.log(requestData.videoDetails.lengthSeconds);
-    guildData.TB.playlist[targetPLname].length += parseInt(requestData.videoDetails.lengthSeconds);
+    guildData.TB.playlist[playlistName].length += parseInt(requestData.videoDetails.lengthSeconds);
+    guildData.TB.playlist[playlistName].elements++;
+    newData = {
+        title     : requestData.videoDetails.title,
+        length    : requestData.videoDetails.lengthSeconds,
+        video_url : dataURL,
+        volume    : targetVolume,
+    };
+    playlistData.push(newData);
 
-    console.log(guildData.TB.playlist[targetPLname].length);
-    guildData.TB.playlist[targetPLname].elements++;
-
-    playlistData.push({title:requestData.videoDetails.title,length:requestData.videoDetails.lengthSeconds,video_url:url,volume:vol});
-
+    ExF.saveArrayToFile(targetFile, playlistData);
     ExF.saveGuildData(guildData);
-    ExF.saveArrayToFile(targetFile,playlistData);
-
+    return true;
 }
 
-
-async function remove_from_target_playlist(guildData,targetPLname,targetIdx)
-{
-    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
+const playlist_remove_idx = async (guildData, playlistName, targetIdx) => {
+    let targetFile   = path.join(guildData.configurationDir, `${playlistName}.json`);
     let playlistData = ExF.getArrayFromFile(targetFile);
     
-    guildData.TB.playlist[targetPLname].length -= parseInt(playlistData[targetIdx].lengthSeconds);
-    guildData.TB.playlist[targetPLname].elements--;
-    playlistData.splice(targetIdx,1);
+    guildData.TB.playlist[playlistName].length -= parseInt(playlistData[targetIdx].lengthSeconds);
+    guildData.TB.playlist[playlistName].elements--;
+    playlistData.splice(targetIdx, 1);
 
+    ExF.saveArrayToFile(targetFile, playlistData);
     ExF.saveGuildData(guildData);
-    ExF.saveArrayToFile(targetFile,playlistData);
-}
-
-
-async function append_target_playlist_to_current_queue(guildData, targetPLname)
-{
-    const targetFile = path.join(guildData.configurationDir, `${targetPLname}.json`);
-    let playlistData = ExF.getArrayFromFile(targetFile);
-    
-    guildData.TB.queue = guildData.TB.queue.concat(playlistData);
+    return true;
 }
 
 module.exports = {
@@ -411,12 +363,11 @@ module.exports = {
     clear           : queue_clear_all_index,
     next            : queue_play_next_override,
     previous        : queue_play_previous_override,
-
-    loopToggle      : toggle_loop_values,
-    loopEdit        : edit_loop_values,
-    playlist_create : create_new_playlist_index_with_file,
-    playlist_delete : delete_playlist_index_with_file,
-    playlist_add    : append_to_target_playlist,
-    playlist_remove : remove_from_target_playlist,
-    playlist_queue  : append_target_playlist_to_current_queue,
+    loopToggle      : loop_toogle,
+    loopEdit        : loop_edit,
+    playlist_create : playlist_create,
+    playlist_delete : playlist_delete,
+    playlist_queue  : playlist_append_to_queue,
+    playlist_add    : playlist_append_idx,
+    playlist_remove : playlist_remove_idx,
 };

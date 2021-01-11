@@ -608,15 +608,19 @@ const command_previous = async (message, commandArray, guildData) => {
 }
 
 const command_loop = async (message, commandArray, guildData) => {
+    let targetConv1;
+    let targetConv2;
+
     switch(commandArray.length) {
         case 1: {
             log_command('LOOP_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 2: {
-            let targetConv = commandArray[1].toLowerCase();
-            if(targetConv === 'single' || targetConv === 'queue') {
-                if(await TrackBot.loopToggle(guildData, targetConv)) {
+            targetConv1 = commandArray[1].toLowerCase();
+
+            if(targetConv1 === 'single' || targetConv1 === 'queue') {
+                if(await TrackBot.loopToggle(guildData, targetConv1)) {
                     log_command('LOOP_SUCCESS', message, guildData);
                 } else {
                     log_command('LOOP_FAILED', message, guildData);
@@ -627,8 +631,9 @@ const command_loop = async (message, commandArray, guildData) => {
             break;
         }
         case 3: {
-            let targetConv1 = commandArray[1].toLowerCase();
-            let targetConv2 = commandArray[2].toLowerCase();
+            targetConv1 = commandArray[1].toLowerCase();
+            targetConv2 = commandArray[2].toLowerCase();
+
             if(targetConv1 === 'single' || targetConv1 === 'queue') {
                 if(targetConv2 === 'on') {
                     if(await TrackBot.loopEdit(guildData, targetConv1, true)) {
@@ -655,7 +660,7 @@ const command_loop = async (message, commandArray, guildData) => {
         }
     }
 }
-//// TRACKBOT SYNCED ^
+
 //////////////////////////////////////////////////
 // TrackBot Playlist Commands
 //////////////////////////////////////////////////
@@ -716,8 +721,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         }
                     } 
 
-                    TrackBot.playlist_create(guildData, newPLname, message.author.tag);
-                    log_command('PLAYLIST_CREATE_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_create(guildData, newPLname, message.author.tag)) {
+                        log_command('PLAYLIST_CREATE_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_CREATE_FAILED', message, guildData);
+                    }
                     break;
                 }
                 case 'delete': {
@@ -727,8 +735,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    TrackBot.playlist_delete(guildData, targetPlaylist);
-                    log_command('PLAYLIST_DELETE_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_delete(guildData, targetPlaylist)) {
+                        log_command('PLAYLIST_DELETE_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_DELETE_FAILED', message, guildData);
+                    }
                     break;
                 }
                 case 'queue': {
@@ -738,15 +749,18 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    TrackBot.playlist_queue(guildData, targetPlaylist);
-                    log_command('PLAYLIST_QUEUE_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_queue(guildData, targetPlaylist)) {
+                        log_command('PLAYLIST_QUEUE_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_QUEUE_FAILED', message, guildData);
+                    }
                     break;
                 }
                 case 'show': {
                     let targetPlaylist = commandArray[2];
-                    let SE           = new Discord.MessageEmbed();
-                    let targetFile   = path.join(guildData.configurationDir, `${targetPlaylist}.json`);
-                    let playlist     = ExF.getArrayFromFile(targetFile);
+                    let SE             = new Discord.MessageEmbed();
+                    let targetFile     = path.join(guildData.configurationDir, `${targetPlaylist}.json`);
+                    let playlist       = ExF.getArrayFromFile(targetFile);
                     let loopIdx;
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
@@ -798,8 +812,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], guildData.TB.volume);
-                    log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], guildData.TB.volume)) {
+                        log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_ADD_FAILED', message, guildData);
+                    }
                     break;
                 }
                 case 'remove': {
@@ -821,8 +838,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    TrackBot.playlist_remove(guildData, targetPlaylist, targetIdx);
-                    log_command('PLAYLIST_REMOVE_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_remove(guildData, targetPlaylist, targetIdx)) {
+                        log_command('PLAYLIST_REMOVE_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_REMOVE_FAILED', message, guildData);
+                    }
                     break;
                 }
                 default: {
@@ -855,8 +875,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], volumeData);
-                    log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    if(await TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], volumeData)) {
+                        log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                    } else {
+                        log_command('PLAYLIST_ADD_FAILED', message, guildData);
+                    }
                     break;
                 }
                 case 'delete': {

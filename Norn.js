@@ -178,7 +178,7 @@ Norn.on('ready', () => {
             ExF.saveGuildData(guildData);
         }
     });
-    log_event('BOT_READY', null, null);
+    log_event('BOT_READY');
 });
 
 //////////////////////////////////////////////////
@@ -307,10 +307,10 @@ Norn.on('guildUnavailable', guildData =>
 //////////////////////////////////////////////////
 
 Norn.on('userUpdate', (previousUser, newUser) =>
-    log_event('USER_UPDATE', [previousUser, newUser], null));
+    log_event('USER_UPDATE', [previousUser, newUser]));
 
 Norn.on('presenceUpdate', (previousPresence, newPresence) =>
-    log_event('PRESENCE_UPDATE', [previousPresence, newPresence], null));
+    log_event('PRESENCE_UPDATE', [previousPresence, newPresence]));
     
 /*
 // TODO : use to check if Norn was moved around
@@ -323,19 +323,19 @@ Norn.on('voiceStateUpdate', (previousVoiceState, newVoiceState) =>
 //////////////////////////////////////////////////
 
 Norn.on('disconnect', (anyData, numberData) =>
-    log_event('DISCONNECT', [anyData, numberData], null));
+    log_event('DISCONNECT', [anyData, numberData]));
 
 Norn.on('warn', (warnData) =>
-    log_event('WARN', warnData, null));
+    log_event('WARN', warnData));
 
 /*
 // ashz> too many logs
 Norn.on('debug', (debugData) =>
-    log_event('DEBUG', debugData, null));
+    log_event('DEBUG', debugData));
 */
 
 Norn.on('error', (errorData) =>
-    log_event('ERROR', errorData, null));
+    log_event('ERROR', errorData));
 
 //////////////////////////////////////////////////
 // Event Handler: Command
@@ -372,9 +372,12 @@ Norn.on('message', (messageData) => {
         case 'setting': Command.setting(messageData, commandArray, guildData); break;
         case 'syscall': Command.syscall(messageData, commandArray, guildData); break;
         // TrackBot Control Commands
+        case 'ㅓㅐㅑㅜ':
         case 'join': Command.join(messageData, commandArray, guildData); break;
+        case 'ㅣㄷㅁㅍㄷ':
         case 'leave': Command.leave(messageData, commandArray, guildData); break;
         case 'ㅔㅣ묘':
+        case 'p':
         case 'pl':
         case 'play': Command.play(messageData, commandArray, guildData); break;
         case 'start': Command.start(messageData, commandArray, guildData); break;
