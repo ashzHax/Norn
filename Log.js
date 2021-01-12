@@ -9,7 +9,9 @@ const ExF     = require('./ExF.js');
 //////////////////////////////////////////////////
 // Logging of events
 //////////////////////////////////////////////////
+
 const log_event = (logType, eventData=null, guildData=null) => {
+
     let eLog = new Discord.MessageEmbed();
     let consoleLogText;
 
@@ -117,30 +119,27 @@ const log_event = (logType, eventData=null, guildData=null) => {
             consoleLogText = consoleLogText.concat(` {channel_name:\"${eventData.first().channel.name}\"}`);
             break;
         }
-        case 'MESSAGE_UPDATE':
-        {
-            // all update caused by Norn will be ignored
-            if(eventData[1].author.tag == guildData.Norn.user.tag) return;
-            if(eventData[0].content == eventData[1].content) return;
+        case 'MESSAGE_UPDATE': {
+            // ashz> all updates caused by Norn will be ignored
+            if(eventData[1].author.tag === guildData.Norn.user.tag) return;
+            if(eventData[0].content === eventData[1].content) return;
 
             eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData[1].author.tag}] {message_update:(\"${eventData[0].content}\"->\"${eventData[1].content}\")}`)
+            consoleLogText = consoleLogText.concat(`[${eventData[1].author.tag}] {message_update:(\"${eventData[0].content}\"->\"${eventData[1].content}\")}`);
             break;
         }
-        case 'MESSAGE_REACTION_ADD':
-        {
+        case 'MESSAGE_REACTION_ADD': {
             eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
-        case 'MESSAGE_REACTION_DELETE':
-        {
+        case 'MESSAGE_REACTION_DELETE': {
             eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
-        case 'MESSAGE_REACTION_REMOVE_ALL':
-        {
+
+        case 'MESSAGE_REACTION_REMOVE_ALL': {
             let emojiCache = '';
             eventData.reactions.cache.forEach(element =>
             {
@@ -157,10 +156,6 @@ const log_event = (logType, eventData=null, guildData=null) => {
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected! (Honestly don't know why I left this event...)`);
             break;
         }
-
-//////////////////////////////////////////////////
-// Event Handler: Command
-//////////////////////////////////////////////////
         case 'COMMAND_NO_PERMISSION':
         {
             eLog
