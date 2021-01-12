@@ -21,7 +21,7 @@ https://github.com/discordjs/discord.js/blob/master/docs/topics/voice.md
 
 
 
-
+event logs ====================================================
 BOT_READY
 CHANNEL_CREATE
 CHANNEL_DELETE
@@ -30,7 +30,6 @@ CHANNEL_UPDATE
 MESSAGE
 MESSAGE_DELETE
 MESSAGE_DELETE_BULK
-
 MESSAGE_UPDATE
 MESSAGE_REACTION_ADD
 MESSAGE_REACTION_DELETE
@@ -64,3 +63,7 @@ ERROR
 COMMAND_DATA_NULL
 COMMAND_NO_PERMISSION
 COMMAND_UNKNOWN
+
+command logs ====================================================
+
+

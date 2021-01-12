@@ -1,14 +1,14 @@
 "use strict";
 
 // external module
-const YTDLC  = require('ytdl-core');
+const YTDLC       = require('ytdl-core');
 
 // internal module
-const path   = require('path');
+const path        = require('path');
 
 // custom modules
-const ExF    = require('./ExF.js');
-const log_TB = require('./Log.js').log_TB;
+const ExF         = require('./ExF.js');
+const logTrackBot = require('./Log.js').logTrackBot;
 
 //////////////////////////////////////////////////
 // Dynamic Functions
@@ -16,11 +16,11 @@ const log_TB = require('./Log.js').log_TB;
 
 const connect_to_user_channel = async (guildData, client, userTextChannel, userVoiceChannel) => {
     if(!userVoiceChannel.permissionsFor(client).has("CONNECT")) {
-        log_TB('JOIN_NO_PERM_CONNECT', guildData);
+        logTrackBot('JOIN_NO_PERM_CONNECT', guildData);
         return false;
     }
     if(!userVoiceChannel.permissionsFor(client).has("SPEAK")) {
-        log_TB('JOIN_NO_PERM_SPEAK', guildData);
+        logTrackBot('JOIN_NO_PERM_SPEAK', guildData);
         return false;
     }
 
@@ -28,7 +28,7 @@ const connect_to_user_channel = async (guildData, client, userTextChannel, userV
         guildData.TB.voiceConnection = (await userVoiceChannel.join());
     } catch(errorData) {
         console.error(errorData);
-        log_TB('JOIN_FAILED', guildData);
+        logTrackBot('JOIN_FAILED', guildData);
         return false;
     }
     
@@ -77,11 +77,11 @@ const play_track_override = async (guildData, targetIdx=null) => {
                                 })
                                 .on('error', (errorData) => {
                                     console.error(errorData);
-                                    log_TB('PLAY_FAILED', guildData);
+                                    logTrackBot('PLAY_FAILED', guildData);
 
                                     guildData.TB.errorCount++;
                                     if(guildData.TB.errorCount >= 3) {
-                                        log_TB('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
+                                        logTrackBot('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
                                         queue_play_next_override(guildData, 1, 'fail');
                                         return false;
                                     }
@@ -101,7 +101,7 @@ const stop_and_reset_track = async (guildData) => {
         await guildData.TB.voiceConnection.dispatcher.destroy();
     } catch(errorData) {
 		console.error(errorData);
-        log_TB('STOP_FAILED', guildData);
+        logTrackBot('STOP_FAILED', guildData);
         return false;
     }
 
@@ -114,7 +114,7 @@ const resume_track = async (guildData) => {
     try {
         await guildData.TB.voiceConnection.dispatcher.resume();
     } catch(errorData) {
-        log_TB('RESUME_FAILED', guildData);
+        logTrackBot('RESUME_FAILED', guildData);
         return false;
     }
 
@@ -127,7 +127,7 @@ const pause_track = async (guildData) => {
     try {
         await guildData.TB.voiceConnection.dispatcher.pause(false);
     } catch(errorData) {
-        log_TB('PAUSE_FAILED', guildData);
+        logTrackBot('PAUSE_FAILED', guildData);
         return false;
     }
     
@@ -144,12 +144,12 @@ const queue_add_data_from_URL = async (guildData, targetURL, targetVolume) => {
         requestData = await YTDLC.getInfo(targetURL);
     } catch(errorData) {
         console.error(errorData);
-        log_TB('QUEUE_ADD_GET_DATA_FAILED', guildData);
+        logTrackBot('QUEUE_ADD_GET_DATA_FAILED', guildData);
         return false;
     }
 
     if(requestData == null) {
-        log_TB('QUEUE_ADD_GET_DATA_NULL', guildData);
+        logTrackBot('QUEUE_ADD_GET_DATA_NULL', guildData);
         return false;
     }
 
@@ -200,7 +200,7 @@ const queue_play_next_override = async (guildData, skipCount=1, status) => {
         if(loopSingle || loopQueue) {
             play_track_override(guildData);
         } else {
-            log_TB('NEXT_END_OF_QUEUE', guildData);
+            logTrackBot('NEXT_END_OF_QUEUE', guildData);
             return false;
         }
     } else {
@@ -209,7 +209,7 @@ const queue_play_next_override = async (guildData, skipCount=1, status) => {
             play_track_override(guildData);
         } else {
             if((guildData.TB.index+skipCount) > guildData.TB.queue.length) {
-                log_TB('NEXT_END_OF_QUEUE', guildData);
+                logTrackBot('NEXT_END_OF_QUEUE', guildData);
                 return false;
             } else {
                 guildData.TB.index = guildData.TB.index + skipCount;
@@ -228,7 +228,7 @@ const queue_play_previous_override = async (guildData, skipCount) => {
         if(loopSingle || loopQueue) {
             play_track_override(guildData);
         } else {
-            log_TB('PREV_END_OF_QUEUE', guildData);
+            logTrackBot('PREV_END_OF_QUEUE', guildData);
             return false;
         }
     } else {
@@ -314,12 +314,12 @@ const playlist_append_idx = async (guildData, playlistName, dataURL, targetVolum
         requestData = await YTDLC.getInfo(dataURL);
     } catch(errorData) {
         console.error(errorData);
-        log_TB('QUEUE_APPEND_GET_INFO_FAILED', guildData);
+        logTrackBot('QUEUE_APPEND_GET_INFO_FAILED', guildData);
         return false;
     }
 
     if(requestData == null) {
-        log_TB('QUEUE_APPEND_DATA_NULL', guildData);
+        logTrackBot('QUEUE_APPEND_DATA_NULL', guildData);
         return false;
     }
     

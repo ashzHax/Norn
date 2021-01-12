@@ -10,7 +10,7 @@ const ExF     = require('./ExF.js');
 // Logging of events
 //////////////////////////////////////////////////
 
-const log_event = (logType, eventData=null, guildData=null) => {
+const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
 
     let eLog = new Discord.MessageEmbed();
     let consoleLogText;
@@ -138,11 +138,10 @@ const log_event = (logType, eventData=null, guildData=null) => {
             consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] {reaction:\"${eventData[0].emoji}\",message_id:\"${eventData[0].message.id}\",channel_name:\"${eventData[0].message.channel.name}\",message:\"${eventData[0].message.content}\"}`);
             break;
         }
-
         case 'MESSAGE_REACTION_REMOVE_ALL': {
             let emojiCache = '';
-            eventData.reactions.cache.forEach(element =>
-            {
+
+            eventData.reactions.cache.forEach((element) => {
                 emojiCache.append(element.emoji);
             });
 
@@ -150,101 +149,156 @@ const log_event = (logType, eventData=null, guildData=null) => {
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {reaction:\"${emojiCache}\",message_id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\",message:\"${eventData.content}\"}`);
             break;
         }
-        case 'TYPING_START':
-        {
+        case 'TYPING_START': {
             eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected! (Honestly don't know why I left this event...)`);
+            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected.`);
             break;
         }
-        case 'COMMAND_NO_PERMISSION':
-        {
+        case 'ROLE_CREATE': {
+            eLog = null;
+            consoleLogText = consoleLogText.concat(`[administrator] {id:\"${eventData.id}\",name:\"${eventData.name}\"}`);
+            break;
+        }
+        case 'ROLE_DELETE': {
+            eLog = null;
+            consoleLogText = consoleLogText.concat(`[administrator] {id:\"${eventData.id}\",name:\"${eventData.name}\",color:\"${eventData.color}\",rawPosition:\"${eventData.rawPosition}\"}`);
+            break;
+        }
+        case 'ROLE_UPDATE': { // TODO: ashz
+            eLog = null;
+            consoleLogText = consoleLogText.concat(`[administrator] update to role detected. {id:\"${eventData[1].id}\"}`);
+            break;
+        }
+
+///////////////////////////////////////////// CLEANED ^
+
+        case 'EMOJI_CREATE': {
+            break;
+        }
+        case 'EMOJI_DELETE': {
+            break;
+        }
+        case 'EMOJI_UPDATE': {
+            break;
+        }
+        case 'GUILD_BAN_ADD': {
+            break;
+        }
+        case 'GUILD_BAN_REMOVE': {
+            break;
+        }
+        case 'GUILD_MEMBER_ADD': {
+            break;
+        }
+        case 'GUILD_MEMBER_REMOVE': {
+            break;
+        }
+        case 'GUILD_MEMBER_UPDATE': {
+            break;
+        }
+        case 'GUILD_MEMBER_AVAILABLE': {
+            break;
+        }
+        case 'GUILD_MEMBERS_CHUNK': {
+            break;
+        }
+        case 'GUILD_MEMBER_SPEAKING': {
+            break;
+        }
+        case 'GUILD_CREATE': {
+            break;
+        }
+        case 'GUILD_DELETE': {
+            break;
+        }
+        case 'GUILD_UPDATE': {
+            break;
+        }
+        case 'GUILD_UNAVAILABLE': {
+            break;
+        }
+        case 'USER_UPDATE': {
+            break;
+        }
+        case 'PRESENCE_UPDATE': {
+            break;
+        }
+        case 'VOICE_STATE_UPDATE': {
+            break;
+        }
+        case 'DISCONNECT': {
+            break;
+        }
+        case 'WARN': {
+            break;
+        }
+        case 'DEBUG': {
+            break;
+        }
+        case 'ERROR': {
+            break;
+        }
+
+///////////////////////////////////////////// CLEANED v
+
+        case 'COMMAND_NO_PERMISSION': {
             eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
-                .setTitle('No Permission')
-                .setDescription('[!.!] You have no permission to issue commands')
-                .addField('Received Command',`\"${eventData.content}\"`,false)
+                .setTitle('Insufficient Permission')
+                .setDescription(eventData.content)
                 .setTimestamp();
 
+            // ashz> For people who are dumb
             eventData.channel.send(eLog);
-            eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
+
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {id:\"${eventData.id}\",content:\"${eventData.content}\"}`);
             break;
         }
-        case 'COMMAND_UNKNOWN':
-        {
+        case 'COMMAND_UNKNOWN': {
             eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
-                .setTitle('Unknown Command')
-                .setDescription('[?.?] Unknown command, try \"/help\" for a list of commands')
-                .addField('Received Command',`\"${eventData.content}\"`,false)
+                .setTitle('Undefined Command')
+                .setDescription(eventData.content)
                 .setTimestamp();
             
+            // ashz> For people who are dumb
             eventData.channel.send(eLog);
-            eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
+
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {id:\"${eventData.id}\",content:\"${eventData.content}\"}`);
             break;
         }
-        case 'COMMAND_DATA_NULL':
-        {
+        case 'COMMAND_DATA_NULL': {
             eLog
                 .setColor(ExF.html_red)
                 .setAuthor(eventData.author.tag)
-                .setTitle('Null Data Detected')
-                .setDescription('[X.X] Critical error, something broke inside...')
-                .addField('Received Command',`\"${eventData.content}\"`,false)
+                .setTitle('Message Data Contains Null')
+                .setDescription(eventData.content)
+                .addField('Critical Error', 'Data inside event object is null.', false)
                 .setTimestamp();
-            
+
+            // ashz> Just for them helpful people
             eventData.channel.send(eLog);
-            eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {command:\"${eventData.content}\"}`);  
+
+            consoleLogText = consoleLogText.concat(`[${eventData.author.tag}][CRITICAL] {id:\"${eventData.id}\",content:\"${eventData.content}\"}`);  
             break;  
         }
-        default:
-        {
+        default: {
             eLog = null;
-            consoleLogText = consoleLogText.concat(' {error:\"undefined log type\"}');
+            consoleLogText = consoleLogText.concat(' undefined log type.');
         }
     }
 
-    // Send Embedded Log
+    // ashz> Send Embedded Log
     if(guildData!==null && eLog!==null) {
         guildData.systemChannel.send(eLog);
     }
 
-    if(consoleLogText == null) {
-        console.log(ExF.traceLog('log event error, guildData is null'));
-    } else {
-        ExF.logConsole(consoleLogText,guildData);
-    }
+    ExF.logConsole(consoleLogText, guildData);
 }
-module.exports.log_event = log_event;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function log_command(logType,message,guildData,extraData=null) 
+function command_result_handle_log(logType,message,guildData,extraData=null) 
 {
     const commandIssuer = message.author.tag;
     var emLog = new Discord.MessageEmbed();
@@ -1658,10 +1712,8 @@ function log_command(logType,message,guildData,extraData=null)
         ExF.logConsole(consoleLogText,guildData);
     }
 }
-module.exports.log_command = log_command;
 
-
-function log_TB(logType, guildData ,extraData=null)
+function trackbot_result_handle_log(logType, guildData ,extraData=null)
 {
     var devLog = new Discord.MessageEmbed();
     var usrLog = new Discord.MessageEmbed();
@@ -1751,4 +1803,9 @@ function log_TB(logType, guildData ,extraData=null)
         guildData.TB.textChannel.send(usrLog);
     }
 }
-module.exports.log_TB = log_TB;
+
+module.exports = {
+    logEvent    : norn_event_handle_log,
+    logCommand  : command_result_handle_log,
+    logTrackBot : trackbot_result_handle_log,
+};

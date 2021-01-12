@@ -9,7 +9,7 @@ const path        = require('path');
 // custom module
 const TrackBot    = require('./TrackBot.js');
 const ExF         = require('./ExF.js');
-const log_command = require('./Log.js').log_command;
+const logCommand  = require('./Log.js').logCommand;
 
 //////////////////////////////////////////////////
 // global variables
@@ -90,11 +90,11 @@ const command_help = async (message, commandArray, guildData) => {
         case 1: {
             helpEmbed.setAuthor(message.author.tag);
             message.channel.send(helpEmbed);
-            log_command('HELP_SUCCESS', message, guildData);
+            logCommand('HELP_SUCCESS', message, guildData);
             break;
         }
         default: {
-            log_command('HELP_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('HELP_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -103,7 +103,7 @@ const command_help = async (message, commandArray, guildData) => {
 const command_syscall = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
-            log_command('SYSCALL_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('SYSCALL_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         default: {
@@ -111,22 +111,22 @@ const command_syscall = async (message, commandArray, guildData) => {
                 case 'delete': {
                     switch(commandArray.length) {
                         case 2: {
-                            log_command('SYSCALL_DELETE_UNDER_REQ_ARG_CNT', message, guildData);
+                            logCommand('SYSCALL_DELETE_UNDER_REQ_ARG_CNT', message, guildData);
                             break;
                         }
                         case 3: {
                             var count = parseInt(commandArray[1]);
                             if (isNaN(count)) {
-                                log_command('SYSCALL_DELETE_INVALID_ARGUMENT_TYPE', message, guildData);
+                                logCommand('SYSCALL_DELETE_INVALID_ARGUMENT_TYPE', message, guildData);
                                 break;
                             }
 
                             if (count > 100) {
-                                log_command('SYSCALL_DELETE_ARGUMENT_OVER_LIMIT', message, guildData);
+                                logCommand('SYSCALL_DELETE_ARGUMENT_OVER_LIMIT', message, guildData);
                                 break;
                             }
                             else if(count < 2) {
-                                log_command('SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT', message, guildData);
+                                logCommand('SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT', message, guildData);
                                 break;
                             }
 
@@ -134,21 +134,21 @@ const command_syscall = async (message, commandArray, guildData) => {
                                 const bulkMessage = await message.channel.messages.fetch({limit: count});
                                 message.channel.bulkDelete(bulkMessage);
                             } catch(errorData) {
-                                log_command('SYSCALL_DELETE_PROCESS_ERROR', message, guildData);
+                                logCommand('SYSCALL_DELETE_PROCESS_ERROR', message, guildData);
                                 break;
                             }
                             
-                            log_command('SYSCALL_DELETE_PROCESS_SUCCESS', message, guildData);
+                            logCommand('SYSCALL_DELETE_PROCESS_SUCCESS', message, guildData);
                             break;
                         }
                         default: {
-                            log_command('SYSCALL_DELETE_OVER_MAX_ARG_CNT', message, guildData);
+                            logCommand('SYSCALL_DELETE_OVER_MAX_ARG_CNT', message, guildData);
                         }
                     }
                     break;
                 }
                 default: {
-                    log_command('SYSCALL_UNKNOWN_ARG', message, guildData);
+                    logCommand('SYSCALL_UNKNOWN_ARG', message, guildData);
                 }
             }
         }
@@ -168,23 +168,23 @@ const command_join = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
             if(message.member.voice.channel == null) {
-                log_command('JOIN_VC_NULL', message, guildData);
+                logCommand('JOIN_VC_NULL', message, guildData);
                 break;
             }
             if(guildData.TB.voiceConnection !== null) {
-                log_command('JOIN_VC_SET', message, guildData);
+                logCommand('JOIN_VC_SET', message, guildData);
                 break;
             }
 
             if(await TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel)) {
-                log_command('JOIN_SUCCESS', message, guildData);
+                logCommand('JOIN_SUCCESS', message, guildData);
             } else {
-                log_command('JOIN_FAILED', message, guildData);
+                logCommand('JOIN_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('JOIN_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('JOIN_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -193,19 +193,19 @@ const command_leave = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
             if(guildData.TB.voiceConnection === null) {
-                log_command('LEAVE_BOT_VC_NULL', message, guildData);
+                logCommand('LEAVE_BOT_VC_NULL', message, guildData);
                 break;
             }
 
             if(await TrackBot.leave(guildData)) {
-                log_command('LEAVE_SUCCESS', message, guildData);
+                logCommand('LEAVE_SUCCESS', message, guildData);
             } else {
-                log_command('LEAVE_FAILED', message, guildData);
+                logCommand('LEAVE_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('LEAVE_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('LEAVE_OVER_MAX_ARG_CNT', message, guildData);
         }
     }    
 }
@@ -215,19 +215,19 @@ const command_play = async (message, commandArray, guildData) => {
 
     switch(commandArray.length) {
         case 1: {
-            log_command('PLAY_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('PLAY_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 3: {
             volumeData = parseInt(commandArray[2]);
             if(isNaN(volumeData)) {
-                log_command('PLAY_INVALID_ARG_TYPE', message, guildData);
+                logCommand('PLAY_INVALID_ARG_TYPE', message, guildData);
                 break;
             }
         }
         case 2: {
             if(volumeData<1 || volumeData>9) {
-                log_command('PLAY_INVALID_ARG_VAL', message, guildData);
+                logCommand('PLAY_INVALID_ARG_VAL', message, guildData);
                 break;
             }
 
@@ -236,29 +236,29 @@ const command_play = async (message, commandArray, guildData) => {
             }
 
             if(message.member.voice.channel === null) {
-                log_command('PLAY_USER_VC_NULL', message, guildData);
+                logCommand('PLAY_USER_VC_NULL', message, guildData);
                 break;
             }
 
             if(guildData.TB.voiceConnection === null) {
                 if( !(await TrackBot.join(guildData, message.client.user, message.channel, message.member.voice.channel)) ) {
-                    log_command('PLAY_JOIN_FAILED', message, guildData);
+                    logCommand('PLAY_JOIN_FAILED', message, guildData);
                     break;
                 }
             } else if(guildData.TB.voiceChannel !== message.member.voice.channel) {
-                log_command('PLAY_USER_INVALID_VC', message, guildData);
+                logCommand('PLAY_USER_INVALID_VC', message, guildData);
                 break;
             }
 
             if(await TrackBot.play(guildData, guildData.TB.queue.length-1)) {
-                log_command('PLAY_SUCCESS', message, guildData);
+                logCommand('PLAY_SUCCESS', message, guildData);
             } else {
-                log_command('PLAY_FAILED', message, guildData);
+                logCommand('PLAY_FAILED', message, guildData);
             }
 			break;
         }
         default: {
-            log_command('PLAY_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('PLAY_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -269,29 +269,29 @@ const command_start = async (message, commandArray, guildData) => {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
 
             if(checkChannel !== null) {
-                log_command(`START${checkChannel}`, message, guildData);
+                logCommand(`START${checkChannel}`, message, guildData);
                 break;
             }
 
             if(guildData.TB.queue.length <= 0) {
-                log_command('START_QUEUE_EMPTY', message, guildData);
+                logCommand('START_QUEUE_EMPTY', message, guildData);
                 break;
             }
 
             if(guildData.TB.playing) {
-                log_command('START_PLAYING', message, guildData);
+                logCommand('START_PLAYING', message, guildData);
                 break;
             }
 
             if(await TrackBot.play(guildData)) {
-            	log_command('START_SUCCESS', message, guildData);
+            	logCommand('START_SUCCESS', message, guildData);
 			} else {
-            	log_command('START_FAILED', message, guildData);
+            	logCommand('START_FAILED', message, guildData);
 			}
             break;
         }
         default: {
-            log_command('START_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('START_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -301,24 +301,24 @@ const command_stop = async (message, commandArray, guildData) => {
         case 1: {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
             if(checkChannel !== null) {
-                log_command(`STOP${checkChannel}`, message, guildData);
+                logCommand(`STOP${checkChannel}`, message, guildData);
                 break;
             }
 
             if(!guildData.TB.playing) {
-                log_command('STOP_STOPPED', message, guildData);
+                logCommand('STOP_STOPPED', message, guildData);
                 break;
             }
 
             if(await TrackBot.stop(guildData)) {
-            	log_command('STOP_SUCCESS', message, guildData);
+            	logCommand('STOP_SUCCESS', message, guildData);
 			} else {
-            	log_command('STOP_FAILED', message, guildData);
+            	logCommand('STOP_FAILED', message, guildData);
 			}
             break;
         }
         default: {
-            log_command('STOP_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('STOP_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -328,24 +328,24 @@ const command_resume = async (message, commandArray, guildData) => {
         case 1: {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
             if(checkChannel !== null) {
-                log_command(`RESUME${checkChannel}`, message, guildData);
+                logCommand(`RESUME${checkChannel}`, message, guildData);
                 break;
             }
 
             if(guildData.TB.playing && !guildData.TB.paused) {
-                log_command('RESUME_PLAYING', message, guildData);
+                logCommand('RESUME_PLAYING', message, guildData);
                 break;
             }
             
             if(await TrackBot.resume(guildData)) {
-                log_command('RESUME_SUCCESS', message, guildData);
+                logCommand('RESUME_SUCCESS', message, guildData);
             } else {
-                log_command('RESUME_FAILED', message, guildData);
+                logCommand('RESUME_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('RESUME_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('RESUME_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -355,29 +355,29 @@ const command_pause = async (message, commandArray, guildData) => {
         case 1: {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
             if(checkChannel !== null) {
-                log_command(`RESUME${checkChannel}`, message, guildData);
+                logCommand(`RESUME${checkChannel}`, message, guildData);
                 break;
             }
 
             if(!guildData.TB.playing) {
-                log_command('PAUSE_STOPPED', message, guildData);
+                logCommand('PAUSE_STOPPED', message, guildData);
                 break;
             }
 
             if(guildData.TB.paused) {
-                log_command('PAUSE_PAUSED', message, guildData);
+                logCommand('PAUSE_PAUSED', message, guildData);
                 break;
             }
             
             if(await TrackBot.pause(guildData)) {
-                log_command('PAUSE_SUCCESS', message, guildData);
+                logCommand('PAUSE_SUCCESS', message, guildData);
             } else {
-                log_command('PAUSE_FAILED', message, guildData);
+                logCommand('PAUSE_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('PAUSE_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('PAUSE_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -399,7 +399,7 @@ const command_list = async (message, commandArray, guildData) => {
             let queueListMsg = new Discord.MessageEmbed();
     
             if(guildQueue.length<=1 || guildQueue===null) {
-                log_command('LIST_QUEUE_EMPTY', message, guildData);
+                logCommand('LIST_QUEUE_EMPTY', message, guildData);
                 break;
             }
 
@@ -417,11 +417,11 @@ const command_list = async (message, commandArray, guildData) => {
             }
 
             message.channel.send(queueListMsg);
-            log_command('LIST_SUCCESS', message, guildData);
+            logCommand('LIST_SUCCESS', message, guildData);
             break;
         }
         default: {
-            log_command('LIST_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('LIST_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -430,31 +430,31 @@ const command_add = async (message, commandArray, guildData) => {
     let volumeData = guildData.TB.volume;
     switch(commandArray.length) {
         case 1: {
-            log_command('ADD_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('ADD_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 3: {
             volumeData = parseInt(commandArray[2]);
             if(isNaN(volumeData)) {
-                log_command('ADD_INVALID_ARG_TYPE', message, guildData);
+                logCommand('ADD_INVALID_ARG_TYPE', message, guildData);
                 break;
             }
         }
         case 2: {
             if(volumeData<1 || volumeData>9) {
-                log_command('PLAY_INVALID_ARG_VAL', message, guildData);
+                logCommand('PLAY_INVALID_ARG_VAL', message, guildData);
                 break;
             }
 
             if(await TrackBot.add(guildData, commandArray[1], volumeData)) {
-                log_command('ADD_SUCCESS', message, guildData);
+                logCommand('ADD_SUCCESS', message, guildData);
             } else {
-                log_command('ADD_FAILED', message, guildData);
+                logCommand('ADD_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('ADD_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('ADD_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -462,35 +462,35 @@ const command_add = async (message, commandArray, guildData) => {
 const command_remove = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
-            log_command('REMOVE_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('REMOVE_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 2: {
             let targetIdx = parseInt(commandArray[1]);
             if(isNaN(targetIdx)) {
-                log_command('REMOVE_INVALID_ARG_TYPE', message, guildData);
+                logCommand('REMOVE_INVALID_ARG_TYPE', message, guildData);
                 break;
             }
 
 			if(targetIdx<0 || targetIdx>=guildData.TB.queue.length) {
-                log_command('REMOVE_INVALID_ARG_VAL', message, guildData);
+                logCommand('REMOVE_INVALID_ARG_VAL', message, guildData);
 				break;
             }
             
             if(targetIdx === guildData.TB.index) {
-                log_command('REMOVE_CUR_IDX', message, guildData);
+                logCommand('REMOVE_CUR_IDX', message, guildData);
                 break;
             }
             
             if(await TrackBot.remove(guildData, targetIdx)) {
-                log_command('REMOVE_SUCCESS', message, guildData);
+                logCommand('REMOVE_SUCCESS', message, guildData);
             } else {
-                log_command('REMOVE_FAILED', message, guildData);
+                logCommand('REMOVE_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('REMOVE_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('REMOVE_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -499,24 +499,24 @@ const command_clear = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
             if(guildData.TB.queue == null || guildData.TB.queue.length <= 0) {
-                log_command('CLEAR_QUEUE_EMPTY', message, guildData);
+                logCommand('CLEAR_QUEUE_EMPTY', message, guildData);
                 break;
             }
             
             if(guildData.TB.playing && guildData.TB.queue.length === 1) {
-                log_command('CLEAR_CUR_IDX', message, guildData);
+                logCommand('CLEAR_CUR_IDX', message, guildData);
                 break;
             }
 
             if(await TrackBot.clear(guildData)) {
-                log_command('CLEAR_SUCCESS', message, guildData);
+                logCommand('CLEAR_SUCCESS', message, guildData);
             } else {
-                log_command('CLEAR_FAILED', message, guildData);
+                logCommand('CLEAR_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('CLEAR_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('CLEAR_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -528,24 +528,24 @@ const command_next = async (message, commandArray, guildData) => {
         case 2: {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
             if(checkChannel !== null) {
-                log_command(`NEXT${checkChannel}`, message, guildData);
+                logCommand(`NEXT${checkChannel}`, message, guildData);
                 break;
             }
 
             if(guildData.TB.queue.length <= 0) {
-                log_command('NEXT_QUEUE_EMPTY', message, guildData);
+                logCommand('NEXT_QUEUE_EMPTY', message, guildData);
                 break;
             }
 
             if(skipCount < 0) {
                 skipCount = parseInt(commandArray[1]);
                 if(isNaN(skipCount)) {
-                    log_command('NEXT_INVALID_ARG_TYPE', message, guildData);
+                    logCommand('NEXT_INVALID_ARG_TYPE', message, guildData);
                     break;
                 }
 
                 if(skipCount <= 1) {
-                    log_command('NEXT_INVALID_ARG_VAL', message, guildData);
+                    logCommand('NEXT_INVALID_ARG_VAL', message, guildData);
                     break;
                 }
             }
@@ -553,14 +553,14 @@ const command_next = async (message, commandArray, guildData) => {
             if(skipCount <= 0) skipCount = 1;
             
             if(await TrackBot.next(guildData, skipCount)) {
-                log_command('NEXT_SUCCESS', message, guildData);
+                logCommand('NEXT_SUCCESS', message, guildData);
             } else {
-                log_command('NEXT_FAILED', message, guildData);
+                logCommand('NEXT_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('NEXT_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('NEXT_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -572,37 +572,37 @@ const command_previous = async (message, commandArray, guildData) => {
         case 2: {
             let checkChannel = trackbot_channel_check(message.member.voice.channel, guildData.TB.voiceChannel, guildData.TB.voiceConnection);
             if(checkChannel !== null) {
-                log_command(`PREV${checkChannel}`, message, guildData);
+                logCommand(`PREV${checkChannel}`, message, guildData);
                 break;
             }
             
             if(guildData.TB.queue.length <= 0) {
-                log_command('PREV_QUEUE_EMPTY');
+                logCommand('PREV_QUEUE_EMPTY');
                 break;
             }
 
             if(skipCount < 0) {
                 skipCount = parseInt(commandArray[1]);
                 if(isNaN(skipCount)) {
-                    log_command('PREV_INVALID_ARG_TYPE', message, guildData);
+                    logCommand('PREV_INVALID_ARG_TYPE', message, guildData);
                     break;
                 }
 
                 if(skipCount <= 1) {
-                    log_command('PREV_INVALID_ARG_VAL', message, guildData);
+                    logCommand('PREV_INVALID_ARG_VAL', message, guildData);
                     break;
                 }
             }
             
             if(await TrackBot.previous(guildData, skipCount)) {
-                log_command('PREV_SUCCESS', message, guildData);
+                logCommand('PREV_SUCCESS', message, guildData);
             } else {
-                log_command('PREV_FAILED', message, guildData);
+                logCommand('PREV_FAILED', message, guildData);
             }
             break;
         }
         default: {
-            log_command('PREV_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('PREV_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -613,7 +613,7 @@ const command_loop = async (message, commandArray, guildData) => {
 
     switch(commandArray.length) {
         case 1: {
-            log_command('LOOP_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('LOOP_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 2: {
@@ -621,12 +621,12 @@ const command_loop = async (message, commandArray, guildData) => {
 
             if(targetConv1 === 'single' || targetConv1 === 'queue') {
                 if(await TrackBot.loopToggle(guildData, targetConv1)) {
-                    log_command('LOOP_SUCCESS', message, guildData);
+                    logCommand('LOOP_SUCCESS', message, guildData);
                 } else {
-                    log_command('LOOP_FAILED', message, guildData);
+                    logCommand('LOOP_FAILED', message, guildData);
                 }
             } else {
-                log_command('LOOP_INVALID_ARG_VAL_1', message, guildData);
+                logCommand('LOOP_INVALID_ARG_VAL_1', message, guildData);
             }
             break;
         }
@@ -637,26 +637,26 @@ const command_loop = async (message, commandArray, guildData) => {
             if(targetConv1 === 'single' || targetConv1 === 'queue') {
                 if(targetConv2 === 'on') {
                     if(await TrackBot.loopEdit(guildData, targetConv1, true)) {
-                        log_command('LOOP_SUCCESS', message, guildData);
+                        logCommand('LOOP_SUCCESS', message, guildData);
                     } else {
-                        log_command('LOOP_FAILED', message, guildData);
+                        logCommand('LOOP_FAILED', message, guildData);
                     }
                 } else if(targetConv2 === 'off') {
                     if(await TrackBot.loopEdit(guildData, targetConv1, false)) {
-                        log_command('LOOP_SUCCESS', message, guildData);
+                        logCommand('LOOP_SUCCESS', message, guildData);
                     } else {
-                        log_command('LOOP_FAILED', message, guildData);
+                        logCommand('LOOP_FAILED', message, guildData);
                     }
                 } else {
-                    log_command('LOOP_INVALID_ARG_VAL_2', message, guildData);
+                    logCommand('LOOP_INVALID_ARG_VAL_2', message, guildData);
                 }
             } else {
-                log_command('LOOP_INVALID_ARG_VAL_1', message, guildData);
+                logCommand('LOOP_INVALID_ARG_VAL_1', message, guildData);
             }
             break;
         }
         default: {
-            log_command('LOOP_OVER_MAX_ARG_CNT', message, guildData);
+            logCommand('LOOP_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }
@@ -668,7 +668,7 @@ const command_loop = async (message, commandArray, guildData) => {
 const command_playlist = async (message, commandArray, guildData) => {
     switch(commandArray.length) {
         case 1: {
-            log_command('PLAYLIST_UNDER_REQ_ARG_CNT', message, guildData);
+            logCommand('PLAYLIST_UNDER_REQ_ARG_CNT', message, guildData);
             break;
         }
         case 2: {
@@ -687,7 +687,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     });
 
                     message.channel.send(LE);
-                    log_command('PLAYLIST_LIST_SUCCESS', message, guildData);	
+                    logCommand('PLAYLIST_LIST_SUCCESS', message, guildData);	
 					break;
                 }
                 case 'create':
@@ -696,11 +696,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                 case 'show':
                 case 'add': 
                 case 'remove': {
-					log_command(`PLAYLIST_${commandArray[1].toUpperCase()}_UNDER_REQ_ARG_CNT`, message, guildData);	
+					logCommand(`PLAYLIST_${commandArray[1].toUpperCase()}_UNDER_REQ_ARG_CNT`, message, guildData);	
                     break;
                 }
                 default: {
-                    log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
+                    logCommand('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
             }
             break;
@@ -708,7 +708,7 @@ const command_playlist = async (message, commandArray, guildData) => {
         case 3: {
             switch(commandArray[1].toLowerCase()) {
                 case 'list': {
-                    log_command(`PLAYLIST_LIST_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand(`PLAYLIST_LIST_OVER_MAX_ARG_CNT`, message, guildData);	
                     break;
                 }
                 case 'create': {
@@ -716,43 +716,43 @@ const command_playlist = async (message, commandArray, guildData) => {
 
                     if(guildData.TB.playlist !== undefined) {
                         if(newPLname in guildData.TB.playlist) {
-                            log_command('PLAYLIST_CREATE_FILE_EXISTS', message, guildData);
+                            logCommand('PLAYLIST_CREATE_FILE_EXISTS', message, guildData);
                             break;
                         }
                     } 
 
                     if(await TrackBot.playlist_create(guildData, newPLname, message.author.tag)) {
-                        log_command('PLAYLIST_CREATE_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_CREATE_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_CREATE_FAILED', message, guildData);
+                        logCommand('PLAYLIST_CREATE_FAILED', message, guildData);
                     }
                     break;
                 }
                 case 'delete': {
                     let targetPlaylist = commandArray[2];
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_DELETE_NO_FILE_EXISTS', message, guildData);
+                        logCommand('PLAYLIST_DELETE_NO_FILE_EXISTS', message, guildData);
                         break;
                     }
 
                     if(await TrackBot.playlist_delete(guildData, targetPlaylist)) {
-                        log_command('PLAYLIST_DELETE_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_DELETE_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_DELETE_FAILED', message, guildData);
+                        logCommand('PLAYLIST_DELETE_FAILED', message, guildData);
                     }
                     break;
                 }
                 case 'queue': {
                     let targetPlaylist = commandArray[2];
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_QUEUE_NO_DATA_FOUND', message, guildData);
+                        logCommand('PLAYLIST_QUEUE_NO_DATA_FOUND', message, guildData);
                         break;
                     }
 
                     if(await TrackBot.playlist_queue(guildData, targetPlaylist)) {
-                        log_command('PLAYLIST_QUEUE_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_QUEUE_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_QUEUE_FAILED', message, guildData);
+                        logCommand('PLAYLIST_QUEUE_FAILED', message, guildData);
                     }
                     break;
                 }
@@ -764,7 +764,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let loopIdx;
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_SHOW_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_SHOW_NO_PL_FOUND', message, guildData);
                         break;
                     }
                     
@@ -781,16 +781,16 @@ const command_playlist = async (message, commandArray, guildData) => {
                     }
 
                     message.channel.send(SE);
-                    log_command('PLAYLIST_SHOW_SUCCESS', message, guildData);
+                    logCommand('PLAYLIST_SHOW_SUCCESS', message, guildData);
                     break;
                 }
                 case 'add': 
                 case 'remove': {
-					log_command(`PLAYLIST_${commandArray[1].toUpperCase()}_UNDER_REQ_ARG_CNT`, message, guildData);	
+					logCommand(`PLAYLIST_${commandArray[1].toUpperCase()}_UNDER_REQ_ARG_CNT`, message, guildData);	
                     break;
                 }
                 default: {
-                    log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
+                    logCommand('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
             }
             break;
@@ -802,20 +802,20 @@ const command_playlist = async (message, commandArray, guildData) => {
                 case 'delete':
                 case 'queue':
                 case 'show': {
-                    log_command(`PLAYLIST_${commandArray[1].toUpperCase()}_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand(`PLAYLIST_${commandArray[1].toUpperCase()}_OVER_MAX_ARG_CNT`, message, guildData);	
                     break;
                 }
                 case 'add': {
                     let targetPlaylist = commandArray[2];
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
                         break;
                     }
 
                     if(await TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], guildData.TB.volume)) {
-                        log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_ADD_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_ADD_FAILED', message, guildData);
+                        logCommand('PLAYLIST_ADD_FAILED', message, guildData);
                     }
                     break;
                 }
@@ -824,29 +824,29 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let targetIdx      = parseInt(commandArray[3]);
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_REMOVE_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_NO_PL_FOUND', message, guildData);
                         break;
                     }
 
                     if(isNaN(targetIdx)) {
-                        log_command('PLAYLIST_REMOVE_INVALID_ARG_TYPE', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_INVALID_ARG_TYPE', message, guildData);
                         break;
                     }
 
                     if(targetIdx >= guildData.TB.playlist[targetPlaylist].length || targetIdx < 0) {
-                        log_command('PLAYLIST_REMOVE_INVALID_ARG_VALUE', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_INVALID_ARG_VALUE', message, guildData);
                         break;
                     }
 
                     if(await TrackBot.playlist_remove(guildData, targetPlaylist, targetIdx)) {
-                        log_command('PLAYLIST_REMOVE_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_REMOVE_FAILED', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_FAILED', message, guildData);
                     }
                     break;
                 }
                 default: {
-                    log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
+                    logCommand('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
             }
             break;
@@ -858,7 +858,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                 case 'delete':
                 case 'queue':
                 case 'show': {
-                    log_command(`PLAYLIST_${commandArray[1].toUpperCase()}_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand(`PLAYLIST_${commandArray[1].toUpperCase()}_OVER_MAX_ARG_CNT`, message, guildData);	
                     break;
                 }
                 case 'add': {
@@ -866,34 +866,34 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let volumeData     = parseInt(commandArray[4]);
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        log_command('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
                         break;
                     }
 
                     if(isNaN(volumeData)) {
-                        log_command('PLAYLIST_ADD_INVALID_ARG_TYPE', message, guildData);
+                        logCommand('PLAYLIST_ADD_INVALID_ARG_TYPE', message, guildData);
                         break;
                     }
 
                     if(await TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], volumeData)) {
-                        log_command('PLAYLIST_ADD_SUCCESS', message, guildData);
+                        logCommand('PLAYLIST_ADD_SUCCESS', message, guildData);
                     } else {
-                        log_command('PLAYLIST_ADD_FAILED', message, guildData);
+                        logCommand('PLAYLIST_ADD_FAILED', message, guildData);
                     }
                     break;
                 }
                 case 'delete': {
-                    log_command(`PLAYLIST_DELETE_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand(`PLAYLIST_DELETE_OVER_MAX_ARG_CNT`, message, guildData);	
                     break;
                 }
                 default: {
-                    log_command('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
+                    logCommand('PLAYLIST_UNKNOWN_ARG_1', message, guildData);
                 }
             }
             break;
         }
         default: {
-            log_command(`PLAYLIST_OVER_MAX_ARG_CNT`, message, guildData);
+            logCommand(`PLAYLIST_OVER_MAX_ARG_CNT`, message, guildData);
         }
     }
 }
