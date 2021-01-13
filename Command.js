@@ -62,12 +62,12 @@ commandList.forEach((element) => {
 //////////////////////////////////////////////////
 
 const trackbot_channel_check = (user_vc, bot_vc, bot_vcon) => {
-    if(user_vc == null) {
+    if(user_vc === null) {
         return '_USER_VC_NULL';
     }
 
     if(bot_vc === null) {
-        return '_BOT_VCON_NULL';
+        return '_BOT_VC_NULL';
     }
 
     if(bot_vcon === null) {
@@ -577,7 +577,7 @@ const command_previous = async (message, commandArray, guildData) => {
             }
             
             if(guildData.TB.queue.length <= 0) {
-                logCommand('PREV_QUEUE_EMPTY');
+                logCommand('PREV_QUEUE_EMPTY', message, guildData);
                 break;
             }
 
@@ -708,7 +708,7 @@ const command_playlist = async (message, commandArray, guildData) => {
         case 3: {
             switch(commandArray[1].toLowerCase()) {
                 case 'list': {
-                    logCommand(`PLAYLIST_LIST_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand('PLAYLIST_LIST_OVER_MAX_ARG_CNT', message, guildData);	
                     break;
                 }
                 case 'create': {
@@ -883,7 +883,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     break;
                 }
                 case 'delete': {
-                    logCommand(`PLAYLIST_DELETE_OVER_MAX_ARG_CNT`, message, guildData);	
+                    logCommand('PLAYLIST_DELETE_OVER_MAX_ARG_CNT', message, guildData);	
                     break;
                 }
                 default: {
@@ -893,7 +893,7 @@ const command_playlist = async (message, commandArray, guildData) => {
             break;
         }
         default: {
-            logCommand(`PLAYLIST_OVER_MAX_ARG_CNT`, message, guildData);
+            logCommand('PLAYLIST_OVER_MAX_ARG_CNT', message, guildData);
         }
     }
 }

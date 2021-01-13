@@ -310,8 +310,8 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
         consoleLogText = `[guild_null][command][${logType}][${message.author.tag}]`;
     }
     
-    switch(logType) 
-    {
+    switch(logType) {
+
         //////////////////////////////////////////////////
         // Event Handler: help
         //////////////////////////////////////////////////
@@ -1689,12 +1689,176 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/loop [single/queue] [on/off]',        true)
-                .addField('Received', message.content, true)
-                .setTimestamp();
+
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
+		case 'HELP_SUCCESS': {break;}
+		case 'HELP_OVER_MAX_ARG_CNT': {break;}
+		case 'SYSCALL_UNDER_REQ_ARG_CNT': {break;}
+		case 'SYSCALL_DELETE_UNDER_REQ_ARG_CNT': {break;}
+		case 'SYSCALL_DELETE_INVALID_ARGUMENT_TYPE': {break;}
+		case 'SYSCALL_DELETE_ARGUMENT_OVER_LIMIT': {break;}
+		case 'SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT': {break;}
+		case 'SYSCALL_DELETE_PROCESS_ERROR': {break;}
+		case 'SYSCALL_DELETE_PROCESS_SUCCESS': {break;}
+		case 'SYSCALL_DELETE_OVER_MAX_ARG_CNT': {break;}
+		case 'SYSCALL_UNKNOWN_ARG': {break;}
+		case 'JOIN_VC_NULL': {break;}
+		case 'JOIN_VC_SET': {break;}
+		case 'JOIN_SUCCESS': {break;}
+		case 'JOIN_FAILED': {break;}
+		case 'JOIN_OVER_MAX_ARG_CNT': {break;}
+		case 'LEAVE_BOT_VC_NULL': {break;}
+		case 'LEAVE_SUCCESS': {break;}
+		case 'LEAVE_FAILED': {break;}
+		case 'LEAVE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAY_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAY_INVALID_ARG_TYPE': {break;}
+		case 'PLAY_INVALID_ARG_VAL': {break;}
+		case 'PLAY_USER_VC_NULL': {break;}
+		case 'PLAY_JOIN_FAILED': {break;}
+		case 'PLAY_USER_INVALID_VC': {break;}
+		case 'PLAY_SUCCESS': {break;}
+		case 'PLAY_FAILED': {break;}
+		case 'PLAY_OVER_MAX_ARG_CNT': {break;}
+		case 'START_USER_VC_NULL': {break;}
+		case 'START_BOT_VC_NULL': {break;}
+		case 'START_BOT_VCON_NULL': {break;}
+		case 'START_USER_INVALID_VC': {break;}
+		case 'START_QUEUE_EMPTY': {break;}
+		case 'START_PLAYING': {break;}
+		case 'START_SUCCESS': {break;}
+		case 'START_FAILED': {break;}
+		case 'START_OVER_MAX_ARG_CNT': {break;}
+		case 'STOP_USER_VC_NULL': {break;}
+		case 'STOP_BOT_VC_NULL': {break;}
+		case 'STOP_BOT_VCON_NULL': {break;}
+		case 'STOP_USER_INVALID_VC': {break;}
+		case 'STOP_STOPPED': {break;}
+		case 'STOP_SUCCESS': {break;}
+		case 'STOP_FAILED': {break;}
+		case 'STOP_OVER_MAX_ARG_CNT': {break;}
+		case 'RESUME_USER_VC_NULL': {break;}
+		case 'RESUME_VC_NULL': {break;}
+		case 'RESUME_BOT_VCON_NULL': {break;}
+		case 'RESUME_USER_INVALID_VC': {break;}
+		case 'RESUME_PLAYING': {break;}
+		case 'RESUME_SUCCESS': {break;}
+		case 'RESUME_FAILED': {break;}
+		case 'RESUME_OVER_MAX_ARG_CNT': {break;}
+		case 'RESUME_USER_VC_NULL': {break;}
+		case 'RESUME_BOT_VC_NULL': {break;}
+		case 'RESUME_BOT_VCON_NULL': {break;}
+		case 'RESUME_USER_INVALID_VC': {break;}
+		case 'PAUSE_STOPPED': {break;}
+		case 'PAUSE_PAUSED': {break;}
+		case 'PAUSE_SUCCESS': {break;}
+		case 'PAUSE_FAILED': {break;}
+		case 'PAUSE_OVER_MAX_ARG_CNT': {break;}
+		case 'LIST_QUEUE_EMPTY': {break;}
+		case 'LIST_SUCCESS': {break;}
+		case 'LIST_OVER_MAX_ARG_CNT': {break;}
+		case 'ADD_UNDER_REQ_ARG_CNT': {break;}
+		case 'ADD_INVALID_ARG_TYPE': {break;}
+		case 'PLAY_INVALID_ARG_VAL': {break;}
+		case 'ADD_SUCCESS': {break;}
+		case 'ADD_FAILED': {break;}
+		case 'ADD_OVER_MAX_ARG_CNT': {break;}
+		case 'REMOVE_UNDER_REQ_ARG_CNT': {break;}
+		case 'REMOVE_INVALID_ARG_TYPE': {break;}
+		case 'REMOVE_INVALID_ARG_VAL': {break;}
+		case 'REMOVE_CUR_IDX': {break;}
+		case 'REMOVE_SUCCESS': {break;}
+		case 'REMOVE_FAILED': {break;}
+		case 'REMOVE_OVER_MAX_ARG_CNT': {break;}
+		case 'CLEAR_QUEUE_EMPTY': {break;}
+		case 'CLEAR_CUR_IDX': {break;}
+		case 'CLEAR_SUCCESS': {break;}
+		case 'CLEAR_FAILED': {break;}
+		case 'CLEAR_OVER_MAX_ARG_CNT': {break;}
+		case 'NEXT_USER_VC_NULL': {break;}
+		case 'NEXT_BOT_VC_NULL': {break;}
+		case 'NEXT_BOT_VCON_NULL': {break;}
+		case 'NEXT_USER_INVALID_VC': {break;}
+		case 'NEXT_QUEUE_EMPTY': {break;}
+		case 'NEXT_INVALID_ARG_TYPE': {break;}
+		case 'NEXT_INVALID_ARG_VAL': {break;}
+		case 'NEXT_SUCCESS': {break;}
+		case 'NEXT_FAILED': {break;}
+		case 'NEXT_OVER_MAX_ARG_CNT': {break;}
+		case 'PREV_USER_VC_NULL': {break;}
+		case 'PREV_BOT_VC_NULL': {break;}
+		case 'PREV_BOT_VCON_NULL': {break;}
+		case 'PREV_USER_INVALID_VC': {break;}
+		case 'PREV_QUEUE_EMPTY': {break;}
+		case 'PREV_INVALID_ARG_TYPE': {break;}
+		case 'PREV_INVALID_ARG_VAL': {break;}
+		case 'PREV_SUCCESS': {break;}
+		case 'PREV_FAILED': {break;}
+		case 'PREV_OVER_MAX_ARG_CNT': {break;}
+		case 'LOOP_UNDER_REQ_ARG_CNT': {break;}
+		case 'LOOP_SUCCESS': {break;}
+		case 'LOOP_FAILED': {break;}
+		case 'LOOP_INVALID_ARG_VAL_1': {break;}
+		case 'LOOP_SUCCESS': {break;}
+		case 'LOOP_FAILED': {break;}
+		case 'LOOP_SUCCESS': {break;}
+		case 'LOOP_FAILED': {break;}
+		case 'LOOP_INVALID_ARG_VAL_2': {break;}
+		case 'LOOP_INVALID_ARG_VAL_1': {break;}
+		case 'LOOP_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_LIST_SUCCESS': {break;}
+		case 'PLAYLIST_CREATE_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_DELETE_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_QUEUE_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_SHOW_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
+		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_CREATE_FILE_EXISTS': {break;}
+		case 'PLAYLIST_CREATE_SUCCESS': {break;}
+		case 'PLAYLIST_CREATE_FAILED': {break;}
+		case 'PLAYLIST_DELETE_NO_FILE_EXISTS': {break;}
+		case 'PLAYLIST_DELETE_SUCCESS': {break;}
+		case 'PLAYLIST_DELETE_FAILED': {break;}
+		case 'PLAYLIST_QUEUE_NO_DATA_FOUND': {break;}
+		case 'PLAYLIST_QUEUE_SUCCESS': {break;}
+		case 'PLAYLIST_QUEUE_FAILED': {break;}
+		case 'PLAYLIST_SHOW_NO_PL_FOUND': {break;}
+		case 'PLAYLIST_SHOW_SUCCESS': {break;}
+		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
+		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
+		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_QUEUE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_SHOW_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
+		case 'PLAYLIST_ADD_SUCCESS': {break;}
+		case 'PLAYLIST_ADD_FAILED': {break;}
+		case 'PLAYLIST_REMOVE_NO_PL_FOUND': {break;}
+		case 'PLAYLIST_REMOVE_INVALID_ARG_TYPE': {break;}
+		case 'PLAYLIST_REMOVE_INVALID_ARG_VALUE': {break;}
+		case 'PLAYLIST_REMOVE_SUCCESS': {break;}
+		case 'PLAYLIST_REMOVE_FAILED': {break;}
+		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
+		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_QUEUE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_SHOW_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
+		case 'PLAYLIST_ADD_INVALID_ARG_TYPE': {break;}
+		case 'PLAYLIST_ADD_SUCCESS': {break;}
+		case 'PLAYLIST_ADD_FAILED': {break;}
+		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
+		case 'PLAYLIST_OVER_MAX_ARG_CNT': {break;}
 
         default:
         {

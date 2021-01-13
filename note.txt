@@ -12,14 +12,7 @@ dispatcher.on('finish', () => {
 
 dispatcher.destroy(); // end the stream\
 
-
-
 https://github.com/discordjs/discord.js/blob/master/docs/topics/voice.md
-
-
-
-
-
 
 event logs ====================================================
 BOT_READY
