@@ -151,7 +151,7 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
         }
         case 'TYPING_START': {
             eLog = null;
-            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] typing event detected.`);
+            consoleLogText = consoleLogText.concat(`[${eventData[1].tag}] Typing event detected.`);
             break;
         }
         case 'ROLE_CREATE': {
@@ -166,43 +166,99 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
         }
         case 'ROLE_UPDATE': { // TODO: ashz
             eLog = null;
-            consoleLogText = consoleLogText.concat(`[administrator] update to role detected. {id:\"${eventData[1].id}\"}`);
+            consoleLogText = consoleLogText.concat(`[administrator] Update to role detected. {id:\"${eventData[1].id}\"}`);
+            break;
+        }
+        case 'EMOJI_CREATE': {
+            eLog.setColor(ExF.html_green)
+                .setTitle('New Emoji')
+                .setDescription(`:${eventData.name}:`)
+                .setTimestamp();
+
+            consoleLogText = consoleLogText.concat(`[administrator] Added a new Emoji to the guild. {id:\"${eventData.id}\",name:\"${eventData.name}\",auther:\"${eventData.author}\"}`);
+            break;
+        }
+        case 'EMOJI_DELETE': {
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Deleted Emoji')
+                .setDescription(`:${eventData.name}:`)
+                .setTimestamp();
+            
+            consoleLogText = consoleLogText.concat(`[administrator] Deleted Emoji from the guild. {id:\"${eventData.id}\",name:\"${eventData.name}\",auther:\"${eventData.author}\"}`);
+            break;
+        }
+        case 'EMOJI_UPDATE': {
+            eLog.setColor(ExF.html_yellow)
+                .setTitle('Emoji Updated')
+                .setDescription(`:${eventData[0].name}:`)
+                .setTimestamp();
+            
+            consoleLogText = consoleLogText.concat('[administrator] Emoji update event detected.');
+
+            if(eventData[0].name !== eventData[1].name) {
+                eLog.addField('Name', `${eventData[0].name} -> ${eventData[1].name}`, true);
+                consoleLogText = consoleLogText.concat(` {name:{\"${eventData[0].name}\"->\"${eventData[1].name}\"}}`);
+            }
+            break;
+        }
+        case 'GUILD_BAN_ADD': {
+            eLog.setColor(ExF.html_orange)
+                .setAuthor(eventData[1].username)
+                .setTitle('User Banned')
+                .setDescription('User is now banned from the guild.')
+                .setTimestamp();
+            
+            consoleLogText = consoleLogText.concat(`[administrator] A user is now banned from the guild. {name:\"${eventData[1].username}\"}`);
+            break;
+        }
+        case 'GUILD_BAN_REMOVE': {
+            eLog.setColor(ExF.html_green)
+                .setAuthor(eventData[1].username)
+                .setTitle('User Un-Banned')
+                .setDescription('User is now unbanned from the guild.')
+                .setTimestamp();
+            
+            consoleLogText = consoleLogText.concat(`[administrator] A user is now unbanned from the guild. {name:\"${eventData[1].username}\"}`);
             break;
         }
 
 ///////////////////////////////////////////// CLEANED ^
-
-        case 'EMOJI_CREATE': {
-            break;
-        }
-        case 'EMOJI_DELETE': {
-            break;
-        }
-        case 'EMOJI_UPDATE': {
-            break;
-        }
-        case 'GUILD_BAN_ADD': {
-            break;
-        }
-        case 'GUILD_BAN_REMOVE': {
-            break;
-        }
         case 'GUILD_MEMBER_ADD': {
+            console.log(eventData);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_MEMBER_REMOVE': {
+            console.log(eventData);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_MEMBER_UPDATE': {
+            console.log(eventData[0]);
+            console.log('=============================================');
+            console.log(eventData[1]);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_MEMBER_AVAILABLE': {
+            console.log(eventData);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_MEMBERS_CHUNK': {
+            console.log(eventData[0]);
+            console.log('=============================================');
+            console.log(eventData[1]);
+            console.log('=============================================');
+            console.log(eventData[2]);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_MEMBER_SPEAKING': {
+            console.log(eventData[0]);
+            console.log('=============================================');
+            console.log(eventData[1]);
+            console.log('=============================================');
             break;
         }
         case 'GUILD_CREATE': {
@@ -238,7 +294,6 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
         case 'ERROR': {
             break;
         }
-
 ///////////////////////////////////////////// CLEANED v
 
         case 'COMMAND_NO_PERMISSION': {
