@@ -20,7 +20,7 @@ const helpEmbed = new Discord.MessageEmbed();
 const commandList = [
     // system commands
     {command : "help",          data : {arg:"",                                                                                                    info:"Show this list of commands."}},
-    {command : "setting(WIP)",  data : {arg:"[ def_vol / admin_list ] [ Volume / add / remove ]",                                                  info:"Edits the bot general settings."}},
+    {command : "setting(WIP)",  data : {arg:"[ volume ] [ Volume ]",                                                                               info:"Edits the bot general settings."}},
     {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                               info:"Specialized commands, mostly for administrators."}},
     // trackbot control commands
     {command : "join",          data : {arg:"",                                                                                                    info:"Bot joins your current voice channel."}},
@@ -115,7 +115,7 @@ const command_syscall = async (message, commandArray, guildData) => {
                             break;
                         }
                         case 3: {
-                            var count = parseInt(commandArray[1]);
+                            let count = parseInt(commandArray[2]);
                             if (isNaN(count)) {
                                 logCommand('SYSCALL_DELETE_INVALID_ARGUMENT_TYPE', message, guildData);
                                 break;
@@ -131,9 +131,10 @@ const command_syscall = async (message, commandArray, guildData) => {
                             }
 
                             try {
-                                const bulkMessage = await message.channel.messages.fetch({limit: count});
+                                let bulkMessage = await message.channel.messages.fetch({limit: count});
                                 message.channel.bulkDelete(bulkMessage);
                             } catch(errorData) {
+                                console.error(errorData);
                                 logCommand('SYSCALL_DELETE_PROCESS_ERROR', message, guildData);
                                 break;
                             }
