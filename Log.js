@@ -51,10 +51,10 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
             let updatedChannelName  = ExF.getChannelName(eventData[1]);
             let isChange            = false;
 
-            consoleLogText = consoleLogText.concat(' ');
+            consoleLogText = consoleLogText.concat(' {');
 
             if(previousChannelName!==updatedChannelName) {
-                consoleLogText = consoleLogText.concat(`{name:(\"${previousChannelName}\"->\"${updatedChannelName}\")`);
+                consoleLogText = consoleLogText.concat(`name:{\"${previousChannelName}\"->\"${updatedChannelName}\"}`);
                 isChange       = true;
             }
 
@@ -64,7 +64,7 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
                 } else {
                     isChange = true;
                 }
-                consoleLogText = consoleLogText.concat(`topic:(\"${eventData[0].topic}\"->\"${eventData[1].topic}\")`);
+                consoleLogText = consoleLogText.concat(`topic:{\"${eventData[0].topic}\"->\"${eventData[1].topic}\"}`);
             }
 
             if(eventData[0].rateLimitPerUser!==eventData[1].rateLimitPerUser) {
@@ -73,7 +73,7 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
                 } else {
                     isChange = true;
                 }
-                consoleLogText = consoleLogText.concat(`rateLimit:(\"${eventData[0].rateLimitPerUser}\"->\"${eventData[1].rateLimitPerUser}\")`);
+                consoleLogText = consoleLogText.concat(`rateLimit:{\"${eventData[0].rateLimitPerUser}\"->\"${eventData[1].rateLimitPerUser}\"}`);
             }
 
             if(eventData[0].nsfw != eventData[1].nsfw) {
@@ -82,7 +82,7 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
                 } else {
                     isChange = true;
                 }
-                consoleLogText = consoleLogText.concat(`nsfw:(\"${eventData[0].nsfw}\"->\"${eventData[1].nsfw}\")`);
+                consoleLogText = consoleLogText.concat(`nsfw:{\"${eventData[0].nsfw}\"->\"${eventData[1].nsfw}\"}`);
             }
 
             eLog = null;
@@ -221,81 +221,117 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
             consoleLogText = consoleLogText.concat(`[administrator] A user is now unbanned from the guild. {name:\"${eventData[1].username}\"}`);
             break;
         }
-
-///////////////////////////////////////////// CLEANED ^
         case 'GUILD_MEMBER_ADD': {
+            eLog = null;
             console.log(eventData);
-            console.log('=============================================');
+            consoleLogText = consoleLogText.concat('[external] User creation detected.');
             break;
         }
         case 'GUILD_MEMBER_REMOVE': {
+            eLog = null;
             console.log(eventData);
-            console.log('=============================================');
+            consoleLogText = consoleLogText.concat('[external] User deletion detected.');
             break;
         }
         case 'GUILD_MEMBER_UPDATE': {
+            eLog = null;
             console.log(eventData[0]);
-            console.log('=============================================');
             console.log(eventData[1]);
-            console.log('=============================================');
+            consoleLogText = consoleLogText.concat('[external] User update detected.');
             break;
         }
         case 'GUILD_MEMBER_AVAILABLE': {
+            eLog = null;
             console.log(eventData);
-            console.log('=============================================');
-            break;
+            consoleLogText = consoleLogText.concat('[external] User availabilty detected.');
+            break; 
         }
         case 'GUILD_MEMBERS_CHUNK': {
+            eLog = null;
             console.log(eventData[0]);
-            console.log('=============================================');
             console.log(eventData[1]);
-            console.log('=============================================');
             console.log(eventData[2]);
-            console.log('=============================================');
+            consoleLogText = consoleLogText.concat('[external] User chunk event detected.');
             break;
         }
         case 'GUILD_MEMBER_SPEAKING': {
+            eLog = null;
             console.log(eventData[0]);
-            console.log('=============================================');
             console.log(eventData[1]);
-            console.log('=============================================');
+            consoleLogText = consoleLogText.concat('[external] User speaking event detected.');
             break;
         }
         case 'GUILD_CREATE': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[external] Guild creation detected.');
             break;
         }
         case 'GUILD_DELETE': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[external] Guild deletion detected.');
             break;
         }
         case 'GUILD_UPDATE': {
+            eLog = null;
+            console.log(eventData[0]);
+            console.log(eventData[1]);
+            consoleLogText = consoleLogText.concat('[external] Guild update event detected.');
             break;
         }
         case 'GUILD_UNAVAILABLE': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[external] Guild unavailable event detected.');
             break;
         }
         case 'USER_UPDATE': {
+            eLog = null;
+            console.log(eventData[0]);
+            console.log(eventData[1]);
+            consoleLogText = consoleLogText.concat('[user] User update event detected.');
             break;
         }
         case 'PRESENCE_UPDATE': {
+            eLog = null;
+            console.log(eventData[0]);
+            console.log(eventData[1]);
+            consoleLogText = consoleLogText.concat('[user] User presence update detected.');
             break;
         }
         case 'VOICE_STATE_UPDATE': {
+            eLog = null;
+            console.log(eventData[0]);
+            console.log(eventData[1]);
+            consoleLogText = consoleLogText.concat('[user] User voice state update detected.');
             break;
         }
         case 'DISCONNECT': {
+            eLog = null;
+            console.log(eventData[0]);
+            console.log(eventData[1]);
+            consoleLogText = consoleLogText.concat('[?] Disconnect event detected.');
             break;
         }
         case 'WARN': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[bot] Warn event detected.');
             break;
         }
         case 'DEBUG': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[bot] Debug event detected.');
             break;
         }
         case 'ERROR': {
+            eLog = null;
+            console.log(eventData);
+            consoleLogText = consoleLogText.concat('[bot] Error event detected.');
             break;
         }
-///////////////////////////////////////////// CLEANED v
-
         case 'COMMAND_NO_PERMISSION': {
             eLog
                 .setColor(ExF.html_red)
@@ -353,210 +389,21 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
     ExF.logConsole(consoleLogText, guildData);
 }
 
-function command_result_handle_log(logType,message,guildData,extraData=null) 
-{
-    const commandIssuer = message.author.tag;
-    var emLog = new Discord.MessageEmbed();
-    var consoleLogText;
+const command_result_handle_log = (logType, eventData, guildData) => {
+    let commandIssuer;
+    let consoleLogText;
+    let eLog;
 
-    if(guildData != null) {
-        consoleLogText = `[${guildData.guildID}][command][${logType}][${message.author.tag}]`;
-    } else {
-        consoleLogText = `[guild_null][command][${logType}][${message.author.tag}]`;
+    if(eventData === null || guildData === null) {
+        ExF.logConsole('[guild_null][command] Invalid command_log() usage.');
+        return;
     }
+
+    eLog           = new Discord.MessageEmbed();
+    commandIssuer  = eventData.author.tag;
+    consoleLogText = `[${guildData.guildID}][command][${logType}][${eventData.author.tag}][${eventData.id}]`;
     
     switch(logType) {
-
-        //////////////////////////////////////////////////
-        // Event Handler: help
-        //////////////////////////////////////////////////
-        case 'HELP_SUCCESS':
-        {
-            let logReason = 'Shown user the help list.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'HELP_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/help',         true)
-                .addField('Received', message.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-
-        //////////////////////////////////////////////////
-        // Event Handler: join
-        //////////////////////////////////////////////////
-        case 'JOIN_VC_NULL':
-        {
-            let logReason = 'Voice channel is Null inside message object.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('No Voice Channel Found')
-                .setDescription('You are not inside a voice channel.')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_NO_PERM_CONNECT':
-        {
-            let logReason = 'Bot has no permission to join the channel.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "true",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(logReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_NO_PERM_SPEAK':
-        {
-            let logReason = 'Bot has no permission to speak inside voice channel.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "true",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(logReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_CONNECTED':
-        {
-            let logReason = 'Already connected to a voice channel.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Already Connected')
-                .setDescription(logReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_CONNECTION_FAILED':
-        {
-            let logReason = 'Error occured while trying to connect to voice channel.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "true",
-                received_command : message.content,
-                reason           : logReason,
-                data             : extraData,
-            };
-
-            emLog
-                .setColor(ExF.html_red)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(logReason)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_SUCCESS':
-        {
-            let logReason = 'Connected to voice channel.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_green)
-                .setAuthor(commandIssuer)
-                .setTitle('Joined Voice Channel')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'JOIN_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : message.content,
-                reason           : logReason,
-            };
-
-            emLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/join',         true)
-                .addField('Received', message.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-
-        //////////////////////////////////////////////////
-        // Event Handler: join
-        //////////////////////////////////////////////////
         case 'LEAVE_OVER_MAX_ARG_CNT':
         {
             let logReason = 'Received too many arguments.';
@@ -564,16 +411,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/leave',        true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -586,11 +433,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "maybe",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Inside Voice Channel')
@@ -607,11 +454,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog
+            eLog
                 .setColor(ExF.html_orange)
                 .setAuthor(commandIssuer)
                 .setTitle('Left Voice Channel')
@@ -620,10 +467,6 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////
-        // Event Handler: play
-        //////////////////////////////////////////////////
         case 'PLAY_UNDER_REQ_ARG_CNT':
         {
             let logReason = 'Received not enough arguments.';
@@ -631,38 +474,37 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', message.content,        true)
+                .addField('Received', eventData.content,        true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-        case 'PLAY_INVALID_ARG_TYPE':
-        {
+        case 'PLAY_INVALID_ARG_TYPE': {
             let logReason = 'Received argument type is invalid.';
             let logData = 
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', message.content,        true)
+                .addField('Received', eventData.content,        true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -675,11 +517,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -690,25 +532,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', message.content,        true)
+                .addField('Received', eventData.content,        true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////
-        // Event Handler: start
-        //////////////////////////////////////////////////
         case 'START_NOT_CONNECTED_TO_VC':
         {
             let logReason = 'Found no voice channel.';
@@ -716,11 +554,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "maybe",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected')
@@ -737,11 +575,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Playing')
@@ -758,11 +596,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -773,25 +611,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/start',        true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////
-        // Event Handler: stop
-        //////////////////////////////////////////////////
         case 'STOP_NOT_PLAYING_TRACK':
         {
             let logReason = 'Nothing to stop.';
@@ -799,11 +633,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Running Anything')
@@ -820,11 +654,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "true",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Critical')
@@ -841,11 +675,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -856,25 +690,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/stop',         true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: resume
-        //////////////////////////////////////////////////
         case 'RESUME_ALREADY_RUNNING':
         {
             let logReason = 'Already running, cannot resume.';
@@ -882,11 +712,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Running')
@@ -903,11 +733,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Paused')
@@ -924,11 +754,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "maybe",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected To A Voice Channel')
@@ -945,11 +775,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -960,25 +790,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/resume',       true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: pause
-        //////////////////////////////////////////////////
         case 'PAUSE_NOT_RUNNING':
         {
             let logReason = 'Already stopped, cannot pause.';
@@ -986,11 +812,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Stopped')
@@ -1007,11 +833,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Already Paused')
@@ -1028,11 +854,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "maybe",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Not Connected To A Voice Channel')
@@ -1049,11 +875,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1064,25 +890,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/pause',        true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: next
-        //////////////////////////////////////////////////
         case 'NEXT_QUEUE_EMPTY':
         {
             let logReason = 'Queue is empty, nothing to play next.';
@@ -1090,11 +912,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
@@ -1111,11 +933,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
@@ -1132,11 +954,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
@@ -1153,11 +975,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1168,25 +990,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/next [Skip Count]', true)
-                .addField('Received', message.content,      true)
+                .addField('Received', eventData.content,      true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: previous
-        //////////////////////////////////////////////////
         case 'PREV_QUEUE_EMPTY':
         {
             let logReason = 'Queue is empty, nothing to play previous.';
@@ -1194,11 +1012,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
@@ -1215,11 +1033,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
@@ -1236,11 +1054,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
@@ -1257,11 +1075,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1272,25 +1090,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/previous [Skip Count]', true)
-                .addField('Received', message.content,      true)
+                .addField('Received', eventData.content,      true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: list
-        //////////////////////////////////////////////////
         case 'LIST_QUEUE_EMPTY':
         {
             let logReason = 'Queue is empty.';
@@ -1298,11 +1112,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
@@ -1319,11 +1133,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
     
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1334,25 +1148,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/list',         true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: add
-        //////////////////////////////////////////////////
         case 'ADD_UNDER_REQ_ARG_CNT':
         {
             let logReason = 'Received not enough arguments.';
@@ -1360,16 +1170,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', message.content,       true)
+                .addField('Received', eventData.content,       true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -1382,16 +1192,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', message.content,        true)
+                .addField('Received', eventData.content,        true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -1404,11 +1214,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1419,25 +1229,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', message.content,       true)
+                .addField('Received', eventData.content,       true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: remove
-        //////////////////////////////////////////////////
         case 'REMOVE_UNDER_REQ_ARG_CNT':
         {
             let logReason = 'Received not enough arguments.';
@@ -1445,16 +1251,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', message.content,   true)
+                .addField('Received', eventData.content,   true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -1467,16 +1273,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
                 .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', message.content,   true)
+                .addField('Received', eventData.content,   true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -1490,11 +1296,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Type')
@@ -1511,11 +1317,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Cannot Remove Current Track')
@@ -1532,11 +1338,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1547,25 +1353,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', message.content,   true)
+                .addField('Received', eventData.content,   true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: clear
-        //////////////////////////////////////////////////
         case 'CLEAR_QUEUE_EMPTY':
         {
             let logReason = 'Queue is empty, nothing to clear out.';
@@ -1573,11 +1375,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Queue Empty')
@@ -1594,11 +1396,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Cannot Remove Current Track')
@@ -1615,11 +1417,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1630,25 +1432,21 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
                 .addField('Usage',    '/clear',        true)
-                .addField('Received', message.content, true)
+                .addField('Received', eventData.content, true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-
-        //////////////////////////////////////////////////  
-        // Event Handler: loop
-        //////////////////////////////////////////////////
         case 'LOOP_UNDER_REQ_ARG_CNT':
         {
             let logReason = 'Received not enough arguments.';
@@ -1656,16 +1454,16 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Require More Arguments')
                 .addField('Usage',    '/loop [single/queue] [on/off]', true)
-                .addField('Received', message.content,   true)
+                .addField('Received', eventData.content,   true)
                 .setTimestamp();
 
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
@@ -1678,11 +1476,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Value')
@@ -1699,11 +1497,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Invalid Argument Value')
@@ -1720,11 +1518,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "false",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog = null;
+            eLog = null;
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
@@ -1735,11 +1533,11 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             {
                 error            : "true",
                 critical         : "false",
-                received_command : message.content,
+                received_command : eventData.content,
                 reason           : logReason,
             };
 
-            emLog
+            eLog
                 .setColor(ExF.html_yellow)
                 .setAuthor(commandIssuer)
                 .setTitle('Too Many Arguments')
@@ -1749,22 +1547,174 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
             consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
             break;
         }
-		case 'HELP_SUCCESS': {break;}
-		case 'HELP_OVER_MAX_ARG_CNT': {break;}
-		case 'SYSCALL_UNDER_REQ_ARG_CNT': {break;}
-		case 'SYSCALL_DELETE_UNDER_REQ_ARG_CNT': {break;}
-		case 'SYSCALL_DELETE_INVALID_ARGUMENT_TYPE': {break;}
-		case 'SYSCALL_DELETE_ARGUMENT_OVER_LIMIT': {break;}
-		case 'SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT': {break;}
-		case 'SYSCALL_DELETE_PROCESS_ERROR': {break;}
-		case 'SYSCALL_DELETE_PROCESS_SUCCESS': {break;}
-		case 'SYSCALL_DELETE_OVER_MAX_ARG_CNT': {break;}
-		case 'SYSCALL_UNKNOWN_ARG': {break;}
-		case 'JOIN_VC_NULL': {break;}
-		case 'JOIN_VC_SET': {break;}
-		case 'JOIN_SUCCESS': {break;}
-		case 'JOIN_FAILED': {break;}
-		case 'JOIN_OVER_MAX_ARG_CNT': {break;}
+
+        ////////////// TMP ^//////////////////////////////////////////////////////////////////////////////////
+		case 'HELP_SUCCESS': {
+            eLog = null;
+            consoleLogText = consoleLogText.concat(' Printed the help page.');
+            break;
+        }
+		case 'HELP_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/help'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall [?]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100) ]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_INVALID_ARGUMENT_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100) ]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_ARGUMENT_OVER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
+
+            eLog.setColor(ExF.html_yellow)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Number is too big. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
+
+            eLog.setColor(ExF.html_yellow)
+                .setTitle('Number Under Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Number is too small. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_PROCESS_ERROR': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Delete')
+                .setDescription('Critical error. Failed to bulk delete.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Failed bulk delete. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_PROCESS_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle(`Delete Completed`)
+                .setDescription(receivedArgument)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Failed bulk delete. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_UNKNOWN_ARG': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall [?]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Unknown Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Unknown arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'JOIN_VC_NULL': { // ashz> user is not in a channel
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_yellow)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'JOIN_VC_SET': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_yellow)
+                .setTitle('Inside Voice Channel')
+                .setDescription('Already joined a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot has already joined a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'JOIN_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Joined Voice Channel')
+                .setDescription('Norn is now connected to your voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Now connected to user's voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'JOIN_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Joining Channel')
+                .setDescription('Critical error. Failed to join user\' voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Catched error. Failed to join user\'s voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'JOIN_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/join'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'LEAVE_BOT_VC_NULL': {break;}
 		case 'LEAVE_SUCCESS': {break;}
 		case 'LEAVE_FAILED': {break;}
@@ -1914,21 +1864,20 @@ function command_result_handle_log(logType,message,guildData,extraData=null)
 		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
 		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
 		case 'PLAYLIST_OVER_MAX_ARG_CNT': {break;}
-
-        default:
-        {
-            emLog=null;
-            consoleLogText = consoleLogText.concat(' undefined log type');
+        default: {
+            eLog=null;
+            consoleLogText = consoleLogText.concat(` Unknown log type received. {receivedArgument:\"${eventData.content}\"}`);
         }
     }
 
-    if(guildData!=null && emLog!=null) {
-        message.channel.send(emLog);
+    if(guildData!=null && eLog!=null) {
+        eventData.channel.send(eLog);
     }
+
     if(consoleLogText == null) {
         console.log(ExF.traceLog('log event error, guildData is null'));
     } else {
-        ExF.logConsole(consoleLogText,guildData);
+        ExF.logConsole(consoleLogText, guildData);
     }
 }
 
