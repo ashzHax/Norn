@@ -404,69 +404,6 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     consoleLogText = `[${guildData.guildID}][command][${logType}][${eventData.author.tag}][${eventData.id}]`;
     
     switch(logType) {
-        case 'LEAVE_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/leave',        true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'LEAVE_NO_CONNECTION':
-        {
-            let logReason = 'No connection instance found.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Inside Voice Channel')
-                .setDescription('You need to be inside a voice channel first.')
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'LEAVE_SUCCESS':
-        {
-            let logReason = 'Left voice channel.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog
-                .setColor(ExF.html_orange)
-                .setAuthor(commandIssuer)
-                .setTitle('Left Voice Channel')
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
         case 'PLAY_UNDER_REQ_ARG_CNT':
         {
             let logReason = 'Received not enough arguments.';
@@ -1598,26 +1535,26 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'SYSCALL_DELETE_ARGUMENT_OVER_LIMIT': {
+        case 'SYSCALL_DELETE_ARG_UNDER_LIMIT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
 
-            eLog.setColor(ExF.html_yellow)
-                .setTitle('Number Over Limit')
-                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Number is too big. {receivedArgument:\"${receivedArgument}\"}`);
-            break;
-        }
-		case 'SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT': {
-            let receivedArgument = eventData.content;
-            let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
-
-            eLog.setColor(ExF.html_yellow)
+            eLog.setColor(ExF.html_orange)
                 .setTitle('Number Under Limit')
                 .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(` Number is too small. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'SYSCALL_DELETE_ARG_OVER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/syscall delete [ Lines(2~100)) ]'
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Number is too big. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'SYSCALL_DELETE_PROCESS_ERROR': {
@@ -1666,7 +1603,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'JOIN_VC_NULL': { // ashz> user is not in a channel
             let receivedArgument = eventData.content;
 
-            eLog.setColor(ExF.html_yellow)
+            eLog.setColor(ExF.html_orange)
                 .setTitle('No Voice Channel Found')
                 .setDescription('You are not inside a voice channel.')
                 .setTimestamp();
@@ -1676,7 +1613,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'JOIN_VC_SET': {
             let receivedArgument = eventData.content;
 
-            eLog.setColor(ExF.html_yellow)
+            eLog.setColor(ExF.html_orange)
                 .setTitle('Inside Voice Channel')
                 .setDescription('Already joined a voice channel.')
                 .setTimestamp();
@@ -1715,19 +1652,102 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'LEAVE_BOT_VC_NULL': {break;}
-		case 'LEAVE_SUCCESS': {break;}
-		case 'LEAVE_FAILED': {break;}
-		case 'LEAVE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAY_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAY_INVALID_ARG_TYPE': {break;}
-		case 'PLAY_INVALID_ARG_VAL': {break;}
-		case 'PLAY_USER_VC_NULL': {break;}
-		case 'PLAY_JOIN_FAILED': {break;}
-		case 'PLAY_USER_INVALID_VC': {break;}
-		case 'PLAY_SUCCESS': {break;}
-		case 'PLAY_FAILED': {break;}
-		case 'PLAY_OVER_MAX_ARG_CNT': {break;}
+		case 'LEAVE_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LEAVE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Left Voice Channel')
+                .setDescription('Norn has disconnected from it\'s voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is now disconnected from it\'s last voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LEAVE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Leaving Channel')
+                .setDescription('Critical error. Failed to leave user\' voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Catched error. Failed to leave is's connected voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LEAVE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/leave'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAY_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]'
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAY_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]'
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAY_INVALID_ARG_VAL': {
+
+            break;
+        }
+		case 'PLAY_USER_VC_NULL': {
+
+            break;
+        }
+		case 'PLAY_JOIN_FAILED': {
+
+            break;
+        }
+		case 'PLAY_ARG_UNDER_LIMIT': {
+
+            break;
+        }
+        case 'PLAY_ARG_OVER_LIMIT': {
+
+            break;
+        }
+		case 'PLAY_SUCCESS': {
+
+            break;
+        }
+		case 'PLAY_FAILED': {
+
+            break;
+        }
+		case 'PLAY_OVER_MAX_ARG_CNT': {
+
+            break;
+        }
 		case 'START_USER_VC_NULL': {break;}
 		case 'START_BOT_VC_NULL': {break;}
 		case 'START_BOT_VCON_NULL': {break;}

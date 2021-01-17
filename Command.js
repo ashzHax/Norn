@@ -20,12 +20,12 @@ const helpEmbed = new Discord.MessageEmbed();
 const commandList = [
     // system commands
     {command : "help",          data : {arg:"",                                                                                                    info:"Show this list of commands."}},
-    {command : "setting(WIP)",  data : {arg:"[ volume ] [ Volume ]",                                                                               info:"Edits the bot general settings."}},
+    {command : "setting(WIP)",  data : {arg:"[ volume ] [ Volume(1~9) ]",                                                                               info:"Edits the bot general settings."}},
     {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                               info:"Specialized commands, mostly for administrators."}},
     // trackbot control commands
     {command : "join",          data : {arg:"",                                                                                                    info:"Bot joins your current voice channel."}},
     {command : "leave",         data : {arg:"",                                                                                                    info:"Bot leaves whatever channel it's currently connected to."}},
-    {command : "play",          data : {arg:"[ URL ] [ Volume ]",                                                                                  info:"Immediately plays the track from the video of the URL."}},
+    {command : "play",          data : {arg:"[ URL ] [ Volume(1~9) ]",                                                                                  info:"Immediately plays the track from the video of the URL."}},
     {command : "start",         data : {arg:"",                                                                                                    info:"Starts the current track."}},
     {command : "stop",          data : {arg:"",                                                                                                    info:"Stops the current track."}},
     {command : "resume",        data : {arg:"",                                                                                                    info:"Resumes paused track."}},
@@ -121,12 +121,11 @@ const command_syscall = async (message, commandArray, guildData) => {
                                 break;
                             }
 
-                            if (count > 100) {
-                                logCommand('SYSCALL_DELETE_ARGUMENT_OVER_LIMIT', message, guildData);
+                            if(count < 2) {
+                                logCommand('SYSCALL_DELETE_ARG_UNDER_LIMIT', message, guildData);
                                 break;
-                            }
-                            else if(count < 2) {
-                                logCommand('SYSCALL_DELETE_ARGUMENT_UNDER_LIMIT', message, guildData);
+                            } else if (count > 100) {
+                                logCommand('SYSCALL_DELETE_ARG_OVER_LIMIT', message, guildData);
                                 break;
                             }
 
@@ -227,8 +226,11 @@ const command_play = async (message, commandArray, guildData) => {
             }
         }
         case 2: {
-            if(volumeData<1 || volumeData>9) {
-                logCommand('PLAY_INVALID_ARG_VAL', message, guildData);
+            if(volumeData<1) {
+                logCommand('PLAY_ARG_UNDER_LIMIT', message, guildData);
+                break;
+            } else if(volumeData>9) {
+                logCommand('PLAY_ARG_OVER_LIMIT', message, guildData);
                 break;
             }
 
