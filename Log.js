@@ -1716,6 +1716,13 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
+        case 'PLAY_ARG_UNDER_LIMIT': {
+
+            break;
+        }
+        case 'PLAY_ARG_OVER_LIMIT': {
+            
+        }
 		case 'PLAY_INVALID_ARG_VAL': {
 
             break;
