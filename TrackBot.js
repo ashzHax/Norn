@@ -173,7 +173,7 @@ const queue_remove_idx = async (guildData, targetIndex) => {
 }
 
 const queue_clear_all_index = async (guildData) => {
-    let queueLength = guildData.TB.queue.length;
+    let queueLength  = guildData.TB.queue.length;
     let currentIndex = guildData.TB.index;
 
     if(!guildData.TB.playing) {
@@ -181,12 +181,11 @@ const queue_clear_all_index = async (guildData) => {
         guildData.TB.queue = [];
     } else {
         if(queueLength-1 > currentIndex) {
-            guildData.TB.queue.splice(currentIndex+1,(queueLength-1)-currentIndex);
-        } 
-        guildData.TB.queue.splice(0,currentIndex);
+            guildData.TB.queue.splice(currentIndex+1, (queueLength)-currentIndex);
+        }
         
+        guildData.TB.queue.splice(0, currentIndex);
         guildData.TB.index = 0;
-        guildData.TB.queue = [];
     }
     return true;
 }

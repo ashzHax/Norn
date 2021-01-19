@@ -401,7 +401,9 @@ const command_list = async (message, commandArray, guildData) => {
             let guildQueue   = guildData.TB.queue;
             let queueListMsg = new Discord.MessageEmbed();
     
-            if(guildQueue.length<=1 || guildQueue===null) {
+            if(guildQueue.length<1 || guildQueue===null) {
+                console.log(guildQueue.length);
+                console.log(guildQueue);
                 logCommand('LIST_QUEUE_EMPTY', message, guildData);
                 break;
             }
@@ -444,8 +446,11 @@ const command_add = async (message, commandArray, guildData) => {
             }
         }
         case 2: {
-            if(volumeData<1 || volumeData>9) {
-                logCommand('PLAY_INVALID_ARG_VAL', message, guildData);
+            if(volumeData<1) {
+                logCommand('ADD_ARG_UNDER_LIMIT', message, guildData);
+                break;
+            } else if(volumeData>9) {
+                logCommand('ADD_ARG_OVER_LIMIT', message, guildData);
                 break;
             }
 

@@ -404,165 +404,6 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     consoleLogText = `[${guildData.guildID}][command][${logType}][${eventData.author.tag}][${eventData.id}]`;
     
     switch(logType) {
-        case 'PLAY_UNDER_REQ_ARG_CNT':
-        {
-            let logReason = 'Received not enough arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Require More Arguments')
-                .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', eventData.content,        true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PLAY_INVALID_ARG_TYPE': {
-            let logReason = 'Received argument type is invalid.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', eventData.content,        true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PLAY_SUCCESS':
-        {
-            let logReason = 'Playing track with received information.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PLAY_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/play [URL] [Volume]', true)
-                .addField('Received', eventData.content,        true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'START_NOT_CONNECTED_TO_VC':
-        {
-            let logReason = 'Found no voice channel.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Connected')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'START_ALREADY_PLAYING':
-        {
-            let logReason = 'Bot is already playing a track.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Already Playing')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'START_SUCCESS':
-        {
-            let logReason = 'Starting a stopped track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'START_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/start',        true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
         case 'STOP_NOT_PLAYING_TRACK':
         {
             let logReason = 'Nothing to stop.';
@@ -1543,7 +1384,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
                 .setTitle('Number Under Limit')
                 .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Number is too small. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Integer is too low. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'SYSCALL_DELETE_ARG_OVER_LIMIT': {
@@ -1554,7 +1395,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
                 .setTitle('Number Over Limit')
                 .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Number is too big. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Integer is too high. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'SYSCALL_DELETE_PROCESS_ERROR': {
@@ -1600,7 +1441,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Unknown arguments. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'JOIN_VC_NULL': { // ashz> user is not in a channel
+		case 'JOIN_VC_NULL': {
             let receivedArgument = eventData.content;
 
             eLog.setColor(ExF.html_orange)
@@ -1680,7 +1521,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
                 .setTitle('Failed Leaving Channel')
                 .setDescription('Critical error. Failed to leave user\' voice channel.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Catched error. Failed to leave is's connected voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Catched error. Failed to leave bot's connected voice channel. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'LEAVE_OVER_MAX_ARG_CNT': {
@@ -1696,7 +1537,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
         }
 		case 'PLAY_UNDER_REQ_ARG_CNT': {
             let receivedArgument = eventData.content;
-            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]'
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]';
 
             eLog.setColor(ExF.html_red)
                 .setTitle('Not Enough Arguments')
@@ -1707,7 +1548,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
         }
 		case 'PLAY_INVALID_ARG_TYPE': {
             let receivedArgument = eventData.content;
-            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]'
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]';
 
             eLog.setColor(ExF.html_orange)
                 .setTitle('Invalid Argument Type')
@@ -1717,73 +1558,289 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
         case 'PLAY_ARG_UNDER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]';
 
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Under Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too low. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
         case 'PLAY_ARG_OVER_LIMIT': {
-            
-        }
-		case 'PLAY_INVALID_ARG_VAL': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]';
 
-            break;
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too high. {receivedArgument:\"${receivedArgument}\"}`);
+            break; 
         }
 		case 'PLAY_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
 
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'PLAY_JOIN_FAILED': {
+            let receivedArgument = eventData.content;
 
-            break;
-        }
-		case 'PLAY_ARG_UNDER_LIMIT': {
-
-            break;
-        }
-        case 'PLAY_ARG_OVER_LIMIT': {
-
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Joining Channel')
+                .setDescription('Critical error. Failed to join user\' voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Catched error. Failed to join user\'s voice channel. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'PLAY_SUCCESS': {
+            let receivedArgument = eventData.content;
 
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Playing And Overriding')
+                .setDescription('Playing inputted track in queue. Overriding current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playing inputted track in queue. Overriding current track. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'PLAY_FAILED': {
+            let receivedArgument = eventData.content;
 
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Playing Track')
+                .setDescription('Critical error. Failed to play track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Return error. Failed to play track. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'PLAY_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/play [ URL ] [ Volume(1~9) ]';
 
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'START_USER_VC_NULL': {break;}
-		case 'START_BOT_VC_NULL': {break;}
-		case 'START_BOT_VCON_NULL': {break;}
-		case 'START_USER_INVALID_VC': {break;}
-		case 'START_QUEUE_EMPTY': {break;}
-		case 'START_PLAYING': {break;}
-		case 'START_SUCCESS': {break;}
-		case 'START_FAILED': {break;}
-		case 'START_OVER_MAX_ARG_CNT': {break;}
-		case 'STOP_USER_VC_NULL': {break;}
-		case 'STOP_BOT_VC_NULL': {break;}
-		case 'STOP_BOT_VCON_NULL': {break;}
-		case 'STOP_USER_INVALID_VC': {break;}
+		case 'START_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_QUEUE_EMPTY': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Empty Queue')
+                .setDescription('Nothing to start playing.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Track queue is empty. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_PLAYING': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Alreadying Playing')
+                .setDescription('Norn is already playing a track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Already playing a track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_green)
+                .setTitle('Starting')
+                .setDescription('Starting to play current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Starting to play current track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Start')
+                .setDescription('Critical error. Failed to start playing.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to start playing track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'START_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/start';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'STOP_STOPPED': {break;}
 		case 'STOP_SUCCESS': {break;}
 		case 'STOP_FAILED': {break;}
 		case 'STOP_OVER_MAX_ARG_CNT': {break;}
-		case 'RESUME_USER_VC_NULL': {break;}
+		case 'RESUME_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'RESUME_VC_NULL': {break;}
-		case 'RESUME_BOT_VCON_NULL': {break;}
-		case 'RESUME_USER_INVALID_VC': {break;}
+		case 'RESUME_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'RESUME_PLAYING': {break;}
 		case 'RESUME_SUCCESS': {break;}
 		case 'RESUME_FAILED': {break;}
 		case 'RESUME_OVER_MAX_ARG_CNT': {break;}
-		case 'RESUME_USER_VC_NULL': {break;}
-		case 'RESUME_BOT_VC_NULL': {break;}
-		case 'RESUME_BOT_VCON_NULL': {break;}
-		case 'RESUME_USER_INVALID_VC': {break;}
+		case 'RESUME_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PAUSE_STOPPED': {break;}
 		case 'PAUSE_PAUSED': {break;}
 		case 'PAUSE_SUCCESS': {break;}
@@ -1793,8 +1850,9 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'LIST_SUCCESS': {break;}
 		case 'LIST_OVER_MAX_ARG_CNT': {break;}
 		case 'ADD_UNDER_REQ_ARG_CNT': {break;}
-		case 'ADD_INVALID_ARG_TYPE': {break;}
-		case 'PLAY_INVALID_ARG_VAL': {break;}
+        case 'ADD_INVALID_ARG_TYPE': {break;}
+        case 'ADD_ARG_UNDER_LIMIT': {break;}
+        case 'ADD_ARG_OVER_LIMIT': {break;}
 		case 'ADD_SUCCESS': {break;}
 		case 'ADD_FAILED': {break;}
 		case 'ADD_OVER_MAX_ARG_CNT': {break;}
@@ -1810,20 +1868,92 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'CLEAR_SUCCESS': {break;}
 		case 'CLEAR_FAILED': {break;}
 		case 'CLEAR_OVER_MAX_ARG_CNT': {break;}
-		case 'NEXT_USER_VC_NULL': {break;}
-		case 'NEXT_BOT_VC_NULL': {break;}
-		case 'NEXT_BOT_VCON_NULL': {break;}
-		case 'NEXT_USER_INVALID_VC': {break;}
+		case 'NEXT_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'NEXT_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'NEXT_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'NEXT_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'NEXT_QUEUE_EMPTY': {break;}
 		case 'NEXT_INVALID_ARG_TYPE': {break;}
 		case 'NEXT_INVALID_ARG_VAL': {break;}
 		case 'NEXT_SUCCESS': {break;}
 		case 'NEXT_FAILED': {break;}
 		case 'NEXT_OVER_MAX_ARG_CNT': {break;}
-		case 'PREV_USER_VC_NULL': {break;}
-		case 'PREV_BOT_VC_NULL': {break;}
-		case 'PREV_BOT_VCON_NULL': {break;}
-		case 'PREV_USER_INVALID_VC': {break;}
+		case 'PREV_USER_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Found')
+                .setDescription('You are not inside a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_BOT_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_BOT_VCON_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Connection Found')
+                .setDescription('Norn is not connected to a voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot voice connection not found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Different Channel')
+                .setDescription('You are not inside the same channel as Norn.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PREV_QUEUE_EMPTY': {break;}
 		case 'PREV_INVALID_ARG_TYPE': {break;}
 		case 'PREV_INVALID_ARG_VAL': {break;}
