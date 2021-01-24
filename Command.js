@@ -20,12 +20,12 @@ const helpEmbed = new Discord.MessageEmbed();
 const commandList = [
     // system commands
     {command : "help",          data : {arg:"",                                                                                                    info:"Show this list of commands."}},
-    {command : "setting(WIP)",  data : {arg:"[ volume ] [ Volume(1~9) ]",                                                                               info:"Edits the bot general settings."}},
+    {command : "setting(WIP)",  data : {arg:"[ volume ] [ Volume(1~9) ]",                                                                          info:"Edits the bot general settings."}},
     {command : "syscall(WIP)",  data : {arg:"[ ? ]",                                                                                               info:"Specialized commands, mostly for administrators."}},
     // trackbot control commands
     {command : "join",          data : {arg:"",                                                                                                    info:"Bot joins your current voice channel."}},
     {command : "leave",         data : {arg:"",                                                                                                    info:"Bot leaves whatever channel it's currently connected to."}},
-    {command : "play",          data : {arg:"[ URL ] [ Volume(1~9) ]",                                                                                  info:"Immediately plays the track from the video of the URL."}},
+    {command : "play",          data : {arg:"[ URL ] [ Volume(1~9) ]",                                                                             info:"Immediately plays the track from the video of the URL."}},
     {command : "start",         data : {arg:"",                                                                                                    info:"Starts the current track."}},
     {command : "stop",          data : {arg:"",                                                                                                    info:"Stops the current track."}},
     {command : "resume",        data : {arg:"",                                                                                                    info:"Resumes paused track."}},
@@ -33,7 +33,7 @@ const commandList = [
     {command : "status(WIP)",   data : {arg:"",                                                                                                    info:"Shows bot's current status."}},
     // trackbot queue commands
     {command : "list",          data : {arg:"",                                                                                                    info:"Shows the queue list."}},
-    {command : "add",           data : {arg:"[ URL ] [ Volume ]",                                                                                  info:"Adds the URL data to the queue."}},
+    {command : "add",           data : {arg:"[ URL ] [ Volume(1~9) ]",                                                                             info:"Adds the URL data to the queue."}},
     {command : "remove",        data : {arg:"[ Index ]",                                                                                           info:"Removes the URL/Index data from the queue."}},
     {command : "clear",         data : {arg:"",                                                                                                    info:"Clears the entire queue."}},
     {command : "next",          data : {arg:"[ Count ]",                                                                                           info:"Plays the next queued track. (Default: 1)"}},
@@ -480,9 +480,12 @@ const command_remove = async (message, commandArray, guildData) => {
                 break;
             }
 
-			if(targetIdx<0 || targetIdx>=guildData.TB.queue.length) {
-                logCommand('REMOVE_INVALID_ARG_VAL', message, guildData);
+			if(targetIdx<0) {
+                logCommand('REMOVE_ARG_UNDER_LIMIT', message, guildData);
 				break;
+            } else if(targetIdx>=guildData.TB.queue.length) {
+                logCommand('REMOVE_ARG_OVER_LIMIT', message, guildData);
+                break;
             }
             
             if(targetIdx === guildData.TB.index) {

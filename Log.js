@@ -404,748 +404,6 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     consoleLogText = `[${guildData.guildID}][command][${logType}][${eventData.author.tag}][${eventData.id}]`;
     
     switch(logType) {
-        case 'STOP_NOT_PLAYING_TRACK':
-        {
-            let logReason = 'Nothing to stop.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Running Anything')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'STOP_NO_VC':
-        {
-            let logReason = 'No voice channel found.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "true",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Critical')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'STOP_SUCCESS':
-        {
-            let logReason = 'Stopped running track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'STOP_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/stop',         true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'RESUME_ALREADY_RUNNING':
-        {
-            let logReason = 'Already running, cannot resume.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Already Running')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'RESUME_NOT_PAUSED':
-        {
-            let logReason = 'Not paused, cannot resume.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Paused')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'RESUME_NO_VC':
-        {
-            let logReason = 'No voice channel found.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Connected To A Voice Channel')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'RESUME_SUCCESS':
-        {
-            let logReason = 'Resumed track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'RESUME_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/resume',       true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PAUSE_NOT_RUNNING':
-        {
-            let logReason = 'Already stopped, cannot pause.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Already Stopped')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PAUSE_ALREADY_PAUSED':
-        {
-            let logReason = 'Already paused.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Already Paused')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PAUSE_NO_VC':
-        {
-            let logReason = 'No voice channel found.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "maybe",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Not Connected To A Voice Channel')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PAUSE_SUCCESS':
-        {
-            let logReason = 'Paused track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PAUSE_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/pause',        true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'NEXT_QUEUE_EMPTY':
-        {
-            let logReason = 'Queue is empty, nothing to play next.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Queue Empty')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'NEXT_INVALID_ARG_TYPE':
-        {
-            let logReason = 'Invalid argument type received, expecting a integer.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'NEXT_INVALID_ARG_VAL':
-        {
-            let logReason = 'Invalid argument value received, expecting a number greater than 1';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'NEXT_SUCCESS':
-        {
-            let logReason = 'Playing next track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'NEXT_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/next [Skip Count]', true)
-                .addField('Received', eventData.content,      true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PREV_QUEUE_EMPTY':
-        {
-            let logReason = 'Queue is empty, nothing to play previous.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Queue Empty')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PREV_INVALID_ARG_TYPE':
-        {
-            let logReason = 'Invalid argument type received, expecting a integer.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PREV_INVALID_ARG_VAL':
-        {
-            let logReason = 'Invalid argument value received, expecting a number greater than 1';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PREV_SUCCESS':
-        {
-            let logReason = 'Playing previous track.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'PREV_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/previous [Skip Count]', true)
-                .addField('Received', eventData.content,      true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'LIST_QUEUE_EMPTY':
-        {
-            let logReason = 'Queue is empty.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Queue Empty')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'LIST_SUCCESS':
-        {
-            let logReason = 'Showing queue list.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-    
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'LIST_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/list',         true)
-                .addField('Received', eventData.content, true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'ADD_UNDER_REQ_ARG_CNT':
-        {
-            let logReason = 'Received not enough arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Require More Arguments')
-                .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', eventData.content,       true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'ADD_INVALID_ARG_TYPE':
-        {
-            let logReason = 'Received argument type is invalid.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', eventData.content,        true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'ADD_SUCCESS':
-        {
-            let logReason = 'Added track to queue.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'ADD_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/add [URL] [Volume]', true)
-                .addField('Received', eventData.content,       true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_UNDER_REQ_ARG_CNT':
-        {
-            let logReason = 'Received not enough arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Require More Arguments')
-                .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', eventData.content,   true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_INVALID_ARG_TYPE':
-        {
-            let logReason = 'Received argument type is invalid.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', eventData.content,   true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_INVALID_ARG_VAL':
-        {
-            let maxLength = guildData.TB.queue.length-1;
-            let logReason = `Invalid argument value received (${maxLength==0?'0':`0~${maxLength}`})`;
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Invalid Argument Type')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_PLAYING_TARGET_IDX':
-        {
-            let logReason = 'Cannot remove current track from queue.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Cannot Remove Current Track')
-                .setDescription(logReason)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_SUCCESS':
-        {
-            let logReason = 'Removed track from queue.';
-            let logData = 
-            {
-                error            : "false",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog = null;
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
-        case 'REMOVE_OVER_MAX_ARG_CNT':
-        {
-            let logReason = 'Received too many arguments.';
-            let logData = 
-            {
-                error            : "true",
-                critical         : "false",
-                received_command : eventData.content,
-                reason           : logReason,
-            };
-
-            eLog
-                .setColor(ExF.html_yellow)
-                .setAuthor(commandIssuer)
-                .setTitle('Too Many Arguments')
-                .addField('Usage',    '/remove [Index]', true)
-                .addField('Received', eventData.content,   true)
-                .setTimestamp();
-
-            consoleLogText = consoleLogText.concat(` ${JSON.stringify(logData)}`);
-            break;
-        }
         case 'CLEAR_QUEUE_EMPTY':
         {
             let logReason = 'Queue is empty, nothing to clear out.';
@@ -1476,10 +734,10 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             let receivedArgument = eventData.content;
 
             eLog.setColor(ExF.html_red)
-                .setTitle('Failed Joining Channel')
-                .setDescription('Critical error. Failed to join user\' voice channel.')
+                .setTitle('Failed To Join')
+                .setDescription('Critical error. Failed to join.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Catched error. Failed to join user\'s voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to join. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'JOIN_OVER_MAX_ARG_CNT': {
@@ -1518,10 +776,10 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             let receivedArgument = eventData.content;
 
             eLog.setColor(ExF.html_red)
-                .setTitle('Failed Leaving Channel')
-                .setDescription('Critical error. Failed to leave user\' voice channel.')
+                .setTitle('Failed To Leave')
+                .setDescription('Critical error. Failed to leave.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Catched error. Failed to leave bot's connected voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to leave. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'LEAVE_OVER_MAX_ARG_CNT': {
@@ -1614,10 +872,10 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             let receivedArgument = eventData.content;
 
             eLog.setColor(ExF.html_red)
-                .setTitle('Failed Playing Track')
-                .setDescription('Critical error. Failed to play track.')
+                .setTitle('Failed To Play')
+                .setDescription('Critical error. Failed to play.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Return error. Failed to play track. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to play. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'PLAY_OVER_MAX_ARG_CNT': {
@@ -1694,7 +952,8 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'START_SUCCESS': {
             let receivedArgument = eventData.content;
 
-            eLog.setColor(ExF.html_green)
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
                 .setTitle('Starting')
                 .setDescription('Starting to play current track.')
                 .setTimestamp();
@@ -1708,7 +967,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
                 .setTitle('Failed To Start')
                 .setDescription('Critical error. Failed to start playing.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Critical error. Failed to start playing track. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to start playing. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'START_OVER_MAX_ARG_CNT': {
@@ -1762,10 +1021,48 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'STOP_STOPPED': {break;}
-		case 'STOP_SUCCESS': {break;}
-		case 'STOP_FAILED': {break;}
-		case 'STOP_OVER_MAX_ARG_CNT': {break;}
+		case 'STOP_STOPPED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Already Stopped')
+                .setDescription('Norn is not playing anything.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is already stopped. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Stopping')
+                .setDescription('Stopped current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Stopped current track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Stop')
+                .setDescription('Critical error. Failed to stop playing.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to stop playing. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'STOP_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/stop';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'RESUME_USER_VC_NULL': {
             let receivedArgument = eventData.content;
 
@@ -1776,7 +1073,16 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'RESUME_VC_NULL': {break;}
+		case 'RESUME_VC_NULL': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Voice Channel Detected')
+                .setDescription('Norn is not inside any voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is not inside any voice channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'RESUME_BOT_VCON_NULL': {
             let receivedArgument = eventData.content;
 
@@ -1797,10 +1103,48 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'RESUME_PLAYING': {break;}
-		case 'RESUME_SUCCESS': {break;}
-		case 'RESUME_FAILED': {break;}
-		case 'RESUME_OVER_MAX_ARG_CNT': {break;}
+		case 'RESUME_PLAYING': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Already Playing')
+                .setDescription('Norn is playing track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is already stopped. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Resuming')
+                .setDescription('Resuming current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Resuming current track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Resume')
+                .setDescription('Critical error. Failed to resume.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to resume. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'RESUME_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/stop';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'RESUME_USER_VC_NULL': {
             let receivedArgument = eventData.content;
 
@@ -1841,33 +1185,300 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PAUSE_STOPPED': {break;}
-		case 'PAUSE_PAUSED': {break;}
-		case 'PAUSE_SUCCESS': {break;}
-		case 'PAUSE_FAILED': {break;}
-		case 'PAUSE_OVER_MAX_ARG_CNT': {break;}
-		case 'LIST_QUEUE_EMPTY': {break;}
-		case 'LIST_SUCCESS': {break;}
-		case 'LIST_OVER_MAX_ARG_CNT': {break;}
-		case 'ADD_UNDER_REQ_ARG_CNT': {break;}
-        case 'ADD_INVALID_ARG_TYPE': {break;}
-        case 'ADD_ARG_UNDER_LIMIT': {break;}
-        case 'ADD_ARG_OVER_LIMIT': {break;}
-		case 'ADD_SUCCESS': {break;}
-		case 'ADD_FAILED': {break;}
-		case 'ADD_OVER_MAX_ARG_CNT': {break;}
-		case 'REMOVE_UNDER_REQ_ARG_CNT': {break;}
-		case 'REMOVE_INVALID_ARG_TYPE': {break;}
-		case 'REMOVE_INVALID_ARG_VAL': {break;}
-		case 'REMOVE_CUR_IDX': {break;}
-		case 'REMOVE_SUCCESS': {break;}
-		case 'REMOVE_FAILED': {break;}
-		case 'REMOVE_OVER_MAX_ARG_CNT': {break;}
-		case 'CLEAR_QUEUE_EMPTY': {break;}
-		case 'CLEAR_CUR_IDX': {break;}
-		case 'CLEAR_SUCCESS': {break;}
-		case 'CLEAR_FAILED': {break;}
-		case 'CLEAR_OVER_MAX_ARG_CNT': {break;}
+		case 'PAUSE_STOPPED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Stopped')
+                .setDescription('Norn is not playing anything.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is already stopped. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PAUSE_PAUSED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Already Paused')
+                .setDescription('Norn is not playing anything.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Bot is already stopped. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PAUSE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Pausing')
+                .setDescription('Pausing current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Pausing current track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PAUSE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Pause')
+                .setDescription('Critical error. Failed to pause.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to pause. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PAUSE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/pause';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LIST_QUEUE_EMPTY': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Empty Queue')
+                .setDescription('Nothing to list.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Queue is empty. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LIST_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` Showing queue list. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LIST_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/list';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'ADD_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/add [ URL ] [ Volume(1~9) ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'ADD_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/add [ URL ] [ Volume(1~9) ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'ADD_ARG_UNDER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/add [ URL ] [ Volume(1~9) ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Under Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too low. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'ADD_ARG_OVER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/add [ URL ] [ Volume(1~9) ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too high. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'ADD_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Added Track To Queue')
+                .setDescription('Added track data to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playing inputted track in queue. Overriding current track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'ADD_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Add')
+                .setDescription('Critical error. Failed to add track data to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to resume. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'ADD_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/add [ URL ] [ Volume(1~9) ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/remove [ Index ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/remove [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'REMOVE_ARG_UNDER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/remove [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Under Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too low. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'REMOVE_ARG_OVER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/remove [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too high. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_CUR_IDX': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Playing Current Index')
+                .setDescription('Cannot remove currently playing track index.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Cannot remove current playing track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Removed Track From Queue')
+                .setDescription('Removed track index from queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Removed track index from queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Remove')
+                .setDescription('Critical error. Failed to remove track from queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to remove. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'REMOVE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/remove [ Index ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'CLEAR_QUEUE_EMPTY': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Empty Queue')
+                .setDescription('Nothing to clear.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Queue is empty. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'CLEAR_CUR_IDX': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Only Current In Queue')
+                .setDescription('No other track beside current inside queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` No other track beside current inside queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'CLEAR_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Cleared Queue')
+                .setDescription('Cleared all tracks inside queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Cleared all tracks inside queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'CLEAR_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Clear')
+                .setDescription('Critical error. Failed to clear queue\'s track data.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to clear queue\'s track data. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'CLEAR_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/clear';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'NEXT_USER_VC_NULL': {
             let receivedArgument = eventData.content;
 
@@ -1908,12 +1519,31 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'NEXT_QUEUE_EMPTY': {break;}
+		case 'NEXT_QUEUE_EMPTY': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Empty Queue')
+                .setDescription('Nothing to play next.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Nothing to play next. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'NEXT_INVALID_ARG_TYPE': {break;}
 		case 'NEXT_INVALID_ARG_VAL': {break;}
 		case 'NEXT_SUCCESS': {break;}
 		case 'NEXT_FAILED': {break;}
-		case 'NEXT_OVER_MAX_ARG_CNT': {break;}
+		case 'NEXT_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/next [ Index ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);    
+            break;
+        }
 		case 'PREV_USER_VC_NULL': {
             let receivedArgument = eventData.content;
 
@@ -1954,23 +1584,51 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Not inside the same voice channel as bot. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PREV_QUEUE_EMPTY': {break;}
-		case 'PREV_INVALID_ARG_TYPE': {break;}
+		case 'PREV_QUEUE_EMPTY': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Empty Queue')
+                .setDescription('No track behind current track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` No track behind current. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_INVALID_ARG_TYPE': {
+            
+            break;
+        }
 		case 'PREV_INVALID_ARG_VAL': {break;}
 		case 'PREV_SUCCESS': {break;}
 		case 'PREV_FAILED': {break;}
-		case 'PREV_OVER_MAX_ARG_CNT': {break;}
+		case 'PREV_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/previous [ Index ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);    
+            break;
+        }
 		case 'LOOP_UNDER_REQ_ARG_CNT': {break;}
-		case 'LOOP_SUCCESS': {break;}
-		case 'LOOP_FAILED': {break;}
 		case 'LOOP_INVALID_ARG_VAL_1': {break;}
-		case 'LOOP_SUCCESS': {break;}
-		case 'LOOP_FAILED': {break;}
 		case 'LOOP_SUCCESS': {break;}
 		case 'LOOP_FAILED': {break;}
 		case 'LOOP_INVALID_ARG_VAL_2': {break;}
 		case 'LOOP_INVALID_ARG_VAL_1': {break;}
-		case 'LOOP_OVER_MAX_ARG_CNT': {break;}
+		case 'LOOP_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/loop [ single / queue ] [ on / off ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAYLIST_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_LIST_SUCCESS': {break;}
 		case 'PLAYLIST_CREATE_UNDER_REQ_ARG_CNT': {break;}
@@ -1980,7 +1638,17 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
-		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist list';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAYLIST_CREATE_FILE_EXISTS': {break;}
 		case 'PLAYLIST_CREATE_SUCCESS': {break;}
 		case 'PLAYLIST_CREATE_FAILED': {break;}
@@ -1995,11 +1663,50 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
-		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_QUEUE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_SHOW_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist create [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist delete [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_QUEUE_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist queue [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_SHOW_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist show [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
 		case 'PLAYLIST_ADD_SUCCESS': {break;}
 		case 'PLAYLIST_ADD_FAILED': {break;}
@@ -2009,18 +1716,22 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'PLAYLIST_REMOVE_SUCCESS': {break;}
 		case 'PLAYLIST_REMOVE_FAILED': {break;}
 		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
-		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_QUEUE_OVER_MAX_ARG_CNT': {break;}
-		case 'PLAYLIST_SHOW_OVER_MAX_ARG_CNT': {break;}
 		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
 		case 'PLAYLIST_ADD_INVALID_ARG_TYPE': {break;}
 		case 'PLAYLIST_ADD_SUCCESS': {break;}
 		case 'PLAYLIST_ADD_FAILED': {break;}
-		case 'PLAYLIST_DELETE_OVER_MAX_ARG_CNT': {break;}
 		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
-		case 'PLAYLIST_OVER_MAX_ARG_CNT': {break;}
+		case 'PLAYLIST_OVER_MAX_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index / Volume ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Too Many Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
         default: {
             eLog=null;
             consoleLogText = consoleLogText.concat(` Unknown log type received. {receivedArgument:\"${eventData.content}\"}`);
