@@ -1920,13 +1920,49 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
 		case 'PLAYLIST_DELETE_FAILED': {
-            
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Delete Playlist')
+                .setDescription('Critical error. Failed to delete playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to delete playlist. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PLAYLIST_QUEUE_NO_DATA_FOUND': {break;}
-		case 'PLAYLIST_QUEUE_SUCCESS': {break;}
-		case 'PLAYLIST_QUEUE_FAILED': {break;}
-		case 'PLAYLIST_SHOW_NO_PL_FOUND': {break;}
+		case 'PLAYLIST_QUEUE_NO_DATA_FOUND': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Playlist Found')
+                .setDescription('No playlist found.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` No playlist found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_QUEUE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_green)
+                .setTitle('Playlist Appended To Queue')
+                .setDescription('Selected playlist data track was added to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Selected playlist track data was added to queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_QUEUE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Append Playlist To Queue')
+                .setDescription('Critical error. Failed to delete playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to delete playlist. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_SHOW_NO_PL_FOUND': {
+                            
+            break;
+        }
 		case 'PLAYLIST_SHOW_SUCCESS': {break;}
 		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
