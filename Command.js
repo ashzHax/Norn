@@ -40,7 +40,7 @@ const commandList = [
     {command : "previous",      data : {arg:"[ Count ]",                                                                                           info:"Plays the previous queued track. (Default: 1)"}},
     {command : "loop",          data : {arg:"[ single / queue ] [ on / off ]",                                                                     info:"Edits the loop settings."}},
     // trackbot playlist commands
-    {command : "playlist",      data : {arg:"[ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index / Volume ]", info:"Playlist managment command."}},
+    {command : "playlist",      data : {arg:"[ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index ] [ Volume ]", info:"Playlist managment command."}},
 ];
 
 //////////////////////////////////////////////////

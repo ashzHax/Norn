@@ -1529,10 +1529,49 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Nothing to play next. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'NEXT_INVALID_ARG_TYPE': {break;}
-		case 'NEXT_INVALID_ARG_VAL': {break;}
-		case 'NEXT_SUCCESS': {break;}
-		case 'NEXT_FAILED': {break;}
+		case 'NEXT_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/next [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'NEXT_INVALID_ARG_VAL': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/next [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Value')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument value. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'NEXT_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Playing Next Track')
+                .setDescription('Playing next track in queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playing next track in queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'NEXT_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Play Next Track')
+                .setDescription('Critical error. Failed to play next track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to play next track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'NEXT_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/next [ Index ]';
@@ -1595,12 +1634,48 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
 		case 'PREV_INVALID_ARG_TYPE': {
-            
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/previous [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PREV_INVALID_ARG_VAL': {break;}
-		case 'PREV_SUCCESS': {break;}
-		case 'PREV_FAILED': {break;}
+		case 'PREV_INVALID_ARG_VAL': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/previous [ Index ]';
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Value')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument value. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Playing Previous Track')
+                .setDescription('Playing previous track in queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playing previous track in queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PREV_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Play Previous Track')
+                .setDescription('Critical error. Failed to play previous track.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to play previous track. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PREV_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/previous [ Index ]';
@@ -1612,12 +1687,71 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);    
             break;
         }
-		case 'LOOP_UNDER_REQ_ARG_CNT': {break;}
-		case 'LOOP_INVALID_ARG_VAL_1': {break;}
-		case 'LOOP_SUCCESS': {break;}
-		case 'LOOP_FAILED': {break;}
-		case 'LOOP_INVALID_ARG_VAL_2': {break;}
-		case 'LOOP_INVALID_ARG_VAL_1': {break;}
+		case 'LOOP_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/loop [ single / queue ] [ on / off ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LOOP_INVALID_ARG_VAL_1': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/loop [ single / queue ] [ on / off ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Invalid Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LOOP_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setAuthor(commandIssuer)
+                .setColor(ExF.html_green)
+                .setTitle('Loop Settings Changed')
+                .setDescription('Changed track queue loop settings.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Changed track queue loop settings. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LOOP_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Change Loop Settings')
+                .setDescription('Critical error. Failed to change loop settings.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to change loop settings. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LOOP_INVALID_ARG_VAL_2': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/loop [ single / queue ] [ on / off ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Invalid Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'LOOP_INVALID_ARG_VAL_1': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/loop [ single / queue ] [ on / off ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Invalid Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'LOOP_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/loop [ single / queue ] [ on / off ]';
@@ -1629,15 +1763,101 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PLAYLIST_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_LIST_SUCCESS': {break;}
-		case 'PLAYLIST_CREATE_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_DELETE_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_QUEUE_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_SHOW_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
+		case 'PLAYLIST_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index ] [ Volume ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_LIST_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog = null;
+            consoleLogText = consoleLogText.concat(` Showing list of all playlist(s). {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_CREATE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist create [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_DELETE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist delete [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_QUEUE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist queue [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_SHOW_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist show [ Playlist Name ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist add [ Playlist Name ] [ URL ] [ Volume ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist remove [ Playlist Name ] [ Index ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Not Enough Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Not enough arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_UNKNOWN_ARG_1': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index ] [ Volume ]';
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Unknown Arguments')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Unknown arguments. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAYLIST_LIST_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/playlist list';
@@ -1649,12 +1869,60 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Too many arguments. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PLAYLIST_CREATE_FILE_EXISTS': {break;}
-		case 'PLAYLIST_CREATE_SUCCESS': {break;}
-		case 'PLAYLIST_CREATE_FAILED': {break;}
-		case 'PLAYLIST_DELETE_NO_FILE_EXISTS': {break;}
-		case 'PLAYLIST_DELETE_SUCCESS': {break;}
-		case 'PLAYLIST_DELETE_FAILED': {break;}
+		case 'PLAYLIST_CREATE_FILE_EXISTS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Existing Playlist')
+                .setDescription('Playlist already exists.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playlist already exists. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_CREATE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_green)
+                .setTitle('Creating Playlist')
+                .setDescription('Created new playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Created new playlist. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_CREATE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Create Playlist')
+                .setDescription('Critical error. Failed to create new playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to create new playlist. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_DELETE_NO_FILE_EXISTS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Playlist Found')
+                .setDescription('Playlist does not exists.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playlist does not exists. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_DELETE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_green)
+                .setTitle('Deleted Playlist')
+                .setDescription('Deleted new playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Deleted new playlist. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_DELETE_FAILED': {
+            
+            break;
+        }
 		case 'PLAYLIST_QUEUE_NO_DATA_FOUND': {break;}
 		case 'PLAYLIST_QUEUE_SUCCESS': {break;}
 		case 'PLAYLIST_QUEUE_FAILED': {break;}
@@ -1662,7 +1930,6 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'PLAYLIST_SHOW_SUCCESS': {break;}
 		case 'PLAYLIST_ADD_UNDER_REQ_ARG_CNT': {break;}
 		case 'PLAYLIST_REMOVE_UNDER_REQ_ARG_CNT': {break;}
-		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
 		case 'PLAYLIST_CREATE_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/playlist create [ Playlist Name ]';
@@ -1715,15 +1982,13 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 		case 'PLAYLIST_REMOVE_INVALID_ARG_VALUE': {break;}
 		case 'PLAYLIST_REMOVE_SUCCESS': {break;}
 		case 'PLAYLIST_REMOVE_FAILED': {break;}
-		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
 		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
 		case 'PLAYLIST_ADD_INVALID_ARG_TYPE': {break;}
 		case 'PLAYLIST_ADD_SUCCESS': {break;}
 		case 'PLAYLIST_ADD_FAILED': {break;}
-		case 'PLAYLIST_UNKNOWN_ARG_1': {break;}
 		case 'PLAYLIST_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
-            let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index / Volume ]';
+            let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index ] [ Volume ]';
 
             eLog.setColor(ExF.html_red)
                 .setTitle('Too Many Arguments')
