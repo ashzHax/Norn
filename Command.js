@@ -775,7 +775,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let loopIdx;
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        logCommand('PLAYLIST_SHOW_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_SHOW_NO_DATA_FOUND', message, guildData);
                         break;
                     }
                     
@@ -819,7 +819,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                 case 'add': {
                     let targetPlaylist = commandArray[2];
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        logCommand('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_ADD_NO_DATA_FOUND', message, guildData);
                         break;
                     }
 
