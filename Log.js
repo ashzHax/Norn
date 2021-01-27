@@ -395,7 +395,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     let eLog;
 
     if(eventData === null || guildData === null) {
-        ExF.logConsole('[guild_null][command] Invalid command_log() usage.');
+        ExF.logConsole('[guild_null][command] Invalid logCommand() usage.');
         return;
     }
 
@@ -1894,17 +1894,90 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` Critical error. Failed to append track data to playlist. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PLAYLIST_REMOVE_NO_PL_FOUND': {
-            
+		case 'PLAYLIST_REMOVE_NO_DATA_FOUND': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Playlist Found')
+                .setDescription('No playlist found.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` No playlist found. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
-		case 'PLAYLIST_REMOVE_INVALID_ARG_TYPE': {break;}
-		case 'PLAYLIST_REMOVE_INVALID_ARG_VALUE': {break;}
-		case 'PLAYLIST_REMOVE_SUCCESS': {break;}
-		case 'PLAYLIST_REMOVE_FAILED': {break;}
-		case 'PLAYLIST_ADD_NO_PL_FOUND': {break;}
-		case 'PLAYLIST_ADD_INVALID_ARG_TYPE': {break;}
-		case 'PLAYLIST_ADD_FAILED': {break;}
+		case 'PLAYLIST_REMOVE_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist remove [ Playlist Name ] [ Index ]'; 
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_REMOVE_ARG_UNDER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist remove [ Playlist Name ] [ Index ]'
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Under Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too low. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+        case 'PLAYLIST_REMOVE_ARG_OVER_LIMIT': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist remove [ Playlist Name ] [ Index ]'
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Number Over Limit')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Integer is too high. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_REMOVE_SUCCESS': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_green)
+                .setTitle('Playlist Removed From Queue')
+                .setDescription('Selected playlist data track was removed from queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Selected playlist track data was removed from queue. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_REMOVE_FAILED': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed To Remove Track')
+                .setDescription('Critical error. Failed to remove track data from playlist.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Critical error. Failed to remove track data from playlist. {receivedArgument:\"${receivedArgument}\"}`);    
+            break;
+        }
+		case 'PLAYLIST_ADD_NO_DATA_FOUND': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('No Playlist Found')
+                .setDescription('No playlist found.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` No playlist found. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
+		case 'PLAYLIST_ADD_INVALID_ARG_TYPE': {
+            let receivedArgument = eventData.content;
+            let expectedArgument = '/playlist add [ Playlist Name ] [ URL ] [ Volume ]'; 
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Invalid Argument Type')
+                .setDescription(`:o: ${expectedArgument}\n:x: ${receivedArgument}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Invalid argument type. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAYLIST_OVER_MAX_ARG_CNT': {
             let receivedArgument = eventData.content;
             let expectedArgument = '/playlist [ list / create / delete / queue / show / add / remove ] [ Playlist Name ] [ URL / Index ] [ Volume ]';
@@ -1933,21 +2006,19 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     }
 }
 
-function trackbot_result_handle_log(logType, guildData ,extraData=null)
-{
-    var devLog = new Discord.MessageEmbed();
-    var usrLog = new Discord.MessageEmbed();
-    var consoleLogText;
+const trackbot_result_handle_log = (logType, guildData) => {
+    let consoleLogText;
+    let eLog;
 
-    if(guildData != null) {
-        consoleLogText = `[${guildData.guildID}][TB][${logType}]`;
-    }
-    else {
-        consoleLogText = `[guild_null][TB][${logType}]`;
+    if(guildData === null) {
+        ExF.logConsole('[guild_null][TB] Invalid logTrackBot() usage.');
+        return;
     }
 
-    switch(logType)
-    {
+    eLog           = new Discord.MessageEmbed();
+    consoleLogText = `[${guildData.guildID}][command][${logType}]`;
+
+    switch(logType) {
         case 'PLAY_STREAM_DISCONNECTION_ERROR':
         {
             devLog

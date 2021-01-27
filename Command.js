@@ -835,7 +835,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let targetIdx      = parseInt(commandArray[3]);
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        logCommand('PLAYLIST_REMOVE_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_REMOVE_NO_DATA_FOUND', message, guildData);
                         break;
                     }
 
@@ -844,8 +844,11 @@ const command_playlist = async (message, commandArray, guildData) => {
                         break;
                     }
 
-                    if(targetIdx >= guildData.TB.playlist[targetPlaylist].length || targetIdx < 0) {
-                        logCommand('PLAYLIST_REMOVE_INVALID_ARG_VALUE', message, guildData);
+                    if(targetIdx < 0) {
+                        logCommand('PLAYLIST_REMOVE_ARG_UNDER_LIMIT', message, guildData);
+                        break;
+                    } else if(targetIdx >= guildData.TB.playlist[targetPlaylist].length) {
+                        logCommand('PLAYLIST_REMOVE_ARG_OVER_LIMIT', message, guildData);
                         break;
                     }
 
@@ -877,7 +880,7 @@ const command_playlist = async (message, commandArray, guildData) => {
                     let volumeData     = parseInt(commandArray[4]);
 
                     if(!(targetPlaylist in guildData.TB.playlist)) {
-                        logCommand('PLAYLIST_ADD_NO_PL_FOUND', message, guildData);
+                        logCommand('PLAYLIST_ADD_NO_DATA_FOUND', message, guildData);
                         break;
                     }
 
@@ -885,6 +888,8 @@ const command_playlist = async (message, commandArray, guildData) => {
                         logCommand('PLAYLIST_ADD_INVALID_ARG_TYPE', message, guildData);
                         break;
                     }
+
+                    // TODO check max volume min volume
 
                     if(await TrackBot.playlist_add(guildData, targetPlaylist, commandArray[3], volumeData)) {
                         logCommand('PLAYLIST_ADD_SUCCESS', message, guildData);
