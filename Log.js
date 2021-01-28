@@ -677,6 +677,30 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
 		case 'PLAY_SUCCESS': {
+
+			/*
+			const idx = guildData.TB.index;
+            const trackData = guildData.TB.queue[idx];
+
+            devLog=null;
+            //     .setColor(ExF.html_green)
+            //     .setTitle(logType)
+            //     .setDescription(`playing:{${JSON.stringify(trackData)}`)
+            //     .setTimestamp();
+            usrLog
+                .setColor(ExF.html_spring_green)
+                .setTitle(`\"${ExF.getLimitedString(trackData.title,43)}\"`)
+                // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
+                .addFields(
+                    { name: 'Index',  value: idx,                                   inline: true },
+                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
+                    { name: 'Volume', value: trackData.volume,                      inline: true },
+                    { name: 'URL',    value: trackData.video_url,                   inline: false },
+                )  
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` playing:{\"idx\":${idx},${JSON.stringify(trackData)}}`);
+			*/
+
             let receivedArgument = eventData.content;
 
             eLog.setAuthor(commandIssuer)
@@ -1991,7 +2015,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
         }
         default: {
             eLog=null;
-            consoleLogText = consoleLogText.concat(` Unknown log type received. {receivedArgument:\"${eventData.content}\"}`);
+            consoleLogText = consoleLogText.concat(` Unknown log type received. {receivedLogType:\"${logType}\"}`);
         }
     }
 
@@ -2019,79 +2043,35 @@ const trackbot_result_handle_log = (logType, guildData) => {
     consoleLogText = `[${guildData.guildID}][command][${logType}]`;
 
     switch(logType) {
-        case 'PLAY_STREAM_DISCONNECTION_ERROR':
-        {
-            devLog
-                .setColor(ExF.html_red)
-                .setTitle(logType)
-                .setDescription('Stream disconnection error has occured, restarting current track')
-                .setTimestamp();
-            usrLog
-                .setColor(ExF.html_red)
-                .setTitle('Error trying to play track')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` disconnected from data stream`);
-            break;
-        }
-        case 'PLAY_SUCCESS':
-        {
-            const idx = guildData.TB.index;
-            const trackData = guildData.TB.queue[idx];
-
-            devLog=null;
-            //     .setColor(ExF.html_green)
-            //     .setTitle(logType)
-            //     .setDescription(`playing:{${JSON.stringify(trackData)}`)
-            //     .setTimestamp();
-            usrLog
-                .setColor(ExF.html_spring_green)
-                .setTitle(`\"${ExF.getLimitedString(trackData.title,43)}\"`)
-                // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
-                .addFields(
-                    { name: 'Index',  value: idx,                                   inline: true },
-                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
-                    { name: 'Volume', value: trackData.volume,                      inline: true },
-                    { name: 'URL',    value: trackData.video_url,                   inline: false },
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` playing:{\"idx\":${idx},${JSON.stringify(trackData)}}`);
-            break;
-        }
-        case 'QUEUE_ADD_GET_INFO_FAILED':
-        {
-            console.log('failed getting queue data ('+extraData+')');
-            break;
-        }
-        case 'QUEUE_ADD_DATA_NULL':
-        {
-            console.log('queue data search result returned null ('+extraData+')');
-            break;
-        }
-        case 'SKIP_QUEUE_EMPTY':
-        {
-            usrLog
-                .setColor(ExF.html_red)
-                .setTitle('Queue Empty')
-                .setDescription('Nothing to skip.')
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` track queue is empty, nothing to skip`);
-            break;
-        }
-        default:
-        {
-            consoleLogText = consoleLogText.concat(' unknown log type');
-            devLog = null;
-            usrLog = null;
+        case 'JOIN_NO_PERM_CONNECT': {break;}
+        case 'JOIN_NO_PERM_SPEAK': {break;}
+        case 'JOIN_FAILED': {break;}
+		case 'PLAY_FAILED': {break;}
+		case 'PLAY_STREAM_MULTIPLE_INIT_FAILED': {break;}
+        case 'STOP_FAILED': {break;}
+        case 'RESUME_FAILED': {break;}
+        case 'PAUSE_FAILED': {break;}
+        case 'QUEUE_ADD_GET_DATA_FAILED': {break;}
+		case 'QUEUE_ADD_GET_DATA_NULL': {break;}
+		case 'NEXT_END_OF_QUEUE': {break;}
+		case 'NEXT_END_OF_QUEUE': {break;}
+		case 'PREV_END_OF_QUEUE': {break;}
+        case 'QUEUE_APPEND_GET_INFO_FAILED': {break;}
+        case 'QUEUE_APPEND_DATA_NULL': {break;}
+        default: {
+      		eLog=null;
+			consoleLogText = consoleLogText.concat(`Unknown log type received. {receivedLogType:\"${logType}\"}');
         }
     }
  
-    ExF.logConsole(consoleLogText,guildData);
-
-    if( (guildData!=null) && (devLog!=null) ) {
-        guildData.systemChannel.send(devLog);
+    if(guildData!=null && eLog!=null) {
+        eventData.channel.send(eLog);
     }
-    if( (guildData!=null) && (usrLog!=null) ) {
-        guildData.TB.textChannel.send(usrLog);
+
+    if(consoleLogText == null) {
+        console.log(ExF.traceLog('log event error, guildData is null'));
+    } else {
+        ExF.logConsole(consoleLogText, guildData);
     }
 }
 
