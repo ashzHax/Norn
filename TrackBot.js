@@ -42,8 +42,10 @@ const connect_to_user_channel = async (guildData, client, userTextChannel, userV
 }
 
 const leave_connected_channel = async (guildData) => {
-    try { await guildData.TB.voiceConnection.dispatcher.destroy(); } catch(errorData) {}
-    try { await guildData.TB.voiceConnection.disconnect(); } catch(errorData) {}
+    try { 
+		await guildData.TB.voiceConnection.dispatcher.destroy(); 
+		await guildData.TB.voiceConnection.disconnect();
+	} catch(errorData) {}
 
     guildData.TB.voiceConnection  = null;
     guildData.TB.userVoiceChannel = null;

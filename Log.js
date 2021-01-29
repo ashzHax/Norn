@@ -2031,6 +2031,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
 }
 
 const trackbot_result_handle_log = (logType, guildData) => {
+
     let consoleLogText;
     let eLog;
 
@@ -2043,9 +2044,30 @@ const trackbot_result_handle_log = (logType, guildData) => {
     consoleLogText = `[${guildData.guildID}][command][${logType}]`;
 
     switch(logType) {
-        case 'JOIN_NO_PERM_CONNECT': {break;}
-        case 'JOIN_NO_PERM_SPEAK': {break;}
-        case 'JOIN_FAILED': {break;}
+        case 'JOIN_NO_PERM_CONNECT': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Require Connection Permission')
+                .setDescription('Norn does not have permission to connect to the voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' No permission to join voice channel.');
+			break;
+		}
+        case 'JOIN_NO_PERM_SPEAK': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Require Speaking Permission')
+                .setDescription('Norn does not have permission to speak inside voice channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' No permission to speak inside voice channel.');
+			break;
+		}
+        case 'JOIN_FAILED': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Joining Voice Channel')
+                .setDescription('Failed To Join Channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' No permission to speak inside voice channel.');
+			break;
+		}
 		case 'PLAY_FAILED': {break;}
 		case 'PLAY_STREAM_MULTIPLE_INIT_FAILED': {break;}
         case 'STOP_FAILED': {break;}
