@@ -2082,7 +2082,7 @@ const trackbot_result_handle_log = (logType, guildData) => {
         case 'QUEUE_APPEND_DATA_NULL': {break;}
         default: {
       		eLog=null;
-			consoleLogText = consoleLogText.concat(`Unknown log type received. {receivedLogType:\"${logType}\"}');
+			consoleLogText = consoleLogText.concat(`Unknown log type received. {receivedLogType:\"${logType}\"}`);
         }
     }
  
