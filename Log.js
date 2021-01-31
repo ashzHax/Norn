@@ -2041,7 +2041,7 @@ const trackbot_result_handle_log = (logType, guildData) => {
     }
 
     eLog           = new Discord.MessageEmbed();
-    consoleLogText = `[${guildData.guildID}][command][${logType}]`;
+    consoleLogText = `[${guildData.guildID}][TB][${logType}]`;
 
     switch(logType) {
         case 'JOIN_NO_PERM_CONNECT': {
@@ -2062,14 +2062,28 @@ const trackbot_result_handle_log = (logType, guildData) => {
 		}
         case 'JOIN_FAILED': {
             eLog.setColor(ExF.html_red)
-                .setTitle('Failed Joining Voice Channel')
-                .setDescription('Failed To Join Channel.')
+                .setTitle('Failed Joining Channel')
+                .setDescription('Failed to join user\'s void channel.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(' No permission to speak inside voice channel.');
+            consoleLogText = consoleLogText.concat(' Failed to connect to user\'s voice channel.');
 			break;
 		}
-		case 'PLAY_FAILED': {break;}
-		case 'PLAY_STREAM_MULTIPLE_INIT_FAILED': {break;}
+		case 'PLAY_FAILED': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Playing Track')
+                .setDescription('Failed to play track. (Invalid link, premium-only video, or timed-out. Re-trying)')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed trying to play track. (Invalid link, premium-only video, or timed-out. Re-trying)');
+            break;
+        }
+		case 'PLAY_STREAM_MULTIPLE_INIT_FAILED': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Skipping Track')
+                .setDescription('Failed 3 times to play current track, playing next.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed 3 times to play current track, playing next.');
+            break;
+        }
         case 'STOP_FAILED': {break;}
         case 'RESUME_FAILED': {break;}
         case 'PAUSE_FAILED': {break;}
@@ -2087,7 +2101,7 @@ const trackbot_result_handle_log = (logType, guildData) => {
     }
  
     if(guildData!=null && eLog!=null) {
-        eventData.channel.send(eLog);
+        guildData.systemChannel.send(eLog);
     }
 
     if(consoleLogText == null) {

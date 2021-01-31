@@ -384,13 +384,20 @@ Norn.on('message', (messageData) => {
         case 'setting': Command.setting(messageData, commandArray, guildData); break;
         case 'syscall': Command.syscall(messageData, commandArray, guildData); break;
         // TrackBot Control Commands
-        case '채ㅜㅜㄷㅊㅅ': case 'connect':
-        case '채ㅜ': case 'con':
-        case 'ㅓㅐㅑㅜ': case 'join': Command.join(messageData, commandArray, guildData); break;
-        case '얀채ㅜㅜㄷㅊㅅ': case 'disconnect':
-        case '얀채ㅜ': case 'discon':
-        case '얀': case 'dis':
-        case 'ㅣㄷㅁㅍㄷ': case 'leave': Command.leave(messageData, commandArray, guildData); break;
+        case '채ㅜㅜㄷㅊㅅ': 
+        case 'connect':
+        case '채ㅜ': 
+        case 'con':
+        case 'ㅓㅐㅑㅜ': 
+        case 'join': Command.join(messageData, commandArray, guildData); break;
+        case '얀채ㅜㅜㄷㅊㅅ': 
+        case 'disconnect':
+        case '얀채ㅜ': 
+        case 'discon':
+        case '얀': 
+        case 'dis':
+        case 'ㅣㄷㅁㅍㄷ': 
+        case 'leave': Command.leave(messageData, commandArray, guildData); break;
         case 'ㅔㅣ묘':
         case 'p':
         case 'pl':
@@ -407,7 +414,9 @@ Norn.on('message', (messageData) => {
         case 'add': Command.add(messageData, commandArray, guildData); break;
         case 'remove': Command.remove(messageData, commandArray, guildData); break;
         case 'clear': Command.clear(messageData, commandArray, guildData); break;
+        case 'skip':
         case 'next': Command.next(messageData, commandArray, guildData); break;
+        case 'prev':
         case 'previous': Command.previous(messageData, commandArray, guildData); break;
         case 'loop': Command.loop(messageData, commandArray, guildData); break;
         // TrackBot Playlist Commands
