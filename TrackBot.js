@@ -68,7 +68,11 @@ const play_track_override = async (guildData, targetIdx=null) => {
     trackData = guildData.TB.queue[guildData.TB.index];
 
     if(guildData.TB.playing) {
-        await guildData.TB.voiceConnection.dispatcher.destroy();
+        try {
+            await guildData.TB.voiceConnection.dispatcher.destroy();
+        } catch(errorData) {
+            // Do nothing
+        }
     }
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?

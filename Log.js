@@ -2071,7 +2071,7 @@ const trackbot_result_handle_log = (logType, guildData) => {
 		case 'PLAY_FAILED': {
             eLog.setColor(ExF.html_red)
                 .setTitle('Failed Playing Track')
-                .setDescription('Failed to play track. (Invalid link, premium-only video, or timed-out. Re-trying)')
+                .setDescription(`Failed to play track. (Invalid link, premium-only video, or timed-out. Re-trying)\n${guildData.TB.queue[guildData.TB.index].video_url}`)
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(' Failed trying to play track. (Invalid link, premium-only video, or timed-out. Re-trying)');
             break;
@@ -2099,8 +2099,8 @@ const trackbot_result_handle_log = (logType, guildData) => {
 			consoleLogText = consoleLogText.concat(`Unknown log type received. {receivedLogType:\"${logType}\"}`);
         }
     }
- 
-    if(guildData!=null && eLog!=null) {
+
+    if(guildData!==null && eLog!==null) {
         guildData.systemChannel.send(eLog);
     }
 
@@ -2113,6 +2113,6 @@ const trackbot_result_handle_log = (logType, guildData) => {
 
 module.exports = {
     logEvent    : norn_event_handle_log,
-    logCommand  : command_result_handle_log,
+    logCommand  : command_result_handle_log, 
     logTrackBot : trackbot_result_handle_log,
 };
