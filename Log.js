@@ -2084,7 +2084,14 @@ const trackbot_result_handle_log = (logType, guildData) => {
             consoleLogText = consoleLogText.concat(' Failed 3 times to play current track, playing next.');
             break;
         }
-        case 'STOP_FAILED': {break;}
+        case 'STOP_FAILED': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Stop Failed')
+                .setDescription('Failed to destroy voice connection dispatcher.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed 3 times to play current track, playing next.');
+            break;
+        }
         case 'RESUME_FAILED': {break;}
         case 'PAUSE_FAILED': {break;}
         case 'QUEUE_ADD_GET_DATA_FAILED': {break;}
