@@ -2092,15 +2092,42 @@ const trackbot_result_handle_log = (logType, guildData) => {
             consoleLogText = consoleLogText.concat(' Failed 3 times to play current track, playing next.');
             break;
         }
-        case 'RESUME_FAILED': {break;}
-        case 'PAUSE_FAILED': {break;}
-        case 'QUEUE_ADD_GET_DATA_FAILED': {break;}
-		case 'QUEUE_ADD_GET_DATA_NULL': {break;}
-		case 'NEXT_END_OF_QUEUE': {break;}
-		case 'NEXT_END_OF_QUEUE': {break;}
-		case 'PREV_END_OF_QUEUE': {break;}
-        case 'QUEUE_APPEND_GET_INFO_FAILED': {break;}
-        case 'QUEUE_APPEND_DATA_NULL': {break;}
+        case 'RESUME_FAILED': {
+            
+            break;
+        }
+        case 'PAUSE_FAILED': {
+            
+            break;
+        }
+        case 'QUEUE_ADD_GET_DATA_FAILED': {
+            
+            break;
+        }
+		case 'QUEUE_ADD_GET_DATA_NULL': {
+            
+            break;
+        }
+		case 'NEXT_END_OF_QUEUE': {
+            
+            break;
+        }
+		case 'NEXT_END_OF_QUEUE': {
+            
+            break;
+        }
+		case 'PREV_END_OF_QUEUE': {
+            
+            break;
+        }
+        case 'QUEUE_APPEND_GET_INFO_FAILED': {
+            
+            break;
+        }
+        case 'QUEUE_APPEND_DATA_NULL': {
+            
+            break;
+        }
         default: {
       		eLog=null;
 			consoleLogText = consoleLogText.concat(`Unknown log type received. {receivedLogType:\"${logType}\"}`);
