@@ -666,6 +666,16 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             consoleLogText = consoleLogText.concat(` User is not inside a voice channel. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
+        case 'PLAY_USER_INVALID_VC': {
+            let receivedArgument = eventData.content;
+
+            eLog.setColor(ExF.html_orange)
+                .setTitle('Not In Channel')
+                .setDescription('Norn is not inside channel.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Norn is not inside channel. {receivedArgument:\"${receivedArgument}\"}`);
+            break;
+        }
 		case 'PLAY_JOIN_FAILED': {
             let receivedArgument = eventData.content;
 
@@ -677,38 +687,22 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
 		case 'PLAY_SUCCESS': {
-
-			/*
-			const idx = guildData.TB.index;
-            const trackData = guildData.TB.queue[idx];
-
-            devLog=null;
-            //     .setColor(ExF.html_green)
-            //     .setTitle(logType)
-            //     .setDescription(`playing:{${JSON.stringify(trackData)}`)
-            //     .setTimestamp();
-            usrLog
-                .setColor(ExF.html_spring_green)
-                .setTitle(`\"${ExF.getLimitedString(trackData.title,43)}\"`)
-                // .setDescription('[~.~] Playing track, so lets duck, truck, and smash?')
-                .addFields(
-                    { name: 'Index',  value: idx,                                   inline: true },
-                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
-                    { name: 'Volume', value: trackData.volume,                      inline: true },
-                    { name: 'URL',    value: trackData.video_url,                   inline: false },
-                )  
-                .setTimestamp();
-            consoleLogText = consoleLogText.concat(` playing:{\"idx\":${idx},${JSON.stringify(trackData)}}`);
-			*/
-
+            let index = guildData.TB.index;
+            let trackData = guildData.TB.queue[index];
             let receivedArgument = eventData.content;
 
             eLog.setAuthor(commandIssuer)
                 .setColor(ExF.html_green)
-                .setTitle('Playing And Overriding')
-                .setDescription('Playing inputted track in queue. Overriding current track.')
+                .setTitle(`\"${ExF.getLimitedString(trackData.title, 43)}\"`)
+                .setDescription('Overriding current track. Playing received data track.')
+                .addFields(
+                    { name: 'Index',  value: index,                              inline: true },
+                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
+                    { name: 'Volume', value: trackData.volume,                   inline: true },
+                    { name: 'URL',    value: trackData.video_url,                inline: false },
+                )
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Playing inputted track in queue. Overriding current track. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Overriding current track. Playing received data track. {receivedArgument:\"${receivedArgument}\",index:\"${index}\",length:\"${trackData.length}\",volume:\"${trackData.volume}\",url:\"${trackData.video_url}\"}`);
             break;
         }
 		case 'PLAY_FAILED': {
@@ -1160,7 +1154,7 @@ const command_result_handle_log = (logType, eventData, guildData) => {
                 .setTitle('Added Track To Queue')
                 .setDescription('Added track data to queue.')
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Playing inputted track in queue. Overriding current track. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Added track info to queue. {receivedArgument:\"${receivedArgument}\"}`);
             break;
         }
 		case 'ADD_FAILED': {
@@ -2068,10 +2062,18 @@ const trackbot_result_handle_log = (logType, guildData) => {
             consoleLogText = consoleLogText.concat(' Failed to connect to user\'s voice channel.');
 			break;
 		}
-		case 'PLAY_FAILED': {
+		case 'PLAY_FAILED_0': {
             eLog.setColor(ExF.html_red)
                 .setTitle('Failed Playing Track')
                 .setDescription(`Failed to play track. (Invalid link, premium-only video, or timed-out. Re-trying)\n${guildData.TB.queue[guildData.TB.index].video_url}`)
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed trying to play track. (Invalid link, premium-only video, or timed-out. Re-trying)');
+            break;
+        }
+        case 'PLAY_FAILED_1': {
+            eLog.setColor(ExF.html_red)
+                .setTitle('Failed Playing Track')
+                .setDescription(`Failed to play track. (Source too big. Re-trying)\n${guildData.TB.queue[guildData.TB.index].video_url}`)
                 .setTimestamp();
             consoleLogText = consoleLogText.concat(' Failed trying to play track. (Invalid link, premium-only video, or timed-out. Re-trying)');
             break;
@@ -2093,39 +2095,84 @@ const trackbot_result_handle_log = (logType, guildData) => {
             break;
         }
         case 'RESUME_FAILED': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Resume Failed')
+                .setDescription('Failed to resume voice connection dispatcher.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed to resume current track.');
             break;
         }
         case 'PAUSE_FAILED': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Pause Failed')
+                .setDescription('Failed to pause voice connection dispatcher.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed to pause current track.');
             break;
         }
         case 'QUEUE_ADD_GET_DATA_FAILED': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Queue Add Failed')
+                .setDescription('Failed add track data to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed add track data to queue.');
             break;
         }
 		case 'QUEUE_ADD_GET_DATA_NULL': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Retreived Data Null')
+                .setDescription('Retreived data is null.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Retreived data is null.');
             break;
         }
 		case 'NEXT_END_OF_QUEUE': {
-            
-            break;
-        }
-		case 'NEXT_END_OF_QUEUE': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Reached End Of Queue')
+                .setDescription('Reached end of queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Reached end of queue.');
             break;
         }
 		case 'PREV_END_OF_QUEUE': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Reached End Of Queue')
+                .setDescription('Reached end of queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Reached end of queue.');
             break;
         }
         case 'QUEUE_APPEND_GET_INFO_FAILED': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Appending Failed')
+                .setDescription('Failed to append to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed to append to queue.');
             break;
         }
         case 'QUEUE_APPEND_DATA_NULL': {
-            
+            eLog.setColor(ExF.html_red)
+                .setTitle('Appending Failed')
+                .setDescription('Failed to append to queue.')
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(' Failed to append to queue.');
+            break;
+        }
+        case 'NEXT_AUTO_QUEUE': {
+            let index = guildData.TB.index;
+            let trackData = guildData.TB.queue[index];
+
+            eLog.setColor(ExF.html_spring_green)
+                .setTitle(`\"${ExF.getLimitedString(trackData.title, 43)}\"`)
+                .setDescription('Playing next track on queue.')
+                .addFields(
+                    { name: 'Index',  value: index,                              inline: true },
+                    { name: 'Length', value: ExF.getSecFormat(trackData.length), inline: true },
+                    { name: 'Volume', value: trackData.volume,                   inline: true },
+                    { name: 'URL',    value: trackData.video_url,                inline: false },
+                )
+                .setTimestamp();
+            consoleLogText = consoleLogText.concat(` Playing next track. Playing received data track. {index:\"${index}\",length:\"${trackData.length}\",volume:\"${trackData.volume}\",url:\"${trackData.video_url}\"}`);
             break;
         }
         default: {
@@ -2135,7 +2182,8 @@ const trackbot_result_handle_log = (logType, guildData) => {
     }
 
     if(guildData!==null && eLog!==null) {
-        guildData.systemChannel.send(eLog);
+        guildData.TB.textChannel.send(eLog);
+        //guildData.systemChannel.send(eLog);
     }
 
     if(consoleLogText == null) {

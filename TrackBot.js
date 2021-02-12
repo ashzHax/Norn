@@ -76,24 +76,28 @@ const play_track_override = async (guildData, targetIdx=null) => {
     }
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
-    guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<25)})
-                                .on('finish', () => {
-                                    guildData.TB.playing = false;
-                                    queue_play_next_override(guildData);
-                                })
-                                .on('error', (errorData) => {
-                                    console.error(errorData);
-                                    logTrackBot('PLAY_FAILED', guildData);
+    try{
+        guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<25)})
+        .on('finish', () => {
+            guildData.TB.playing = false;
+            queue_play_next_override(guildData, 1, 'auto');
+        })
+        .on('error', (errorData) => {
+            console.error(errorData);
+            logTrackBot('PLAY_FAILED', guildData);
 
-                                    guildData.TB.errorCount++;
-                                    if(guildData.TB.errorCount >= 3) {
-                                        logTrackBot('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
-                                        queue_play_next_override(guildData, 1, 'fail');
-                                        return false;
-                                    }
-
-                                    play_track_override(guildData);
-                                });
+            guildData.TB.errorCount++;
+            if(guildData.TB.errorCount >= 3) {
+                logTrackBot('PLAY_STREAM_MULTIPLE_INIT_FAILED', guildData);
+                queue_play_next_override(guildData, 1, 'fail');
+                return false;
+            }
+            play_track_override(guildData, 1, 'retry');
+        });
+    } catch(errorData) {
+        console.error(errorData);
+        logTrackBot('PLAY_FAILED_0', guildData);
+    }
 
     guildData.TB.voiceConnection.dispatcher.setVolumeLogarithmic(trackData.volume*0.1);
     guildData.TB.playing = true;
@@ -196,28 +200,42 @@ const queue_clear_all_index = async (guildData) => {
     return true;
 }
 
-const queue_play_next_override = async (guildData, skipCount=1, status) => {
+const queue_play_next_override = async (guildData, skipCount=1, status=null) => {
     let loopSingle = guildData.TB.loopSingle;
     let loopQueue = guildData.TB.loopQueue;
  
     if(guildData.TB.queue.length === 1) {
         if(status === 'fail') return false;
         if(loopSingle || loopQueue) {
+            if(status === 'auto') {
+                logTrackBot('NEXT_AUTO_QUEUE', guildData);
+            }
             play_track_override(guildData);
         } else {
             logTrackBot('NEXT_END_OF_QUEUE', guildData);
             return false;
         }
     } else {
-        if(loopSingle || loopQueue) {
+        if(loopSingle) {
+            if(status === 'auto') {
+                logTrackBot('NEXT_AUTO_QUEUE', guildData);
+            }
+            play_track_override(guildData);
+        } else if(loopQueue) {
             guildData.TB.index = (guildData.TB.index+skipCount) % guildData.TB.queue.length;
+            if(status === 'auto') {
+                logTrackBot('NEXT_AUTO_QUEUE', guildData);
+            }
             play_track_override(guildData);
         } else {
-            if((guildData.TB.index+skipCount) > guildData.TB.queue.length) {
+            if((guildData.TB.index+skipCount) >= guildData.TB.queue.length) {
                 logTrackBot('NEXT_END_OF_QUEUE', guildData);
                 return false;
             } else {
                 guildData.TB.index = guildData.TB.index + skipCount;
+                if(status === 'auto') {
+                    logTrackBot('NEXT_AUTO_QUEUE', guildData);
+                }
                 play_track_override(guildData);
             }
         }
