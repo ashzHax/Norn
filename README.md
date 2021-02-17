@@ -51,6 +51,7 @@ Thanks to the following authors of these guides that I was able to create this.
 
 [NodeJS module: ytdl-core](https://www.npmjs.com/package/ytdl-core)  
 > Also thank you to the Github issue discussion posts for the ytdl-core project, constantly reporting frequent bugs and requesting functionality upgrades.  
+
 [NodeJS module: opusscript](https://www.npmjs.com/package/opusscript)  
 [Writing a music command for your discord.js bot](https://dev.to/galnir/how-to-write-a-music-command-using-the-discord-js-library-462f)  
 [Make your own Discord bot](https://www.youtube.com/watch?v=q0lsD7U0JSI)  
