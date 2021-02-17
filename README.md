@@ -2,7 +2,8 @@
 A expandable Discord.js project for a audit/moderation bot.  
 My first NodeJS and JavaScript project.  
 By the way, I usually code with C language. First time trying out a scripting language.  
-Will love to hear some advice on how to improve on my code! (Critical raging will be accepted. I teach by yelling as well.)  
+Will love to hear some advice on how to improve on my code!  
+(Critical raging will be accepted. I teach by yelling as well.)  
 Thanks in advance!  
 
 ## Prerequisites  
