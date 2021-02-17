@@ -1,5 +1,9 @@
 # Norn  
-A Discord.js project for a audit/moderation bot.  
+A expandable Discord.js project for a audit/moderation bot.  
+My first NodeJS and JavaScript project.  
+By the way, I usually code with C language. First time trying out a scripting language.  
+Will love to hear some advice on how to improve on my code! (Critical raging will be accepted. I teach by yelling as well.)  
+Thanks in advance!  
 
 ## Prerequisites  
 ### System  
@@ -11,7 +15,7 @@ A Discord.js project for a audit/moderation bot.
 ## Commands  
 > All commands starts with **.**(_period_).  
 > Volume range is 1 to 9.  
-> "{" means it's a required custom input from user.
+> "{" means it's a required custom input from user.  
 > "{{" means it's a optional custom input from user.  
 > "[" means it's a required fixed input from user.  
 > "[[" means it's a optional fixed input from user.  
@@ -45,7 +49,7 @@ A Discord.js project for a audit/moderation bot.
 | -        | add { Playlist Name } { URL } {{ Volume }} | Adds track to a existing playlist.                                                                   | -           | Bot           |  
 | -        | remove { Playlist Name } { Index }         | Removes track of index from existing playlist.                                                       | -           | Bot           |  
 
-## Reference  
+## Thanks To The Amazing People Here  
 Thanks to the following authors of these guides that I was able to create this.  
 (Sorry to those I forgot. Coding in JavaScript makes you skim over several hundreds websites.)  
 
