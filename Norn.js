@@ -343,7 +343,7 @@ Norn.on('error', (errorData) =>
 
 Norn.on('message', (messageData) => {
     if(messageData.author.bot) return;
-    if(!messageData.content.startsWith('/')) return;
+    if(!messageData.content.startsWith('.')) return;
 
     let guildData      = guildDataMap.get(messageData.guild.id);
     let commandArray   = messageData.content.split(' ');
