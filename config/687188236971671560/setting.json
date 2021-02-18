@@ -3,13 +3,28 @@
     "GUILD_NAME": "AXC",
     "TB": {
         "VOLUME": 7,
-        "LOOP_SINGLE": false,
+        "LOOP_SINGLE": true,
         "LOOP_QUEUE": true,
         "PLAYLIST": {
             "owlc": {
                 "owner": "ashz#3656",
                 "length": 1171,
                 "elements": 5
+            },
+            "piano": {
+                "owner": "ashz#3656",
+                "length": 396,
+                "elements": 1
+            },
+            "weeb": {
+                "owner": "ashz#3656",
+                "length": 1830,
+                "elements": 7
+            },
+            "zutomayo": {
+                "owner": "ashz#3656",
+                "length": 2449,
+                "elements": 9
             }
         }
     }
