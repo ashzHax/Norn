@@ -1147,14 +1147,23 @@ const command_result_handle_log = (logType, eventData, guildData) => {
             break;
         }
 		case 'ADD_SUCCESS': {
+            let index = guildData.TB.index;
+            let trackData = guildData.TB.queue[index];
             let receivedArgument = eventData.content;
 
             eLog.setAuthor(commandIssuer)
                 .setColor(ExF.html_green)
-                .setTitle('Added Track To Queue')
-                .setDescription('Added track data to queue.')
+                .setTitle('Appended Queue')
+                .setDescription('Added track to queue.')
+                .addFields(
+                    { name: 'Title',  value: ExF.getLimitedString(trackData.title, 43), inline: true },
+                    { name: 'Index',  value: index,                                     inline: true },
+                    { name: 'Length', value: ExF.getSecFormat(trackData.length),        inline: true },
+                    { name: 'Volume', value: trackData.volume,                          inline: true },
+                    { name: 'URL',    value: trackData.video_url,                       inline: false },
+                )
                 .setTimestamp();
-            consoleLogText = consoleLogText.concat(` Added track info to queue. {receivedArgument:\"${receivedArgument}\"}`);
+            consoleLogText = consoleLogText.concat(` Added track to queue. {receivedArgument:\"${receivedArgument}\",title:\"${trackData.title}\",index:\"${index}\",length:\"${trackData.length}\",volume:\"${trackData.volume}\",url:\"${trackData.video_url}\"}`);
             break;
         }
 		case 'ADD_FAILED': {
