@@ -3,7 +3,7 @@
     "GUILD_NAME": "AXC",
     "TB": {
         "VOLUME": 7,
-        "LOOP_SINGLE": true,
+        "LOOP_SINGLE": false,
         "LOOP_QUEUE": true,
         "PLAYLIST": {
             "owlc": {
