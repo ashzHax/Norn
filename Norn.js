@@ -68,6 +68,14 @@ fs.readFile(CONFIG_NORN_FILE_PATH, (errorData, fileData) => {
         }
     });
 
+    fs.mkdir(CONFIG_LOG_DIR_PATH, (errorData) => {
+        if(errorData) {
+            // console.error(errorData);
+            ExF.logConsole(`[ALERT] Directory already exists. (${CONFIG_LOG_DIR_PATH})`, null);
+            // process.exit(ExF.GUILD_CONFIG_DIR_CREATE_FAIL);
+        }
+    });
+
     // ashz> login to Discord server
     Norn.login(CONFIG_NORN.tpo + CONFIG_NORN.tpt + CONFIG_NORN.tpth);
     
