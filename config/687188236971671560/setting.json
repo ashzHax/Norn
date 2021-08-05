@@ -4,7 +4,7 @@
     "TB": {
         "VOLUME": 7,
         "LOOP_SINGLE": false,
-        "LOOP_QUEUE": true,
+        "LOOP_QUEUE": false,
         "PLAYLIST": {
             "owlc": {
                 "owner": "ashz#3656",

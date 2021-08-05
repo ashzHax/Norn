@@ -2023,7 +2023,8 @@ const command_result_handle_log = (logType, eventData, guildData) => {
     }
 
     if(guildData!=null && eLog!=null) {
-        eventData.channel.send(eLog);
+        //eventData.channel.send(eLog);
+		guildData.systemChannel.send(eLog);
     }
 
     if(consoleLogText == null) {
@@ -2191,8 +2192,8 @@ const trackbot_result_handle_log = (logType, guildData) => {
     }
 
     if(guildData!==null && eLog!==null) {
-        guildData.TB.textChannel.send(eLog);
-        //guildData.systemChannel.send(eLog);
+        //guildData.TB.textChannel.send(eLog);
+        guildData.systemChannel.send(eLog);
     }
 
     if(consoleLogText == null) {

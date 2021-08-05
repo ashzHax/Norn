@@ -364,17 +364,12 @@ Norn.on('message', (messageData) => {
         return;
     }
 
-    // ashz> Discord built-in commands
-    switch(commandArray[0].toLowerCase()) {
-        case 'giphy':
-        case 'tenor':
-        case 'shrug':
-        case 'tableflip':
-        case 'unflip':
-        case 'me':
-        case 'spoiler':
-        case 'nick': return;
-    }
+    // ashz> if only dots 
+	if(commandArray[0] == '') {
+		return;
+	} else if(commandArray[0].startsWith('.')) {
+		return;
+	}
 
     messageData.member.roles.member._roles.forEach((roles) => {
         if(messageData.guild.roles.cache.get(roles).name.toLowerCase() === 'bot') permissionFlag = true;
