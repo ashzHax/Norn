@@ -1,0 +1,18 @@
+[2021/08/22 00:23:57.400][687188236971671560][event][MESSAGE][박곰#9646] {message:"1",id:"878660706763964427",channel_name:"chat"}
+[2021/08/22 00:24:01.695][687188236971671560][event][MESSAGE_DELETE][박곰#9646] {message:"1",id:"878660706763964427",channel_name:"chat"}
+[2021/08/22 00:24:05.145][687188236971671560][event][MESSAGE][박곰#9646] {message:"1",id:"878660739383066644",channel_name:"chat"}
+[2021/08/22 00:24:09.223][687188236971671560][event][MESSAGE_DELETE][박곰#9646] {message:"1",id:"878660739383066644",channel_name:"chat"}
+[2021/08/22 05:52:52.855][687188236971671560][event][MESSAGE][혜윤#0606] {message:"Guys",id:"878743483534442557",channel_name:"chat"}
+[2021/08/22 05:52:57.098][687188236971671560][event][MESSAGE][혜윤#0606] {message:"How about modded gta",id:"878743501381185546",channel_name:"chat"}
+[2021/08/22 05:53:01.507][687188236971671560][event][MESSAGE][혜윤#0606] {message:":)",id:"878743519840309308",channel_name:"chat"}
+[2021/08/22 06:22:28.883][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Gta 6",id:"878750932739948615",channel_name:"chat"}
+[2021/08/22 06:22:30.878][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"🙂",id:"878750941078257674",channel_name:"chat"}
+[2021/08/22 09:59:23.603][687188236971671560][event][MESSAGE][ashz#3656] {message:"shes talking about rp GTA",id:"878805520478261268",channel_name:"chat"}
+[2021/08/22 09:59:55.930][687188236971671560][event][MESSAGE][ashz#3656] {message:"idk tbh not much satisfaction when playing that in my opinion",id:"878805655618732103",channel_name:"chat"}
+[2021/08/22 17:19:43.354][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".join",id:"878916332568068127",channel_name:"chat"}
+[2021/08/22 17:19:43.613][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".join",id:"878916332568068127",channel_name:"chat"}
+[2021/08/22 17:19:43.824][687188236971671560][command][JOIN_SUCCESS][chloe5325#1260][878916332568068127] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/08/22 17:20:32.940][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/5Ku9jOuGArw",id:"878916540899143690",channel_name:"chat"}
+[2021/08/22 17:20:33.220][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/5Ku9jOuGArw",id:"878916540899143690",channel_name:"chat"}
+[2021/08/22 17:20:34.325][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][878916540899143690] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/5Ku9jOuGArw",index:"0",length:"18810",volume:"7",url:"https://www.youtube.com/watch?v=5Ku9jOuGArw"}
+[2021/08/22 22:34:05.186][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"18810",volume:"7",url:"https://www.youtube.com/watch?v=5Ku9jOuGArw"}

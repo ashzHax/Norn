@@ -1,0 +1,74 @@
+[2021/08/28 00:06:22.907][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅡㅡ",id:"880830611122708552",channel_name:"chat"}
+[2021/08/28 14:41:07.854][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".join",id:"881050749277192212",channel_name:"chat"}
+[2021/08/28 14:41:08.122][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".join",id:"881050749277192212",channel_name:"chat"}
+[2021/08/28 14:41:08.336][687188236971671560][command][JOIN_SUCCESS][chloe5325#1260][881050749277192212] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/08/28 14:41:43.085][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/DhMLZlq_8gE",id:"881050897067692042",channel_name:"chat"}
+[2021/08/28 14:41:43.366][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/DhMLZlq_8gE",id:"881050897067692042",channel_name:"chat"}
+[2021/08/28 14:41:47.925][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][881050897067692042] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/DhMLZlq_8gE",index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 14:46:17.883][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 14:47:07.610][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/FIdFoxVnGgE",id:"881052258224177172",channel_name:"chat"}
+[2021/08/28 14:47:07.923][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/FIdFoxVnGgE",id:"881052258224177172",channel_name:"chat"}
+[2021/08/28 14:47:09.207][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][881052258224177172] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/FIdFoxVnGgE",index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 14:51:39.527][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/Y_8aUSyNM9Y",id:"881053398659641354",channel_name:"chat"}
+[2021/08/28 14:51:39.786][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/Y_8aUSyNM9Y",id:"881053398659641354",channel_name:"chat"}
+[2021/08/28 14:51:41.366][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][881053398659641354] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/Y_8aUSyNM9Y",index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 14:54:50.456][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 14:55:20.434][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/GjZeC5E5DlQ",id:"881054325315612682",channel_name:"chat"}
+[2021/08/28 14:55:20.798][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/GjZeC5E5DlQ",id:"881054325315612682",channel_name:"chat"}
+[2021/08/28 14:55:22.038][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][881054325315612682] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/GjZeC5E5DlQ",index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 14:58:39.291][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 15:03:08.064][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 15:07:57.550][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 15:11:07.253][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 15:14:25.438][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 15:18:54.063][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 15:23:43.614][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 15:26:53.749][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 15:30:12.099][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 15:34:42.152][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 15:39:31.670][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 15:42:41.431][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 15:45:59.630][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 15:50:28.273][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 15:55:17.622][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 15:58:27.319][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 16:01:45.362][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 16:06:13.895][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 16:11:03.639][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 16:14:13.365][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 16:17:31.479][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 16:22:00.193][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 16:26:49.703][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 16:29:59.681][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 16:33:17.639][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 16:37:46.449][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 16:42:36.163][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 16:45:47.383][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 16:49:05.550][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 16:53:34.284][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 16:58:25.004][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 17:01:34.712][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 17:04:52.897][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 17:09:21.740][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 17:14:11.569][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 17:17:22.358][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 17:20:40.691][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 17:25:09.667][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 17:30:00.359][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 17:33:10.292][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 17:36:28.305][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 17:40:56.814][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 17:45:46.367][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 17:48:56.239][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 17:52:14.616][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 17:56:43.353][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 18:01:32.949][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 18:04:43.228][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 18:08:01.337][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 18:12:30.138][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 18:17:19.821][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 18:20:29.508][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}
+[2021/08/28 18:23:47.591][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"267",volume:"7",url:"https://www.youtube.com/watch?v=DhMLZlq_8gE"}
+[2021/08/28 18:28:16.280][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"288",volume:"7",url:"https://www.youtube.com/watch?v=FIdFoxVnGgE"}
+[2021/08/28 18:33:05.704][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"188",volume:"7",url:"https://www.youtube.com/watch?v=Y_8aUSyNM9Y"}
+[2021/08/28 18:36:17.091][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=GjZeC5E5DlQ"}

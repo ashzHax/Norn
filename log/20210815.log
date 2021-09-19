@@ -1,0 +1,73 @@
+[2021/08/15 00:21:06.887][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 01:10:40.944][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 02:00:03.568][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 02:49:26.234][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 03:39:00.252][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 04:28:22.566][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 05:17:45.206][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 06:07:07.707][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 06:56:41.800][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"2961",volume:"7",url:"https://www.youtube.com/watch?v=1z_V97d99pE"}
+[2021/08/15 07:17:07.410][687188236971671560][event][MESSAGE][양 진#4848] {message:".leave",id:"876227968849035324",channel_name:"chat"}
+[2021/08/15 07:17:07.438][687188236971671560][command][LEAVE_SUCCESS][양 진#4848][876227968849035324] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/08/15 07:17:07.973][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:".leave",id:"876227968849035324",channel_name:"chat"}
+[2021/08/15 17:03:49.725][687188236971671560][event][MESSAGE][양 진#4848] {message:"<@207597209611403264>",id:"876375618206457866",channel_name:"chat"}
+[2021/08/15 17:03:53.706][687188236971671560][event][MESSAGE][양 진#4848] {message:"벌써 집감?",id:"876375634878808084",channel_name:"chat"}
+[2021/08/15 17:13:46.118][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅇ",id:"876378119739682886",channel_name:"chat"}
+[2021/08/15 17:27:16.419][687188236971671560][event][MESSAGE][양 진#4848] {message:"음",id:"876381518220636180",channel_name:"chat"}
+[2021/08/15 17:27:20.922][687188236971671560][event][MESSAGE][양 진#4848] {message:"시골 가다가",id:"876381537124380672",channel_name:"chat"}
+[2021/08/15 17:27:32.610][687188236971671560][event][MESSAGE][양 진#4848] {message:"친척집에서 하루 자고 시골 가라고 해서",id:"876381586109657088",channel_name:"chat"}
+[2021/08/15 17:27:39.417][687188236971671560][event][MESSAGE][양 진#4848] {message:"친척집으로 틀까 생각중",id:"876381614681255946",channel_name:"chat"}
+[2021/08/15 17:27:46.335][687188236971671560][event][MESSAGE][ashz#3656] {message:"그려 ㅋㅋ",id:"876381643718414416",channel_name:"chat"}
+[2021/08/15 17:27:46.949][687188236971671560][event][MESSAGE][양 진#4848] {message:"아니면 집가거나인데",id:"876381646285307914",channel_name:"chat"}
+[2021/08/15 17:27:50.743][687188236971671560][event][MESSAGE][양 진#4848] {message:"흠",id:"876381662123003924",channel_name:"chat"}
+[2021/08/15 17:28:00.082][687188236971671560][event][MESSAGE][양 진#4848] {message:"일단 어딘가는 가서 옴",id:"876381701113262081",channel_name:"chat"}
+[2021/08/15 19:51:08.798][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone",id:"876417725134667786",channel_name:"chat"}
+[2021/08/15 19:55:57.810][687188236971671560][event][MESSAGE][박곰#9646] {message:"머함",id:"876418937330495528",channel_name:"chat"}
+[2021/08/15 19:58:29.074][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"마이크 테스트(?)",id:"876419571714777098",channel_name:"chat"}
+[2021/08/15 20:12:38.413][687188236971671560][event][MESSAGE][양 진#4848] {message:"<@!765938051876257803>",id:"876423134188818453",channel_name:"chat"}
+[2021/08/15 20:18:57.954][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"스쯔츠",id:"876424725943959602",channel_name:"chat"}
+[2021/08/15 20:19:10.303][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"th 발음",id:"876424777663905863",channel_name:"chat"}
+[2021/08/15 20:19:11.258][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅇㅋ?",id:"876424781715623946",channel_name:"chat"}
+[2021/08/15 20:21:13.619][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"오면 너가",id:"876425294582546486",channel_name:"chat"}
+[2021/08/15 20:21:15.134][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"마이크 켜",id:"876425301322788874",channel_name:"chat"}
+[2021/08/15 20:22:21.473][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:"마이크 켜",id:"876425301322788874",channel_name:"chat"}
+[2021/08/15 20:22:22.991][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:"오면 너가",id:"876425294582546486",channel_name:"chat"}
+[2021/08/15 20:22:28.822][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"hey",id:"876425610057101355",channel_name:"chat"}
+[2021/08/15 20:22:37.464][687188236971671560][event][MESSAGE][박곰#9646] {message:"thㅡ포뜨",id:"876425646623043674",channel_name:"chat"}
+[2021/08/15 20:22:45.305][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"곰 ㅎㅇ",id:"876425679443484712",channel_name:"chat"}
+[2021/08/15 20:22:48.910][687188236971671560][event][MESSAGE][박곰#9646] {message:"gd",id:"876425694597513216",channel_name:"chat"}
+[2021/08/15 20:22:54.468][687188236971671560][event][MESSAGE][박곰#9646] {message:"나 레식하느방에 잡힘",id:"876425717657796609",channel_name:"chat"}
+[2021/08/15 20:22:54.865][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"백신 어떰",id:"876425719671033866",channel_name:"chat"}
+[2021/08/15 20:22:55.737][687188236971671560][event][MESSAGE][박곰#9646] {message:"살려줘",id:"876425723286544414",channel_name:"chat"}
+[2021/08/15 20:23:02.651][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"레식은 갓겜이야 역시",id:"876425752244015154",channel_name:"chat"}
+[2021/08/15 20:23:02.798][687188236971671560][event][MESSAGE][박곰#9646] {message:"나가곳피어",id:"876425752898330724",channel_name:"chat"}
+[2021/08/15 20:23:07.458][687188236971671560][event][MESSAGE][박곰#9646] {message:"망겜인데?",id:"876425772108251137",channel_name:"chat"}
+[2021/08/15 20:23:07.949][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"그만한 게임 없어",id:"876425774540947477",channel_name:"chat"}
+[2021/08/15 20:23:19.075][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"그러니 너가 플레2를 찍잖아",id:"876425821206765578",channel_name:"chat"}
+[2021/08/15 20:23:22.884][687188236971671560][event][MESSAGE][박곰#9646] {message:"개발자가 게임 들어서",id:"876425837174472714",channel_name:"chat"}
+[2021/08/15 20:23:31.066][687188236971671560][event][MESSAGE][박곰#9646] {message:"지구 내핵으로 던지고있음",id:"876425871441952768",channel_name:"chat"}
+[2021/08/15 20:23:36.981][687188236971671560][event][MESSAGE][박곰#9646] {message:"?",id:"876425896016375839",channel_name:"chat"}
+[2021/08/15 20:23:39.094][687188236971671560][event][MESSAGE][박곰#9646] {message:"인데",id:"876425905151565864",channel_name:"chat"}
+[2021/08/15 20:23:40.588][687188236971671560][event][MESSAGE_UPDATE][박곰#9646] {message_update:("인데"->"인제")}
+[2021/08/15 20:23:43.631][687188236971671560][event][MESSAGE_UPDATE][박곰#9646] {message_update:("인제"->"언제")}
+[2021/08/15 20:23:55.736][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"그래도 레식 개발자들은 최소한 일본해가 아니라 동해라고",id:"876425974953160764",channel_name:"chat"}
+[2021/08/15 20:24:01.479][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"인정해준다",id:"876425998705500162",channel_name:"chat"}
+[2021/08/15 20:24:14.592][687188236971671560][event][MESSAGE][박곰#9646] {message:"타워 똥맵",id:"876426054024200212",channel_name:"chat"}
+[2021/08/15 20:24:20.326][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"그건 ㅇㅈ",id:"876426078053363782",channel_name:"chat"}
+[2021/08/15 20:29:39.985][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 왜 내 닉으로ㅋㅋㅋㅋㅋ오해하것네",id:"876427418842304522",channel_name:"chat"}
+[2021/08/15 21:05:54.167][687188236971671560][event][MESSAGE][양 진#4848] {message:"우리 끝남",id:"876436537917702234",channel_name:"chat"}
+[2021/08/15 21:31:27.125][687188236971671560][event][MESSAGE][ashz#3656] {message:"```c\n#include <fuckboi.h>\n#include <string.h>\n#include <stdio.h>\n\nextern void go_fucking_kill_brain();\nextern void go_kill_diablo();\n\nint main(int the_fuck_up_arg_count, char** the_shit[]) {\n  char zik_willingness_to_play_terraria[20] = {0,};\n  char *simple = zik_willingness_to_play_terraria;\n\n  if(the_fuck_up_arg_count) snprintf(simple, sizeof(char)*20, "%s", the_shit[0]);\n\n  if(strcmp(zik_willingness_to_play_terraria, "helvete") == 0) { // if same\n    go_fucking_kill_brain();\n  } else { // if not\n    go_kill_diablo();  \n  }\n\n  return 0;\n}\n```",id:"876442967626354718",channel_name:"chat"}
+[2021/08/15 21:31:32.594][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442990468562944",channel_name:"chat"}
+[2021/08/15 21:31:32.908][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442991932362752",channel_name:"chat"}
+[2021/08/15 21:31:33.318][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442993509429338",channel_name:"chat"}
+[2021/08/15 21:31:33.699][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442995195514910",channel_name:"chat"}
+[2021/08/15 21:31:34.110][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442996785160212",channel_name:"chat"}
+[2021/08/15 21:31:34.598][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"876442998718742549",channel_name:"chat"}
+[2021/08/15 21:38:33.504][687188236971671560][event][MESSAGE][zik#6629] {message:"Eating super late dinner brb",id:"876444755859476481",channel_name:"chat"}
+[2021/08/15 21:39:13.454][687188236971671560][event][MESSAGE][ashz#3656] {message:"UR SUPPOSE TO SAY HELVETE",id:"876444923518386226",channel_name:"chat"}
+[2021/08/15 21:41:08.558][687188236971671560][event][MESSAGE][zik#6629] {message:"ä.",id:"876445406341496882",channel_name:"chat"}
+[2021/08/15 21:41:20.386][687188236971671560][event][MESSAGE][zik#6629] {message:"javla va fan helvete vittun",id:"876445455964332093",channel_name:"chat"}
+[2021/08/15 21:52:28.240][687188236971671560][event][MESSAGE][ashz#3656] {message:"that is not the valid answer",id:"876448256564031489",channel_name:"chat"}
+[2021/08/15 21:52:33.729][687188236971671560][event][MESSAGE][conner#2879] {message:"lmao",id:"876448280115048479",channel_name:"chat"}
+[2021/08/15 23:15:12.311][687188236971671560][event][MESSAGE][박곰#9646] {message:"cl_showfps 1",id:"876469077995053076",channel_name:"chat"}
+[2021/08/15 23:15:40.337][687188236971671560][event][MESSAGE_DELETE][박곰#9646] {message:"cl_showfps 1",id:"876469077995053076",channel_name:"chat"}

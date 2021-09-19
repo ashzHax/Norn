@@ -1,0 +1,180 @@
+[2021/08/01 10:33:03.977][687188236971671560][event][MESSAGE][양 진#4848] {message:"https://youtu.be/rhcW6Bfc49A",id:"871203849380188200",channel_name:"chat"}
+[2021/08/01 13:53:08.723][687188236971671560][event][MESSAGE][양 진#4848] {message:"<@207597209611403264>",id:"871254200976302210",channel_name:"chat"}
+[2021/08/01 13:53:15.527][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"871254229493379092",channel_name:"chat"}
+[2021/08/01 13:53:15.679][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"<@207597209611403264>",id:"871254200976302210",channel_name:"chat"}
+[2021/08/01 13:53:19.291][687188236971671560][event][MESSAGE][양 진#4848] {message:"아",id:"871254245129715712",channel_name:"chat"}
+[2021/08/01 13:53:26.260][687188236971671560][event][MESSAGE][양 진#4848] {message:"겜방에다가 하려했는대",id:"871254274510815322",channel_name:"chat"}
+[2021/08/01 13:53:31.068][687188236971671560][event][MESSAGE][양 진#4848] {message:"스타 ㄱ?",id:"871254294605733908",channel_name:"chat"}
+[2021/08/01 13:53:32.387][687188236971671560][event][MESSAGE][양 진#4848] {message:"오늘",id:"871254300117069845",channel_name:"chat"}
+[2021/08/01 13:53:35.225][687188236971671560][event][MESSAGE_UPDATE][양 진#4848] {message_update:("겜방에다가 하려했는대"->"겜방에다가 하려했는데")}
+[2021/08/01 13:53:51.609][687188236971671560][event][MESSAGE][ashz#3656] {message:"여기가 겜방인데? ㅋㅋㅋㅋㅋ",id:"871254380790317116",channel_name:"chat"}
+[2021/08/01 13:53:56.938][687188236971671560][event][MESSAGE][양 진#4848] {message:"아 그러네",id:"871254403158528021",channel_name:"chat"}
+[2021/08/01 13:53:58.014][687188236971671560][event][MESSAGE][ashz#3656] {message:"스타 이따 ㄱ",id:"871254407403143169",channel_name:"chat"}
+[2021/08/01 13:54:02.248][687188236971671560][event][MESSAGE][양 진#4848] {message:"확인",id:"871254425241550888",channel_name:"chat"}
+[2021/08/01 13:54:05.887][687188236971671560][event][MESSAGE][ashz#3656] {message:"지금 마크 중",id:"871254440710131792",channel_name:"chat"}
+[2021/08/01 13:54:14.011][687188236971671560][event][MESSAGE][양 진#4848] {message:"ㅇㅋ",id:"871254474713350205",channel_name:"chat"}
+[2021/08/01 13:54:17.504][687188236971671560][event][MESSAGE][양 진#4848] {message:"지금",id:"871254489145954316",channel_name:"chat"}
+[2021/08/01 13:54:26.214][687188236971671560][event][MESSAGE][양 진#4848] {message:"스타필드 가고있어서",id:"871254525950959626",channel_name:"chat"}
+[2021/08/01 13:54:30.214][687188236971671560][event][MESSAGE][양 진#4848] {message:"있다 집가서 들감",id:"871254542753345566",channel_name:"chat"}
+[2021/08/01 16:14:14.835][687188236971671560][event][MESSAGE][혜윤#0606] {message:"i have a question",id:"871289710398545970",channel_name:"chat"}
+[2021/08/01 16:21:39.255][687188236971671560][event][MESSAGE][양 진#4848] {message:"what",id:"871291574368231505",channel_name:"chat"}
+[2021/08/01 16:22:04.310][687188236971671560][event][MESSAGE][ashz#3656] {message:"thats good",id:"871291679460712468",channel_name:"chat"}
+[2021/08/01 16:22:18.144][687188236971671560][event][MESSAGE][ashz#3656] {message:"i also have a question on why u ignored my message yesterday",id:"871291737535041536",channel_name:"chat"}
+[2021/08/01 16:22:30.566][687188236971671560][event][MESSAGE][ashz#3656] {message:"<a:PI_questioning:703908707280355328>",id:"871291789611524126",channel_name:"chat"}
+[2021/08/01 16:30:17.457][687188236971671560][event][MESSAGE][혜윤#0606] {message:"you did?",id:"871293747906887710",channel_name:"chat"}
+[2021/08/01 16:30:27.369][687188236971671560][event][MESSAGE][혜윤#0606] {message:"oh sht",id:"871293789505986600",channel_name:"chat"}
+[2021/08/01 16:30:28.732][687188236971671560][event][MESSAGE][혜윤#0606] {message:"mb",id:"871293795256385636",channel_name:"chat"}
+[2021/08/01 16:30:42.941][687188236971671560][event][MESSAGE][혜윤#0606] {message:"does",id:"871293854630948865",channel_name:"chat"}
+[2021/08/01 16:30:54.247][687188236971671560][event][MESSAGE][혜윤#0606] {message:"https://youtu.be/WUSTVGMQeLA",id:"871293902190153748",channel_name:"chat"}
+[2021/08/01 16:30:56.515][687188236971671560][event][MESSAGE][혜윤#0606] {message:"this even work",id:"871293911769972736",channel_name:"chat"}
+[2021/08/01 16:31:05.820][687188236971671560][event][MESSAGE][혜윤#0606] {message:"my apex sucks so bad that my fps is 15 :)",id:"871293950768590878",channel_name:"chat"}
+[2021/08/01 16:46:41.545][687188236971671560][event][MESSAGE][ashz#3656] {message:"i think it does work",id:"871297875055902721",channel_name:"chat"}
+[2021/08/01 16:46:59.771][687188236971671560][event][MESSAGE][ashz#3656] {message:"since, the video creator knows what he is talking about",id:"871297951958442014",channel_name:"chat"}
+[2021/08/01 16:47:06.471][687188236971671560][event][MESSAGE][ashz#3656] {message:"atleast when it comes to windows optimization",id:"871297979611492423",channel_name:"chat"}
+[2021/08/01 16:47:21.439][687188236971671560][event][MESSAGE][ashz#3656] {message:"for the apex configs, not sure, since i dont play apex",id:"871298042802884628",channel_name:"chat"}
+[2021/08/01 16:47:38.866][687188236971671560][event][MESSAGE][ashz#3656] {message:"but the hardware optimizations seems legit",id:"871298115569872927",channel_name:"chat"}
+[2021/08/01 16:56:05.092][687188236971671560][event][ROLE_CREATE][administrator] {id:"871300238898503720",name:"new role"}
+[2021/08/01 16:56:12.441][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:56:12.441][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"699680626038800385"}
+[2021/08/01 16:56:12.441][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"707217016351752223"}
+[2021/08/01 16:56:12.442][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371016454569984"}
+[2021/08/01 16:56:12.442][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"714046037697888327"}
+[2021/08/01 16:56:12.442][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371426556837978"}
+[2021/08/01 16:56:12.443][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"857429951321341964"}
+[2021/08/01 16:56:12.443][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"774928632408834078"}
+[2021/08/01 16:56:12.443][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"689699616236503059"}
+[2021/08/01 16:56:12.443][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"803444382841700373"}
+[2021/08/01 16:56:12.443][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"852065292648710144"}
+[2021/08/01 16:56:12.771][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:56:18.167][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:56:46.250][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:56:46.251][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"699680626038800385"}
+[2021/08/01 16:56:46.251][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"707217016351752223"}
+[2021/08/01 16:56:46.251][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371016454569984"}
+[2021/08/01 16:56:46.251][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"714046037697888327"}
+[2021/08/01 16:56:46.252][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:56:46.508][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:56:51.758][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"699680626038800385"}
+[2021/08/01 16:56:51.759][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"707217016351752223"}
+[2021/08/01 16:56:51.759][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371016454569984"}
+[2021/08/01 16:56:51.759][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:57:06.901][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:58:10.541][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371426556837978"}
+[2021/08/01 16:58:10.541][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:58:27.790][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:58:27.790][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371016454569984"}
+[2021/08/01 16:58:27.790][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"813690995837370368"}
+[2021/08/01 16:58:27.791][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"714046037697888327"}
+[2021/08/01 16:58:27.791][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"690371426556837978"}
+[2021/08/01 16:58:41.587][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:58:49.474][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:58:57.392][687188236971671560][event][ROLE_UPDATE][administrator] Update to role detected. {id:"871300238898503720"}
+[2021/08/01 16:59:55.592][687188236971671560][event][MESSAGE][ashz#3656] {message:"test",id:"871301205958209536",channel_name:"chat"}
+[2021/08/01 17:00:41.287][687188236971671560][event][MESSAGE][혜윤#0606] {message:"but he downloads something like exec sht",id:"871301397579190312",channel_name:"chat"}
+[2021/08/01 17:00:43.282][687188236971671560][event][MESSAGE][혜윤#0606] {message:"idk",id:"871301405619683340",channel_name:"chat"}
+[2021/08/01 17:00:44.032][687188236971671560][event][MESSAGE][혜윤#0606] {message:"xD",id:"871301409096736828",channel_name:"chat"}
+[2021/08/01 17:00:54.014][687188236971671560][event][MESSAGE][ashz#3656] {message:"yes",id:"871301450872004659",channel_name:"chat"}
+[2021/08/01 17:01:01.867][687188236971671560][event][MESSAGE][ashz#3656] {message:"task managers",id:"871301483902152714",channel_name:"chat"}
+[2021/08/01 17:01:11.351][687188236971671560][event][MESSAGE][ashz#3656] {message:"and software list managers",id:"871301523680944168",channel_name:"chat"}
+[2021/08/01 17:01:24.652][687188236971671560][event][MESSAGE][ashz#3656] {message:"if you want maximized optimization of a game",id:"871301579125432351",channel_name:"chat"}
+[2021/08/01 17:01:30.283][687188236971671560][event][MESSAGE][ashz#3656] {message:"u need external software",id:"871301602840047617",channel_name:"chat"}
+[2021/08/01 17:01:47.297][687188236971671560][event][MESSAGE][ashz#3656] {message:"which is why im just happy with a smooth fps game",id:"871301674457776138",channel_name:"chat"}
+[2021/08/01 17:01:55.874][687188236971671560][event][MESSAGE][ashz#3656] {message:"and lower the quality",id:"871301710285508609",channel_name:"chat"}
+[2021/08/01 17:04:18.087][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:04:53.121][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:05:00.917][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:05:14.403][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:05:32.011][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:05:40.114][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:05:57.701][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:06:45.552][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:07:25.295][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:07:43.884][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:07:49.719][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:08:12.870][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:08:31.363][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:08:34.564][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:08:42.407][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:08:54.380][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:02.254][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:24.786][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:37.109][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:40.000][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:46.415][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:09:48.429][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:10:11.221][687188236971671560][event][CHANNEL_CREATE] {id:"871303788009512990",name:"MK",type:"text_channel"}
+[2021/08/01 17:10:16.732][687188236971671560][event][CHANNEL_CREATE] {id:"871303811132715058",name:"chat",type:"text_channel"}
+[2021/08/01 17:10:25.060][687188236971671560][event][CHANNEL_CREATE] {id:"871303846108987402",name:"voice",type:"voice_channel"}
+[2021/08/01 17:10:50.902][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:11:46.470][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:11:46.472][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:11:46.476][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/08/01 17:12:14.746][687188236971671560][event][MESSAGE][ashz#3656] {message:".",id:"871304306178011237",channel_name:"chat"}
+[2021/08/01 17:12:14.783][687188236971671560][event][COMMAND_UNKNOWN][ashz#3656] {id:"871304306178011237",content:"."}
+[2021/08/01 17:12:15.059][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".",id:"871304306178011237",channel_name:"chat"}
+[2021/08/01 17:13:22.823][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone",id:"871304591701053460",channel_name:"chat"}
+[2021/08/01 17:13:27.268][687188236971671560][event][MESSAGE][ashz#3656] {message:"어떰",id:"871304610374094888",channel_name:"chat"}
+[2021/08/01 17:16:24.411][687188236971671560][event][MESSAGE][ashz#3656] {message:".",id:"871305352984027137",channel_name:"chat"}
+[2021/08/01 17:16:24.412][687188236971671560][event][COMMAND_UNKNOWN][ashz#3656] {id:"871305352984027137",content:"."}
+[2021/08/01 17:16:24.810][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".",id:"871305352984027137",channel_name:"chat"}
+[2021/08/01 17:17:27.399][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"ㅋㅋㅋ형 그사이에 너무 많이 한거 아니야 ㅋㅋ",id:"871305617543921664",channel_name:"chat"}
+[2021/08/01 17:18:19.541][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"871305835840700477",channel_name:"chat"}
+[2021/08/01 17:18:28.695][687188236971671560][event][MESSAGE][ashz#3656] {message:"그거 내 집 아닌데?",id:"871305874629595156",channel_name:"chat"}
+[2021/08/01 17:40:50.777][687188236971671560][event][MESSAGE][혜윤#0606] {message:"Aha i see",id:"871311503695937536",channel_name:"chat"}
+[2021/08/01 18:34:29.671][687188236971671560][event][MESSAGE][Dabig#3853] {message:"오",id:"871325004745293895",channel_name:"chat"}
+[2021/08/01 18:34:35.524][687188236971671560][event][MESSAGE][Dabig#3853] {message:"MK",id:"871325029072261151",channel_name:"chat"}
+[2021/08/01 18:34:45.809][687188236971671560][event][MESSAGE][Dabig#3853] {message:"MOK장모임이라서",id:"871325072458145792",channel_name:"chat"}
+[2021/08/01 18:34:47.186][687188236971671560][event][MESSAGE][Dabig#3853] {message:"MK임?",id:"871325078237904926",channel_name:"chat"}
+[2021/08/01 20:07:16.941][687188236971671560][event][MESSAGE][Dabig#3853] {message:"9시 반에서 10시쯤 다시 올듯",id:"871348355488444446",channel_name:"chat"}
+[2021/08/01 21:49:49.134][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374159417081896",channel_name:"chat"}
+[2021/08/01 21:49:56.250][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374188831723581",channel_name:"chat"}
+[2021/08/01 21:49:57.674][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374195240628254",channel_name:"chat"}
+[2021/08/01 21:49:59.204][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374201641107476",channel_name:"chat"}
+[2021/08/01 21:50:00.937][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374208951812166",channel_name:"chat"}
+[2021/08/01 21:50:02.104][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374213875904522",channel_name:"chat"}
+[2021/08/01 21:50:04.411][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374223384379432",channel_name:"chat"}
+[2021/08/01 21:50:16.226][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871374273086890014",channel_name:"chat"}
+[2021/08/01 21:59:29.314][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871376592893521960",channel_name:"chat"}
+[2021/08/01 21:59:30.513][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871376597901525012",channel_name:"chat"}
+[2021/08/01 21:59:31.526][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"871376602196484116",channel_name:"chat"}
+[2021/08/01 21:59:34.298][687188236971671560][event][MESSAGE][ashz#3656] {message:"5분만",id:"871376613659512833",channel_name:"chat"}
+[2021/08/01 21:59:45.045][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"??",id:"871376658848940072",channel_name:"chat"}
+[2021/08/01 21:59:51.492][687188236971671560][event][MESSAGE][ashz#3656] {message:"통화",id:"871376685801541672",channel_name:"chat"}
+[2021/08/01 21:59:52.625][687188236971671560][event][MESSAGE][ashz#3656] {message:"들어와",id:"871376690637594654",channel_name:"chat"}
+[2021/08/01 21:59:57.153][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㄱㄷ",id:"871376709600030740",channel_name:"chat"}
+[2021/08/01 22:14:16.787][687188236971671560][event][MESSAGE][양 진#4848] {message:"나는 매우 졸립니다그러니 잘것이다",id:"871380315430592532",channel_name:"chat"}
+[2021/08/01 22:14:30.113][687188236971671560][event][MESSAGE][ashz#3656] {message:"그려 ㅋㅋㅋ",id:"871380370908643379",channel_name:"chat"}
+[2021/08/01 22:14:39.836][687188236971671560][event][MESSAGE][양 진#4848] {message:"?",id:"871380411887013898",channel_name:"chat"}
+[2021/08/01 22:14:52.579][687188236971671560][event][MESSAGE][양 진#4848] {message:"왜 번역기 돌려서 영어로 써놨는데",id:"871380465297281035",channel_name:"chat"}
+[2021/08/01 22:14:56.670][687188236971671560][event][MESSAGE][양 진#4848] {message:"왜 한글로써짐",id:"871380482435199016",channel_name:"chat"}
+[2021/08/01 22:15:02.915][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"나는 매우 졸립니다그러니 잘것이다",id:"871380315430592532",channel_name:"chat"}
+[2021/08/01 22:15:22.286][687188236971671560][event][MESSAGE][양 진#4848] {message:"; 없어보이게 번역되었네",id:"871380589478051862",channel_name:"chat"}
+[2021/08/01 23:14:27.268][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!453194027408293890>",id:"871395458638024866",channel_name:"chat"}
+[2021/08/01 23:14:28.856][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!453194027408293890>",id:"871395465277607987",channel_name:"chat"}
+[2021/08/01 23:14:30.272][687188236971671560][event][MESSAGE][ashz#3656] {message:"잠만",id:"871395471241936948",channel_name:"chat"}
+[2021/08/01 23:14:31.642][687188236971671560][event][MESSAGE][ashz#3656] {message:"잠만",id:"871395477013270589",channel_name:"chat"}
+[2021/08/01 23:14:33.290][687188236971671560][event][MESSAGE][ashz#3656] {message:"2분만",id:"871395483799654430",channel_name:"chat"}
+[2021/08/01 23:14:35.961][687188236971671560][event][MESSAGE][ashz#3656] {message:"들어왇줘",id:"871395495061372999",channel_name:"chat"}
+[2021/08/01 23:15:25.521][687188236971671560][event][MESSAGE][Dabig#3853] {message:"dd?",id:"871395703006584902",channel_name:"chat"}
+[2021/08/01 23:15:31.285][687188236971671560][event][MESSAGE][ashz#3656] {message:"잠만",id:"871395727136411729",channel_name:"chat"}
+[2021/08/01 23:15:32.340][687188236971671560][event][MESSAGE][ashz#3656] {message:"다시",id:"871395731553009715",channel_name:"chat"}
+[2021/08/01 23:15:33.102][687188236971671560][event][MESSAGE][ashz#3656] {message:"디코",id:"871395734765830154",channel_name:"chat"}
+[2021/08/01 23:15:34.627][687188236971671560][event][MESSAGE][ashz#3656] {message:"들어와줘",id:"871395741116022794",channel_name:"chat"}
+[2021/08/01 23:15:38.174][687188236971671560][event][MESSAGE][ashz#3656] {message:"할얘기가 있었는데",id:"871395755825434735",channel_name:"chat"}
+[2021/08/01 23:15:38.240][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋ",id:"871395756337147934",channel_name:"chat"}
+[2021/08/01 23:15:39.753][687188236971671560][event][MESSAGE][ashz#3656] {message:"까먹음",id:"871395762506965023",channel_name:"chat"}
+[2021/08/01 23:15:52.943][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"871395817880186901",channel_name:"chat"}
+[2021/08/01 23:16:14.622][687188236971671560][event][MESSAGE][Dabig#3853] {message:"형",id:"871395908875612190",channel_name:"chat"}
+[2021/08/01 23:16:24.187][687188236971671560][event][MESSAGE][ashz#3656] {message:"아",id:"871395948729892945",channel_name:"chat"}
+[2021/08/01 23:16:24.251][687188236971671560][event][MESSAGE][Dabig#3853] {message:"친구랑 하려고 봤더니",id:"871395949371609098",channel_name:"chat"}
+[2021/08/01 23:16:25.640][687188236971671560][event][MESSAGE][Dabig#3853] {message:"게임모드가",id:"871395954744492103",channel_name:"chat"}
+[2021/08/01 23:16:26.843][687188236971671560][event][MESSAGE][Dabig#3853] {message:"또 있네",id:"871395960176119848",channel_name:"chat"}
+[2021/08/01 23:16:32.116][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅇㅇ 근데",id:"871395982267527189",channel_name:"chat"}
+[2021/08/01 23:16:32.456][687188236971671560][event][MESSAGE][Dabig#3853] {message:"나중에",id:"871395983517425775",channel_name:"chat"}
+[2021/08/01 23:16:32.896][687188236971671560][event][MESSAGE][ashz#3656] {message:"그냥",id:"871395985534898176",channel_name:"chat"}
+[2021/08/01 23:16:33.336][687188236971671560][event][MESSAGE][ashz#3656] {message:"그",id:"871395987464278066",channel_name:"chat"}
+[2021/08/01 23:16:34.938][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅇㅇ",id:"871395994137419776",channel_name:"chat"}
+[2021/08/01 23:16:35.076][687188236971671560][event][MESSAGE][ashz#3656] {message:"딴거",id:"871395994699444254",channel_name:"chat"}
+[2021/08/01 23:16:36.462][687188236971671560][event][MESSAGE][ashz#3656] {message:"하는게",id:"871396000605011978",channel_name:"chat"}
+[2021/08/01 23:16:40.876][687188236971671560][event][MESSAGE][ashz#3656] {message:"그때 했던걸로 해",id:"871396018787340300",channel_name:"chat"}
+[2021/08/01 23:16:55.518][687188236971671560][event][MESSAGE][Dabig#3853] {message:"일단 ㅇㅋ",id:"871396080246472755",channel_name:"chat"}

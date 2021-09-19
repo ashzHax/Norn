@@ -1,0 +1,155 @@
+[2021/09/01 10:43:47.633][687188236971671560][event][MESSAGE][ashz#3656] {message:"```java\npackage Lessons;\n\npublic class Output {\n    public static void main(String args[]) {\n        System.out.println("Hello World!");\n    }\n}\n```",id:"882440572525215845",channel_name:"chat"}
+[2021/09/01 10:43:54.829][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!277275957147074560> good ol java",id:"882440603080732682",channel_name:"chat"}
+[2021/09/01 10:44:09.859][687188236971671560][event][MESSAGE][ashz#3656] {message:"fuck me how many times am i going to teach this shit language?",id:"882440665890422815",channel_name:"chat"}
+[2021/09/01 11:01:26.587][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("```java
+package Lessons;
+
+public class Output {
+    public static void main(String args[]) {
+        System.out.println("Hello World!");
+    }
+}
+```"->"```java
+package Lessons;
+
+public class Output {
+    public static void main(String args[]) {
+        // 매개변수로 받은 데이터를 출력
+        System.out.print("Hello ");
+        
+        // 매개변수로 받은 데이터 출력 후 다음 줄로 넘어가기 (ln = Next Line)
+        System.out.println("World!");
+        System.out.println("Hiya!");
+    }
+}
+```")}
+[2021/09/01 11:08:09.838][687188236971671560][event][MESSAGE][ashz#3656] {message:"``` java\npackage Lessons;\n\npublic class Variables {\n    public static void main(String args[]) {\n\n        int imInt = 10;                   // 정수형 변수\n        String imString = "Hello World!"; // 문자열 변수\n        char imChar = 'A';                // 문자형 변수\n        double imDouble = 1.23;           // 실수형 변수\n        boolean imBoolean = false;        // 부울형 변수\n\n        System.out.println("imInt="+imInt);\n        System.out.println("imString="+imString);\n        System.out.println("imChar="+imChar);\n        System.out.println("imDouble="+imDouble);\n        System.out.println("imBoolean="+imBoolean);\n\n        return;\n    }\n}\n```",id:"882446705742725131",channel_name:"chat"}
+[2021/09/01 11:08:20.439][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("``` java
+package Lessons;
+
+public class Variables {
+    public static void main(String args[]) {
+
+        int imInt = 10;                   // 정수형 변수
+        String imString = "Hello World!"; // 문자열 변수
+        char imChar = 'A';                // 문자형 변수
+        double imDouble = 1.23;           // 실수형 변수
+        boolean imBoolean = false;        // 부울형 변수
+
+        System.out.println("imInt="+imInt);
+        System.out.println("imString="+imString);
+        System.out.println("imChar="+imChar);
+        System.out.println("imDouble="+imDouble);
+        System.out.println("imBoolean="+imBoolean);
+
+        return;
+    }
+}
+```"->"```java
+package Lessons;
+
+public class Variables {
+    public static void main(String args[]) {
+
+        int imInt = 10;                   // 정수형 변수
+        String imString = "Hello World!"; // 문자열 변수
+        char imChar = 'A';                // 문자형 변수
+        double imDouble = 1.23;           // 실수형 변수
+        boolean imBoolean = false;        // 부울형 변수
+
+        System.out.println("imInt="+imInt);
+        System.out.println("imString="+imString);
+        System.out.println("imChar="+imChar);
+        System.out.println("imDouble="+imDouble);
+        System.out.println("imBoolean="+imBoolean);
+
+        return;
+    }
+}
+```")}
+[2021/09/01 11:08:59.229][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("```java
+package Lessons;
+
+public class Output {
+    public static void main(String args[]) {
+        // 매개변수로 받은 데이터를 출력
+        System.out.print("Hello ");
+        
+        // 매개변수로 받은 데이터 출력 후 다음 줄로 넘어가기 (ln = Next Line)
+        System.out.println("World!");
+        System.out.println("Hiya!");
+    }
+}
+```"->"```java
+package Lessons;
+
+public class Output {
+    public static void main(String args[]) {
+        // 매개변수로 받은 데이터를 출력
+        System.out.print("Hello ");
+
+        // 매개변수로 받은 데이터 출력 후 다음 줄로 넘어가기 (ln = Next Line)
+        System.out.println("World!");
+        System.out.println("Hiya!");
+
+        // 굳이 필요 없긴 하지만, 모든 메소드 끝에 return 넣는 습관 들기
+        return;
+    }
+}
+```")}
+[2021/09/01 11:09:14.311][687188236971671560][event][MESSAGE][ashz#3656] {message:"```java\npackage Lessons;\n\nimport java.util.Scanner;\n\npublic class Input {\n    public static void main(String args[]) {\n        // sc는 사용자로부터 입력을 받을때 사용하는 오브젝트\n        Scanner sc = new Scanner(System.in);\n\n        System.out.print("Input(int): ");\n        // nextInt() 메소드는 정수 입력을 받을려고 대기한다. (대기한다는 것은 코드가 멈춘다는 것, 다음 코드 진행할려면 무조건 입력이 있어야한다.)\n        int input_int = sc.nextInt();\n\n        System.out.print("Input(String): ");\n        // nextLine()은 다음 문자열 입력을 받길 대기한다.\n        String input_str = sc.nextLine();\n\n        System.out.print("Input(Double): ");\n        // nextDouble()은 다음 실수 입력을 받을려고 대기한다.\n        double input_double = sc.nextDouble();\n\n        System.out.println("int="+input_int+", str="+input_str+", double="+input_double);\n\n        return;\n    }\n}\n```",id:"882446974320771104",channel_name:"chat"}
+[2021/09/01 11:09:33.997][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!734517252082106399>",id:"882447058731155456",channel_name:"chat"}
+[2021/09/01 13:11:27.409][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Jesus",id:"882477733282709566",channel_name:"chat"}
+[2021/09/01 13:11:30.645][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"That language",id:"882477745383309333",channel_name:"chat"}
+[2021/09/01 13:35:13.174][687188236971671560][event][MESSAGE][ashz#3656] {message:"we all start from some where",id:"882483713378766868",channel_name:"chat"}
+[2021/09/01 13:35:34.734][687188236971671560][event][MESSAGE][ashz#3656] {message:"walking, coding, arguing, fighting, virginity....",id:"882483803975712808",channel_name:"chat"}
+[2021/09/01 13:35:41.460][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608> ight?",id:"882483832215969842",channel_name:"chat"}
+[2021/09/01 13:35:44.392][687188236971671560][event][MESSAGE][ashz#3656] {message:"^^",id:"882483844148772865",channel_name:"chat"}
+[2021/09/01 13:45:37.049][687188236971671560][event][MESSAGE][ashz#3656] {message:"waaat",id:"882486329919807519",channel_name:"chat"}
+[2021/09/01 13:45:40.961][687188236971671560][event][MESSAGE][ashz#3656] {message:"its truuuue",id:"882486346667663371",channel_name:"chat"}
+[2021/09/01 17:56:45.216][687188236971671560][event][MESSAGE][박곰#9646] {message:"thx",id:"882549530753630228",channel_name:"chat"}
+[2021/09/01 17:56:59.087][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"882549588827983903",channel_name:"chat"}
+[2021/09/01 17:57:07.485][687188236971671560][event][MESSAGE][ashz#3656] {message:"일단 저 자료 이해하면",id:"882549624139808778",channel_name:"chat"}
+[2021/09/01 17:57:14.740][687188236971671560][event][MESSAGE][ashz#3656] {message:"다른것들도 만들어서 보내줄께",id:"882549654120710178",channel_name:"chat"}
+[2021/09/01 17:57:18.413][687188236971671560][event][MESSAGE][박곰#9646] {message:"ㅖ",id:"882549669966778368",channel_name:"chat"}
+[2021/09/01 22:14:04.641][687188236971671560][event][MESSAGE][양 진#4848] {message:"wait",id:"882614288135651349",channel_name:"chat"}
+[2021/09/01 22:17:42.864][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"882615203458588732",channel_name:"chat"}
+[2021/09/01 22:17:43.124][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"882615203458588732",channel_name:"chat"}
+[2021/09/01 22:17:43.337][687188236971671560][command][JOIN_SUCCESS][ashz#3656][882615203458588732] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/09/01 22:17:44.650][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=ZUuNiq2HATI&feature=share",id:"882615210999955457",channel_name:"chat"}
+[2021/09/01 22:17:44.888][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=ZUuNiq2HATI&feature=share",id:"882615210999955457",channel_name:"chat"}
+[2021/09/01 22:17:46.204][687188236971671560][command][PLAY_SUCCESS][ashz#3656][882615210999955457] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=ZUuNiq2HATI&feature=share",index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:21:49.702][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:25:54.444][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:29:59.058][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:34:03.322][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:38:07.554][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:42:12.882][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:46:17.405][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:48:44.078][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=rOmdJf5wJpc&feature=share",id:"882623010111115324",channel_name:"chat"}
+[2021/09/01 22:48:44.400][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=rOmdJf5wJpc&feature=share",id:"882623010111115324",channel_name:"chat"}
+[2021/09/01 22:48:47.118][687188236971671560][TB][QUEUE_ADD_GET_DATA_FAILED] Failed add track data to queue.
+[2021/09/01 22:50:22.117][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:54:26.283][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 22:58:30.494][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:02:34.196][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:06:38.149][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:10:42.877][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:10:58.759][687188236971671560][event][MESSAGE][혜윤#0606] {message:"<@!207597209611403264>",id:"882628608198340688",channel_name:"chat"}
+[2021/09/01 23:14:47.497][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:16:17.315][687188236971671560][event][MESSAGE][ashz#3656] {message:"ye",id:"882629944285466684",channel_name:"chat"}
+[2021/09/01 23:16:19.759][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!258808551542095874>",id:"882629954511204414",channel_name:"chat"}
+[2021/09/01 23:16:21.242][687188236971671560][event][MESSAGE][ashz#3656] {message:"join call",id:"882629960857178132",channel_name:"chat"}
+[2021/09/01 23:18:52.139][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:22:56.323][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:27:01.743][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:31:06.275][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:32:32.498][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=s-xD1jMPrfw&feature=share",id:"882634034197430344",channel_name:"chat"}
+[2021/09/01 23:32:32.746][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=s-xD1jMPrfw&feature=share",id:"882634034197430344",channel_name:"chat"}
+[2021/09/01 23:32:34.437][687188236971671560][command][PLAY_SUCCESS][ashz#3656][882634034197430344] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=s-xD1jMPrfw&feature=share",index:"1",length:"244",volume:"7",url:"https://www.youtube.com/watch?v=s-xD1jMPrfw"}
+[2021/09/01 23:36:41.357][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:40:45.601][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"244",volume:"7",url:"https://www.youtube.com/watch?v=s-xD1jMPrfw"}
+[2021/09/01 23:44:53.512][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:48:58.506][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"244",volume:"7",url:"https://www.youtube.com/watch?v=s-xD1jMPrfw"}
+[2021/09/01 23:53:04.181][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/01 23:57:08.943][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"244",volume:"7",url:"https://www.youtube.com/watch?v=s-xD1jMPrfw"}

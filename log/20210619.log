@@ -1,0 +1,87 @@
+[2021/06/19 01:35:15.076][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"855485825538326528",channel_name:"chat"}
+[2021/06/19 01:35:15.380][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"855485825538326528",channel_name:"chat"}
+[2021/06/19 01:35:16.108][687188236971671560][command][JOIN_SUCCESS][ashz#3656][855485825538326528] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/06/19 01:35:22.350][687188236971671560][event][MESSAGE][ashz#3656] {message:".playlist queue weeb",id:"855485856126074880",channel_name:"chat"}
+[2021/06/19 01:35:22.368][687188236971671560][command][PLAYLIST_QUEUE_SUCCESS][ashz#3656][855485856126074880] Selected playlist track data was added to queue. {receivedArgument:".playlist queue weeb"}
+[2021/06/19 01:35:22.609][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".playlist queue weeb",id:"855485856126074880",channel_name:"chat"}
+[2021/06/19 01:35:28.028][687188236971671560][event][MESSAGE][ashz#3656] {message:".start",id:"855485879836344330",channel_name:"chat"}
+[2021/06/19 01:35:31.935][687188236971671560][command][START_SUCCESS][ashz#3656][855485879836344330] Starting to play current track. {receivedArgument:".start"}
+[2021/06/19 01:35:32.191][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".start",id:"855485879836344330",channel_name:"chat"}
+[2021/06/19 01:39:17.440][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"287",volume:"7",url:"https://music.youtube.com/watch?v=aVShW8uRfy8&feature=share"}
+[2021/06/19 01:44:06.003][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"295",volume:"7",url:"https://music.youtube.com/watch?v=KiO4kdv1FfM&feature=share"}
+[2021/06/19 01:49:02.519][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"294",volume:"7",url:"https://music.youtube.com/watch?v=-Vq8LVm5Hsc&feature=share"}
+[2021/06/19 01:53:57.545][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"4",length:"236",volume:"7",url:"https://music.youtube.com/watch?v=MJhiY9Crd94&feature=share\"}
+[2021/06/19 01:57:54.790][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"5",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 01:57:57.401][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"6",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 01:57:59.009][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"224",volume:"7",url:"https://music.youtube.com/watch?v=XB2KAZNOTqQ&feature=share"}
+[2021/06/19 02:01:45.019][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"287",volume:"7",url:"https://music.youtube.com/watch?v=aVShW8uRfy8&feature=share"}
+[2021/06/19 02:06:33.327][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"295",volume:"7",url:"https://music.youtube.com/watch?v=KiO4kdv1FfM&feature=share"}
+[2021/06/19 02:11:29.737][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"294",volume:"7",url:"https://music.youtube.com/watch?v=-Vq8LVm5Hsc&feature=share"}
+[2021/06/19 02:16:24.763][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"4",length:"236",volume:"7",url:"https://music.youtube.com/watch?v=MJhiY9Crd94&feature=share\"}
+[2021/06/19 02:20:22.087][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"5",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 02:20:23.863][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"6",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 02:20:25.580][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"224",volume:"7",url:"https://music.youtube.com/watch?v=XB2KAZNOTqQ&feature=share"}
+[2021/06/19 02:24:10.516][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"287",volume:"7",url:"https://music.youtube.com/watch?v=aVShW8uRfy8&feature=share"}
+[2021/06/19 02:28:58.762][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"295",volume:"7",url:"https://music.youtube.com/watch?v=KiO4kdv1FfM&feature=share"}
+[2021/06/19 02:33:55.289][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"294",volume:"7",url:"https://music.youtube.com/watch?v=-Vq8LVm5Hsc&feature=share"}
+[2021/06/19 02:38:50.472][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"4",length:"236",volume:"7",url:"https://music.youtube.com/watch?v=MJhiY9Crd94&feature=share\"}
+[2021/06/19 02:42:47.692][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"5",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 02:42:49.496][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"6",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 02:42:51.873][687188236971671560][TB][PLAY_FAILED]Unknown log type received. {receivedLogType:"PLAY_FAILED"}
+[2021/06/19 02:47:40.151][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"295",volume:"7",url:"https://music.youtube.com/watch?v=KiO4kdv1FfM&feature=share"}
+[2021/06/19 02:52:36.630][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"294",volume:"7",url:"https://music.youtube.com/watch?v=-Vq8LVm5Hsc&feature=share"}
+[2021/06/19 02:57:31.719][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"4",length:"236",volume:"7",url:"https://music.youtube.com/watch?v=MJhiY9Crd94&feature=share\"}
+[2021/06/19 03:01:29.011][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"5",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 03:01:30.616][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"6",length:"247",volume:"7",url:"https://www.youtube.com/watch?v=WngxA99wFo0"}
+[2021/06/19 03:01:32.073][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"224",volume:"7",url:"https://music.youtube.com/watch?v=XB2KAZNOTqQ&feature=share"}
+[2021/06/19 03:05:18.085][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"287",volume:"7",url:"https://music.youtube.com/watch?v=aVShW8uRfy8&feature=share"}
+[2021/06/19 03:10:06.476][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"295",volume:"7",url:"https://music.youtube.com/watch?v=KiO4kdv1FfM&feature=share"}
+[2021/06/19 03:10:52.042][687188236971671560][event][MESSAGE][ashz#3656] {message:".stop",id:"855509888213319680",channel_name:"chat"}
+[2021/06/19 03:10:52.058][687188236971671560][command][STOP_SUCCESS][ashz#3656][855509888213319680] Stopped current track. {receivedArgument:".stop"}
+[2021/06/19 03:10:52.295][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".stop",id:"855509888213319680",channel_name:"chat"}
+[2021/06/19 03:10:53.537][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"855509894500450344",channel_name:"chat"}
+[2021/06/19 03:10:53.538][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][855509894500450344] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/06/19 03:10:53.772][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"855509894500450344",channel_name:"chat"}
+[2021/06/19 10:00:14.944][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"<a:_helltaker:721378479794552844>",id:"855612912281321504",channel_name:"chat"}
+[2021/06/19 11:32:28.198][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone 서버 청크 로딩 중이라서 랙 많이 걸럴거임.",id:"855636120457052171",channel_name:"chat"}
+[2021/06/19 11:32:33.026][687188236971671560][event][MESSAGE][Dabig#3853] {message:"그런읏",id:"855636140824723456",channel_name:"chat"}
+[2021/06/19 11:32:35.388][687188236971671560][event][MESSAGE][Dabig#3853] {message:"그런듯",id:"855636150335963212",channel_name:"chat"}
+[2021/06/19 11:32:43.549][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Engrish plz",id:"855636184998477854",channel_name:"chat"}
+[2021/06/19 11:32:59.189][687188236971671560][event][MESSAGE][ashz#3656] {message:"Server is pre-gening chunks, so there will be alot of lag",id:"855636250513899541",channel_name:"chat"}
+[2021/06/19 11:33:07.010][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Okep",id:"855636283416903690",channel_name:"chat"}
+[2021/06/19 11:33:11.629][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"server cheong k roding joong e ra seo raek man e geol lil geo e yo",id:"855636302711488542",channel_name:"chat"}
+[2021/06/19 11:33:24.487][687188236971671560][event][MESSAGE_DELETE][[SKKU] G(D) JG*C (own)#4848] {message:"server cheong k roding joong e ra seo raek man e geol lil geo e yo",id:"855636302711488542",channel_name:"chat"}
+[2021/06/19 11:34:17.224][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"이거 서버",id:"855636577807630377",channel_name:"chat"}
+[2021/06/19 11:34:23.620][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"그 어떤 컴이에요",id:"855636604630073354",channel_name:"chat"}
+[2021/06/19 11:34:27.553][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"형컴이에요 아니면",id:"855636620853510155",channel_name:"chat"}
+[2021/06/19 11:34:31.384][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"그 회사 서버 컴이에요",id:"855636637299638302",channel_name:"chat"}
+[2021/06/19 11:34:39.835][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"혹시나 해서",id:"855636672686587914",channel_name:"chat"}
+[2021/06/19 11:34:54.202][687188236971671560][event][MESSAGE_DELETE][[SKKU] G(D) JG*C (own)#4848] {message:"그 회사 서버 컴이에요",id:"855636637299638302",channel_name:"chat"}
+[2021/06/19 11:34:55.119][687188236971671560][event][MESSAGE_DELETE][[SKKU] G(D) JG*C (own)#4848] {message:"혹시나 해서",id:"855636672686587914",channel_name:"chat"}
+[2021/06/19 11:38:07.092][687188236971671560][event][MESSAGE][ashz#3656] {message:"내 컴이면 이렁 문제 없지 ㅋㅋ",id:"855637542002229269",channel_name:"chat"}
+[2021/06/19 11:38:11.474][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("내 컴이면 이렁 문제 없지 ㅋㅋ"->"내 컴이면 이런 문제 없지 ㅋㅋ")}
+[2021/06/19 11:38:39.810][687188236971671560][event][MESSAGE][ashz#3656] {message:"아는 친구의 옛 컴을 싸게 사서 서버컴으로 쓰고 있어",id:"855637679282192414",channel_name:"chat"}
+[2021/06/19 11:45:23.283][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"아",id:"855639371445305355",channel_name:"chat"}
+[2021/06/19 11:45:27.059][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"회사 서버컴인줄",id:"855639387156906006",channel_name:"chat"}
+[2021/06/19 11:45:28.691][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"알았으요",id:"855639394110144523",channel_name:"chat"}
+[2021/06/19 11:48:22.355][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋ 미쳤냐 ㅋㅋ",id:"855640122640433162",channel_name:"chat"}
+[2021/06/19 14:05:03.162][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"ㅋㅋㅋㅋ",id:"855674519049338892",channel_name:"chat"}
+[2021/06/19 19:53:50.923][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋㅋ",id:"855762296689393664",channel_name:"chat"}
+[2021/06/19 19:53:57.486][687188236971671560][event][MESSAGE][Dabig#3853] {message:"난 언제쯤 닭고기를 먹을 수 있는가",id:"855762323884081173",channel_name:"chat"}
+[2021/06/19 19:56:02.924][687188236971671560][event][MESSAGE][Dabig#3853] {message:"형 아직",id:"855762850370551828",channel_name:"chat"}
+[2021/06/19 19:56:05.339][687188236971671560][event][MESSAGE][Dabig#3853] {message:"청크로딩중?",id:"855762860494553119",channel_name:"chat"}
+[2021/06/19 20:00:25.964][687188236971671560][event][MESSAGE][ashz#3656] {message:"? ㅇㅇ",id:"855763953632280576",channel_name:"chat"}
+[2021/06/19 20:00:32.671][687188236971671560][event][MESSAGE][ashz#3656] {message:"이거 꽤 오래 걸릴거임",id:"855763981523615805",channel_name:"chat"}
+[2021/06/19 20:01:38.044][687188236971671560][event][MESSAGE][ashz#3656] {message:"{(10000x2)^2x2} + (5000x2)^2",id:"855764255772639233",channel_name:"chat"}
+[2021/06/19 20:01:46.847][687188236971671560][event][MESSAGE][ashz#3656] {message:"블록 개수",id:"855764292854349834",channel_name:"chat"}
+[2021/06/19 22:19:16.828][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://www.youtube.com/watch?v=yuJh5CUNH6o",id:"855798895791570965",channel_name:"chat"}
+[2021/06/19 22:19:20.519][687188236971671560][event][MESSAGE][ashz#3656] {message:"크리퍼 농장",id:"855798911298043924",channel_name:"chat"}
+[2021/06/19 22:29:20.079][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://www.youtube.com/watch?v=BCBTPDMks94",id:"855801426022236170",channel_name:"chat"}
+[2021/06/19 22:38:03.758][687188236971671560][event][MESSAGE][ashz#3656] {message:"ashzHax#3650",id:"855803622163742782",channel_name:"chat"}
+[2021/06/19 22:45:38.971][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://fast.com/",id:"855805531628109874",channel_name:"chat"}
+[2021/06/19 22:45:48.024][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!277275957147074560>",id:"855805569780809738",channel_name:"chat"}
+[2021/06/19 23:11:37.228][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Holy crap that is some fast internet",id:"855812067298639873",channel_name:"chat"}
+[2021/06/19 23:15:33.223][687188236971671560][event][MESSAGE][ashz#3656] {message:"its mine",id:"855813057381269554",channel_name:"chat"}
+[2021/06/19 23:15:43.385][687188236971671560][event][MESSAGE][ashz#3656] {message:"first is my PC",id:"855813099751211039",channel_name:"chat"}
+[2021/06/19 23:15:47.248][687188236971671560][event][MESSAGE][ashz#3656] {message:"second is my phone",id:"855813115891548222",channel_name:"chat"}
+[2021/06/19 23:57:18.634][687188236971671560][event][MESSAGE][ashz#3656] {message:"ashzHax#3650",id:"855823565828128778",channel_name:"chat"}

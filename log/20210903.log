@@ -1,0 +1,57 @@
+[2021/09/03 00:00:38.510][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:04:43.133][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:08:47.260][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:12:51.407][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:16:55.563][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:20:59.893][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:25:04.334][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:29:08.575][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"243",volume:"7",url:"https://www.youtube.com/watch?v=ZUuNiq2HATI"}
+[2021/09/03 00:29:53.309][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"883010853853626449",channel_name:"bot"}
+[2021/09/03 00:29:53.319][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][883010853853626449] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/09/03 00:29:53.746][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"883010853853626449",channel_name:"bot"}
+[2021/09/03 03:10:29.417][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I see ramen… with a mountain of powder",id:"883051271005810688",channel_name:"chat"}
+[2021/09/03 03:10:33.782][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"That is so much powder",id:"883051289276207164",channel_name:"chat"}
+[2021/09/03 03:10:43.196][687188236971671560][event][MESSAGE][혜윤#0606] {message:"sheesh",id:"883051328799117332",channel_name:"chat"}
+[2021/09/03 08:10:21.123][687188236971671560][event][MESSAGE][ashz#3656] {message:"its only salt ^^",id:"883126733539278888",channel_name:"chat"}
+[2021/09/03 08:10:44.195][687188236971671560][event][MESSAGE][ashz#3656] {message:"3 dishes of ramen worth of salt",id:"883126829412659291",channel_name:"chat"}
+[2021/09/03 08:10:48.542][687188236971671560][event][MESSAGE][ashz#3656] {message:"and i ate it all",id:"883126848639336528",channel_name:"chat"}
+[2021/09/03 08:10:51.414][687188236971671560][event][MESSAGE][ashz#3656] {message:"and im proud",id:"883126860718960650",channel_name:"chat"}
+[2021/09/03 08:10:53.106][687188236971671560][event][MESSAGE][ashz#3656] {message:"^^",id:"883126867836669983",channel_name:"chat"}
+[2021/09/03 10:15:49.293][687188236971671560][event][MESSAGE][ashz#3656] {message:"because its dogshit",id:"883158309161533480",channel_name:"chat"}
+[2021/09/03 11:53:08.173][687188236971671560][event][MESSAGE][진욱#0213] {message:"형 우리 첫 프로젝트",id:"883182799027306526",channel_name:"chat"}
+[2021/09/03 11:53:15.336][687188236971671560][event][MESSAGE][진욱#0213] {message:"c 로 지렁이 게임 만든거",id:"883182829217927178",channel_name:"chat"}
+[2021/09/03 11:53:22.748][687188236971671560][event][MESSAGE][진욱#0213] {message:"github 링크좀 주실 수 있나욥..?? ㅎㅎㅎㅎㅎ",id:"883182860280930435",channel_name:"chat"}
+[2021/09/03 11:53:33.139][687188236971671560][event][MESSAGE][진욱#0213] {message:"포트폴리오 증거 파일이 필요해서,,,,",id:"883182903717163111",channel_name:"chat"}
+[2021/09/03 12:07:01.867][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"883186295789203487",channel_name:"chat"}
+[2021/09/03 12:07:04.622][687188236971671560][event][MESSAGE][ashz#3656] {message:"어이",id:"883186307529072680",channel_name:"chat"}
+[2021/09/03 12:08:12.766][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://github.com/ashzHax/CCG",id:"883186593316356146",channel_name:"chat"}
+[2021/09/03 12:08:22.299][687188236971671560][event][MESSAGE][ashz#3656] {message:"니 아직도 포함 되어 있는데?",id:"883186633300652052",channel_name:"chat"}
+[2021/09/03 12:08:22.739][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋ",id:"883186635175493713",channel_name:"chat"}
+[2021/09/03 16:31:24.461][687188236971671560][event][MESSAGE][ashz#3656] {message:"im honestly considering on creating a SALT chat",id:"883252828230017076",channel_name:"chat"}
+[2021/09/03 16:31:37.179][687188236971671560][event][MESSAGE][ashz#3656] {message:"just to upload all my DM's with salty people on it",id:"883252881522819093",channel_name:"chat"}
+[2021/09/03 16:32:28.244][687188236971671560][event][MESSAGE][ashz#3656] {message:"자 저의 개인 디코  파일입니다. 한번 읽어보고, 제가 잘못했다고 생각하시는 분은 저에게 문자 보내 주세용~ ❤️",id:"883253095734333471",channel_name:"chat"}
+[2021/09/03 16:33:22.744][687188236971671560][event][MESSAGE][양 진#4848] {message:"누가 이방에서 그런식으로 말하는데 과연 그럴까 ㅋ",id:"883253324214833153",channel_name:"chat"}
+[2021/09/03 16:33:25.524][687188236971671560][event][MESSAGE][양 진#4848] {message:"ㅋ",id:"883253335828881420",channel_name:"chat"}
+[2021/09/03 16:33:48.941][687188236971671560][event][MESSAGE][양 진#4848] {message:"맘대로 사세요 걍",id:"883253434445336656",channel_name:"chat"}
+[2021/09/03 16:34:16.422][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅇㅇ 걱정마, 너 정도로 맘대로 하진 않을거임. 걱정마 ㄴㄴ",id:"883253549742555136",channel_name:"chat"}
+[2021/09/03 16:34:20.509][687188236971671560][event][MESSAGE][양 진#4848] {message:"나도 내맘대로 살거니까",id:"883253566859522048",channel_name:"chat"}
+[2021/09/03 16:34:44.235][687188236971671560][event][MESSAGE][양 진#4848] {message:"애초에 여기서도 사람 까내리고 무시하는거 잘보이는데",id:"883253666394546186",channel_name:"chat"}
+[2021/09/03 16:34:53.822][687188236971671560][event][MESSAGE][양 진#4848] {message:"뭔 자기가 안그렇다고 ㅋ",id:"883253706609553428",channel_name:"chat"}
+[2021/09/03 16:35:15.043][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"883253795453272095",channel_name:"chat"}
+[2021/09/03 16:35:16.755][687188236971671560][event][MESSAGE][강건#0558] {message:"자자",id:"883253802738798642",channel_name:"chat"}
+[2021/09/03 16:35:20.000][687188236971671560][event][MESSAGE][ashz#3656] {message:"안그렇다고 한적 없음",id:"883253816055709707",channel_name:"chat"}
+[2021/09/03 16:35:24.893][687188236971671560][event][MESSAGE][강건#0558] {message:"그맘둘",id:"883253836561678337",channel_name:"chat"}
+[2021/09/03 16:35:25.753][687188236971671560][event][MESSAGE][양 진#4848] {message:"그래서",id:"883253840500101170",channel_name:"chat"}
+[2021/09/03 16:35:31.554][687188236971671560][event][MESSAGE][강건#0558] {message:"그만들 하시고",id:"883253864151805952",channel_name:"chat"}
+[2021/09/03 16:35:31.945][687188236971671560][event][MESSAGE][양 진#4848] {message:"그걸 내가 그런다면서",id:"883253866513190933",channel_name:"chat"}
+[2021/09/03 16:35:36.456][687188236971671560][event][MESSAGE][강건#0558] {message:"둘다",id:"883253885362376704",channel_name:"chat"}
+[2021/09/03 16:35:41.093][687188236971671560][event][MESSAGE][강건#0558] {message:"시간을 가져보시고",id:"883253904727494686",channel_name:"chat"}
+[2021/09/03 16:35:44.053][687188236971671560][event][MESSAGE][강건#0558] {message:"대화를",id:"883253916983234613",channel_name:"chat"}
+[2021/09/03 16:35:49.519][687188236971671560][event][MESSAGE][강건#0558] {message:"해보도록 하십시다",id:"883253940181946368",channel_name:"chat"}
+[2021/09/03 16:35:58.477][687188236971671560][event][MESSAGE][강건#0558] {message:"왜 싸우고들 그러셔",id:"883253977716764713",channel_name:"chat"}
+[2021/09/03 16:36:14.505][687188236971671560][event][MESSAGE][강건#0558] {message:"사랑의 목장 공동체끼리",id:"883254044808847371",channel_name:"chat"}
+[2021/09/03 16:36:30.711][687188236971671560][event][MESSAGE][강건#0558] {message:"이해하고 사랑합시다 ㅎㅎㅎㅎㅎㅎ여러분들",id:"883254112962101268",channel_name:"chat"}
+[2021/09/03 16:36:34.628][687188236971671560][event][MESSAGE][강건#0558] {message:"진정하시지여",id:"883254129412161547",channel_name:"chat"}
+[2021/09/03 16:38:39.793][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅇㅋ",id:"883254654354481183",channel_name:"chat"}
+[2021/09/03 18:50:04.036][687188236971671560][event][MESSAGE][진욱#0213] {message:"ㅋㄱㅋㄱㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"883287723262246912",channel_name:"chat"}
+[2021/09/03 18:50:09.696][687188236971671560][event][MESSAGE][진욱#0213] {message:"감사합니당 ㅎㅎ",id:"883287746414788628",channel_name:"chat"}

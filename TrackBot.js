@@ -77,7 +77,7 @@ const play_track_override = async (guildData, targetIdx=null) => {
 
     // Why is the HighWaterMark 10KB? What is HighWaterMark?
     try{
-        guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<25)})
+        guildData.TB.voiceConnection.play(YTDLC(trackData.video_url), {filter:'audioonly', quality:'highestaudio', highWaterMark:(1<<20)})
         .on('finish', () => {
             guildData.TB.playing = false;
             queue_play_next_override(guildData, 1, 'auto');

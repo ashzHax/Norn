@@ -1,0 +1,35 @@
+[2021/08/17 00:20:05.893][687188236971671560][event][MESSAGE][혜윤#0606] {message:"Sigh",id:"876847796743983184",channel_name:"chat"}
+[2021/08/17 00:20:10.410][687188236971671560][event][MESSAGE][혜윤#0606] {message:"I wanna play super people",id:"876847815261827093",channel_name:"chat"}
+[2021/08/17 00:20:15.856][687188236971671560][event][MESSAGE][혜윤#0606] {message:"But pc is being a beach",id:"876847838536024124",channel_name:"chat"}
+[2021/08/17 00:46:08.594][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/17 01:45:10.253][687188236971671560][event][MESSAGE][양 진#4848] {message:".leave",id:"876869205876682844",channel_name:"chat"}
+[2021/08/17 01:45:10.273][687188236971671560][command][LEAVE_SUCCESS][양 진#4848][876869205876682844] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/08/17 01:45:10.610][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:".leave",id:"876869205876682844",channel_name:"chat"}
+[2021/08/17 04:38:45.812][687188236971671560][event][MESSAGE][양 진#4848] {message:"??",id:"876912892006514788",channel_name:"chat"}
+[2021/08/17 04:38:49.843][687188236971671560][event][MESSAGE][양 진#4848] {message:"컴퓨터",id:"876912908917952542",channel_name:"chat"}
+[2021/08/17 04:38:53.847][687188236971671560][event][MESSAGE][양 진#4848] {message:"해변에 있어?",id:"876912925703565322",channel_name:"chat"}
+[2021/08/17 04:40:41.631][687188236971671560][event][MESSAGE][진우박#3853] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ해변 itzy랄",id:"876913377807568926",channel_name:"chat"}
+[2021/08/17 04:40:42.111][687188236971671560][event][MESSAGE][양 진#4848] {message:"흠",id:"876913379749539970",channel_name:"chat"}
+[2021/08/17 04:40:45.931][687188236971671560][event][MESSAGE][양 진#4848] {message:"아니",id:"876913395792773150",channel_name:"chat"}
+[2021/08/17 04:40:47.513][687188236971671560][event][MESSAGE][양 진#4848] {message:"비치는 해변",id:"876913402428141599",channel_name:"chat"}
+[2021/08/17 04:40:51.656][687188236971671560][event][MESSAGE][양 진#4848] {message:"슈퍼피플",id:"876913419826110494",channel_name:"chat"}
+[2021/08/17 04:40:53.055][687188236971671560][event][MESSAGE][양 진#4848] {message:"그거 요즘에",id:"876913425635213312",channel_name:"chat"}
+[2021/08/17 04:40:59.250][687188236971671560][event][MESSAGE][양 진#4848] {message:"rpg 형 배틀로얄이라",id:"876913451673460806",channel_name:"chat"}
+[2021/08/17 04:41:01.460][687188236971671560][event][MESSAGE][양 진#4848] {message:"호불호 심하던데",id:"876913460494094399",channel_name:"chat"}
+[2021/08/17 04:41:06.865][687188236971671560][event][MESSAGE][양 진#4848] {message:"한 시즌 지나면",id:"876913483583737906",channel_name:"chat"}
+[2021/08/17 04:41:07.828][687188236971671560][event][MESSAGE][진우박#3853] {message:"갈틱폰 팟구함",id:"876913487614451794",channel_name:"chat"}
+[2021/08/17 04:41:08.416][687188236971671560][event][MESSAGE][양 진#4848] {message:"봐야할듯",id:"876913489950703707",channel_name:"chat"}
+[2021/08/17 07:29:14.917][687188236971671560][event][MESSAGE][ashz#3656] {message:"yeah would be if trying to play a game with this level of graphics",id:"876955796011892807",channel_name:"chat"}
+[2021/08/17 10:18:52.641][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone 개학 축하~ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"876998484199350303",channel_name:"chat"}
+[2021/08/17 10:19:17.057][687188236971671560][event][MESSAGE][thebox#9662] {message:"Zzzzz",id:"876998586787835944",channel_name:"chat"}
+[2021/08/17 10:19:19.499][687188236971671560][event][MESSAGE][thebox#9662] {message:"개학이노",id:"876998596820598845",channel_name:"chat"}
+[2021/08/17 10:19:58.337][687188236971671560][event][MESSAGE][ashz#3656] {message:"아 내일일수도",id:"876998759916122122",channel_name:"chat"}
+[2021/08/17 10:19:59.698][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋ",id:"876998765549084753",channel_name:"chat"}
+[2021/08/17 10:20:07.365][687188236971671560][event][MESSAGE][ashz#3656] {message:"내 후배 인스타 보고 얘기한거임",id:"876998797597769788",channel_name:"chat"}
+[2021/08/17 13:49:04.130][687188236971671560][event][CHANNEL_CREATE] {id:"877051380739751946",name:"temporary_terraria_chat",type:"text_channel"}
+[2021/08/17 13:49:29.097][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608> <@!328107003492696065> i think we do terraria bosses during the weekends, and do grinding during the weekdays",id:"877051485555417088",channel_name:"temporary_terraria_chat"}
+[2021/08/17 13:50:05.753][687188236971671560][event][MESSAGE][ashz#3656] {message:"so on that note, ima finish the KTX, made with my tears and blood and a few gold coins",id:"877051639268274186",channel_name:"temporary_terraria_chat"}
+[2021/08/17 13:55:07.518][687188236971671560][event][MESSAGE][ashz#3656] {message:"make -C /home/hudson/manual_repositories/mtk_original_sdk_r10_r12/build_dir/target-mipsel_24kc_musl-1.1.16/memtester-4.3.0 all\nmake[4]: Entering directory '/home/hudson/manual_repositories/mtk_original_sdk_r10_r12/build_dir/target-mipsel_24kc_musl-1.1.16/memtester-4.3.0'\n./load memtester tests.o `cat extra-libs`\n./load: line 4: exec: mipsel-openwrt-linux-musl-gmipsel-openwrt-linux-musl-gcc: not found\nMakefile:78: recipe for target 'memtester' failed\nmake[4]: *** [memtester] Error 127",id:"877052905029500978",channel_name:"chat"}
+[2021/08/17 19:11:07.933][687188236971671560][event][MESSAGE][진욱#0213] {message:"ㅌㄱㅋㄱㅌㅋㅌㅌㅌㅋㅋㅋㅋㅋㅋ",id:"877132430706901032",channel_name:"chat"}
+[2021/08/17 19:11:51.535][687188236971671560][event][MESSAGE][진욱#0213] {message:"도키도키 학교생홯 내일부터 시작합니다",id:"877132613645664286",channel_name:"chat"}
+[2021/08/17 19:12:50.105][687188236971671560][event][MESSAGE][ashz#3656] {message:"즐겁겠네 ㅋㅋㅋ",id:"877132859268268062",channel_name:"chat"}

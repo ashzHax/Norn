@@ -1,0 +1,12 @@
+[2021/08/18 13:55:45.157][687188236971671560][event][MESSAGE][양 진#4848] {message:".https://youtu.be/qYWslCdU77c",id:"877415450672267275",channel_name:"chat"}
+[2021/08/18 13:55:45.158][687188236971671560][event][COMMAND_UNKNOWN][양 진#4848] {id:"877415450672267275",content:".https://youtu.be/qYWslCdU77c"}
+[2021/08/18 13:55:45.421][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:".https://youtu.be/qYWslCdU77c",id:"877415450672267275",channel_name:"chat"}
+[2021/08/18 13:56:11.624][687188236971671560][event][MESSAGE][양 진#4848] {message:"https://youtu.be/qYWslCdU77c",id:"877415561787756545",channel_name:"chat"}
+[2021/08/18 13:56:14.296][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"https://youtu.be/qYWslCdU77c",id:"877415561787756545",channel_name:"chat"}
+[2021/08/18 13:56:29.029][687188236971671560][event][MESSAGE][양 진#4848] {message:".play https://youtu.be/qYWslCdU77c",id:"877415634777034812",channel_name:"chat"}
+[2021/08/18 13:56:29.297][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:".play https://youtu.be/qYWslCdU77c",id:"877415634777034812",channel_name:"chat"}
+[2021/08/18 13:56:31.560][687188236971671560][command][PLAY_SUCCESS][양 진#4848][877415634777034812] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/qYWslCdU77c",index:"0",length:"266",volume:"7",url:"https://www.youtube.com/watch?v=qYWslCdU77c"}
+[2021/08/18 13:58:30.461][687188236971671560][event][MESSAGE][양 진#4848] {message:".leave",id:"877416144020045834",channel_name:"chat"}
+[2021/08/18 13:58:30.481][687188236971671560][command][LEAVE_SUCCESS][양 진#4848][877416144020045834] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/08/18 13:58:31.065][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:".leave",id:"877416144020045834",channel_name:"chat"}
+[2021/08/18 14:06:18.579][687188236971671560][event][MESSAGE][ashz#3656] {message:"tf is this",id:"877418107537330186",channel_name:"chat"}

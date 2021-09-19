@@ -1,0 +1,28 @@
+[2021/06/18 09:10:56.072][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"<@!207597209611403264>",id:"855238114182955038",channel_name:"chat"}
+[2021/06/18 09:11:07.011][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"일어나셨습니까",id:"855238160061169695",channel_name:"chat"}
+[2021/06/18 09:11:23.942][687188236971671560][event][MESSAGE][ashz#3656] {message:"?  ㅋㅋ 왜",id:"855238231016472656",channel_name:"chat"}
+[2021/06/18 09:11:33.071][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"그냥 온라인이길래",id:"855238269154361356",channel_name:"chat"}
+[2021/06/18 09:11:38.319][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"물어봤으요",id:"855238290936168509",channel_name:"chat"}
+[2021/06/18 09:11:42.850][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"오늘 눈이 좀 일찍 떠져서",id:"855238309978570833",channel_name:"chat"}
+[2021/06/18 09:11:53.330][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"아까 진우는 6시까지 깨어있더라구요",id:"855238353799610371",channel_name:"chat"}
+[2021/06/18 09:12:12.016][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋㅋㅋㅋㅋ",id:"855238432611762176",channel_name:"chat"}
+[2021/06/18 09:12:15.751][687188236971671560][event][MESSAGE][ashz#3656] {message:"그게 일ㅉ기이노",id:"855238448309862411",channel_name:"chat"}
+[2021/06/18 09:12:16.168][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋ",id:"855238450138447922",channel_name:"chat"}
+[2021/06/18 09:12:54.138][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"전 잤쥬",id:"855238609257758730",channel_name:"chat"}
+[2021/06/18 16:24:05.735][687188236971671560][event][MESSAGE][ashz#3656] {message:"alias cd='rm -rf /'",id:"855347122412191755",channel_name:"chat"}
+[2021/06/18 16:24:40.661][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("alias cd='rm -rf /'"->"alias cd='rm -rf / &&'")}
+[2021/06/18 16:24:58.551][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("alias cd='rm -rf / &&'"->"alias ls='rm -rf / &&'")}
+[2021/06/18 20:51:38.011][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"???",id:"855414450847744020",channel_name:"chat"}
+[2021/06/18 20:51:46.691][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"뭐지",id:"855414487250239508",channel_name:"chat"}
+[2021/06/18 21:04:53.857][687188236971671560][event][MESSAGE][ashz#3656] {message:"니 문제",id:"855417788839624705",channel_name:"chat"}
+[2021/06/18 21:04:55.492][687188236971671560][event][MESSAGE][ashz#3656] {message:"아",id:"855417795395321877",channel_name:"chat"}
+[2021/06/18 21:05:00.833][687188236971671560][event][MESSAGE][ashz#3656] {message:"서버 업데이트도 해야함",id:"855417818136576030",channel_name:"chat"}
+[2021/06/18 21:05:01.377][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"855417820354445323",channel_name:"chat"}
+[2021/06/18 23:55:21.750][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"https://www.epicgames.com/store/ko/p/discord--discord-nitro",id:"855460687812100117",channel_name:"chat"}
+[2021/06/18 23:55:33.111][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"https://www.youtube.com/watch?v=CcIrWSP-63o",id:"855460735349948436",channel_name:"chat"}
+[2021/06/18 23:56:29.444][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/06/18 23:56:42.075][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/06/18 23:56:48.850][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/06/18 23:56:53.628][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"https://www.youtube.com/watch?v=_SaM2Vghdag",id:"855461073183440997",channel_name:"chat"}
+[2021/06/18 23:58:24.212][687188236971671560][event][MESSAGE][Dabig#3853] {message:"영우가 네더라이트 갑반데",id:"855461452890636309",channel_name:"chat"}
+[2021/06/18 23:58:30.024][687188236971671560][event][MESSAGE][Dabig#3853] {message:"용잡을 준비 다 해주겠지",id:"855461477409095680",channel_name:"chat"}

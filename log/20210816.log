@@ -1,0 +1,12 @@
+[2021/08/16 13:46:17.198][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".join",id:"876688292450545726",channel_name:"chat"}
+[2021/08/16 13:46:17.449][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".join",id:"876688292450545726",channel_name:"chat"}
+[2021/08/16 13:46:17.674][687188236971671560][command][JOIN_SUCCESS][chloe5325#1260][876688292450545726] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/08/16 13:47:27.043][687188236971671560][event][MESSAGE][chloe5325#1260] {message:".play https://youtu.be/xBf4zsHG7nE",id:"876688585754042368",channel_name:"chat"}
+[2021/08/16 13:47:27.429][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:".play https://youtu.be/xBf4zsHG7nE",id:"876688585754042368",channel_name:"chat"}
+[2021/08/16 13:47:28.652][687188236971671560][command][PLAY_SUCCESS][chloe5325#1260][876688585754042368] Overriding current track. Playing received data track. {receivedArgument:".play https://youtu.be/xBf4zsHG7nE",index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 15:21:25.946][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 16:55:50.516][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 18:29:48.619][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 20:03:47.061][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 21:37:45.393][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}
+[2021/08/16 23:12:10.302][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"5637",volume:"7",url:"https://www.youtube.com/watch?v=xBf4zsHG7nE"}

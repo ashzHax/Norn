@@ -1,0 +1,73 @@
+[2021/07/27 00:00:14.052][687188236971671560][event][MESSAGE][ashz#3656] {message:"? ㅋㅋㅋㅋㅋ 그런스토리 없을걸?",id:"869232652459315291",channel_name:"chat"}
+[2021/07/27 00:00:21.249][687188236971671560][event][MESSAGE][ashz#3656] {message:"오리지널 아닌것 같은디",id:"869232682855432232",channel_name:"chat"}
+[2021/07/27 00:00:22.994][687188236971671560][event][MESSAGE][thebox#9662] {message:"❛ᴗ❛",id:"869232690044489808",channel_name:"chat"}
+[2021/07/27 00:00:29.354][687188236971671560][event][MESSAGE][thebox#9662] {message:"한번 ㅇㄹ단 읽어보져",id:"869232716875444324",channel_name:"chat"}
+[2021/07/27 00:00:35.142][687188236971671560][event][MESSAGE][ashz#3656] {message:"그려 ㅋㅋㅋ",id:"869232741114335262",channel_name:"chat"}
+[2021/07/27 03:33:53.874][687188236971671560][event][MESSAGE][양 진#4848] {message:"아",id:"869286422836838450",channel_name:"chat"}
+[2021/07/27 03:33:57.181][687188236971671560][event][MESSAGE][양 진#4848] {message:"학자금 대출 받으면",id:"869286436564766780",channel_name:"chat"}
+[2021/07/27 03:34:00.687][687188236971671560][event][MESSAGE][양 진#4848] {message:"차살수있나",id:"869286451211280396",channel_name:"chat"}
+[2021/07/27 08:14:58.328][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"869357157521444904",channel_name:"chat"}
+[2021/07/27 08:15:10.322][687188236971671560][event][MESSAGE][ashz#3656] {message:"뭐라는거니",id:"869357207886655538",channel_name:"chat"}
+[2021/07/27 08:17:45.887][687188236971671560][event][MESSAGE][ashz#3656] {message:"영진아",id:"869357860348370944",channel_name:"chat"}
+[2021/07/27 08:17:46.801][687188236971671560][event][MESSAGE][ashz#3656] {message:"그걸",id:"869357864215535667",channel_name:"chat"}
+[2021/07/27 08:17:49.130][687188236971671560][event][MESSAGE][ashz#3656] {message:"여기에",id:"869357873971478538",channel_name:"chat"}
+[2021/07/27 08:17:52.599][687188236971671560][event][MESSAGE][ashz#3656] {message:"뜬금없이",id:"869357888517341184",channel_name:"chat"}
+[2021/07/27 08:17:54.546][687188236971671560][event][MESSAGE][ashz#3656] {message:"얘기할",id:"869357896482295829",channel_name:"chat"}
+[2021/07/27 08:17:57.426][687188236971671560][event][MESSAGE][ashz#3656] {message:"필요가 있니?",id:"869357908503171073",channel_name:"chat"}
+[2021/07/27 09:05:15.003][687188236971671560][event][MESSAGE][양 진#4848] {message:"아",id:"869369810348285992",channel_name:"chat"}
+[2021/07/27 09:05:17.428][687188236971671560][event][MESSAGE][양 진#4848] {message:"잘못올림요",id:"869369820511076442",channel_name:"chat"}
+[2021/07/27 09:51:49.911][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"869381532710752337",channel_name:"chat"}
+[2021/07/27 09:51:52.531][687188236971671560][event][MESSAGE][ashz#3656] {message:"그럴리가",id:"869381544068911164",channel_name:"chat"}
+[2021/07/27 15:17:36.368][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I did a coding challenge and I’m not sure why my solution is not passing",id:"869463516879413268",channel_name:"chat"}
+[2021/07/27 15:17:39.568][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"https://www.hackerrank.com/challenges/circular-array-rotation/problem",id:"869463530104033310",channel_name:"chat"}
+[2021/07/27 15:18:05.362][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"```csharp\npublic static List<int> circularArrayRotation(List<int> a, int k, List<int> queries)\n    {\n        var temp = a[0];\n        a[0] = 0;\n        a = shift(a, temp, (k) % a.Count, k);\n        var result = new List<int>();\n        for(int l = 0; l < queries.Count; l++)\n        {\n            result.Add(a[queries[l]]);\n        }\n        return result;\n    }\n    public static List<int> shift(List<int> arr, int temp, int index, int k)\n    {\n        Console.WriteLine(index);\n        if(temp != 0)\n        {\n            var temp2 = arr[(index)];\n            arr[(index)] = temp;\n            temp = temp2;\n            arr = shift(arr, temp, (index + k) % arr.Count, k);\n            return arr;\n        }\n        else\n        {\n            return arr;\n        }\n    }\n```",id:"869463638396796938",channel_name:"chat"}
+[2021/07/27 15:20:56.046][687188236971671560][event][MESSAGE][ashz#3656] {message:"i hate u gold",id:"869464354343514162",channel_name:"chat"}
+[2021/07/27 15:21:08.463][687188236971671560][event][MESSAGE][ashz#3656] {message:"i was having fun with linux C applications",id:"869464406478692462",channel_name:"chat"}
+[2021/07/27 15:21:14.672][687188236971671560][event][MESSAGE][ashz#3656] {message:"and now you bring me a even more fun stuff",id:"869464432391114772",channel_name:"chat"}
+[2021/07/27 15:26:48.090][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!277275957147074560>",id:"869465830742691891",channel_name:"chat"}
+[2021/07/27 15:26:53.795][687188236971671560][event][MESSAGE][ashz#3656] {message:"are you doing another late night coding session",id:"869465854897688576",channel_name:"chat"}
+[2021/07/27 15:26:57.291][687188236971671560][event][MESSAGE][ashz#3656] {message:"and ur brain is msuh",id:"869465869573554196",channel_name:"chat"}
+[2021/07/27 15:27:10.927][687188236971671560][event][MESSAGE][ashz#3656] {message:"cuz, this code is the work of art for a drunken collage student",id:"869465926540611627",channel_name:"chat"}
+[2021/07/27 15:34:22.704][687188236971671560][event][MESSAGE][ashz#3656] {message:"and ofc u have to use a recursive function",id:"869467737552998411",channel_name:"chat"}
+[2021/07/27 15:34:36.061][687188236971671560][event][MESSAGE][ashz#3656] {message:"with the most shittiest algorithm ive seen",id:"869467793756684308",channel_name:"chat"}
+[2021/07/27 15:34:40.821][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("with the most shittiest algorithm ive seen"->"with the most shittist algorithm ive seen")}
+[2021/07/27 15:34:48.639][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("with the most shittist algorithm ive seen"->"with the most shittiest algorithm ive seen")}
+[2021/07/27 15:44:51.157][687188236971671560][event][MESSAGE][ashz#3656] {message:"maybe it has to do with the fact that you are purposely trying to create a recursive functions that does all the thing you want, but does not have precise functioning",id:"869470373505298453",channel_name:"chat"}
+[2021/07/27 15:45:00.239][687188236971671560][event][MESSAGE][ashz#3656] {message:"or maybe its just that you hate using loops",id:"869470411656687687",channel_name:"chat"}
+[2021/07/27 17:46:03.416][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"차살수있나",id:"869286451211280396",channel_name:"chat"}
+[2021/07/27 17:46:06.156][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"학자금 대출 받으면",id:"869286436564766780",channel_name:"chat"}
+[2021/07/27 17:46:08.790][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"아",id:"869286422836838450",channel_name:"chat"}
+[2021/07/27 17:46:15.456][687188236971671560][event][MESSAGE][양 진#4848] {message:"진짜 잘못올림",id:"869500926258466866",channel_name:"chat"}
+[2021/07/27 17:47:56.251][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ 그래",id:"869501348872347678",channel_name:"chat"}
+[2021/07/27 17:48:10.049][687188236971671560][event][MESSAGE][ashz#3656] {message:"오늘 스타 ㄱ?",id:"869501406904729630",channel_name:"chat"}
+[2021/07/27 19:33:28.280][687188236971671560][event][MESSAGE][양 진#4848] {message:"ㄲ",id:"869527907448533002",channel_name:"chat"}
+[2021/07/27 19:46:49.395][687188236971671560][event][MESSAGE][ashz#3656] {message:"11시 지나야 가능할것 같음",id:"869531267522244648",channel_name:"chat"}
+[2021/07/27 19:46:54.824][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!453194027408293890>",id:"869531289944981525",channel_name:"chat"}
+[2021/07/27 20:10:05.066][687188236971671560][event][MESSAGE][혜윤#0606] {message:"I WANT SUSHI PLS",id:"869537121248083969",channel_name:"chat"}
+[2021/07/27 20:13:54.095][687188236971671560][event][MESSAGE][ashz#3656] {message:"tf",id:"869538082024738836",channel_name:"chat"}
+[2021/07/27 20:14:03.170][687188236971671560][event][MESSAGE][ashz#3656] {message:"why the random urge for sushi?",id:"869538119756709909",channel_name:"chat"}
+[2021/07/27 20:14:17.787][687188236971671560][event][MESSAGE][ashz#3656] {message:"🍣",id:"869538181396193290",channel_name:"chat"}
+[2021/07/27 21:18:02.534][687188236971671560][event][MESSAGE][혜윤#0606] {message:"cuz im craving for ir",id:"869554223476527134",channel_name:"chat"}
+[2021/07/27 21:18:05.934][687188236971671560][event][MESSAGE_UPDATE][혜윤#0606] {message_update:("cuz im craving for ir"->"cuz im craving for it")}
+[2021/07/27 21:35:02.074][687188236971671560][event][MESSAGE][ashz#3656] {message:"well, crave for other shits",id:"869558499842093056",channel_name:"chat"}
+[2021/07/27 21:35:06.527][687188236971671560][event][MESSAGE][ashz#3656] {message:"steak",id:"869558518489964585",channel_name:"chat"}
+[2021/07/27 21:35:14.325][687188236971671560][event][MESSAGE][ashz#3656] {message:"cheesebugers",id:"869558551050326047",channel_name:"chat"}
+[2021/07/27 21:35:23.536][687188236971671560][event][MESSAGE][ashz#3656] {message:"valorant radiant",id:"869558589856043028",channel_name:"chat"}
+[2021/07/27 22:05:14.103][687188236971671560][event][MESSAGE][혜윤#0606] {message:"i wish",id:"869566100046766090",channel_name:"chat"}
+[2021/07/27 23:03:48.253][687188236971671560][event][MESSAGE][ashz#3656] {message:"better than unobtainable legendary fucking shusi",id:"869580839380455474",channel_name:"chat"}
+[2021/07/27 23:03:52.583][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("better than unobtainable legendary fucking shusi"->"better than unobtainable legendary fucking sushi")}
+[2021/07/27 23:03:54.212][687188236971671560][event][MESSAGE][ashz#3656] {message:"fuck",id:"869580864164593745",channel_name:"chat"}
+[2021/07/27 23:03:56.854][687188236971671560][event][MESSAGE][ashz#3656] {message:"i hate fish",id:"869580875497611304",channel_name:"chat"}
+[2021/07/27 23:15:16.689][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!745951577025675274>",id:"869583726944845894",channel_name:"chat"}
+[2021/07/27 23:15:17.386][687188236971671560][event][MESSAGE][ashz#3656] {message:"rr",id:"869583729872498778",channel_name:"chat"}
+[2021/07/27 23:46:43.491][687188236971671560][event][MESSAGE][양 진#4848] {message:"흠",id:"869591640799588372",channel_name:"chat"}
+[2021/07/27 23:46:48.358][687188236971671560][event][MESSAGE][양 진#4848] {message:"너무 늦었는데",id:"869591660839976961",channel_name:"chat"}
+[2021/07/27 23:46:58.540][687188236971671560][event][MESSAGE][양 진#4848] {message:"일단 진우 불러볼게요",id:"869591703491858453",channel_name:"chat"}
+[2021/07/27 23:49:48.455][687188236971671560][event][MESSAGE][양 진#4848] {message:"11시부터 5분동안 디코 켜뒀는데",id:"869592416586453012",channel_name:"chat"}
+[2021/07/27 23:49:55.997][687188236971671560][event][MESSAGE][양 진#4848] {message:"자리비움이라 뭐먹도 와서",id:"869592448240877628",channel_name:"chat"}
+[2021/07/27 23:50:00.286][687188236971671560][event][MESSAGE_UPDATE][양 진#4848] {message_update:("자리비움이라 뭐먹도 와서"->"자리비움이라 뭐먹고와서")}
+[2021/07/27 23:50:09.201][687188236971671560][event][MESSAGE][양 진#4848] {message:"아니면 낼 하죠",id:"869592503223992341",channel_name:"chat"}
+[2021/07/27 23:50:12.411][687188236971671560][event][MESSAGE][양 진#4848] {message:"<@207597209611403264>",id:"869592517073580102",channel_name:"chat"}
+[2021/07/27 23:50:36.168][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋ",id:"869592616675733555",channel_name:"chat"}
+[2021/07/27 23:50:38.194][687188236971671560][event][MESSAGE][ashz#3656] {message:"그냥 낼 해",id:"869592625181765694",channel_name:"chat"}
+[2021/07/27 23:50:40.920][687188236971671560][event][MESSAGE][양 진#4848] {message:"넴",id:"869592636376354817",channel_name:"chat"}

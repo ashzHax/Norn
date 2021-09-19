@@ -1,0 +1,176 @@
+[2021/08/04 00:00:22.235][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"268",volume:"7",url:"https://www.youtube.com/watch?v=_5l0FrL77-s"}
+[2021/08/04 00:04:50.986][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"221",volume:"7",url:"https://www.youtube.com/watch?v=mfWHBS4zd98"}
+[2021/08/04 00:08:32.714][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"197",volume:"7",url:"https://www.youtube.com/watch?v=EwpKUV0ECvQ"}
+[2021/08/04 00:11:50.947][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"3",length:"318",volume:"7",url:"https://www.youtube.com/watch?v=4_7Y7dPUWGE"}
+[2021/08/04 00:17:09.557][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"4",length:"236",volume:"7",url:"https://www.youtube.com/watch?v=LtrB_8CejUA"}
+[2021/08/04 00:21:06.656][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"5",length:"272",volume:"7",url:"https://www.youtube.com/watch?v=OS1rP0EIhwY"}
+[2021/08/04 00:24:51.905][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"872137954095681576",channel_name:"chat"}
+[2021/08/04 00:24:51.926][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][872137954095681576] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/08/04 00:24:52.180][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"872137954095681576",channel_name:"chat"}
+[2021/08/04 00:27:52.200][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"맨날",id:"872138710320283678",channel_name:"chat"}
+[2021/08/04 00:27:53.365][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"등교도",id:"872138715068248115",channel_name:"chat"}
+[2021/08/04 00:27:54.124][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"같이",id:"872138718373371904",channel_name:"chat"}
+[2021/08/04 00:27:54.706][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"하고",id:"872138720822820865",channel_name:"chat"}
+[2021/08/04 00:27:55.844][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"어?",id:"872138725570793494",channel_name:"chat"}
+[2021/08/04 00:27:56.975][687188236971671560][event][MESSAGE][Dabig#3853] {message:"아아",id:"872138730171957331",channel_name:"chat"}
+[2021/08/04 00:28:02.307][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872138752703733790",channel_name:"chat"}
+[2021/08/04 00:28:02.537][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"집 바로 옆에",id:"872138753597112380",channel_name:"chat"}
+[2021/08/04 00:28:03.518][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"살아서",id:"872138757724332032",channel_name:"chat"}
+[2021/08/04 00:28:05.844][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"쓰레기 버릴때마다",id:"872138767530598400",channel_name:"chat"}
+[2021/08/04 00:28:07.623][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㄴ만나고",id:"872138775013257256",channel_name:"chat"}
+[2021/08/04 00:28:11.127][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"근데",id:"872138789714280448",channel_name:"chat"}
+[2021/08/04 00:28:12.449][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"모른척하고",id:"872138795271749732",channel_name:"chat"}
+[2021/08/04 00:28:15.495][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"흑끕",id:"872138807963709500",channel_name:"chat"}
+[2021/08/04 00:28:28.120][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"잼민이 시절",id:"872138860950335498",channel_name:"chat"}
+[2021/08/04 00:28:30.644][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"추억이네",id:"872138871360594022",channel_name:"chat"}
+[2021/08/04 00:29:22.175][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋ",id:"872139087686029322",channel_name:"chat"}
+[2021/08/04 00:29:29.818][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"samr",id:"872139119768252507",channel_name:"chat"}
+[2021/08/04 00:29:33.589][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"너무 좋네",id:"872139135303954492",channel_name:"chat"}
+[2021/08/04 00:29:38.487][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋ",id:"872139155839270924",channel_name:"chat"}
+[2021/08/04 00:29:40.292][687188236971671560][event][MESSAGE][Dabig#3853] {message:"samr",id:"872139163703590932",channel_name:"chat"}
+[2021/08/04 00:29:40.883][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"치카치카",id:"872139166174031902",channel_name:"chat"}
+[2021/08/04 00:29:44.590][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"양치양치",id:"872139181701357608",channel_name:"chat"}
+[2021/08/04 00:29:52.298][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋ",id:"872139213934559282",channel_name:"chat"}
+[2021/08/04 00:29:58.238][687188236971671560][event][MESSAGE][Dabig#3853] {message:"마이크 끈거는 곧 나가겠다는",id:"872139238962003998",channel_name:"chat"}
+[2021/08/04 00:30:01.098][687188236971671560][event][MESSAGE][Dabig#3853] {message:"암시인가요",id:"872139250961903706",channel_name:"chat"}
+[2021/08/04 00:30:06.429][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872139273070063638",channel_name:"chat"}
+[2021/08/04 00:30:08.803][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"이걸 들키네",id:"872139283283185754",channel_name:"chat"}
+[2021/08/04 00:30:12.385][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋ",id:"872139298265235476",channel_name:"chat"}
+[2021/08/04 00:31:02.260][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"나 화장실^^",id:"872139506973827164",channel_name:"chat"}
+[2021/08/04 00:32:28.532][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"등장",id:"872139869223264356",channel_name:"chat"}
+[2021/08/04 00:32:55.954][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872139984302403705",channel_name:"chat"}
+[2021/08/04 00:33:03.353][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 그거 ㄹㅇ 형님을 위한 게임 아니냐고",id:"872140015373803540",channel_name:"chat"}
+[2021/08/04 00:33:08.722][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872140037838471199",channel_name:"chat"}
+[2021/08/04 00:33:18.097][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 그거",id:"872140077239791646",channel_name:"chat"}
+[2021/08/04 00:33:19.496][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅎㅎㅎ",id:"872140082902093876",channel_name:"chat"}
+[2021/08/04 00:33:28.379][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"주희",id:"872140120306880583",channel_name:"chat"}
+[2021/08/04 00:33:29.606][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"리즈시절",id:"872140125268766813",channel_name:"chat"}
+[2021/08/04 00:33:38.260][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872140161830514729",channel_name:"chat"}
+[2021/08/04 00:33:43.070][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㄹㅇ",id:"872140181518557246",channel_name:"chat"}
+[2021/08/04 00:33:53.471][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋ",id:"872140225541996574",channel_name:"chat"}
+[2021/08/04 00:34:09.299][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"약간 비유하자면 털갈이 느낌?",id:"872140291623251969",channel_name:"chat"}
+[2021/08/04 00:34:32.636][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 이뻐졌다거",id:"872140389845434448",channel_name:"chat"}
+[2021/08/04 00:34:48.457][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"난 아마 잼민이때가 리즈시절 아닐까",id:"872140455947673670",channel_name:"chat"}
+[2021/08/04 00:34:56.561][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋ",id:"872140490169020416",channel_name:"chat"}
+[2021/08/04 00:35:04.787][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 사람이 달라지면",id:"872140524700713010",channel_name:"chat"}
+[2021/08/04 00:35:12.427][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872140556741009482",channel_name:"chat"}
+[2021/08/04 00:35:17.335][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"불만?",id:"872140577205014548",channel_name:"chat"}
+[2021/08/04 00:35:23.756][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"이건 아니지",id:"872140604207956058",channel_name:"chat"}
+[2021/08/04 00:35:28.851][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"에이 저 고딩인데",id:"872140625649217596",channel_name:"chat"}
+[2021/08/04 00:35:33.425][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"저 잼민이 탈출 했는데",id:"872140644615880747",channel_name:"chat"}
+[2021/08/04 00:35:42.633][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872140683153133639",channel_name:"chat"}
+[2021/08/04 00:35:50.538][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"이걸 몰아가네",id:"872140716573339688",channel_name:"chat"}
+[2021/08/04 00:36:04.596][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"약간 끼리끼리 느낌",id:"872140775524298762",channel_name:"chat"}
+[2021/08/04 00:37:27.010][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872141121256587344",channel_name:"chat"}
+[2021/08/04 00:38:10.634][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:"약간 비유하자면 털갈이 느낌?",id:"872140291623251969",channel_name:"chat"}
+[2021/08/04 00:39:21.045][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"오우",id:"872141599457566730",channel_name:"chat"}
+[2021/08/04 00:39:50.147][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872141721608286278",channel_name:"chat"}
+[2021/08/04 00:39:53.411][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"너무 좋네",id:"872141735294283866",channel_name:"chat"}
+[2021/08/04 00:40:53.981][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"음",id:"872141989297131570",channel_name:"chat"}
+[2021/08/04 00:40:55.246][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"으음",id:"872141994665869312",channel_name:"chat"}
+[2021/08/04 00:40:56.863][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"으으음",id:"872142001380933662",channel_name:"chat"}
+[2021/08/04 00:40:59.935][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"윽",id:"872142014299398194",channel_name:"chat"}
+[2021/08/04 00:51:01.967][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅡㅡ",id:"872144539425595422",channel_name:"chat"}
+[2021/08/04 00:51:11.855][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872144580903071784",channel_name:"chat"}
+[2021/08/04 00:53:37.283][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"?",id:"872145190813573150",channel_name:"chat"}
+[2021/08/04 00:53:42.750][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"교회에 가져오자",id:"872145213773185064",channel_name:"chat"}
+[2021/08/04 00:53:45.044][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872145223453646878",channel_name:"chat"}
+[2021/08/04 00:54:02.846][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"제한시간 7분",id:"872145298028384276",channel_name:"chat"}
+[2021/08/04 00:54:25.144][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872145391246782536",channel_name:"chat"}
+[2021/08/04 01:02:08.993][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"잭슨",id:"872147337156395038",channel_name:"chat"}
+[2021/08/04 01:03:42.617][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"압박감을 줘버렸나",id:"872147729596440678",channel_name:"chat"}
+[2021/08/04 01:04:05.039][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872147823901151282",channel_name:"chat"}
+[2021/08/04 01:07:13.186][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"이걸로 동물의 숲 ㅆㄱㄴ",id:"872148612916863037",channel_name:"chat"}
+[2021/08/04 01:09:37.305][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"귀여움의 기준이 많이 다르네",id:"872149217563521084",channel_name:"chat"}
+[2021/08/04 01:13:02.311][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"872150077404225586",channel_name:"chat"}
+[2021/08/04 01:13:15.942][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅂㅂ",id:"872150134564216882",channel_name:"chat"}
+[2021/08/04 09:36:27.470][687188236971671560][event][MESSAGE][양 진#4848] {message:"운전면허 시험",id:"872276766981492736",channel_name:"chat"}
+[2021/08/04 09:40:37.518][687188236971671560][event][MESSAGE_DELETE][양 진#4848] {message:"운전면허 시험",id:"872276766981492736",channel_name:"chat"}
+[2021/08/04 19:14:57.025][687188236971671560][event][MESSAGE][Dabig#3853] {message:"행님",id:"872422349360726066",channel_name:"chat"}
+[2021/08/04 19:15:08.461][687188236971671560][event][MESSAGE][Dabig#3853] {message:"점프맵 언제 할 예정인지",id:"872422397343576064",channel_name:"chat"}
+[2021/08/04 19:15:14.580][687188236971671560][event][MESSAGE][Dabig#3853] {message:"궁금쓰",id:"872422423033704518",channel_name:"chat"}
+[2021/08/04 19:24:32.585][687188236971671560][event][MESSAGE][ashz#3656] {message:"몰라",id:"872424763400781905",channel_name:"chat"}
+[2021/08/04 19:24:36.831][687188236971671560][event][MESSAGE][ashz#3656] {message:"오늘 일찍 퇴근할건데",id:"872424781247561748",channel_name:"chat"}
+[2021/08/04 19:24:49.330][687188236971671560][event][MESSAGE][ashz#3656] {message:"내 공유기에 문제 있다는걸 오늘 확이이 되어서",id:"872424833718288454",channel_name:"chat"}
+[2021/08/04 19:24:52.730][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("내 공유기에 문제 있다는걸 오늘 확이이 되어서"->"내 공유기에 문제 있다는걸 오늘 확인이 되어서")}
+[2021/08/04 19:24:59.573][687188236971671560][event][MESSAGE][ashz#3656] {message:"공유기 초기화해야하는데",id:"872424876303056907",channel_name:"chat"}
+[2021/08/04 19:25:13.857][687188236971671560][event][MESSAGE][ashz#3656] {message:"회사에서 내가 만들 설정으로 초기화해야해서",id:"872424936201924630",channel_name:"chat"}
+[2021/08/04 19:25:17.499][687188236971671560][event][MESSAGE][ashz#3656] {message:"시간 좀 걸릴거임",id:"872424951746011207",channel_name:"chat"}
+[2021/08/04 19:25:20.723][687188236971671560][event][MESSAGE][ashz#3656] {message:"끝나면 알려줗께",id:"872424965331361812",channel_name:"chat"}
+[2021/08/04 19:25:22.612][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("끝나면 알려줗께"->"끝나면 알려줄께")}
+[2021/08/04 19:43:49.849][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㅇㅎ ㅇㅋ",id:"872429616978071593",channel_name:"chat"}
+[2021/08/04 20:31:16.081][687188236971671560][event][MESSAGE][양 진#4848] {message:"<@!453194027408293890>",id:"872441555292651580",channel_name:"chat"}
+[2021/08/04 20:31:19.248][687188236971671560][event][MESSAGE][양 진#4848] {message:"오늘",id:"872441568248868926",channel_name:"chat"}
+[2021/08/04 20:31:20.931][687188236971671560][event][MESSAGE][양 진#4848] {message:"점프맵 함?",id:"872441575689568276",channel_name:"chat"}
+[2021/08/04 20:37:33.551][687188236971671560][event][MESSAGE][Dabig#3853] {message:"어제",id:"872443138562728016",channel_name:"chat"}
+[2021/08/04 20:37:34.482][687188236971671560][event][MESSAGE][Dabig#3853] {message:"했음",id:"872443142396313620",channel_name:"chat"}
+[2021/08/04 21:24:16.179][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"혀엉...성은이형...",id:"872454893204537355",channel_name:"chat"}
+[2021/08/04 21:24:22.419][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"그 깔라고 시킨 게임이",id:"872454919855169576",channel_name:"chat"}
+[2021/08/04 21:24:25.477][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"너무 어려워어",id:"872454932702326824",channel_name:"chat"}
+[2021/08/04 21:24:26.884][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"ㅋㅋㅋㅋ",id:"872454938574344192",channel_name:"chat"}
+[2021/08/04 21:24:29.057][687188236971671560][event][MESSAGE][ashz#3656] {message:"z",id:"872454947537555456",channel_name:"chat"}
+[2021/08/04 21:24:49.497][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"감도야 바꾸면 되겠지만 너무 어려웤ㅋㅋ",id:"872455033441112124",channel_name:"chat"}
+[2021/08/04 21:24:58.996][687188236971671560][event][MESSAGE][ashz#3656] {message:"practice",id:"872455073173766174",channel_name:"chat"}
+[2021/08/04 21:25:10.701][687188236971671560][event][MESSAGE][ᗰIᑎOᗷOT#1010] {message:"연습하라고? ㅋㅋ",id:"872455122385531030",channel_name:"chat"}
+[2021/08/04 21:25:51.902][687188236971671560][event][MESSAGE][ashz#3656] {message:"yes",id:"872455295169859584",channel_name:"chat"}
+[2021/08/04 21:28:31.341][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"형님 언제 오십니까",id:"872455963901304922",channel_name:"chat"}
+[2021/08/04 21:31:24.113][687188236971671560][event][MESSAGE][ashz#3656] {message:"20min",id:"872456688492498975",channel_name:"chat"}
+[2021/08/04 21:34:03.817][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"^^",id:"872457358402547732",channel_name:"chat"}
+[2021/08/04 22:05:09.403][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"<@!453194027408293890>",id:"872465183296090193",channel_name:"chat"}
+[2021/08/04 22:06:13.402][687188236971671560][event][MESSAGE][Dabig#3853] {message:"왜용",id:"872465451714760784",channel_name:"chat"}
+[2021/08/04 22:19:33.606][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"872468807954858115",channel_name:"chat"}
+[2021/08/04 22:19:33.874][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"872468807954858115",channel_name:"chat"}
+[2021/08/04 22:19:34.625][687188236971671560][command][JOIN_SUCCESS][ashz#3656][872468807954858115] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/08/04 22:19:52.683][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=e8WoWk4b3D0&feature=share",id:"872468887600504843",channel_name:"chat"}
+[2021/08/04 22:19:52.932][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=e8WoWk4b3D0&feature=share",id:"872468887600504843",channel_name:"chat"}
+[2021/08/04 22:19:53.806][687188236971671560][command][PLAY_SUCCESS][ashz#3656][872468887600504843] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=e8WoWk4b3D0&feature=share",index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:23:17.867][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:26:42.566][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:30:06.992][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:30:55.276][687188236971671560][event][MESSAGE][ashz#3656] {message:".add https://music.youtube.com/watch?v=kl_AVX_olY4&feature=share",id:"872471666993791046",channel_name:"chat"}
+[2021/08/04 22:30:55.568][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".add https://music.youtube.com/watch?v=kl_AVX_olY4&feature=share",id:"872471666993791046",channel_name:"chat"}
+[2021/08/04 22:30:56.314][687188236971671560][command][ADD_SUCCESS][ashz#3656][872471666993791046] Added track to queue. {receivedArgument:".add https://music.youtube.com/watch?v=kl_AVX_olY4&feature=share",title:"Levitating (feat. DaBaby)",index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:33:31.797][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 22:36:18.586][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"872473023125553152",channel_name:"chat"}
+[2021/08/04 22:36:18.607][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][872473023125553152] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/08/04 22:36:18.853][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"872473023125553152",channel_name:"chat"}
+[2021/08/04 22:37:14.134][687188236971671560][event][GUILD_UPDATE][external] Guild update event detected.
+[2021/08/04 22:39:39.160][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"872473864146403419",channel_name:"chat"}
+[2021/08/04 22:39:39.416][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"872473864146403419",channel_name:"chat"}
+[2021/08/04 22:39:39.624][687188236971671560][command][JOIN_SUCCESS][ashz#3656][872473864146403419] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/08/04 22:39:45.094][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://www.youtube.com/watch?v=e8WoWk4b3D0",id:"872473889035395113",channel_name:"chat"}
+[2021/08/04 22:39:45.369][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://www.youtube.com/watch?v=e8WoWk4b3D0",id:"872473889035395113",channel_name:"chat"}
+[2021/08/04 22:39:46.482][687188236971671560][command][PLAY_SUCCESS][ashz#3656][872473889035395113] Overriding current track. Playing received data track. {receivedArgument:".play https://www.youtube.com/watch?v=e8WoWk4b3D0",index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:39:52.690][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://www.youtube.com/watch?v=kl_AVX_olY4",id:"872473920979218442",channel_name:"chat"}
+[2021/08/04 22:39:53.035][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://www.youtube.com/watch?v=kl_AVX_olY4",id:"872473920979218442",channel_name:"chat"}
+[2021/08/04 22:39:54.058][687188236971671560][command][PLAY_SUCCESS][ashz#3656][872473920979218442] Overriding current track. Playing received data track. {receivedArgument:".play https://www.youtube.com/watch?v=kl_AVX_olY4",index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 22:40:35.056][687188236971671560][event][MESSAGE][Dabig#3853] {message:"?? : 저는 11월 11일부터 방송시작할거에요",id:"872474098763198534",channel_name:"chat"}
+[2021/08/04 22:40:39.771][687188236971671560][event][MESSAGE][Dabig#3853] {message:"ㄹㅇ 신뢰도가",id:"872474118371553321",channel_name:"chat"}
+[2021/08/04 22:41:08.188][687188236971671560][event][MESSAGE][ashz#3656] {message:".add https://music.youtube.com/watch?v=7k12n9iexkY&feature=share",id:"872474237787582544",channel_name:"chat"}
+[2021/08/04 22:41:08.460][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".add https://music.youtube.com/watch?v=7k12n9iexkY&feature=share",id:"872474237787582544",channel_name:"chat"}
+[2021/08/04 22:41:09.448][687188236971671560][command][ADD_SUCCESS][ashz#3656][872474237787582544] Added track to queue. {receivedArgument:".add https://music.youtube.com/watch?v=7k12n9iexkY&feature=share",title:"Gold",index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 22:42:55.117][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 22:46:15.478][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:49:39.895][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 22:52:40.471][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 22:56:01.113][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 22:59:25.791][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:02:26.298][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:03:38.774][687188236971671560][event][MESSAGE][ashz#3656] {message:"182.218.180.52:25565",id:"872479902551666758",channel_name:"chat"}
+[2021/08/04 23:05:47.240][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:09:11.650][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:12:12.285][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:15:33.081][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:18:57.595][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:21:58.199][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:25:18.963][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:28:43.351][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:31:44.151][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:35:05.086][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:38:29.683][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:41:30.192][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:44:50.666][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:48:15.514][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}
+[2021/08/04 23:51:16.270][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"2",length:"200",volume:"7",url:"https://www.youtube.com/watch?v=7k12n9iexkY"}
+[2021/08/04 23:54:36.839][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"204",volume:"7",url:"https://www.youtube.com/watch?v=e8WoWk4b3D0"}
+[2021/08/04 23:58:01.232][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"1",length:"180",volume:"7",url:"https://www.youtube.com/watch?v=kl_AVX_olY4"}

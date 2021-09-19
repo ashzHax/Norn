@@ -1,0 +1,16 @@
+[2021/09/11 00:26:02.612][687188236971671560][event][MESSAGE][진우박#3853] {message:"<@!328107003492696065>",id:"885908989320245249",channel_name:"chat"}
+[2021/09/11 00:26:10.321][687188236971671560][event][MESSAGE][zik#6629] {message:"privacy first lads",id:"885909021360537680",channel_name:"chat"}
+[2021/09/11 00:26:15.328][687188236971671560][event][MESSAGE][ashz#3656] {message:"쇼쇼",id:"885909042533392444",channel_name:"chat"}
+[2021/09/11 00:26:16.592][687188236971671560][event][MESSAGE][ashz#3656] {message:"tyty",id:"885909048191516712",channel_name:"chat"}
+[2021/09/11 00:59:47.071][687188236971671560][event][MESSAGE][zik#6629] {message:"?????????????????????????????????????????????????????????????????????????????",id:"885917480785182741",channel_name:"chat"}
+[2021/09/11 01:08:50.697][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅎㅎㅎ",id:"885919760926249040",channel_name:"chat"}
+[2021/09/11 23:00:28.110][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803> <@!258808551542095874>",id:"886249841565499443",channel_name:"chat"}
+[2021/09/11 23:00:33.460][687188236971671560][event][MESSAGE][ashz#3656] {message:"gta",id:"886249864151834624",channel_name:"chat"}
+[2021/09/11 23:00:41.876][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅈㅅ",id:"886249899488866364",channel_name:"chat"}
+[2021/09/11 23:32:49.066][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"886257982768316436",channel_name:"chat"}
+[2021/09/11 23:32:49.317][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"886257982768316436",channel_name:"chat"}
+[2021/09/11 23:32:50.108][687188236971671560][command][JOIN_SUCCESS][ashz#3656][886257982768316436] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/09/11 23:32:50.643][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=6xx0d3R2LoU&feature=share",id:"886257989298835506",channel_name:"chat"}
+[2021/09/11 23:32:50.876][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=6xx0d3R2LoU&feature=share",id:"886257989298835506",channel_name:"chat"}
+[2021/09/11 23:32:54.972][687188236971671560][command][PLAY_SUCCESS][ashz#3656][886257989298835506] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=6xx0d3R2LoU&feature=share",index:"0",length:"717",volume:"7",url:"https://www.youtube.com/watch?v=6xx0d3R2LoU"}
+[2021/09/11 23:44:53.532][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"717",volume:"7",url:"https://www.youtube.com/watch?v=6xx0d3R2LoU"}

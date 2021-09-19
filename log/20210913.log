@@ -1,0 +1,10 @@
+[2021/09/13 10:43:44.478][687188236971671560][event][MESSAGE][ashz#3656] {message:"java",id:"886789213561974795",channel_name:"chat"}
+[2021/09/13 23:45:07.464][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Heyyyy <@207597209611403264>",id:"886985855418372096",channel_name:"chat"}
+[2021/09/13 23:45:20.130][687188236971671560][event][MESSAGE][ashz#3656] {message:"oi",id:"886985908308541521",channel_name:"chat"}
+[2021/09/13 23:45:24.808][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Your favourite friend messages me this morning! Good old athena!",id:"886985928319598592",channel_name:"chat"}
+[2021/09/13 23:45:39.243][687188236971671560][event][MESSAGE][ashz#3656] {message:"....",id:"886985988776267836",channel_name:"chat"}
+[2021/09/13 23:45:39.900][687188236971671560][event][MESSAGE][ashz#3656] {message:"fuck",id:"886985991615815790",channel_name:"chat"}
+[2021/09/13 23:45:41.412][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("Your favourite friend messages me this morning! Good old athena!"->"Your favourite friend messaged me this morning! Good old athena!")}
+[2021/09/13 23:45:41.436][687188236971671560][event][MESSAGE][ashz#3656] {message:"join call",id:"886985997781434389",channel_name:"chat"}
+[2021/09/13 23:45:56.071][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Give me a sec, gotta set my stuff down",id:"886986059437727764",channel_name:"chat"}
+[2021/09/13 23:46:00.174][687188236971671560][event][MESSAGE][ashz#3656] {message:"k",id:"886986076592422943",channel_name:"chat"}

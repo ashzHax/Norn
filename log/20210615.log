@@ -1,0 +1,43 @@
+[2021/06/15 07:20:27.734][687188236971671560][event][MESSAGE][ashz#3656] {message:"test",id:"854123149137674241",channel_name:"chat"}
+[2021/06/15 08:21:02.630][687188236971671560][event][MESSAGE][[SKKU] G(D) JG*C (own)#4848] {message:"test",id:"854138395159953418",channel_name:"chat"}
+[2021/06/15 11:05:46.597][687188236971671560][event][MESSAGE][ashz#3656] {message:".help",id:"854179851540234260",channel_name:"chat"}
+[2021/06/15 11:05:46.605][687188236971671560][command][HELP_SUCCESS][ashz#3656][854179851540234260] Printed the help page.
+[2021/06/15 11:05:46.853][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".help",id:"854179851540234260",channel_name:"chat"}
+[2021/06/15 11:05:54.513][687188236971671560][event][MESSAGE][ashz#3656] {message:"hi box",id:"854179884346769449",channel_name:"chat"}
+[2021/06/15 11:05:55.460][687188236971671560][event][MESSAGE][ashz#3656] {message:"😛",id:"854179888713695252",channel_name:"chat"}
+[2021/06/15 11:06:25.478][687188236971671560][event][MESSAGE][thebox#9662] {message:"https://tenor.com/view/shalita-grant-blow-kiss-smile-kisses-flying-kiss-gif-13527086",id:"854180014635614249",channel_name:"chat"}
+[2021/06/15 11:07:51.176][687188236971671560][event][MESSAGE][ashz#3656] {message:"f off",id:"854180374081699870",channel_name:"chat"}
+[2021/06/15 11:07:59.957][687188236971671560][event][MESSAGE][thebox#9662] {message:"Lick lick",id:"854180410850672680",channel_name:"chat"}
+[2021/06/15 11:11:36.693][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh fuck",id:"854181319788724265",channel_name:"chat"}
+[2021/06/15 11:11:49.962][687188236971671560][event][MESSAGE][ashz#3656] {message:"get the fuck outta here",id:"854181375572574278",channel_name:"chat"}
+[2021/06/15 11:11:57.570][687188236971671560][event][MESSAGE][ashz#3656] {message:"we have a faggot",id:"854181407440764928",channel_name:"chat"}
+[2021/06/15 11:12:14.613][687188236971671560][event][MESSAGE][thebox#9662] {message:"Delete",id:"854181478925467668",channel_name:"chat"}
+[2021/06/15 11:12:19.005][687188236971671560][event][MESSAGE_DELETE][thebox#9662] {message:"Lick lick",id:"854180410850672680",channel_name:"chat"}
+[2021/06/15 11:12:36.527][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"854181570897510410",channel_name:"chat"}
+[2021/06/15 11:12:57.787][687188236971671560][event][MESSAGE][ashz#3656] {message:"로그는 언제나 남는다...",id:"854181660080865350",channel_name:"chat"}
+[2021/06/15 11:13:05.865][687188236971671560][event][MESSAGE][thebox#9662] {message:"Oy mh",id:"854181693685497867",channel_name:"chat"}
+[2021/06/15 11:13:18.500][687188236971671560][event][MESSAGE][thebox#9662] {message:"아 노트북만 존나 보는중이야 시⃫발⃫ ㅋㅋ꙼̈",id:"854181746958532648",channel_name:"chat"}
+[2021/06/15 11:13:24.491][687188236971671560][event][MESSAGE][thebox#9662] {message:"결정장애 시⃫발⃫",id:"854181772018974740",channel_name:"chat"}
+[2021/06/15 11:13:32.888][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"854181807305785394",channel_name:"chat"}
+[2021/06/15 11:13:36.220][687188236971671560][event][MESSAGE][ashz#3656] {message:"뭔데",id:"854181821251584010",channel_name:"chat"}
+[2021/06/15 11:13:37.845][687188236971671560][event][MESSAGE][ashz#3656] {message:"올려봐",id:"854181828029841438",channel_name:"chat"}
+[2021/06/15 11:14:18.976][687188236971671560][event][MESSAGE][thebox#9662] {message:"중고거래임 대신",id:"854182000340762645",channel_name:"chat"}
+[2021/06/15 11:15:02.550][687188236971671560][event][MESSAGE][ashz#3656] {message:"아",id:"854182183358431252",channel_name:"chat"}
+[2021/06/15 11:15:09.892][687188236971671560][event][MESSAGE][thebox#9662] {message:"그럼 좀 그런가",id:"854182214152486922",channel_name:"chat"}
+[2021/06/15 11:15:20.408][687188236971671560][event][MESSAGE][ashz#3656] {message:"뭐, 사용 별로 안했다면",id:"854182257858445313",channel_name:"chat"}
+[2021/06/15 11:15:22.552][687188236971671560][event][MESSAGE][ashz#3656] {message:"문제 없는데",id:"854182267076345897",channel_name:"chat"}
+[2021/06/15 11:15:35.316][687188236971671560][event][MESSAGE][thebox#9662] {message:"사기전에 항상 보여드리죠",id:"854182320813899796",channel_name:"chat"}
+[2021/06/15 11:15:37.437][687188236971671560][event][MESSAGE][ashz#3656] {message:"노트북이라는게 3개월만 써도",id:"854182329541722113",channel_name:"chat"}
+[2021/06/15 11:15:40.053][687188236971671560][event][MESSAGE][ashz#3656] {message:"흔적 남아",id:"854182340426989579",channel_name:"chat"}
+[2021/06/15 11:15:45.352][687188236971671560][event][MESSAGE][thebox#9662] {message:"무슨흔적",id:"854182362878705694",channel_name:"chat"}
+[2021/06/15 11:15:48.614][687188236971671560][event][MESSAGE][ashz#3656] {message:"사용 흔적",id:"854182376489353256",channel_name:"chat"}
+[2021/06/15 11:15:57.339][687188236971671560][event][MESSAGE][ashz#3656] {message:"물론 사람 마다 다르지만",id:"854182412858556437",channel_name:"chat"}
+[2021/06/15 11:16:00.856][687188236971671560][event][MESSAGE][thebox#9662] {message:"기스?",id:"854182427923316756",channel_name:"chat"}
+[2021/06/15 11:16:08.242][687188236971671560][event][MESSAGE][ashz#3656] {message:"자주 들고 돌아다녔으면",id:"854182458844381194",channel_name:"chat"}
+[2021/06/15 11:16:28.425][687188236971671560][event][MESSAGE][ashz#3656] {message:"기스도 있기도 하고",id:"854182542903083019",channel_name:"chat"}
+[2021/06/15 11:16:39.091][687188236971671560][event][MESSAGE][ashz#3656] {message:"정말로 노트북은 관리가 힘들어",id:"854182587936145429",channel_name:"chat"}
+[2021/06/15 11:16:43.318][687188236971671560][event][MESSAGE][ashz#3656] {message:"많이 들고다닌다고 할때",id:"854182606022246410",channel_name:"chat"}
+[2021/06/15 11:17:01.151][687188236971671560][event][MESSAGE][thebox#9662] {message:"ㅇㅋㅇㅋ꙼̈",id:"854182680832901150",channel_name:"chat"}
+[2021/06/15 11:17:59.238][687188236971671560][event][MESSAGE][ashz#3656] {message:"그게 ㅋㅋㅋ",id:"854182924415664178",channel_name:"chat"}
+[2021/06/15 11:18:20.294][687188236971671560][event][MESSAGE][ashz#3656] {message:"고등학교때 동욱이가 받은 노트북 상태를 봤어야해",id:"854183012463935509",channel_name:"chat"}
+[2021/06/15 11:18:23.545][687188236971671560][event][MESSAGE][ashz#3656] {message:"심각했음",id:"854183026375524372",channel_name:"chat"}
