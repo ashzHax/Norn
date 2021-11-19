@@ -1,0 +1,1404 @@
+[2021/09/22 13:28:08.315][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/09/22 13:28:08.355][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/09/22 13:28:08.355][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/09/22 13:28:09.107][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/09/22 13:29:40.585][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/09/22 13:29:40.627][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/09/22 13:29:40.628][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/09/22 13:29:41.379][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/09/22 13:31:07.726][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/09/22 13:31:07.768][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/09/22 13:31:07.768][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/09/22 13:31:08.533][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/09/22 17:04:28.218][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://www.youtube.com/watch?v=7PJv8uJ25Ww",id:"890146518080839680",channel_name:"chat"}
+[2021/09/22 17:26:26.359][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=-NEuxjO77Js&feature=share",id:"890152046857162763",channel_name:"chat"}
+[2021/09/22 17:26:26.726][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=-NEuxjO77Js&feature=share",id:"890152046857162763",channel_name:"chat"}
+[2021/09/22 17:26:33.125][687188236971671560][command][PLAY_SUCCESS][ashz#3656][890152046857162763] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=-NEuxjO77Js&feature=share",index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:29:02.786][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:31:31.314][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:33:59.550][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:36:27.634][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:38:55.506][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:41:24.993][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:43:53.197][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:46:22.374][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:48:50.575][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:51:18.487][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:53:46.478][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:56:14.558][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 17:58:42.547][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 18:01:12.117][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 18:03:40.199][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"147",volume:"7",url:"https://www.youtube.com/watch?v=-NEuxjO77Js"}
+[2021/09/22 18:05:50.194][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"890161961654972446",channel_name:"chat"}
+[2021/09/22 18:05:50.217][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][890161961654972446] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/09/22 18:05:50.449][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"890161961654972446",channel_name:"chat"}
+[2021/09/25 13:38:01.288][687188236971671560][event][MESSAGE][ashz#3656] {message:"@닉넴바꾼인간 오랜만 limfeva",id:"891181727005933619",channel_name:"chat"}
+[2021/09/25 14:54:56.653][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"어우",id:"891201085715382272",channel_name:"chat"}
+[2021/09/25 14:54:57.748][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"할로",id:"891201090173943819",channel_name:"chat"}
+[2021/09/25 15:43:11.214][687188236971671560][event][MESSAGE][ashz#3656] {message:"살아 있었네? ㅋㅋㅋㅋㅋㅋㅋㅋ",id:"891213226434494504",channel_name:"chat"}
+[2021/09/25 15:43:14.662][687188236971671560][event][MESSAGE][ashz#3656] {message:"요즘 뭐하냐",id:"891213240850317322",channel_name:"chat"}
+[2021/09/25 16:36:43.813][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"고냥요즘",id:"891226701017776128",channel_name:"chat"}
+[2021/09/25 16:36:47.672][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"기획배우면서",id:"891226717228769301",channel_name:"chat"}
+[2021/09/25 16:36:49.686][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"지내지ㅋㅋ",id:"891226725210525728",channel_name:"chat"}
+[2021/09/25 16:37:07.398][687188236971671560][event][MESSAGE][conner#2879] {message:"게임개발기획?",id:"891226799961415690",channel_name:"chat"}
+[2021/09/25 16:38:48.877][687188236971671560][event][MESSAGE][닉넴바꾼인간#1806] {message:"예스",id:"891227225582620702",channel_name:"chat"}
+[2021/09/25 16:39:05.591][687188236971671560][event][MESSAGE][conner#2879] {message:"noice",id:"891227294385991750",channel_name:"chat"}
+[2021/09/25 17:08:30.455][687188236971671560][event][MESSAGE][ashz#3656] {message:"나중에 다같이 통화 ㄱ",id:"891234698053955584",channel_name:"chat"}
+[2021/09/28 13:38:08.814][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://docs.google.com/spreadsheets/d/19I6u4rNz-RcApPYKvwhddMWt-OUSNuRtLN8SOVpXMog/edit#gid=1527839933",id:"892268922638848051",channel_name:"chat"}
+[2021/09/29 00:14:13.252][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I was a little hungry",id:"892428995847671808",channel_name:"chat"}
+[2021/09/29 00:14:36.948][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"892429095290437672",channel_name:"chat"}
+[2021/09/29 00:14:39.733][687188236971671560][event][MESSAGE][ashz#3656] {message:"idk man",id:"892429105843281990",channel_name:"chat"}
+[2021/09/29 00:14:44.667][687188236971671560][event][MESSAGE][ashz#3656] {message:"seems a bit missing",id:"892429127272001617",channel_name:"chat"}
+[2021/09/29 00:14:52.249][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("seems a bit missing"->"seems a bit lacking")}
+[2021/09/29 00:17:46.242][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I’m 609 grand in the hole",id:"892429888894668862",channel_name:"chat"}
+[2021/09/29 00:18:13.345][687188236971671560][event][MESSAGE][ashz#3656] {message:"seems like a good way to start life",id:"892430002937823303",channel_name:"chat"}
+[2021/09/29 00:18:18.781][687188236971671560][event][MESSAGE][ashz#3656] {message:"😉",id:"892430025729646652",channel_name:"chat"}
+[2021/09/29 15:31:54.376][687188236971671560][event][MESSAGE][ashz#3656] {message:"보이노?",id:"892659938982240317",channel_name:"chat"}
+[2021/09/29 15:31:56.038][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"892659944682303488",channel_name:"chat"}
+[2021/09/29 15:31:56.719][687188236971671560][event][MESSAGE][ashz#3656] {message:"아니",id:"892659948813701130",channel_name:"chat"}
+[2021/09/29 15:32:11.109][687188236971671560][event][MESSAGE][ashz#3656] {message:"진짜 난 뭔 개소린가 했는데",id:"892660009140355102",channel_name:"chat"}
+[2021/09/29 15:32:31.107][687188236971671560][event][MESSAGE][ashz#3656] {message:"다시 보니 진짜 여자애가 돼지 모자 쓴거임",id:"892660092569268257",channel_name:"chat"}
+[2021/09/29 15:33:07.310][687188236971671560][event][MESSAGE][conner#2879] {message:"*EPIC*",id:"892660244809928714",channel_name:"chat"}
+[2021/09/29 15:33:18.300][687188236971671560][event][MESSAGE][ashz#3656] {message:"*ITS EPIC*",id:"892660290917904394",channel_name:"chat"}
+[2021/09/29 15:33:31.202][687188236971671560][event][MESSAGE][ashz#3656] {message:"on that note, Terraria?",id:"892660345133490186",channel_name:"chat"}
+[2021/09/29 15:33:32.173][687188236971671560][event][MESSAGE][ashz#3656] {message:"😄",id:"892660349210337290",channel_name:"chat"}
+[2021/09/29 15:34:33.145][687188236971671560][event][MESSAGE][ashz#3656] {message:"어제 자기 전에 컬티스트 죽이고, 스타더스트하고 네뷸라 뿌개고",id:"892660604874133515",channel_name:"chat"}
+[2021/09/29 15:34:48.278][687188236971671560][event][MESSAGE][ashz#3656] {message:"오늘 아침 출근 전에 볼텍스 뿌갬",id:"892660668396892180",channel_name:"chat"}
+[2021/09/29 15:34:59.805][687188236971671560][event][MESSAGE][ashz#3656] {message:"솔라 깨고 바로 문로드 가능",id:"892660716723634206",channel_name:"chat"}
+[2021/09/29 15:35:11.712][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!328107003492696065> <@!245630458929348608>",id:"892660766702968832",channel_name:"chat"}
+[2021/09/29 15:35:17.164][687188236971671560][event][MESSAGE][conner#2879] {message:"yes",id:"892660789515812925",channel_name:"chat"}
+[2021/09/29 15:35:31.463][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅇㅋ 오늘 저녁에 ㄱ",id:"892660849511108648",channel_name:"chat"}
+[2021/09/29 15:35:43.314][687188236971671560][event][MESSAGE][ashz#3656] {message:"빨리 끝내고 디아블로 해야지",id:"892660899180052480",channel_name:"chat"}
+[2021/09/29 15:35:43.972][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋ",id:"892660901969289256",channel_name:"chat"}
+[2021/09/29 15:37:07.372][687188236971671560][event][MESSAGE][conner#2879] {message:"👹",id:"892661251686162482",channel_name:"chat"}
+[2021/09/29 15:37:46.067][687188236971671560][event][MESSAGE][ashz#3656] {message:"<a:PI_NicoNii:703413420472664145>",id:"892661413921849425",channel_name:"chat"}
+[2021/09/29 20:37:52.857][687188236971671560][event][MESSAGE][zik#6629] {message:"😳",id:"892736939587936298",channel_name:"chat"}
+[2021/09/29 22:18:08.839][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"안녕",id:"892762172621484052",channel_name:"chat"}
+[2021/09/29 22:18:21.883][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"난 이만",id:"892762227579420722",channel_name:"chat"}
+[2021/09/29 22:18:23.365][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"갈게",id:"892762233736659035",channel_name:"chat"}
+[2021/09/29 22:18:25.677][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅎㅎㅎㅎ^^^^",id:"892762243069005835",channel_name:"chat"}
+[2021/10/01 10:21:37.228][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"",id:"893306491765940224",channel_name:"chat"}
+[2021/10/02 01:42:24.532][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/10/02 01:42:24.674][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/10/02 01:42:24.674][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/10/02 01:42:25.537][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/10/02 01:43:22.133][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/10/02 01:43:22.178][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/10/02 01:43:22.178][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/10/02 01:43:22.962][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/10/02 01:43:28.842][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"893538622161170433",channel_name:"chat"}
+[2021/10/02 01:43:29.085][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"893538622161170433",channel_name:"chat"}
+[2021/10/02 01:43:29.314][687188236971671560][command][JOIN_SUCCESS][ashz#3656][893538622161170433] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/10/02 01:44:45.038][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=M4T_k33CI1M&feature=share",id:"893538942060757012",channel_name:"chat"}
+[2021/10/02 01:44:45.288][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=M4T_k33CI1M&feature=share",id:"893538942060757012",channel_name:"chat"}
+[2021/10/02 01:44:49.278][687188236971671560][command][PLAY_SUCCESS][ashz#3656][893538942060757012] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=M4T_k33CI1M&feature=share",index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 01:48:30.022][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 01:52:11.448][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 01:55:51.885][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 01:59:32.332][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:03:12.785][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:06:53.301][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:10:34.740][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:14:15.001][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:17:56.455][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:21:38.152][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:25:19.500][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:28:59.811][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:32:40.097][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:36:20.430][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:40:00.780][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:43:41.109][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:47:22.689][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:51:03.285][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:54:44.679][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 02:58:25.020][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:02:06.478][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:05:46.951][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:09:28.353][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:13:09.811][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:16:50.314][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:20:30.687][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:24:12.123][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:27:52.599][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:31:32.938][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:35:13.240][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:38:53.545][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:42:33.907][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:46:15.444][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:49:56.870][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:53:38.319][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"220",volume:"7",url:"https://www.youtube.com/watch?v=M4T_k33CI1M"}
+[2021/10/02 03:55:35.918][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"893571871050702898",channel_name:"chat"}
+[2021/10/02 03:55:35.961][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][893571871050702898] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/10/02 03:55:36.203][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"893571871050702898",channel_name:"chat"}
+[2021/10/05 14:34:09.945][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@328107003492696065>",id:"894819735047372891",channel_name:"chat"}
+[2021/10/05 14:34:34.421][687188236971671560][event][MESSAGE][ashz#3656] {message:"also started to play Diablo",id:"894819837736538123",channel_name:"chat"}
+[2021/10/05 14:34:48.789][687188236971671560][event][MESSAGE][ashz#3656] {message:"Sorcerer ^^",id:"894819898210005053",channel_name:"chat"}
+[2021/10/05 14:40:06.801][687188236971671560][event][MESSAGE][conner#2879] {message:"nani",id:"894821231977693204",channel_name:"chat"}
+[2021/10/05 14:40:29.810][687188236971671560][event][MESSAGE][ashz#3656] {message:"아침에 시간좀 있어서",id:"894821328555765792",channel_name:"chat"}
+[2021/10/05 14:40:52.079][687188236971671560][event][MESSAGE][ashz#3656] {message:"첫 신 다보고",id:"894821421577039923",channel_name:"chat"}
+[2021/10/05 14:40:57.672][687188236971671560][event][MESSAGE][ashz#3656] {message:"모든 npc랑 대화하고",id:"894821445320982538",channel_name:"chat"}
+[2021/10/05 14:41:24.981][687188236971671560][event][MESSAGE][ashz#3656] {message:"나가서 고슴토치랑 빨간 고블린 몇마리 죽이고",id:"894821559682887681",channel_name:"chat"}
+[2021/10/05 14:41:28.430][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("나가서 고슴토치랑 빨간 고블린 몇마리 죽이고"->"나가서 고슴토치랑 빨간 고블린 몇마리 죽림")}
+[2021/10/05 14:41:30.836][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("나가서 고슴토치랑 빨간 고블린 몇마리 죽림"->"나가서 고슴토치랑 빨간 고블린 몇마리 죽임")}
+[2021/10/05 14:41:31.236][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"894821586077626409",channel_name:"chat"}
+[2021/10/05 14:41:41.714][687188236971671560][event][MESSAGE][ashz#3656] {message:"나가봐야해서 그것만 하고 끔",id:"894821630130401321",channel_name:"chat"}
+[2021/10/05 14:41:47.729][687188236971671560][event][MESSAGE][ashz#3656] {message:"근데 레벨 2는 일단 찍음",id:"894821655367536670",channel_name:"chat"}
+[2021/10/05 14:41:58.654][687188236971671560][event][MESSAGE][ashz#3656] {message:"닌 뭐노? 직업과 현 레벨",id:"894821701211271208",channel_name:"chat"}
+[2021/10/05 14:42:20.744][687188236971671560][event][MESSAGE][conner#2879] {message:"*HOLY NIGHT*",id:"894821793808920627",channel_name:"chat"}
+[2021/10/05 14:42:29.876][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"894821832178413599",channel_name:"chat"}
+[2021/10/05 14:42:33.101][687188236971671560][event][MESSAGE][ashz#3656] {message:"lame",id:"894821844471910440",channel_name:"chat"}
+[2021/10/05 14:42:35.822][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"894821856673169539",channel_name:"chat"}
+[2021/10/05 14:42:41.083][687188236971671560][event][MESSAGE][ashz#3656] {message:"level?",id:"894821879154626580",channel_name:"chat"}
+[2021/10/05 14:43:01.729][687188236971671560][event][MESSAGE][conner#2879] {message:"50몇인가",id:"894821965733437511",channel_name:"chat"}
+[2021/10/05 14:43:21.311][687188236971671560][event][MESSAGE][ashz#3656] {message:"*페인쉑*\",id:"894822047853723688",channel_name:"chat"}
+[2021/10/05 14:43:23.914][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("*페인쉑*\"->"*페인쉑*")}
+[2021/10/05 14:43:31.833][687188236971671560][event][MESSAGE][conner#2879] {message:"새로 키울거 하나 더 있음",id:"894822092053303336",channel_name:"chat"}
+[2021/10/05 14:43:36.125][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"894822110067834920",channel_name:"chat"}
+[2021/10/05 14:43:53.354][687188236971671560][event][MESSAGE][conner#2879] {message:"ASS ASS INS",id:"894822182293749790",channel_name:"chat"}
+[2021/10/05 14:43:55.757][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"894822192137764885",channel_name:"chat"}
+[2021/10/05 14:44:00.835][687188236971671560][event][MESSAGE][ashz#3656] {message:"쓰레기 캐를?",id:"894822213679738900",channel_name:"chat"}
+[2021/10/05 14:44:06.800][687188236971671560][event][MESSAGE][conner#2879] {message:"개사긴데",id:"894822238132531242",channel_name:"chat"}
+[2021/10/05 14:44:09.204][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"894822248815423529",channel_name:"chat"}
+[2021/10/05 14:44:13.892][687188236971671560][event][MESSAGE][ashz#3656] {message:"아니라던디",id:"894822268310532156",channel_name:"chat"}
+[2021/10/05 14:44:24.873][687188236971671560][event][MESSAGE][ashz#3656] {message:"왜 사기노",id:"894822314506592267",channel_name:"chat"}
+[2021/10/05 14:44:25.476][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"894822316985425930",channel_name:"chat"}
+[2021/10/05 14:44:27.512][687188236971671560][event][MESSAGE][conner#2879] {message:"센트리 어쌔신 개사기임",id:"894822324371599370",channel_name:"chat"}
+[2021/10/05 14:44:28.220][687188236971671560][event][MESSAGE][zik#6629] {message:"아재냄새..",id:"894822328511393823",channel_name:"chat"}
+[2021/10/05 14:44:31.325][687188236971671560][event][MESSAGE][zik#6629] {message:"여기까지 나요",id:"894822341199163413",channel_name:"chat"}
+[2021/10/05 14:44:38.971][687188236971671560][event][MESSAGE][ashz#3656] {message:"fuck u zik",id:"894822373637890058",channel_name:"chat"}
+[2021/10/05 14:45:05.311][687188236971671560][event][MESSAGE][ashz#3656] {message:"그냥 어새신과 센트리 어세신 차이가 뭐노",id:"894822484090703902",channel_name:"chat"}
+[2021/10/05 14:45:31.660][687188236971671560][event][MESSAGE][conner#2879] {message:"걍 어쌔신의 스킬 빌드를 센트리 스킬셋으로 빌드하는거",id:"894822594610626630",channel_name:"chat"}
+[2021/10/05 14:45:38.014][687188236971671560][event][MESSAGE][ashz#3656] {message:"아",id:"894822621290577960",channel_name:"chat"}
+[2021/10/05 14:45:42.417][687188236971671560][event][MESSAGE][ashz#3656] {message:"그게 뭐가 좋은디",id:"894822639766499368",channel_name:"chat"}
+[2021/10/05 14:45:43.401][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋ",id:"894822643570716684",channel_name:"chat"}
+[2021/10/05 14:46:02.928][687188236971671560][event][MESSAGE][conner#2879] {message:"걍 개쌤",id:"894822725766500404",channel_name:"chat"}
+[2021/10/05 14:46:13.743][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"894822771081760848",channel_name:"chat"}
+[2021/10/05 14:46:18.447][687188236971671560][event][MESSAGE][ashz#3656] {message:"nice argument u shit",id:"894822790862078032",channel_name:"chat"}
+[2021/10/05 14:46:41.736][687188236971671560][event][MESSAGE][ashz#3656] {message:"뭐 그럼 오늘",id:"894822888509677640",channel_name:"chat"}
+[2021/10/05 14:46:43.443][687188236971671560][event][MESSAGE][ashz#3656] {message:"하실?",id:"894822895732273222",channel_name:"chat"}
+[2021/10/05 14:46:47.169][687188236971671560][event][MESSAGE][conner#2879] {message:"ㄱ",id:"894822911364460544",channel_name:"chat"}
+[2021/10/05 14:46:57.596][687188236971671560][event][MESSAGE][ashz#3656] {message:"하지만 직도 가능하면 그냥 테라리아 ㄱ?",id:"894822954536435713",channel_name:"chat"}
+[2021/10/05 14:47:01.767][687188236971671560][event][MESSAGE][conner#2879] {message:"ㄱ",id:"894822972156674069",channel_name:"chat"}
+[2021/10/05 14:47:06.055][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!245630458929348608>",id:"894822990552899605",channel_name:"chat"}
+[2021/10/05 14:47:20.623][687188236971671560][event][MESSAGE][ashz#3656] {message:"Terraria: Final Boss (Light Empress)",id:"894823051672313856",channel_name:"chat"}
+[2021/10/05 14:47:22.993][687188236971671560][event][MESSAGE][ashz#3656] {message:"r?",id:"894823061545697330",channel_name:"chat"}
+[2021/10/05 14:47:25.596][687188236971671560][event][MESSAGE][ashz#3656] {message:"gi?",id:"894823072408948736",channel_name:"chat"}
+[2021/10/05 14:47:44.550][687188236971671560][event][MESSAGE][zik#6629] {message:"ㅇㅇ.. 근데 지금 당장은 안되는거 알제",id:"894823150972465182",channel_name:"chat"}
+[2021/10/05 14:47:56.681][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋㅋㅋ 나도거든? ㅋㅋㅋㅋ",id:"894823202868576276",channel_name:"chat"}
+[2021/10/05 14:48:03.701][687188236971671560][event][MESSAGE][ashz#3656] {message:"오늘 10시 ㄱ?",id:"894823232329367552",channel_name:"chat"}
+[2021/10/05 14:48:24.445][687188236971671560][event][MESSAGE][zik#6629] {message:"과연 모두가 그때까지 안자고 살아있을 수 있을까",id:"894823319365373952",channel_name:"chat"}
+[2021/10/05 14:48:36.866][687188236971671560][event][MESSAGE][ashz#3656] {message:":/ 10시 전에 자면 인간 아니지",id:"894823371416678450",channel_name:"chat"}
+[2021/10/05 14:48:37.555][687188236971671560][event][MESSAGE][conner#2879] {message:"과연..",id:"894823373878751243",channel_name:"chat"}
+[2021/10/05 14:48:49.981][687188236971671560][event][MESSAGE][ashz#3656] {message:"니들 뒤진다 자면",id:"894823426190098463",channel_name:"chat"}
+[2021/10/05 14:49:01.182][687188236971671560][event][MESSAGE][ashz#3656] {message:"수면 패턴이 나보다 쓰레기인것들이 ㅋㅋㅋㅋ",id:"894823473443119104",channel_name:"chat"}
+[2021/10/05 14:49:34.877][687188236971671560][event][MESSAGE][conner#2879] {message:"착한 헬조선의 어른이들은 일찍자고 늦게 일어나야 한국에서 깨있는 시간을 줄일수 있어요..",id:"894823614766022686",channel_name:"chat"}
+[2021/10/05 14:50:07.840][687188236971671560][event][MESSAGE][ashz#3656] {message:"그럴 바엔 그냥 헬조선탈출 하세요",id:"894823752825704448",channel_name:"chat"}
+[2021/10/05 14:50:08.283][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋㅋㅋ",id:"894823754872537088",channel_name:"chat"}
+[2021/10/05 14:50:12.487][687188236971671560][event][MESSAGE][conner#2879] {message:"ㄹㅇㅋㅋ",id:"894823772094361601",channel_name:"chat"}
+[2021/10/05 14:50:23.728][687188236971671560][event][MESSAGE][ashz#3656] {message:"그럼 아예 헬조선에서 보내는 시간을 0으로 만들수 있잖아",id:"894823819649384458",channel_name:"chat"}
+[2021/10/05 14:50:24.297][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"894823821914275840",channel_name:"chat"}
+[2021/10/05 14:50:28.278][687188236971671560][event][MESSAGE][ashz#3656] {message:"하",id:"894823838750224424",channel_name:"chat"}
+[2021/10/05 14:50:40.822][687188236971671560][event][MESSAGE][ashz#3656] {message:"16억만 있어도 편하게 나갈수 있는데",id:"894823890084302889",channel_name:"chat"}
+[2021/10/05 14:50:41.132][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅋ",id:"894823892311506998",channel_name:"chat"}
+[2021/10/06 11:51:52.264][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Duuuuuuuuuude",id:"895141280286384189",channel_name:"chat"}
+[2021/10/06 11:52:04.536][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I am helping students in my class and this is their god damn code",id:"895141331461083177",channel_name:"chat"}
+[2021/10/06 11:52:34.301][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅕㅗ",id:"895141456665272360",channel_name:"chat"}
+[2021/10/06 11:52:36.111][687188236971671560][event][MESSAGE][ashz#3656] {message:"uh",id:"895141464001097760",channel_name:"chat"}
+[2021/10/06 11:52:37.050][687188236971671560][event][MESSAGE][ashz#3656] {message:"wow",id:"895141468216381481",channel_name:"chat"}
+[2021/10/06 11:52:38.223][687188236971671560][event][MESSAGE][ashz#3656] {message:"uh",id:"895141472842698763",channel_name:"chat"}
+[2021/10/06 11:52:44.298][687188236971671560][event][MESSAGE][ashz#3656] {message:"A. who the fucks use nano",id:"895141498587328552",channel_name:"chat"}
+[2021/10/06 11:52:50.834][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("A. who the fucks use nano"->"A. who the fuck use nano")}
+[2021/10/06 11:53:18.164][687188236971671560][event][MESSAGE][ashz#3656] {message:"B. did the concept of indenting never came up on your studies?",id:"895141640564514906",channel_name:"chat"}
+[2021/10/06 11:53:43.232][687188236971671560][event][MESSAGE][ashz#3656] {message:"C. this person doesnt know how to use scanf thats for sure",id:"895141745803788318",channel_name:"chat"}
+[2021/10/06 11:54:13.434][687188236971671560][event][MESSAGE][ashz#3656] {message:"D. whats the fucking point of 16-1",id:"895141872475979796",channel_name:"chat"}
+[2021/10/06 11:54:39.010][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"씨발",id:"895141979380396114",channel_name:"chat"}
+[2021/10/06 11:54:47.124][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"씨발씨발씨발씨발씨발씨발씨발씨발씨발",id:"895142013689798716",channel_name:"chat"}
+[2021/10/06 11:55:11.933][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Dude",id:"895142117838577664",channel_name:"chat"}
+[2021/10/06 11:55:17.555][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I don't even know where to begin",id:"895142141121134593",channel_name:"chat"}
+[2021/10/06 11:55:23.788][687188236971671560][event][MESSAGE][ashz#3656] {message:"the only thing i will give a plus on is the null check",id:"895142167448793098",channel_name:"chat"}
+[2021/10/06 11:55:27.216][687188236971671560][event][MESSAGE][ashz#3656] {message:"and thats probably it",id:"895142181696843777",channel_name:"chat"}
+[2021/10/06 11:55:27.756][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895142183831740457",channel_name:"chat"}
+[2021/10/06 11:55:45.758][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Perfect they did 1 in 100 things right",id:"895142259740250142",channel_name:"chat"}
+[2021/10/06 11:55:47.049][687188236971671560][event][MESSAGE][ashz#3656] {message:"lemme guess, this is a 2d board game",id:"895142264970547341",channel_name:"chat"}
+[2021/10/06 11:55:50.313][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Yes",id:"895142278543343627",channel_name:"chat"}
+[2021/10/06 11:55:53.774][687188236971671560][event][MESSAGE][ashz#3656] {message:"chess?",id:"895142293139492905",channel_name:"chat"}
+[2021/10/06 11:55:56.386][687188236971671560][event][MESSAGE][ashz#3656] {message:"checkers?",id:"895142304241840148",channel_name:"chat"}
+[2021/10/06 11:56:03.832][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Nope, even simpler",id:"895142335401312276",channel_name:"chat"}
+[2021/10/06 11:56:08.075][687188236971671560][event][MESSAGE][ashz#3656] {message:"hm",id:"895142352933494795",channel_name:"chat"}
+[2021/10/06 11:56:11.789][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Something that should take no more than 20 mins",id:"895142368855085136",channel_name:"chat"}
+[2021/10/06 11:56:21.871][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Arguably even less",id:"895142411179794462",channel_name:"chat"}
+[2021/10/06 11:57:05.015][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Sliding puzzle!!!! You have 16 tiles labeled 15-1 in decrementing order with a clear tile. Objective is to get the tiles into ascending order",id:"895142592130469928",channel_name:"chat"}
+[2021/10/06 11:57:09.084][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"**that simple**",id:"895142608765063219",channel_name:"chat"}
+[2021/10/06 11:57:16.260][687188236971671560][event][MESSAGE][ashz#3656] {message:"ah",id:"895142639316385872",channel_name:"chat"}
+[2021/10/06 11:57:32.383][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Aghhhhh",id:"895142706731438081",channel_name:"chat"}
+[2021/10/06 11:57:50.404][687188236971671560][event][MESSAGE][ashz#3656] {message:"thats....actually horrifyingly easy",id:"895142782124044341",channel_name:"chat"}
+[2021/10/06 11:57:51.407][687188236971671560][event][MESSAGE][ashz#3656] {message:"wtf",id:"895142786590969887",channel_name:"chat"}
+[2021/10/06 11:57:57.114][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"it is",id:"895142810246848534",channel_name:"chat"}
+[2021/10/06 11:57:58.432][687188236971671560][event][MESSAGE][ashz#3656] {message:"i never thought about it",id:"895142815863029791",channel_name:"chat"}
+[2021/10/06 11:58:03.368][687188236971671560][event][MESSAGE][ashz#3656] {message:"wtf",id:"895142836599664641",channel_name:"chat"}
+[2021/10/06 11:58:11.683][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"and the amount of people having issues with it is terrible",id:"895142871739539486",channel_name:"chat"}
+[2021/10/06 11:58:22.832][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I have helped 5 people by now",id:"895142918506029126",channel_name:"chat"}
+[2021/10/06 11:58:27.661][687188236971671560][event][MESSAGE][ashz#3656] {message:"ngl it would take only 20 minutes xD",id:"895142938693226516",channel_name:"chat"}
+[2021/10/06 11:58:33.665][687188236971671560][event][MESSAGE][ashz#3656] {message:"not taking the UI into account tho",id:"895142963678683227",channel_name:"chat"}
+[2021/10/06 11:58:36.609][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"granted some of them were really really close, just 1 dumb mistake",id:"895142976328728606",channel_name:"chat"}
+[2021/10/06 11:58:40.459][687188236971671560][event][MESSAGE][ashz#3656] {message:"like, a clean ui might take a few",id:"895142992027983873",channel_name:"chat"}
+[2021/10/06 11:58:40.942][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"this was the worst of it",id:"895142994511032370",channel_name:"chat"}
+[2021/10/06 11:58:43.550][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895143005030322187",channel_name:"chat"}
+[2021/10/06 11:58:51.116][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"This is a text UI for now so no excuse",id:"895143037079027733",channel_name:"chat"}
+[2021/10/06 11:58:51.738][687188236971671560][event][MESSAGE][ashz#3656] {message:"well, be thankful this is the worst",id:"895143039767564288",channel_name:"chat"}
+[2021/10/06 11:58:57.470][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"a real gui then yes I'd understand",id:"895143063310176329",channel_name:"chat"}
+[2021/10/06 11:58:59.134][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895143070717341696",channel_name:"chat"}
+[2021/10/06 11:59:04.549][687188236971671560][event][MESSAGE][ashz#3656] {message:"i mean",id:"895143093450457178",channel_name:"chat"}
+[2021/10/06 11:59:20.100][687188236971671560][event][MESSAGE][ashz#3656] {message:"why the code wrap on the move() function",id:"895143158730620989",channel_name:"chat"}
+[2021/10/06 11:59:31.228][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Don't even ask me why",id:"895143205388038224",channel_name:"chat"}
+[2021/10/06 11:59:36.382][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"you didn't even see the worse of it",id:"895143227030646824",channel_name:"chat"}
+[2021/10/06 11:59:42.627][687188236971671560][event][MESSAGE][ashz#3656] {message:"and there is no variable formatting...",id:"895143253177942067",channel_name:"chat"}
+[2021/10/06 11:59:43.890][687188236971671560][event][MESSAGE][ashz#3656] {message:"wtf",id:"895143258517295115",channel_name:"chat"}
+[2021/10/06 12:00:04.997][687188236971671560][event][MESSAGE][ashz#3656] {message:"is this person a boy or a girl",id:"895143347067449384",channel_name:"chat"}
+[2021/10/06 12:00:21.445][687188236971671560][event][MESSAGE][ashz#3656] {message:"just so i can smack talk easier",id:"895143415614931006",channel_name:"chat"}
+[2021/10/06 12:00:29.843][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"They declared board in a 1D array and put it only in the display function just to print it. They never made a board to actually manipulate",id:"895143451224600606",channel_name:"chat"}
+[2021/10/06 12:00:31.365][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"girl",id:"895143457406996501",channel_name:"chat"}
+[2021/10/06 12:00:38.784][687188236971671560][event][MESSAGE][ashz#3656] {message:"well, this girl never learned her C's",id:"895143488738447441",channel_name:"chat"}
+[2021/10/06 12:00:54.786][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her pointers",id:"895143555612438569",channel_name:"chat"}
+[2021/10/06 12:00:57.401][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her variables",id:"895143566781861988",channel_name:"chat"}
+[2021/10/06 12:00:58.628][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Dude I don't even know how the living fuck she passed the second course",id:"895143571974397962",channel_name:"chat"}
+[2021/10/06 12:01:00.787][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her scanf",id:"895143579624828948",channel_name:"chat"}
+[2021/10/06 12:01:03.977][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her function",id:"895143594401361920",channel_name:"chat"}
+[2021/10/06 12:01:08.067][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her global functions",id:"895143611556069417",channel_name:"chat"}
+[2021/10/06 12:01:11.220][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her arrays",id:"895143623006507058",channel_name:"chat"}
+[2021/10/06 12:01:15.151][687188236971671560][event][MESSAGE][ashz#3656] {message:"or her code indents",id:"895143641314627584",channel_name:"chat"}
+[2021/10/06 12:01:18.656][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"This class number is 333, to get to 33 you need 201 and 213.",id:"895143656003080212",channel_name:"chat"}
+[2021/10/06 12:01:23.982][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("This class number is 333, to get to 33 you need 201 and 213."->"This class number is 333, to get to 333 you need 201 and 213.")}
+[2021/10/06 12:01:35.449][687188236971671560][event][MESSAGE][ashz#3656] {message:"and wats 201 and 213 bout",id:"895143726446432266",channel_name:"chat"}
+[2021/10/06 12:01:39.069][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I don't even know how she passed 201 without knowing arrays!",id:"895143741596258304",channel_name:"chat"}
+[2021/10/06 12:01:49.273][687188236971671560][event][MESSAGE][ashz#3656] {message:"maybe its only 1d array?",id:"895143784130699285",channel_name:"chat"}
+[2021/10/06 12:02:03.093][687188236971671560][event][MESSAGE][ashz#3656] {message:"or maybe she just freeballed it",id:"895143841806549044",channel_name:"chat"}
+[2021/10/06 12:02:07.885][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"201 is intro to comp sci where they teach you basic concepts, easy shit. 213 is all datastructures so you learn 2D arrays, hashes, lists all that",id:"895143862497067048",channel_name:"chat"}
+[2021/10/06 12:02:17.124][687188236971671560][event][MESSAGE][ashz#3656] {message:"or paided someone",id:"895143901235642448",channel_name:"chat"}
+[2021/10/06 12:02:34.214][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Idk, however she did it it is astonishing",id:"895143971792257034",channel_name:"chat"}
+[2021/10/06 12:02:37.399][687188236971671560][event][MESSAGE][ashz#3656] {message:"213 is quite a jump from 201",id:"895143986220638258",channel_name:"chat"}
+[2021/10/06 12:03:04.193][687188236971671560][event][MESSAGE][ashz#3656] {message:"but then again, learning a concept and implementing a concept are two different things",id:"895144098636386314",channel_name:"chat"}
+[2021/10/06 12:03:06.500][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Yeah, go from basic concepts straight to advanced stuff. I got to skip 201",id:"895144108295847956",channel_name:"chat"}
+[2021/10/06 12:03:07.116][687188236971671560][event][MESSAGE][ashz#3656] {message:"keep that in mind",id:"895144110883733514",channel_name:"chat"}
+[2021/10/06 12:03:12.697][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"895144133910470727",channel_name:"chat"}
+[2021/10/06 12:03:13.263][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895144136670339162",channel_name:"chat"}
+[2021/10/06 12:03:24.918][687188236971671560][event][MESSAGE][ashz#3656] {message:"mr.im too good for class 201",id:"895144185542361118",channel_name:"chat"}
+[2021/10/06 12:03:26.799][687188236971671560][event][MESSAGE][ashz#3656] {message:"sure sure",id:"895144192291012690",channel_name:"chat"}
+[2021/10/06 12:03:33.603][687188236971671560][event][MESSAGE][ashz#3656] {message:"fuck u xD",id:"895144221831491685",channel_name:"chat"}
+[2021/10/06 12:03:37.554][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I took AP in highschool for comp sci A and they waved 201 from my course list lol",id:"895144238252195860",channel_name:"chat"}
+[2021/10/06 12:03:47.026][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Cause I got a perfect score on the placement exam",id:"895144278186156092",channel_name:"chat"}
+[2021/10/06 12:03:55.757][687188236971671560][event][MESSAGE][ashz#3656] {message:"cant be too hard",id:"895144314638856253",channel_name:"chat"}
+[2021/10/06 12:04:03.388][687188236971671560][event][MESSAGE][ashz#3656] {message:"wasnt there something like that for 213?",id:"895144346926608414",channel_name:"chat"}
+[2021/10/06 12:04:18.786][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"na, well for me na. Only hardest thing was hex to decimal and decimal to binary",id:"895144411460165642",channel_name:"chat"}
+[2021/10/06 12:04:21.083][687188236971671560][event][MESSAGE][ashz#3656] {message:"i would tend to think data structures are common these days",id:"895144421048324166",channel_name:"chat"}
+[2021/10/06 12:04:38.458][687188236971671560][event][MESSAGE][ashz#3656] {message:"tf",id:"895144494020833341",channel_name:"chat"}
+[2021/10/06 12:04:53.667][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Not specifically, AP comp sci A touches like 1/4 of 213",id:"895144557824602112",channel_name:"chat"}
+[2021/10/06 12:04:56.927][687188236971671560][event][MESSAGE][ashz#3656] {message:"like, mathmatically or algorithmically",id:"895144571468660796",channel_name:"chat"}
+[2021/10/06 12:05:03.064][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"both",id:"895144597020352573",channel_name:"chat"}
+[2021/10/06 12:05:13.698][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh well that happens",id:"895144641509359637",channel_name:"chat"}
+[2021/10/06 12:05:23.980][687188236971671560][event][MESSAGE][ashz#3656] {message:"algorithm for that is easy shit",id:"895144684572250223",channel_name:"chat"}
+[2021/10/06 12:05:32.559][687188236971671560][event][MESSAGE][ashz#3656] {message:"math is another thing tho",id:"895144719452086293",channel_name:"chat"}
+[2021/10/06 12:05:40.010][687188236971671560][event][MESSAGE][ashz#3656] {message:"not too hard, but might confuse",id:"895144752062812181",channel_name:"chat"}
+[2021/10/06 12:06:19.923][687188236971671560][event][MESSAGE][ashz#3656] {message:"and here i thought korean coding classes were shit",id:"895144919197442101",channel_name:"chat"}
+[2021/10/06 12:06:23.646][687188236971671560][event][MESSAGE][ashz#3656] {message:"apparently not",id:"895144935056109569",channel_name:"chat"}
+[2021/10/06 12:06:27.084][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!328107003492696065>",id:"895144949211881493",channel_name:"chat"}
+[2021/10/06 12:06:30.843][687188236971671560][event][MESSAGE][ashz#3656] {message:"look at that shit boi",id:"895144965406085150",channel_name:"chat"}
+[2021/10/06 12:06:38.988][687188236971671560][event][MESSAGE][ashz#3656] {message:"it brings tear to my eyes",id:"895144999400910910",channel_name:"chat"}
+[2021/10/06 12:06:44.756][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("it brings tear to my eyes"->"it brings tears to my eyes")}
+[2021/10/06 12:07:15.230][687188236971671560][event][MESSAGE][ashz#3656] {message:"on a side note",id:"895145151582851092",channel_name:"chat"}
+[2021/10/06 12:07:19.967][687188236971671560][event][MESSAGE][ashz#3656] {message:"why are you helping others anyway?",id:"895145171455475722",channel_name:"chat"}
+[2021/10/06 12:07:27.797][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Yeah, we had to do it by hand for all conversions. Hard at first but once you get it, you get it. The test covered sorts (mine did quicksort), recursion, binary/hex/oct/decimal, some data structures like arraylists, arrays, ints, floats, all that fun stuff, did binary tree, tree search patterns and thats about it",id:"895145204250738770",channel_name:"chat"}
+[2021/10/06 12:07:29.932][687188236971671560][event][MESSAGE][ashz#3656] {message:"just for fun or for extra points?",id:"895145213255880714",channel_name:"chat"}
+[2021/10/06 12:08:01.510][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Don't forget AP Comp Sci A is a Highschool class in technicality. It is just considered equal to college class",id:"895145345573609483",channel_name:"chat"}
+[2021/10/06 12:08:07.466][687188236971671560][event][MESSAGE][ashz#3656] {message:"boring, just read a book. get it done in a day",id:"895145370634551396",channel_name:"chat"}
+[2021/10/06 12:08:12.410][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895145391182462988",channel_name:"chat"}
+[2021/10/06 12:08:16.194][687188236971671560][event][MESSAGE][ashz#3656] {message:"its how i did it",id:"895145407292788736",channel_name:"chat"}
+[2021/10/06 12:08:33.244][687188236971671560][event][MESSAGE][ashz#3656] {message:"read a book, write a few code as test, you get all the concepts in a day",id:"895145478667264011",channel_name:"chat"}
+[2021/10/06 12:08:34.775][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"For fun, I was gonna do it to practice reading other people's code until well...",id:"895145485160038411",channel_name:"chat"}
+[2021/10/06 12:08:39.031][687188236971671560][event][MESSAGE][ashz#3656] {message:"atleast for data structure",id:"895145503036174367",channel_name:"chat"}
+[2021/10/06 12:08:48.023][687188236971671560][event][MESSAGE][ashz#3656] {message:"until shit went sideways",id:"895145540306755636",channel_name:"chat"}
+[2021/10/06 12:08:55.494][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Quite literally",id:"895145571772407890",channel_name:"chat"}
+[2021/10/06 12:08:55.566][687188236971671560][event][MESSAGE][ashz#3656] {message:"and you landing on it",id:"895145571864707123",channel_name:"chat"}
+[2021/10/06 12:09:00.360][687188236971671560][event][MESSAGE][ashz#3656] {message:"or it landed on u",id:"895145592261603359",channel_name:"chat"}
+[2021/10/06 12:09:11.217][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"they took the screen, turned it on its side and the words all fell into one side of the screen",id:"895145636817666080",channel_name:"chat"}
+[2021/10/06 12:09:11.296][687188236971671560][event][MESSAGE][ashz#3656] {message:"i mean",id:"895145638390554675",channel_name:"chat"}
+[2021/10/06 12:09:13.754][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"thats what they did",id:"895145648649809970",channel_name:"chat"}
+[2021/10/06 12:09:22.213][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895145684204937287",channel_name:"chat"}
+[2021/10/06 12:09:24.483][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"fucking",id:"895145693415612427",channel_name:"chat"}
+[2021/10/06 12:09:26.816][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"rm -rf /",id:"895145703473557545",channel_name:"chat"}
+[2021/10/06 12:09:28.686][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"that god",id:"895145711304314930",channel_name:"chat"}
+[2021/10/06 12:09:29.769][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"damn",id:"895145715758678077",channel_name:"chat"}
+[2021/10/06 12:09:31.041][687188236971671560][event][MESSAGE][ashz#3656] {message:"no",id:"895145721043488839",channel_name:"chat"}
+[2021/10/06 12:09:31.055][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"computer",id:"895145720888328264",channel_name:"chat"}
+[2021/10/06 12:09:31.927][687188236971671560][event][MESSAGE][ashz#3656] {message:"non",id:"895145724382183424",channel_name:"chat"}
+[2021/10/06 12:09:32.563][687188236971671560][event][MESSAGE][ashz#3656] {message:"no",id:"895145727578214400",channel_name:"chat"}
+[2021/10/06 12:09:32.989][687188236971671560][event][MESSAGE][ashz#3656] {message:"no",id:"895145729369210940",channel_name:"chat"}
+[2021/10/06 12:09:34.263][687188236971671560][event][MESSAGE][ashz#3656] {message:"oi",id:"895145734595285052",channel_name:"chat"}
+[2021/10/06 12:09:38.911][687188236971671560][event][MESSAGE][ashz#3656] {message:"its not the computer's fault",id:"895145754212069436",channel_name:"chat"}
+[2021/10/06 12:09:39.409][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895145756309200937",channel_name:"chat"}
+[2021/10/06 12:09:42.951][687188236971671560][event][MESSAGE][ashz#3656] {message:"blame the girl",id:"895145771186413588",channel_name:"chat"}
+[2021/10/06 12:09:44.073][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"KILL THE COMPITER",id:"895145775795929099",channel_name:"chat"}
+[2021/10/06 12:09:45.778][687188236971671560][event][MESSAGE][ashz#3656] {message:"not the computer",id:"895145783014355004",channel_name:"chat"}
+[2021/10/06 12:09:46.928][687188236971671560][event][MESSAGE][ashz#3656] {message:"NO",id:"895145787745517618",channel_name:"chat"}
+[2021/10/06 12:09:48.595][687188236971671560][event][MESSAGE][ashz#3656] {message:"DO NOT",id:"895145794448007199",channel_name:"chat"}
+[2021/10/06 12:09:48.695][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("KILL THE COMPITER"->"KILL THE COMPUTER")}
+[2021/10/06 12:09:50.088][687188236971671560][event][MESSAGE][ashz#3656] {message:"DO THAT",id:"895145801079226438",channel_name:"chat"}
+[2021/10/06 12:09:54.996][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"895145821664866325",channel_name:"chat"}
+[2021/10/06 12:09:55.396][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"DO THAT?",id:"895145823376142387",channel_name:"chat"}
+[2021/10/06 12:09:59.081][687188236971671560][event][MESSAGE][ashz#3656] {message:"NO",id:"895145838484021321",channel_name:"chat"}
+[2021/10/06 12:10:03.052][687188236971671560][event][MESSAGE][ashz#3656] {message:"DO NOT DO THAT",id:"895145854963449866",channel_name:"chat"}
+[2021/10/06 12:10:04.601][687188236971671560][event][MESSAGE][ashz#3656] {message:"YOU FUCK",id:"895145861980504094",channel_name:"chat"}
+[2021/10/06 12:10:10.024][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"AHH",id:"895145884671705118",channel_name:"chat"}
+[2021/10/06 12:10:19.687][687188236971671560][event][MESSAGE][ashz#3656] {message:"or you can just kick the girl",id:"895145924974772225",channel_name:"chat"}
+[2021/10/06 12:10:23.244][687188236971671560][event][MESSAGE][ashz#3656] {message:"i think that helps",id:"895145940162330704",channel_name:"chat"}
+[2021/10/06 12:10:34.559][687188236971671560][event][MESSAGE][ashz#3656] {message:"punch her face",id:"895145986618437655",channel_name:"chat"}
+[2021/10/06 12:10:35.471][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"rm -rf user/girl",id:"895145991441899541",channel_name:"chat"}
+[2021/10/06 12:10:40.015][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895146010140106844",channel_name:"chat"}
+[2021/10/06 12:10:43.215][687188236971671560][event][MESSAGE][ashz#3656] {message:"im sure its",id:"895146023503167539",channel_name:"chat"}
+[2021/10/06 12:10:57.610][687188236971671560][event][MESSAGE][ashz#3656] {message:"```bash\nsudo deluser girl\n```",id:"895146084320575488",channel_name:"chat"}
+[2021/10/06 12:11:02.359][687188236971671560][event][MESSAGE][ashz#3656] {message:"for ubuntu",id:"895146104209965077",channel_name:"chat"}
+[2021/10/06 12:11:04.812][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"even better",id:"895146114305626113",channel_name:"chat"}
+[2021/10/06 12:11:06.396][687188236971671560][event][MESSAGE][ashz#3656] {message:"😉",id:"895146121142362182",channel_name:"chat"}
+[2021/10/06 12:11:10.045][687188236971671560][event][MESSAGE][ashz#3656] {message:"gotchu covered",id:"895146136338317332",channel_name:"chat"}
+[2021/10/06 12:11:16.090][687188236971671560][event][MESSAGE][ashz#3656] {message:"or",id:"895146158639431763",channel_name:"chat"}
+[2021/10/06 12:11:51.469][687188236971671560][event][MESSAGE][ashz#3656] {message:"```bash\nsudo rm -rf /dev/class/333/girl/*body_parts\n```",id:"895146310175428609",channel_name:"chat"}
+[2021/10/06 12:12:05.421][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895146368325271583",channel_name:"chat"}
+[2021/10/06 12:12:11.227][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"perfect, she is now just an element in void",id:"895146392832589825",channel_name:"chat"}
+[2021/10/06 12:12:13.520][687188236971671560][event][MESSAGE][ashz#3656] {message:"i surprised myself with that",id:"895146402617917460",channel_name:"chat"}
+[2021/10/06 12:12:14.360][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895146406241796109",channel_name:"chat"}
+[2021/10/06 12:12:20.223][687188236971671560][event][MESSAGE][ashz#3656] {message:"exactly",id:"895146430807818260",channel_name:"chat"}
+[2021/10/06 12:12:31.914][687188236971671560][event][MESSAGE][ashz#3656] {message:"on a side note",id:"895146479658889257",channel_name:"chat"}
+[2021/10/06 12:12:35.145][687188236971671560][event][MESSAGE][ashz#3656] {message:"is she pretty?",id:"895146493370056764",channel_name:"chat"}
+[2021/10/06 12:12:35.771][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895146495907618867",channel_name:"chat"}
+[2021/10/06 12:12:40.313][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"lmfaooooo",id:"895146515000086539",channel_name:"chat"}
+[2021/10/06 12:12:54.052][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"From profile pic, eh?",id:"895146572520783893",channel_name:"chat"}
+[2021/10/06 12:12:55.551][687188236971671560][event][MESSAGE][ashz#3656] {message:"atleast try to look on the positive side?",id:"895146578568941601",channel_name:"chat"}
+[2021/10/06 12:12:57.843][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Guess depends on your type",id:"895146588211650601",channel_name:"chat"}
+[2021/10/06 12:12:59.803][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh",id:"895146596034052146",channel_name:"chat"}
+[2021/10/06 12:13:03.526][687188236971671560][event][MESSAGE][ashz#3656] {message:"zoom?",id:"895146612001742859",channel_name:"chat"}
+[2021/10/06 12:13:11.681][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"no dicord call",id:"895146646613135402",channel_name:"chat"}
+[2021/10/06 12:13:14.269][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"discord*",id:"895146657438662677",channel_name:"chat"}
+[2021/10/06 12:13:20.857][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh wat",id:"895146685129441320",channel_name:"chat"}
+[2021/10/06 12:13:36.616][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I've been helping people 1 on 1 and they prefer to use discord over zoom",id:"895146751143596102",channel_name:"chat"}
+[2021/10/06 12:13:42.337][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"at this point I'm taking over for the TA",id:"895146775218892801",channel_name:"chat"}
+[2021/10/06 12:14:07.240][687188236971671560][event][MESSAGE][ashz#3656] {message:"lamo",id:"895146879699021834",channel_name:"chat"}
+[2021/10/06 12:14:08.445][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895146884656668772",channel_name:"chat"}
+[2021/10/06 12:14:17.137][687188236971671560][event][MESSAGE][ashz#3656] {message:"so u never seen this person irl?",id:"895146921109368872",channel_name:"chat"}
+[2021/10/06 12:14:54.830][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"nope",id:"895147078043455528",channel_name:"chat"}
+[2021/10/06 12:15:08.115][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Technically I could have, if I went to the library",id:"895147134649794571",channel_name:"chat"}
+[2021/10/06 12:15:18.672][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I was there for like 6 hours though so I didn't wanna go back",id:"895147179151351819",channel_name:"chat"}
+[2021/10/06 12:15:49.083][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"If you are asking why is cause\nA. Has the best wifi connection\nB. Very quiet to do work\nC. I hate physics with every fiber in my being",id:"895147306775642152",channel_name:"chat"}
+[2021/10/06 12:16:33.483][687188236971671560][event][MESSAGE][ashz#3656] {message:"uh",id:"895147492730085417",channel_name:"chat"}
+[2021/10/06 12:16:44.128][687188236971671560][event][MESSAGE][ashz#3656] {message:"i mean",id:"895147537403641868",channel_name:"chat"}
+[2021/10/06 12:16:56.778][687188236971671560][event][MESSAGE][ashz#3656] {message:"it helps to see if its worth holding in swearing",id:"895147590767747122",channel_name:"chat"}
+[2021/10/06 12:17:09.525][687188236971671560][event][MESSAGE][ashz#3656] {message:"or just say shes shit in her face ya know?",id:"895147643783774232",channel_name:"chat"}
+[2021/10/06 12:20:40.925][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"lmao",id:"895148530610610197",channel_name:"chat"}
+[2021/10/06 12:20:55.532][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I said "I think our TA might want you to indent"",id:"895148592183017473",channel_name:"chat"}
+[2021/10/06 12:29:55.761][687188236971671560][event][MESSAGE][ashz#3656] {message:"TA?",id:"895150857870524437",channel_name:"chat"}
+[2021/10/06 12:30:04.773][687188236971671560][event][MESSAGE][ashz#3656] {message:"tf is TA",id:"895150895787016233",channel_name:"chat"}
+[2021/10/06 12:34:41.066][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Teaching assistant",id:"895152054690000916",channel_name:"chat"}
+[2021/10/06 12:34:57.922][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Some graduate student that helps us if we need assistance and grades our shit",id:"895152125405966356",channel_name:"chat"}
+[2021/10/06 12:37:09.316][687188236971671560][event][MESSAGE][ashz#3656] {message:"lol",id:"895152676143267842",channel_name:"chat"}
+[2021/10/06 12:37:26.426][687188236971671560][event][MESSAGE][ashz#3656] {message:"and whos the TA in this situation",id:"895152748230766622",channel_name:"chat"}
+[2021/10/06 21:59:11.854][687188236971671560][event][MESSAGE][김은우#3751] {message:"<@!357856418163851265>",id:"895294119025451079",channel_name:"chat"}
+[2021/10/07 04:54:39.269][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"<@!207597209611403264> Idk if you heard yet but twitch's source code got leaked. It is a 128 GB download with commits dating back to when twitch first started. Has a bunch of shit like the AWS services that twitch uses, has all info about streamers and what they get paid, has code from other stuff they own like curseforge, bunch of stuff. The guy who got the code posted it on 4chan with a torrent magnet link to download it. I actually found the magnet link, I didn't do shit with it cause this stuff is illegal and I don't want any legal trouble.",id:"895398671477264435",channel_name:"chat"}
+[2021/10/07 07:01:30.695][687188236971671560][event][MESSAGE][ashz#3656] {message:"technically.....",id:"895430596917071912",channel_name:"chat"}
+[2021/10/07 07:01:38.377][687188236971671560][event][MESSAGE][ashz#3656] {message:"i dont think its illegal?",id:"895430628797988875",channel_name:"chat"}
+[2021/10/07 07:01:53.783][687188236971671560][event][MESSAGE][ashz#3656] {message:"also yeah of course i know ;)",id:"895430693537054820",channel_name:"chat"}
+[2021/10/07 07:02:21.931][687188236971671560][event][MESSAGE][ashz#3656] {message:"also tried to find the valid tprrent link, but 4chan delted the post i think",id:"895430811715776542",channel_name:"chat"}
+[2021/10/07 10:41:14.175][687188236971671560][event][MESSAGE][ashz#3656] {message:"and the one going around 4chan is invalid now",id:"895485892230262835",channel_name:"chat"}
+[2021/10/07 10:41:16.088][687188236971671560][event][MESSAGE][ashz#3656] {message:":/",id:"895485900392374332",channel_name:"chat"}
+[2021/10/07 11:57:05.463][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"ㅋㅋㅋㅋㅋㅋㅋ",id:"895504981900279848",channel_name:"chat"}
+[2021/10/07 11:57:43.067][687188236971671560][event][MESSAGE][ashz#3656] {message:"tf bro",id:"895505139132170312",channel_name:"chat"}
+[2021/10/07 11:57:57.895][687188236971671560][event][MESSAGE][ashz#3656] {message:"u cracked?",id:"895505201543405609",channel_name:"chat"}
+[2021/10/07 11:57:59.222][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895505207365103616",channel_name:"chat"}
+[2021/10/07 11:58:27.677][687188236971671560][event][MESSAGE][ashz#3656] {message:"another case of collage student stupidity causing you a mental breakdown?",id:"895505326550442056",channel_name:"chat"}
+[2021/10/07 11:58:31.127][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"예",id:"895505341196943390",channel_name:"chat"}
+[2021/10/07 12:00:02.464][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"el personas en mi clase es muy estupido",id:"895505724216602684",channel_name:"chat"}
+[2021/10/07 12:00:29.474][687188236971671560][event][MESSAGE][ashz#3656] {message:"personally you think your class is very stupid?",id:"895505837555068948",channel_name:"chat"}
+[2021/10/07 12:00:42.886][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"hej hej pa dig do",id:"895505893825871912",channel_name:"chat"}
+[2021/10/07 12:00:45.161][687188236971671560][event][MESSAGE][ashz#3656] {message:"don't speak espanol",id:"895505903355314226",channel_name:"chat"}
+[2021/10/07 12:00:46.306][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("hej hej pa dig do"->"hej hej pa dig dod")}
+[2021/10/07 12:00:52.322][687188236971671560][event][MESSAGE][ashz#3656] {message:"senior",id:"895505933399130132",channel_name:"chat"}
+[2021/10/07 12:01:02.028][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"The people in my class is very stupid",id:"895505974062878721",channel_name:"chat"}
+[2021/10/07 12:01:10.124][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895506008011591710",channel_name:"chat"}
+[2021/10/07 12:01:15.868][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"close enough lol",id:"895506031701012551",channel_name:"chat"}
+[2021/10/07 12:01:16.758][687188236971671560][event][MESSAGE][ashz#3656] {message:"well no bleeding wonder",id:"895506035870138388",channel_name:"chat"}
+[2021/10/07 12:01:18.927][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895506044942438400",channel_name:"chat"}
+[2021/10/07 12:01:44.811][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Many people used a 1D array for a 2D board",id:"895506153470034000",channel_name:"chat"}
+[2021/10/07 12:01:44.997][687188236971671560][event][MESSAGE][ashz#3656] {message:"considering i learned a little bit from 3rd grade, i say i did well in translating that",id:"895506154334081095",channel_name:"chat"}
+[2021/10/07 12:02:18.374][687188236971671560][event][MESSAGE][ashz#3656] {message:"well.... technically you can use a 1D array to create a 2D board....<a:shyy:818752575675039794>",id:"895506294008602655",channel_name:"chat"}
+[2021/10/07 12:02:25.849][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"shut",id:"895506325591691284",channel_name:"chat"}
+[2021/10/07 12:02:36.579][687188236971671560][event][MESSAGE][ashz#3656] {message:"<:CH_UmaruGlasses:748494075669512282>",id:"895506370646900757",channel_name:"chat"}
+[2021/10/07 12:02:39.810][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"well now the new instructions is to change the board size based on user input",id:"895506384215506985",channel_name:"chat"}
+[2021/10/07 12:02:43.139][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"so now thye are fucked",id:"895506398098620448",channel_name:"chat"}
+[2021/10/07 12:02:47.779][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("so now thye are fucked"->"so now they are fucked")}
+[2021/10/07 12:02:48.857][687188236971671560][event][MESSAGE][ashz#3656] {message:"?",id:"895506422194905168",channel_name:"chat"}
+[2021/10/07 12:02:52.052][687188236971671560][event][MESSAGE][ashz#3656] {message:"tbh",id:"895506435574759424",channel_name:"chat"}
+[2021/10/07 12:02:59.296][687188236971671560][event][MESSAGE][ashz#3656] {message:"i think thats easier done using a 1D array",id:"895506465937317928",channel_name:"chat"}
+[2021/10/07 12:02:59.995][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895506468894298173",channel_name:"chat"}
+[2021/10/07 12:03:03.732][687188236971671560][event][MESSAGE][ashz#3656] {message:"<a:partyHard:393566355615645696>",id:"895506484564201502",channel_name:"chat"}
+[2021/10/07 12:03:11.447][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"especially those who initialized the 1D array doing {1,2,3,4,5,6,7,8,9}",id:"895506516893925376",channel_name:"chat"}
+[2021/10/07 12:03:15.767][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh",id:"895506535046852608",channel_name:"chat"}
+[2021/10/07 12:03:21.363][687188236971671560][event][MESSAGE][ashz#3656] {message:"thats...sad",id:"895506558321037323",channel_name:"chat"}
+[2021/10/07 12:03:36.407][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"and this is 333",id:"895506621600530513",channel_name:"chat"}
+[2021/10/07 12:03:43.434][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"**an intermediate class**",id:"895506649924653056",channel_name:"chat"}
+[2021/10/07 12:04:37.393][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"**A gargantuan heap consisting of enigmas**",id:"895506877415292928",channel_name:"chat"}
+[2021/10/07 12:06:15.884][687188236971671560][event][MESSAGE][ashz#3656] {message:"```c\nint user_sz = 0;\nsize_t arr_sz = 0;\nchar *arr = NULL;\n\nprintf("input my size you fuckhead: ");\nscanf("%d", &user_sz);\n\narr_sz = sizeof(char)*user_sz;\narr = (char*)malloc(arr_sz);\nif(!arr) {\n  printf("malloc failed! exiting prog\n");\n  return -1;\n}\n\nmemset(arr, 0, arr_sz);\n```",id:"895507290348720139",channel_name:"chat"}
+[2021/10/07 12:06:16.715][687188236971671560][event][MESSAGE][ashz#3656] {message:"done",id:"895507293951631420",channel_name:"chat"}
+[2021/10/07 12:06:17.456][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"895507297042857984",channel_name:"chat"}
+[2021/10/07 12:06:22.320][687188236971671560][event][MESSAGE][ashz#3656] {message:"well, the init part",id:"895507317225848893",channel_name:"chat"}
+[2021/10/07 12:06:42.668][687188236971671560][event][MESSAGE][ashz#3656] {message:"3min using discord code editor",id:"895507402814803998",channel_name:"chat"}
+[2021/10/07 12:07:53.665][687188236971671560][event][MESSAGE][ashz#3656] {message:"stop with the physics metaphor, i dont need headaches as well 😦",id:"895507700132241430",channel_name:"chat"}
+[2021/10/07 12:08:22.912][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"what? you don't wanna join the migraine club?",id:"895507823289589760",channel_name:"chat"}
+[2021/10/07 12:09:29.758][687188236971671560][event][MESSAGE][ashz#3656] {message:"already have migraine, dont need the knowledge pass into the club",id:"895508103599108117",channel_name:"chat"}
+[2021/10/07 12:09:48.029][687188236971671560][event][MESSAGE][ashz#3656] {message:"already have the physical pain pass for the club, so no thanks",id:"895508180312915998",channel_name:"chat"}
+[2021/10/07 17:32:07.851][687188236971671560][event][MESSAGE][ashz#3656] {message:"abcdEFGhijklmnorstuVWXyz0123456789!%)-;?]{&*.<@^|'+/=[_}(,:>\`~",id:"895589297133084673",channel_name:"chat"}
+[2021/10/07 17:32:18.909][687188236971671560][event][MESSAGE][ashz#3656] {message:"my current test string",id:"895589343803105280",channel_name:"chat"}
+[2021/10/07 17:32:21.803][687188236971671560][event][MESSAGE][ashz#3656] {message:"...fml",id:"895589354829934602",channel_name:"chat"}
+[2021/10/08 09:23:30.100][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Lmfao",id:"895828717660688384",channel_name:"chat"}
+[2021/10/08 15:53:45.380][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/10/08 15:53:45.526][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/10/08 15:53:45.526][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/10/08 15:53:46.274][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/10/09 21:29:59.577][687188236971671560][event][MESSAGE][ashz#3656] {message:"기달",id:"896373933106925638",channel_name:"chat"}
+[2021/10/09 21:30:11.666][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅡㅡ?",id:"896373983811883028",channel_name:"chat"}
+[2021/10/09 23:03:51.747][687188236971671560][event][MESSAGE][ashz#3656] {message:".ㅓㅐㅑㅜ",id:"896397555708067921",channel_name:"chat"}
+[2021/10/09 23:03:52.011][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".ㅓㅐㅑㅜ",id:"896397555708067921",channel_name:"chat"}
+[2021/10/09 23:03:52.214][687188236971671560][command][JOIN_SUCCESS][ashz#3656][896397555708067921] Now connected to user's voice channel. {receivedArgument:".ㅓㅐㅑㅜ"}
+[2021/10/09 23:03:53.455][687188236971671560][event][MESSAGE][ashz#3656] {message:".ㅔㅣ묘 https://www.youtube.com/watch?v=dTwj7PhpY9M&list=RDZbPir0si4so&index=3",id:"896397563194900540",channel_name:"chat"}
+[2021/10/09 23:03:53.724][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".ㅔㅣ묘 https://www.youtube.com/watch?v=dTwj7PhpY9M&list=RDZbPir0si4so&index=3",id:"896397563194900540",channel_name:"chat"}
+[2021/10/09 23:03:58.774][687188236971671560][command][PLAY_SUCCESS][ashz#3656][896397563194900540] Overriding current track. Playing received data track. {receivedArgument:".ㅔㅣ묘 https://www.youtube.com/watch?v=dTwj7PhpY9M&list=RDZbPir0si4so&index=3",index:"0",length:"216",volume:"7",url:"https://www.youtube.com/watch?v=dTwj7PhpY9M"}
+[2021/10/09 23:05:40.907][687188236971671560][event][MESSAGE][ashz#3656] {message:".ㅣㄷㅁㅍㄷ",id:"896398013554122753",channel_name:"chat"}
+[2021/10/09 23:05:40.913][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][896398013554122753] Bot is now disconnected from it's last voice channel. {receivedArgument:".ㅣㄷㅁㅍㄷ"}
+[2021/10/09 23:05:41.174][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".ㅣㄷㅁㅍㄷ",id:"896398013554122753",channel_name:"chat"}
+[2021/10/09 23:27:22.435][687188236971671560][event][MESSAGE][박곰#9646] {message:"호다닥",id:"896403473015406602",channel_name:"chat"}
+[2021/10/09 23:27:45.060][687188236971671560][event][MESSAGE][ashz#3656] {message:"😛",id:"896403567898935296",channel_name:"chat"}
+[2021/10/10 00:40:23.406][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ?",id:"896421847837593682",channel_name:"chat"}
+[2021/10/10 00:41:20.042][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"?",id:"896422085600088114",channel_name:"chat"}
+[2021/10/10 00:41:33.281][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"한번도 안해보지는 않지 않았을까 아마도",id:"896422141149478973",channel_name:"chat"}
+[2021/10/10 00:41:53.073][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니",id:"896422224217665626",channel_name:"chat"}
+[2021/10/10 00:41:55.804][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"급행은",id:"896422235659702342",channel_name:"chat"}
+[2021/10/10 00:42:22.338][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"896422346540339262",channel_name:"chat"}
+[2021/10/10 00:42:24.707][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"확인차",id:"896422356904464444",channel_name:"chat"}
+[2021/10/10 00:42:36.864][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"확인차",id:"896422407584243713",channel_name:"chat"}
+[2021/10/10 00:42:47.712][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 뭔가 불안해서",id:"896422453377634344",channel_name:"chat"}
+[2021/10/10 00:42:49.929][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니",id:"896422462579957810",channel_name:"chat"}
+[2021/10/10 00:42:51.345][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"확인",id:"896422468640735282",channel_name:"chat"}
+[2021/10/10 00:42:51.927][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"차",id:"896422470964375673",channel_name:"chat"}
+[2021/10/10 00:42:55.889][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"896422487343124511",channel_name:"chat"}
+[2021/10/10 00:43:04.554][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"아니 갑자기 물어보시길래",id:"896422523800006697",channel_name:"chat"}
+[2021/10/10 00:43:08.857][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅡㅡ",id:"896422541978124319",channel_name:"chat"}
+[2021/10/10 00:43:22.449][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"난 내 갈 길만 간다 후후",id:"896422596726382593",channel_name:"chat"}
+[2021/10/10 00:43:29.430][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"급행은 아직",id:"896422628292702249",channel_name:"chat"}
+[2021/10/10 00:43:34.595][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅡㅡ",id:"896422649985630219",channel_name:"chat"}
+[2021/10/10 00:44:21.633][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"안양에서",id:"896422847273136149",channel_name:"chat"}
+[2021/10/10 00:44:22.988][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"가는 길은",id:"896422852977389638",channel_name:"chat"}
+[2021/10/10 00:44:25.621][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"몰라용",id:"896422862339080223",channel_name:"chat"}
+[2021/10/10 00:45:21.016][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"?",id:"896423096381218816",channel_name:"chat"}
+[2021/10/10 00:45:40.719][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"모를수도 있지",id:"896423178589597698",channel_name:"chat"}
+[2021/10/10 00:45:43.059][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"모를수도 있지",id:"896423188412645407",channel_name:"chat"}
+[2021/10/10 00:45:44.547][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"모르를소",id:"896423195073200138",channel_name:"chat"}
+[2021/10/10 00:46:16.461][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅎㅎ..",id:"896423328644997141",channel_name:"chat"}
+[2021/10/10 00:46:47.959][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"내일 주희랑 도망쳐야지",id:"896423460820094987",channel_name:"chat"}
+[2021/10/10 00:47:03.695][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"?",id:"896423526846849075",channel_name:"chat"}
+[2021/10/10 00:47:22.365][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"??",id:"896423605385175110",channel_name:"chat"}
+[2021/10/10 00:47:47.379][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"약간 억울..?",id:"896423710213410866",channel_name:"chat"}
+[2021/10/10 00:47:58.653][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"약..간..?",id:"896423757550354482",channel_name:"chat"}
+[2021/10/10 00:48:05.316][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋ?",id:"896423785467613214",channel_name:"chat"}
+[2021/10/10 00:48:23.393][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"에?",id:"896423861044772915",channel_name:"chat"}
+[2021/10/10 00:48:40.861][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋ???",id:"896423934625456199",channel_name:"chat"}
+[2021/10/10 00:50:00.238][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"내가 물어봤는데",id:"896424267493834812",channel_name:"chat"}
+[2021/10/10 00:50:17.998][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅎ",id:"896424341934333963",channel_name:"chat"}
+[2021/10/10 00:50:26.120][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"에이",id:"896424375832707113",channel_name:"chat"}
+[2021/10/10 12:42:10.281][687188236971671560][event][MESSAGE_DELETE][chloe5325#1260] {message:"내일 주희랑 도망쳐야지",id:"896423460820094987",channel_name:"chat"}
+[2021/10/12 17:04:48.438][687188236971671560][event][MESSAGE][ashz#3656] {message:"while true; do logger -t system -p daemon.1 "DAVO|system|2|BOTH LOGGER $(...)"; done &\nwhile true; do logger -t system -p daemon.1 "DAVO|system|1|FLASH LOGGER $(...)"; done &\nwhile true; do logger -t system -p daemon.1 "DAVO|system|0|MEMORY LOGGER $(...)"; done &\nls -alh /tmp/ | grep davo\nls -alh /tmp/dvlog",id:"897394360470102046",channel_name:"chat"}
+[2021/10/14 23:28:37.716][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"898215727897669633",channel_name:"chat"}
+[2021/10/15 23:42:21.999][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!453194027408293890>",id:"898581573174177883",channel_name:"chat"}
+[2021/10/15 23:42:24.233][687188236971671560][event][MESSAGE][ashz#3656] {message:"<@!765938051876257803>",id:"898581582489714800",channel_name:"chat"}
+[2021/10/16 00:28:17.738][687188236971671560][event][MESSAGE][박곰#9646] {message:"(상처)",id:"898593131673575444",channel_name:"chat"}
+[2021/10/16 00:28:27.424][687188236971671560][event][MESSAGE][박곰#9646] {message:"(상처22)",id:"898593171993399337",channel_name:"chat"}
+[2021/10/16 00:28:31.671][687188236971671560][event][MESSAGE][박곰#9646] {message:"(상처333)",id:"898593190087639090",channel_name:"chat"}
+[2021/10/16 00:28:33.497][687188236971671560][event][MESSAGE][chloe5325#1260] {message:"ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"898593197746421800",channel_name:"chat"}
+[2021/10/16 00:28:35.738][687188236971671560][event][MESSAGE_DELETE][박곰#9646] {message:"(상처333)",id:"898593190087639090",channel_name:"chat"}
+[2021/10/18 04:04:02.020][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"HELP ME",id:"899372199402668094",channel_name:"chat"}
+[2021/10/18 04:04:07.545][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"WHY DO I HELP PEOPLE",id:"899372222823673926",channel_name:"chat"}
+[2021/10/18 04:04:36.055][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"I told the guy to make an else to print out the words they want if sentence does not equal "stop" and they did this",id:"899372342399107072",channel_name:"chat"}
+[2021/10/18 07:46:01.987][687188236971671560][event][MESSAGE][ashz#3656] {message:"i mean",id:"899428067452256267",channel_name:"chat"}
+[2021/10/18 07:46:06.059][687188236971671560][event][MESSAGE][ashz#3656] {message:"he did make it xD",id:"899428084728619088",channel_name:"chat"}
+[2021/10/18 07:46:18.270][687188236971671560][event][MESSAGE][ashz#3656] {message:"technically",id:"899428135907500072",channel_name:"chat"}
+[2021/10/18 07:46:29.626][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"899428183164723201",channel_name:"chat"}
+[2021/10/18 07:46:35.269][687188236971671560][event][MESSAGE][ashz#3656] {message:"oh i just love teaching coding",id:"899428206837374988",channel_name:"chat"}
+[2021/10/18 07:46:44.692][687188236971671560][event][MESSAGE][ashz#3656] {message:"these kinds of moments make it worth",id:"899428246762954753",channel_name:"chat"}
+[2021/10/18 17:00:44.484][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/10/18 17:00:44.657][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/10/18 17:00:44.658][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/10/18 17:00:45.512][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+[2021/10/19 17:32:22.125][687188236971671560][event][MESSAGE][ashz#3656] {message:"# boot\n# wait 70sec\n# login \nls -alh /tmp/dvlog/\nwhile true; do logger -t system -p daemon.1 "DAVO|system|2|BOTH LOGGER $(date)"; done &\nwhile true; do logger -t system -p daemon.1 "DAVO|system|1|FLASH LOGGER $(date)"; done &\nwhile true; do logger -t system -p daemon.1 "DAVO|system|0|MEMORY LOGGER $(date)"; done &\nsleep 10\nls -alh /tmp/dvlog/\necho "ubierror" > /proc/dvkpoll",id:"899938011641425920",channel_name:"chat"}
+[2021/10/22 00:01:21.140][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/10/22 00:01:21.302][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/10/22 00:01:21.303][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/10/22 00:01:23.353][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'THREE_DAY_THREAD_ARCHIVE', 'ANIMATED_ICON', 'INVITE_SPLASH' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: 0,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'THREE_DAY_THREAD_ARCHIVE', 'ANIMATED_ICON', 'INVITE_SPLASH' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: 0,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+[2021/10/22 09:08:22.158][687188236971671560][event][GUILD_MEMBER_UPDATE][external] User update detected.
+[2021/10/23 14:41:29.001][687188236971671560][event][MESSAGE][conner#2879] {message:"hilosquad / helloworld1",id:"901344558439366696",channel_name:"chat"}
+[2021/10/27 21:42:52.406][687188236971671560][event][MESSAGE][ashz#3656] {message:"dontgiveup",id:"902900156146528276",channel_name:"chat"}
+[2021/10/27 21:42:56.013][687188236971671560][event][MESSAGE][ashz#3656] {message:"ilovepython",id:"902900171346690068",channel_name:"chat"}
+[2021/10/28 01:13:37.448][687188236971671560][event][MESSAGE][conner#2879] {message:"hilosquad / helloworld",id:"902953193355501568",channel_name:"chat"}
+[2021/10/28 01:41:59.707][687188236971671560][event][MESSAGE][conner#2879] {message:"https://diablo.fandom.com/wiki/Spirit_Rune_Word",id:"902960333109493760",channel_name:"chat"}
+[2021/10/28 17:31:58.288][687188236971671560][event][MESSAGE][conner#2879] {message:"hello1234 / hello1234",id:"903199402456416256",channel_name:"chat"}
+[2021/10/28 17:32:41.788][687188236971671560][event][MESSAGE][conner#2879] {message:"https://diablo.fandom.com/wiki/Insight_Rune_Word",id:"903199584753422367",channel_name:"chat"}
+[2021/10/28 17:38:16.605][687188236971671560][event][MESSAGE][conner#2879] {message:"hilosquad / helloworld1",id:"903200988960268339",channel_name:"chat"}
+[2021/10/28 19:02:59.111][687188236971671560][event][MESSAGE][conner#2879] {message:"CANT JOINK",id:"903222306858479626",channel_name:"chat"}
+[2021/10/28 19:03:06.400][687188236971671560][event][MESSAGE][ashz#3656] {message:"go anywhere",id:"903222337414000690",channel_name:"chat"}
+[2021/10/28 19:03:08.043][687188236971671560][event][MESSAGE][ashz#3656] {message:"ill invite",id:"903222344330403880",channel_name:"chat"}
+[2021/10/29 12:09:01.719][687188236971671560][event][MESSAGE][ashz#3656] {message:"업무시간",id:"903480519155658823",channel_name:"chat"}
+[2021/10/29 12:09:08.522][687188236971671560][event][MESSAGE][ashz#3656] {message:"5시간 낭비하는 방법",id:"903480547676938280",channel_name:"chat"}
+[2021/10/29 12:09:13.136][687188236971671560][event][MESSAGE][ashz#3656] {message:"문자열 복사할대",id:"903480566953955328",channel_name:"chat"}
+[2021/10/29 12:09:17.168][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("문자열 복사할대"->"문자열 복사할때")}
+[2021/10/29 12:09:33.274][687188236971671560][event][MESSAGE][ashz#3656] {message:"문자열 길이를 하드 코딩해두고",id:"903480651511136296",channel_name:"chat"}
+[2021/10/29 12:09:37.131][687188236971671560][event][MESSAGE][ashz#3656] {message:"그 길이가 짧아서",id:"903480667634028634",channel_name:"chat"}
+[2021/10/29 12:09:47.674][687188236971671560][event][MESSAGE][ashz#3656] {message:"드라이버에게 잘못된 정보 전달하므로",id:"903480711921680414",channel_name:"chat"}
+[2021/10/29 12:09:59.435][687188236971671560][event][MESSAGE][ashz#3656] {message:"계속 코드가 에러 출력하게 함",id:"903480760835657730",channel_name:"chat"}
+[2021/10/29 12:10:01.714][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㅎㅎ",id:"903480770763558952",channel_name:"chat"}
+[2021/10/29 12:10:04.974][687188236971671560][event][MESSAGE][ashz#3656] {message:"인생",id:"903480784130830377",channel_name:"chat"}
+[2021/10/29 12:10:08.746][687188236971671560][event][MESSAGE][ashz#3656] {message:"ㄹㅈㄷ",id:"903480800287264778",channel_name:"chat"}
+[2021/10/29 12:10:19.153][687188236971671560][event][MESSAGE][ashz#3656] {message:"오늘 그냥 뭐든 노답이네?ㅋㅋㅋㅋㅋㅋㅋㅋㅋ",id:"903480843513757777",channel_name:"chat"}
+[2021/10/29 12:10:42.891][687188236971671560][event][MESSAGE][ashz#3656] {message:"이제 그냥 밥 먹다가 누가 국그릇을 내 머리다 부어도 놀라지 않을것이다..ㅎㅎ",id:"903480943468220416",channel_name:"chat"}
+[2021/10/29 17:44:46.068][687188236971671560][event][MESSAGE][ashz#3656] {message:"ashz<@!207597209611403264> ~/project/mtk-hc/build_dir/target-mipsel_24kc_musl-1.1.16/linux-ramips_mt7621/linux-4.4.198/drivers/net/wireless/mediatek/mt_wifi $ grnch "kick out msg fail"\nembedded/mcu/andes_core.c:651:                     ("kick out msg fail\n"));\nashz<@!207597209611403264> ~/project/mtk-hc/build_dir/target-mipsel_24kc_musl-1.1.16/linux-ramips_mt7621/linux-4.4.198/drivers/net/wireless/mediatek/mt_wifi $",id:"903565010624716810",channel_name:"chat"}
+[2021/10/29 17:50:53.354][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"ashz<@!207597209611403264> ~/project/mtk-hc/build_dir/target-mipsel_24kc_musl-1.1.16/linux-ramips_mt7621/linux-4.4.198/drivers/net/wireless/mediatek/mt_wifi $ grnch "kick out msg fail"\nembedded/mcu/andes_core.c:651:                     ("kick out msg fail\n"));\nashz<@!207597209611403264> ~/project/mtk-hc/build_dir/target-mipsel_24kc_musl-1.1.16/linux-ramips_mt7621/linux-4.4.198/drivers/net/wireless/mediatek/mt_wifi $",id:"903565010624716810",channel_name:"chat"}
+[2021/10/30 00:13:48.027][687188236971671560][event][MESSAGE][conner#2879] {message:"https://www.google.com/maps/dir//%EB%B2%94%EA%B3%84+%EC%9A%B0%EB%A7%88%EC%9D%B4%EC%8B%9D%EB%8B%B9+%EA%B8%B8/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x357b60a78acb2ceb:0x47c9394ca9270867?sa=X&ved=2ahUKEwi20tur9O_zAhWadd4KHbrnBSQQ9Rd6BAg5EAM",id:"903662913930276904",channel_name:"chat"}
+[2021/10/30 01:44:47.271][687188236971671560][event][MESSAGE][zik#6629] {message:":)",id:"903685811617288242",channel_name:"chat"}
+[2021/10/30 03:09:03.592][687188236971671560][event][MESSAGE][conner#2879] {message:"helvete / 1234",id:"903707019343704135",channel_name:"chat"}
+[2021/10/30 17:23:20.655][687188236971671560][event][MESSAGE][혜윤#0606] {message:"<@!207597209611403264>",id:"903922007111000084",channel_name:"chat"}
+[2021/10/30 17:23:22.558][687188236971671560][event][MESSAGE][혜윤#0606] {message:"HELP",id:"903922015004680202",channel_name:"chat"}
+[2021/10/31 18:59:19.946][687188236971671560][event][CHANNEL_UPDATE] {}
+[2021/10/31 23:50:00.975][687188236971671560][event][MESSAGE][conner#2879] {message:""\nspeed"",id:"904381704104460358",channel_name:"chat"}
+[2021/11/01 00:02:33.274][687188236971671560][event][MESSAGE][conner#2879] {message:"fuel : gasoline diesel",id:"904384858162343947",channel_name:"chat"}
+[2021/11/01 00:02:57.245][687188236971671560][event][MESSAGE][ashz#3656] {message:"속성명: fuel",id:"904384960008425492",channel_name:"chat"}
+[2021/11/01 00:02:57.973][687188236971671560][event][MESSAGE_UPDATE][conner#2879] {message_update:("fuel : gasoline diesel"->"fuel : gasoline diesel ev")}
+[2021/11/01 00:03:13.374][687188236971671560][event][MESSAGE][ashz#3656] {message:"값: "gasoline", "diesel", "ev"",id:"904385027717079050",channel_name:"chat"}
+[2021/11/01 00:03:22.507][687188236971671560][event][MESSAGE][정가은#8920] {message:"ㅇㅋㅇㅋ",id:"904385065805561867",channel_name:"chat"}
+[2021/11/01 00:04:18.718][687188236971671560][event][MESSAGE][conner#2879] {message:"속성명 : type",id:"904385301714190367",channel_name:"chat"}
+[2021/11/01 00:04:41.058][687188236971671560][event][MESSAGE][conner#2879] {message:"값 : "micro", "sedan", "suv"",id:"904385395486236672",channel_name:"chat"}
+[2021/11/01 00:05:35.135][687188236971671560][event][MESSAGE][conner#2879] {message:"속성명 : value",id:"904385622247092304",channel_name:"chat"}
+[2021/11/01 00:05:39.662][687188236971671560][event][MESSAGE][conner#2879] {message:"값 : 가격",id:"904385641066930237",channel_name:"chat"}
+[2021/11/01 00:05:47.407][687188236971671560][event][MESSAGE_UPDATE][conner#2879] {message_update:("값 : 가격"->"값 : 가격(정수형)")}
+[2021/11/01 00:08:13.749][687188236971671560][event][MESSAGE][zik#6629] {message:"방금 일남",id:"904386287564386304",channel_name:"chat"}
+[2021/11/01 00:08:21.898][687188236971671560][event][MESSAGE][zik#6629] {message:"신나는 보고서타임 ^^",id:"904386321676644432",channel_name:"chat"}
+[2021/11/01 00:12:40.166][687188236971671560][event][MESSAGE][zik#6629] {message:"지금 얘 누구랑 영어로 대화중이여",id:"904387404989890670",channel_name:"chat"}
+[2021/11/01 14:59:59.971][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone There are 10 types of people: Those who understand binary and those who don't",id:"904610708698832917",channel_name:"chat"}
+[2021/11/01 15:00:37.461][687188236971671560][event][MESSAGE][ashz#3656] {message:"@everyone 이세상에 10가지의 사람들이 있습니다. 바이너리를 이해하는 사람들과 이해 못하는 사람들",id:"904610866178183208",channel_name:"chat"}
+[2021/11/01 15:00:57.110][687188236971671560][event][MESSAGE][ashz#3656] {message:"ngl i really want the t-shirt with this on it",id:"904610948617207818",channel_name:"chat"}
+[2021/11/01 15:17:17.331][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"1+1!=10",id:"904615059857223680",channel_name:"chat"}
+[2021/11/01 15:17:24.986][687188236971671560][event][MESSAGE_DELETE][Goldminer127#6374] {message:"1+1!=10",id:"904615059857223680",channel_name:"chat"}
+[2021/11/01 15:17:40.614][687188236971671560][event][MESSAGE][ashz#3656] {message:"i saw that :/",id:"904615157555138580",channel_name:"chat"}
+[2021/11/01 15:17:46.329][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Lmfao",id:"904615179092910141",channel_name:"chat"}
+[2021/11/01 15:18:15.337][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Is 10 in korean literally 10?",id:"904615302262816789",channel_name:"chat"}
+[2021/11/01 15:18:30.184][687188236971671560][event][MESSAGE][ashz#3656] {message:"10 is 10",id:"904615365118672917",channel_name:"chat"}
+[2021/11/01 15:18:32.232][687188236971671560][event][MESSAGE][ashz#3656] {message:"and 10 is 10",id:"904615373603741708",channel_name:"chat"}
+[2021/11/01 15:18:45.806][687188236971671560][event][MESSAGE][ashz#3656] {message:"i dont know what your on bout 😄",id:"904615430948261918",channel_name:"chat"}
+[2021/11/01 15:19:02.560][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"-_-",id:"904615500787642400",channel_name:"chat"}
+[2021/11/01 15:19:16.788][687188236971671560][event][MESSAGE][ashz#3656] {message:"1+1!=10",id:"904615560963325962",channel_name:"chat"}
+[2021/11/01 15:19:18.296][687188236971671560][event][MESSAGE][ashz#3656] {message:"lol",id:"904615567103770645",channel_name:"chat"}
+[2021/11/01 15:19:24.077][687188236971671560][event][MESSAGE][ashz#3656] {message:"it is tho",id:"904615591552372756",channel_name:"chat"}
+[2021/11/01 15:19:27.112][687188236971671560][event][MESSAGE][ashz#3656] {message:"1 + 1 = 10",id:"904615604231745536",channel_name:"chat"}
+[2021/11/01 15:19:28.700][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"1+1==10",id:"904615610942631946",channel_name:"chat"}
+[2021/11/01 15:20:27.814][687188236971671560][event][MESSAGE][ashz#3656] {message:"(1+1==10) ? gold.keepSuffering(cause=collage) : gold.die();",id:"904615858863747152",channel_name:"chat"}
+[2021/11/01 15:20:36.043][687188236971671560][event][MESSAGE_UPDATE][ashz#3656] {message_update:("(1+1==10) ? gold.keepSuffering(cause=collage) : gold.die();"->"(1+1==10) ? gold.keepSuffering(cause="collage") : gold.die();")}
+[2021/11/01 15:20:40.520][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"exit(gold)",id:"904615912127229952",channel_name:"chat"}
+[2021/11/01 15:20:46.946][687188236971671560][event][MESSAGE][ashz#3656] {message:"naaaaaaaaa",id:"904615939083997244",channel_name:"chat"}
+[2021/11/01 15:20:47.211][687188236971671560][event][MESSAGE_UPDATE][Goldminer127#6374] {message_update:("exit(gold)"->"exit(gold);")}
+[2021/11/01 15:20:50.384][687188236971671560][event][MESSAGE][ashz#3656] {message:"boi u cant run",id:"904615953445310464",channel_name:"chat"}
+[2021/11/01 15:20:56.010][687188236971671560][event][MESSAGE][ashz#3656] {message:"xD",id:"904615976761450537",channel_name:"chat"}
+[2021/11/01 15:20:58.324][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"EXIT",id:"904615986836152400",channel_name:"chat"}
+[2021/11/01 15:21:01.690][687188236971671560][event][MESSAGE][ashz#3656] {message:"naaaa",id:"904616000962592798",channel_name:"chat"}
+[2021/11/01 15:21:05.818][687188236971671560][event][MESSAGE][ashz#3656] {message:"only one true way",id:"904616018230530078",channel_name:"chat"}
+[2021/11/01 15:21:14.766][687188236971671560][event][MESSAGE][ashz#3656] {message:"to *exit*",id:"904616055798923274",channel_name:"chat"}
+[2021/11/01 15:21:39.765][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Null pointer exception",id:"904616160660697098",channel_name:"chat"}
+[2021/11/01 15:21:54.117][687188236971671560][event][MESSAGE][ashz#3656] {message:"well i guess that works",id:"904616220811206716",channel_name:"chat"}
+[2021/11/01 15:21:59.004][687188236971671560][event][MESSAGE][ashz#3656] {message:"i was thinking along the lines of",id:"904616241308790875",channel_name:"chat"}
+[2021/11/01 15:21:59.646][687188236971671560][event][MESSAGE][ashz#3656] {message:"🖥️ 🔨",id:"904616244051861535",channel_name:"chat"}
+[2021/11/01 15:22:11.481][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"rm -rf /",id:"904616293607559218",channel_name:"chat"}
+[2021/11/01 15:22:18.816][687188236971671560][event][MESSAGE][ashz#3656] {message:"sudo",id:"904616324452478996",channel_name:"chat"}
+[2021/11/01 15:22:30.526][687188236971671560][event][MESSAGE][Goldminer127#6374] {message:"Enter sudo passcode:",id:"904616373517451314",channel_name:"chat"}
+[2021/11/01 15:53:47.105][687188236971671560][event][MESSAGE][zik#6629] {message:"😳",id:"904624244191817759",channel_name:"chat"}
+[2021/11/01 15:54:27.886][687188236971671560][event][MESSAGE][zik#6629] {message:"Tells a lot about our society innit bruv",id:"904624413926899723",channel_name:"chat"}
+[2021/11/01 15:55:06.220][687188236971671560][event][MESSAGE][ashz#3656] {message:"waaat",id:"904624576015769602",channel_name:"chat"}
+[2021/11/01 15:55:14.698][687188236971671560][event][MESSAGE][ashz#3656] {message:"we are having a totally normal conversation",id:"904624611893854248",channel_name:"chat"}
+[2021/11/01 15:55:28.308][687188236971671560][event][MESSAGE][zik#6629] {message:"yes",id:"904624668965761045",channel_name:"chat"}
+[2021/11/01 15:58:48.601][687188236971671560][event][MESSAGE][ashz#3656] {message:"exactly",id:"904625509080653834",channel_name:"chat"}
+[2021/11/01 15:59:11.614][687188236971671560][event][MESSAGE][ashz#3656] {message:"1+1 = 10",id:"904625605495107614",channel_name:"chat"}
+[2021/11/01 15:59:33.900][687188236971671560][event][MESSAGE][ashz#3656] {message:"thats *super logic*",id:"904625699074236436",channel_name:"chat"}
+[2021/11/01 16:22:04.365][687188236971671560][event][MESSAGE][혜윤#0606] {message:"damm..",id:"904631363137863721",channel_name:"chat"}
+[2021/11/01 16:40:15.442][687188236971671560][event][MESSAGE][ashz#3656] {message:"DVCT_IMAGE_NAME=${MODEL}_${MAJOR}.${MINOR}.${BUILD}_$(shell cut -d'=' -f2 <<< "$(shell cat ./davo/buildtime.mk |grep BUILD_TIME)")_${REV}",id:"904635939500986408",channel_name:"chat"}
+[2021/11/01 16:40:55.948][687188236971671560][event][MESSAGE][ashz#3656] {message:"```text\nDVCT_IMAGE_NAME=${MODEL}_${MAJOR}.${MINOR}.${BUILD}_$(shell cut -d'=' -f2 <<< "$(shell cat ./davo/buildtime.mk |grep BUILD_TIME)")_${REV}\n```",id:"904636109252874251",channel_name:"chat"}
+[2021/11/01 22:57:32.123][687188236971671560][event][MESSAGE][ashz#3656] {message:".join",id:"904730884740108341",channel_name:"chat"}
+[2021/11/01 22:57:32.401][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".join",id:"904730884740108341",channel_name:"chat"}
+[2021/11/01 22:57:32.602][687188236971671560][command][JOIN_SUCCESS][ashz#3656][904730884740108341] Now connected to user's voice channel. {receivedArgument:".join"}
+[2021/11/01 22:58:21.062][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=wCEZdBQwH4U&feature=share",id:"904731090021908530",channel_name:"chat"}
+[2021/11/01 22:58:21.318][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=wCEZdBQwH4U&feature=share",id:"904731090021908530",channel_name:"chat"}
+[2021/11/01 22:58:25.365][687188236971671560][command][PLAY_SUCCESS][ashz#3656][904731090021908530] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=wCEZdBQwH4U&feature=share",index:"0",length:"149",volume:"7",url:"https://www.youtube.com/watch?v=wCEZdBQwH4U"}
+[2021/11/01 22:59:12.487][687188236971671560][event][MESSAGE][ashz#3656] {message:".play https://music.youtube.com/watch?v=-_1yMRvJfZ8&feature=share",id:"904731305609134100",channel_name:"chat"}
+[2021/11/01 22:59:12.735][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".play https://music.youtube.com/watch?v=-_1yMRvJfZ8&feature=share",id:"904731305609134100",channel_name:"chat"}
+[2021/11/01 22:59:13.554][687188236971671560][command][PLAY_SUCCESS][ashz#3656][904731305609134100] Overriding current track. Playing received data track. {receivedArgument:".play https://music.youtube.com/watch?v=-_1yMRvJfZ8&feature=share",index:"1",length:"146",volume:"7",url:"https://www.youtube.com/watch?v=-_1yMRvJfZ8"}
+[2021/11/01 23:01:42.497][687188236971671560][TB][NEXT_AUTO_QUEUE] Playing next track. Playing received data track. {index:"0",length:"149",volume:"7",url:"https://www.youtube.com/watch?v=wCEZdBQwH4U"}
+[2021/11/01 23:02:49.581][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave\",id:"904732216230309938",channel_name:"chat"}
+[2021/11/01 23:02:49.582][687188236971671560][event][COMMAND_UNKNOWN][ashz#3656] {id:"904732216230309938",content:".leave\"}
+[2021/11/01 23:02:49.810][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave\",id:"904732216230309938",channel_name:"chat"}
+[2021/11/01 23:02:52.715][687188236971671560][event][MESSAGE][ashz#3656] {message:".leave",id:"904732229383622707",channel_name:"chat"}
+[2021/11/01 23:02:52.725][687188236971671560][command][LEAVE_SUCCESS][ashz#3656][904732229383622707] Bot is now disconnected from it's last voice channel. {receivedArgument:".leave"}
+[2021/11/01 23:02:52.976][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:".leave",id:"904732229383622707",channel_name:"chat"}
+[2021/11/02 17:28:18.500][687188236971671560][event][MESSAGE][ashz#3656] {message:"```text\n한컴에서 보내준 로그 규격서는 현재 로그 저장 동작만 기재되어 있어서, 무슨 상황에 무슨 로그를 출력해야 하는지 따로 정리된게 없습니다.\n지금 상황은 연구소에서 필요에 따라 로그를 넣고 있습니다. (나중에 지금까지 작성한 로그 내용들을 정리해서 전달해드리겠습니다.)\n\n로그 파일 경로들입니다.\n메모리 로그: /tmp/davo.log\n플래시 로그: /tmp/dvlog/davo.log\n\n테스팅 과정은 다음과 같습니다:\n    - 대량의 로그들을 아래 명령어들을 사용해서 정상적으로 로그 파일에 저장되는지 확인.\n        - logger -t system -p daemon.1 "DAVO|system|2|BOTH LOGGER $(date)"\n            - 메모리와 플래시 로그에 기록\n        - logger -t system -p daemon.1 "DAVO|system|1|FLASH LOGGER $(date)"\n            - 플래시 로그에만 기록\n        - logger -t system -p daemon.1 "DAVO|system|0|MEMORY LOGGER $(date)"\n            - 메모리 로그에만 기록\n        - dvcmd /test/entlog\n            - entlog 함수 테스트 명령어 (메모리와 플래시에 기록)\n    - 재부팅 시(COLD,WARM), 플래시 로그 확인\n    - 재부팅 시(COLD,WARM), 메모리 로그가 64KB 이상의 로그 정보를 복구했는지 확인\n```",id:"905010419800887328",channel_name:"chat"}
+[2021/11/02 17:32:42.837][687188236971671560][event][MESSAGE][ashz#3656] {message:"https://davolink.atlassian.net/browse/S1HCOM-100?focusedCommentId=11175",id:"905011528594505758",channel_name:"chat"}
+[2021/11/02 17:34:16.972][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"https://davolink.atlassian.net/browse/S1HCOM-100?focusedCommentId=11175",id:"905011528594505758",channel_name:"chat"}
+[2021/11/02 17:34:22.872][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"```text\n한컴에서 보내준 로그 규격서는 현재 로그 저장 동작만 기재되어 있어서, 무슨 상황에 무슨 로그를 출력해야 하는지 따로 정리된게 없습니다.\n지금 상황은 연구소에서 필요에 따라 로그를 넣고 있습니다. (나중에 지금까지 작성한 로그 내용들을 정리해서 전달해드리겠습니다.)\n\n로그 파일 경로들입니다.\n메모리 로그: /tmp/davo.log\n플래시 로그: /tmp/dvlog/davo.log\n\n테스팅 과정은 다음과 같습니다:\n    - 대량의 로그들을 아래 명령어들을 사용해서 정상적으로 로그 파일에 저장되는지 확인.\n        - logger -t system -p daemon.1 "DAVO|system|2|BOTH LOGGER $(date)"\n            - 메모리와 플래시 로그에 기록\n        - logger -t system -p daemon.1 "DAVO|system|1|FLASH LOGGER $(date)"\n            - 플래시 로그에만 기록\n        - logger -t system -p daemon.1 "DAVO|system|0|MEMORY LOGGER $(date)"\n            - 메모리 로그에만 기록\n        - dvcmd /test/entlog\n            - entlog 함수 테스트 명령어 (메모리와 플래시에 기록)\n    - 재부팅 시(COLD,WARM), 플래시 로그 확인\n    - 재부팅 시(COLD,WARM), 메모리 로그가 64KB 이상의 로그 정보를 복구했는지 확인\n```",id:"905010419800887328",channel_name:"chat"}
+[2021/11/02 17:34:37.450][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"DVCT_IMAGE_NAME=${MODEL}_${MAJOR}.${MINOR}.${BUILD}_$(shell cut -d'=' -f2 <<< "$(shell cat ./davo/buildtime.mk |grep BUILD_TIME)")_${REV}",id:"904635939500986408",channel_name:"chat"}
+[2021/11/02 17:34:40.203][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"```text\nDVCT_IMAGE_NAME=${MODEL}_${MAJOR}.${MINOR}.${BUILD}_$(shell cut -d'=' -f2 <<< "$(shell cat ./davo/buildtime.mk |grep BUILD_TIME)")_${REV}\n```",id:"904636109252874251",channel_name:"chat"}
+[2021/11/03 10:37:27.924][687188236971671560][event][MESSAGE][ashz#3656] {message:"```text\n01000000 rootfs, rootfs_1\n0c000000 BAD BLOCK\n0c020000 BAD BLOCK\n0da00000 ETHPHYFW\n\n1b780000 RESV\n1c000000 BAD BLOCK\n1c020000 BAD BLOCK\n1c1c0000 DVFLAG\n```",id:"905269415518556221",channel_name:"chat"}
+[2021/11/03 10:44:00.284][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"```text\n01000000 rootfs, rootfs_1\n0c000000 BAD BLOCK\n0c020000 BAD BLOCK\n0da00000 ETHPHYFW\n\n1b780000 RESV\n1c000000 BAD BLOCK\n1c020000 BAD BLOCK\n1c1c0000 DVFLAG\n```",id:"905269415518556221",channel_name:"chat"}
+[2021/11/03 10:57:59.557][687188236971671560][event][MESSAGE][ashz#3656] {message:"```text\nIPQ807x# printenv\nbaudrate=115200\nbootargs=console=ttyMSM0,115200n8\nbootcmd=bootipq; bootswap\nbootdelay=0\nethact=eth0\nethaddr=00:08:52:FD:00:00\nfdt_high=0x4A400000\nfdtcontroladdr=4a971a10\nfileaddr=44325fb4\nfilesize=22a0000\nflash_type=2\nloglevel=loglevel=0\nmachid=8010008\nqpstserverip=192.168.123.99\nserial_num=DVW614IX0000000000\nsoc_hw_version=200d0200\nsoc_version_major=2\nsoc_version_minor=0\nstderr=serial@78B3000\nstdin=serial@78B3000\nstdout=serial\n```",id:"905274581407920129",channel_name:"chat"}
+[2021/11/03 11:03:21.875][687188236971671560][event][MESSAGE_DELETE][ashz#3656] {message:"```text\nIPQ807x# printenv\nbaudrate=115200\nbootargs=console=ttyMSM0,115200n8\nbootcmd=bootipq; bootswap\nbootdelay=0\nethact=eth0\nethaddr=00:08:52:FD:00:00\nfdt_high=0x4A400000\nfdtcontroladdr=4a971a10\nfileaddr=44325fb4\nfilesize=22a0000\nflash_type=2\nloglevel=loglevel=0\nmachid=8010008\nqpstserverip=192.168.123.99\nserial_num=DVW614IX0000000000\nsoc_hw_version=200d0200\nsoc_version_major=2\nsoc_version_minor=0\nstderr=serial@78B3000\nstdin=serial@78B3000\nstdout=serial\n```",id:"905274581407920129",channel_name:"chat"}
+[2021/11/04 15:09:03.032][687188236971671560][event][MESSAGE][ashz#3656] {message:"```bash\n#!/bin/sh \n\ncnt=$1\nif [ -z $cnt ];  \nthen\n    echo "no args [need count]"\n    exit\nfi\n\nfor idx in $(seq 0 1 $cnt)\ndo\n    echo ""\n    echo "WTPIDX: [${idx}]"\n    dvcmd -udavo -pdrc /test/la $idx 1\n    dvcmd -udavo -pdrc /test/la $idx 2\ndone\n\necho "done"\n```",id:"905700150310228008",channel_name:"chat"}
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'THREE_DAY_THREAD_ARCHIVE', 'ANIMATED_ICON', 'INVITE_SPLASH' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: '904732230113439765',
+  lastMessageChannelID: '687472304917446672',
+  premiumSinceTimestamp: 0,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'THREE_DAY_THREAD_ARCHIVE', 'ANIMATED_ICON', 'INVITE_SPLASH' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: '904732230113439765',
+  lastMessageChannelID: '687472304917446672',
+  premiumSinceTimestamp: 0,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+[2021/11/06 08:22:58.674][687188236971671560][event][GUILD_MEMBER_UPDATE][external] User update detected.
+[2021/11/18 17:16:50.181][ALERT] Finished Data Handling, waiting on Discord API...
+[2021/11/18 17:16:50.335][ALERT] Directory already exists. (/home/xaton/gitr/Norn/config/)
+[2021/11/18 17:16:50.336][ALERT] Directory already exists. (/home/xaton/gitr/Norn/log/)
+[2021/11/18 17:16:51.125][guild_null][event][BOT_READY] Here to serve! (And to steal API bandwidth usage)
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'ANIMATED_ICON', 'INVITE_SPLASH', 'THREE_DAY_THREAD_ARCHIVE' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: null,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: null,
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'ANIMATED_ICON', 'INVITE_SPLASH', 'THREE_DAY_THREAD_ARCHIVE' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: null,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: null,
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+[2021/11/18 17:16:51.130][687188236971671560][event][GUILD_MEMBER_UPDATE][external] User update detected.
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'ANIMATED_ICON', 'INVITE_SPLASH', 'THREE_DAY_THREAD_ARCHIVE' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: null,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+GuildMember {
+  guild: <ref *1> Guild {
+    members: GuildMemberManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    channels: GuildChannelManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    roles: RoleManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    },
+    presences: PresenceManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {}
+    },
+    voiceStates: VoiceStateManager {
+      cacheType: [class Collection extends Collection],
+      cache: Collection(0) [Map] {},
+      guild: [Circular *1]
+    },
+    deleted: false,
+    available: true,
+    id: '687188236971671560',
+    shardID: 0,
+    name: 'AXC',
+    icon: '47c1c7f72ddf7a4d69c67271fe846a03',
+    splash: 'de3a979043d9f75aaa16b77f6b9b84f3',
+    discoverySplash: null,
+    region: 'south-korea',
+    memberCount: 34,
+    large: false,
+    features: [ 'ANIMATED_ICON', 'INVITE_SPLASH', 'THREE_DAY_THREAD_ARCHIVE' ],
+    applicationID: null,
+    afkTimeout: 300,
+    afkChannelID: '687472486673023000',
+    systemChannelID: '687472304917446672',
+    embedEnabled: undefined,
+    premiumTier: 1,
+    premiumSubscriptionCount: 2,
+    verificationLevel: 'NONE',
+    explicitContentFilter: 'DISABLED',
+    mfaLevel: 0,
+    joinedTimestamp: 1586887260709,
+    defaultMessageNotifications: 'ALL',
+    systemChannelFlags: SystemChannelFlags { bitfield: 0 },
+    maximumMembers: 250000,
+    maximumPresences: null,
+    approximateMemberCount: null,
+    approximatePresenceCount: null,
+    vanityURLCode: null,
+    vanityURLUses: null,
+    description: null,
+    banner: null,
+    rulesChannelID: null,
+    publicUpdatesChannelID: null,
+    preferredLocale: 'en-US',
+    ownerID: '207597209611403264',
+    emojis: GuildEmojiManager {
+      cacheType: [class Collection extends Collection],
+      cache: [Collection [Map]],
+      guild: [Circular *1]
+    }
+  },
+  joinedTimestamp: 1586887260709,
+  lastMessageID: null,
+  lastMessageChannelID: null,
+  premiumSinceTimestamp: null,
+  deleted: false,
+  nickname: null,
+  _roles: [ '852065292648710144', '699680626038800385', '707217016351752223' ],
+  user: ClientUser {
+    id: '699679796296286247',
+    system: null,
+    locale: null,
+    flags: UserFlags { bitfield: 0 },
+    username: 'Norn',
+    bot: true,
+    discriminator: '4991',
+    avatar: 'c9bf10a66931e4e227e1df72ce518a83',
+    lastMessageID: null,
+    lastMessageChannelID: null,
+    verified: true,
+    mfaEnabled: true,
+    _typing: Map(0) {}
+  }
+}
+[2021/11/18 18:40:44.502][687188236971671560][event][GUILD_MEMBER_UPDATE][external] User update detected.
