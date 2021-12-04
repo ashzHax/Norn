@@ -1,12 +1,15 @@
 {
   "name": "norn",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "discord bot",
   "main": "Norn.js",
   "private": true,
   "scripts": {
     "test": "echo \"Please Check Your Internet Connection!\""
   },
+  "engines": {
+		"node": ">=16.0.0"
+	},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ashzHax/Norn.git"
@@ -22,9 +25,21 @@
   },
   "homepage": "https://github.com/ashzHax/Norn#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.3.1",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.20.2",
+
+    "ytdl-core": "^4.9.0",
     "ffmpeg": "0.0.4",
-    "opusscript": "0.0.7",
-    "ytdl-core": "^4.9.0"
+    "opusscript": "0.0.7"
+  },
+  "optionalDependencies": {
+    "zlib-sync": "^0.1.7",
+    "erlpack": "^discord/erlpack#f7d730d",
+    "bufferutil": "^4.0.5",
+    "utf-8-validate": "^5.0.7",
+    "@discordjs/voice": "^0.7.5",
+
+    "@sapphire/snowflake": "^2.1.4"
   }
 }

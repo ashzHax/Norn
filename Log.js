@@ -101,6 +101,7 @@ const norn_event_handle_log = (logType, eventData=null, guildData=null) => {
             
             eLog = null;
             consoleLogText = consoleLogText.concat(`[${eventData.author.tag}] {message:\"${ExF.replaceAll(eventData.content,'\n','\\n')}\",id:\"${eventData.id}\",channel_name:\"${eventData.channel.name}\"}`); 
+            console.log(JSON.stringify(eventData));
             break;               
         }
         case 'MESSAGE_DELETE': {

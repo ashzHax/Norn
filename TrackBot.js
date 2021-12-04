@@ -27,7 +27,7 @@ const connect_to_user_channel = async (guildData, client, userTextChannel, userV
     try {
         guildData.TB.voiceConnection = (await userVoiceChannel.join());
     } catch(errorData) {
-        console.error(errorData);
+        console.error(errorData); // TODO, improve this to log to file.
         logTrackBot('JOIN_FAILED', guildData);
         return false;
     }
