@@ -29,7 +29,7 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.20.2",
 
-    "ytdl-core": "^4.9.0",
+    "ytdl-core": "^4.9.1",
     "ffmpeg": "0.0.4",
     "opusscript": "0.0.7"
   },
